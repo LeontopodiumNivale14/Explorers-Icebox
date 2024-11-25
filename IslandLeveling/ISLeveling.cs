@@ -5,14 +5,13 @@ using ECommons.SimpleGui;
 using IslandLeveling.IPC;
 using IslandLeveling.Scheduler;
 using IslandLeveling.Windows;
-using SamplePlugin.Windows;
 
 namespace IslandLeveling;
 
 public sealed class ISLeveling : IDalamudPlugin
 {
-    private const string Command = "/globalt";
-    private static string[] Aliases => ["/pgt", "/pglobal"];
+    private const string Command = "/pIslandLevel";
+    private static string[] Aliases => ["/pil"];
 
     internal static ISLeveling P = null!;
     private readonly Config config;

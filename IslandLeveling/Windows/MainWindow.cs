@@ -1,15 +1,8 @@
-using System;
-using System.Numerics;
-using Dalamud.Interface.Internal;
-using Dalamud.Interface.Utility;
-using Dalamud.Interface.Windowing;
-using Dalamud.Plugin.Services;
 using ECommons.SimpleGui;
-using ImGuiNET;
-using IslandLeveling;
 using IslandLeveling.Scheduler;
+using IslandLeveling.Scheduler.Handers;
 
-namespace SamplePlugin.Windows
+namespace IslandLeveling.Windows
 {
     internal class MainWindow : ConfigWindow, IDisposable
     {
@@ -36,8 +29,7 @@ namespace SamplePlugin.Windows
             ImGui.SameLine();
             ImGui.Text($"Addon Visible: " + IsAddonActive(addonName));
             ImGui.Text($"PlayerPos: " + PlayerPosition());
-            ImGui.Text($"Navmesh BuildProgress :" + .navmesh.BuildProgress());//working ipc
-            ImGui.Text($"IsThereTradeItem " + IsThereTradeItem());
+            ImGui.Text($"Navmesh BuildProgress :" + P.navmesh.BuildProgress());//working ipc
             bool isRunning = SchedulerMain.AreWeTicking;
             if (ImGui.Button(isRunning ? "Stop" : "Start"))
             {
@@ -53,13 +45,9 @@ namespace SamplePlugin.Windows
             ImGui.SameLine();
             if (ImGuiEx.IconButton(FontAwesomeIcon.Wrench, "Settings"))
                 EzConfigGui.WindowSystem.Windows.FirstOrDefault(w => w.WindowName == SettingMenu.WindowName)!.IsOpen ^= true;
-            if (ImGui.Button("callback"))
+            if (ImGui.Button("Mount up!"))
             {
-                P.taskManager.Enqueue(() => GenericHandlers.OpenCharaSettings());
-                P.taskManager.Enqueue(() => GenericHandlers.FireCallback("ConfigCharacter", true, 10, 0, 20));
-                P.taskManager.Enqueue(() => GenericHandlers.FireCallback("ConfigCharacter", true, 18, 300, C.MaxArmory ? 1 : 0));
-                P.taskManager.Enqueue(() => GenericHandlers.FireCallback("ConfigCharacter", true, 0));
-                P.taskManager.Enqueue(() => GenericHandlers.FireCallback("ConfigCharacter", true, -1));
+                P.taskManager.Enqueue(PlayerHandlers.MountUp);
             }
         }
     }

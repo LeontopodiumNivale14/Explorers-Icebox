@@ -1,0 +1,4 @@
+Things I want to work on when I can:
+-> Make the CurrentAmount dynamically update the values like how the POS works
+-> Actually start testing Pcalls
+-> Get the general code working

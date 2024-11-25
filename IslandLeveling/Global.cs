@@ -19,6 +19,7 @@ global using System;
 global using static ECommons.GenericHelpers;
 
 global using static IslandLeveling.ISLeveling;
+global using static IslandLeveling.Util.Utils;
 
 // tables being used acrossed the plugin
 global using static IslandLeveling.Util.IslandData.IslandAmounts;
