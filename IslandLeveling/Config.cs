@@ -1,11 +1,12 @@
 ﻿using Dalamud.Configuration;
 using Dalamud.Plugin;
 using System;
+using IslandLeveling;
 
 namespace SamplePlugin;
 
 [Serializable]
-public class Configuration : IPluginConfiguration
+public class Config : IPluginConfiguration
 {
     public int Version { get; set; } = 0;
 

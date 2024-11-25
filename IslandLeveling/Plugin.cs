@@ -1,12 +1,13 @@
-﻿using Dalamud.Game.Command;
+﻿using System.IO;
+using Dalamud.Game.Command;
+using Dalamud.Interface.Windowing;
 using Dalamud.IoC;
 using Dalamud.Plugin;
-using System.IO;
-using Dalamud.Interface.Windowing;
 using Dalamud.Plugin.Services;
+using SamplePlugin;
 using SamplePlugin.Windows;
 
-namespace SamplePlugin;
+namespace IslandLeveling;
 
 public sealed class Plugin : IDalamudPlugin
 {
@@ -16,7 +17,7 @@ public sealed class Plugin : IDalamudPlugin
 
     private const string CommandName = "/pmycommand";
 
-    public Configuration Configuration { get; init; }
+    public Config Config { get; init; }
 
     public readonly WindowSystem WindowSystem = new("IslandLeveling");
     private ConfigWindow ConfigWindow { get; init; }
@@ -24,7 +25,7 @@ public sealed class Plugin : IDalamudPlugin
 
     public Plugin()
     {
-        Configuration = PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
+        Config = PluginInterface.GetPluginConfig() as Config ?? new Config();
 
         // you might normally want to embed resources and load them from the manifest stream
         var goatImagePath = Path.Combine(PluginInterface.AssemblyLocation.Directory?.FullName!, "goat.png");

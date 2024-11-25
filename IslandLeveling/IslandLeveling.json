@@ -1,7 +1,7 @@
 {
   "Author": "your name here",
-  "Name": "Sample Plugin",
-  "Punchline": "A short one-liner that shows up in /xlplugins.",
+  "Name": "Island Leveling",
+  "Punchline": "Helping you level, one level at a time.",
   "Description": "A description that shows up in /xlplugins. List any major slash-command(s).",
   "ApplicableVersion": "any",
   "Tags": [
