@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb72e3d8-863f-42b2-8a27-d1e0d88e4095" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/IslandLeveling/Global.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IslandLeveling/Scheduler/Handers/GenericHandlers.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IslandLeveling/Scheduler/Handers/PlayerHandlers.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IslandLeveling/Scheduler/Handers/TEST.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IslandLeveling/Scheduler/SchedulerMain.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IslandLeveling/Scheduler/Tasks/TaskMount.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IslandLeveling/Service.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IslandLeveling/Util/IslandUtil/ISVendorUtil.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SamplePlugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SamplePlugin/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IslandLeveling/Config.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IslandLeveling/Config.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IslandLeveling/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IslandLeveling/ISLeveling.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IslandLeveling/Util/IslandData/IslandMics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IslandLeveling/Util/IslandData/IslandMics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IslandLeveling/Windows/ConfigWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IslandLeveling/Windows/ConfigWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IslandLeveling/Windows/MainWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/IslandLeveling/Windows/MainWindow.cs" afterDir="false" />
-    </list>
+    <list default="true" id="eb72e3d8-863f-42b2-8a27-d1e0d88e4095" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +45,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732509384361</updated>
-      <workItem from="1732509385676" duration="10629000" />
+      <workItem from="1732509385676" duration="11231000" />
     </task>
     <servers />
   </component>

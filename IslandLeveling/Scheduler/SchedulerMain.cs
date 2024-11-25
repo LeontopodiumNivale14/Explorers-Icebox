@@ -1,47 +1,40 @@
-﻿namespace IslandLeveling.Scheduler;
+using IslandLeveling.Scheduler.Tasks;
 
-internal static unsafe class SchedulerMain
+namespace IslandLeveling.Scheduler
 {
-    internal static bool PluginEnabledInternal;
-    internal static bool PluginEnabled
+    internal static unsafe class SchedulerMain
     {
-        get => PluginEnabledInternal; // && !IPCSuppressed
-        private set => PluginEnabledInternal = value;
-    }
-    internal static bool IsEnabled // Public property which reacts to true/false
-    {
-        get => PluginEnabled;
-        set
+        internal static bool AreWeTicking;
+        internal static bool EnableTicking
         {
-            PluginEnabled = value;
-            if (PluginEnabled)
-            {
-                EnablePlugin();
-            }
-            else
-            {
-                DisablePlugin();
-            }
+            get => AreWeTicking;
+            private set => AreWeTicking = value;
         }
-    }
-    private static void EnablePlugin()
-    {
-        PluginEnabled = true;
-    }
-    private static void DisablePlugin()
-    {
-        PluginEnabled = false;
-    }
-    internal static void Tick()
-    {
-        if (PluginEnabled)
+        internal static bool EnablePlugin()
         {
-            /* this is where I would add code to check for things
-            / So esentially where to start the looping process of it all (going to sell things, actually moving, ect)
-            / Need to code this in a way to make sure that it performs each task sequentially... but that's thoughts for later
-            */
-            
-            TaskMount.Enqueue();
+            EnableTicking = true;
+            return true;
+        }
+        internal static bool DisablePlugin()
+        {
+            EnableTicking = false;
+            return true;
+        }
+
+        private static bool Yes = false;
+        internal static void Tick()
+        {
+            if (AreWeTicking)
+            {
+                if (!P.taskManager.IsBusy)
+                {
+                    TaskMountUp.Enqueue();
+                    if (!Yes)
+                    {
+                        // more code that can be ran here. Justt need to figure out what...
+                    }
+                }
+            }
         }
     }
 }

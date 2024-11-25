@@ -1,17 +1,17 @@
-﻿using ECommons.Throttlers;
+using ECommons.Throttlers;
 
 namespace IslandLeveling.Scheduler.Handers
 {
     internal class GenericHandlers
     {
-        internal static bool? Throttle(int ms)
+        internal static bool? Throttle(string name, int ms)
         {
-            return EzThrottler.Throttle("Ice Box Wait", ms);
+            return EzThrottler.Throttle(name, ms);
         }
 
-        internal static bool? WaitFor(int ms)
+        internal static bool? WaitFor(string name, int ms)
         {
-            return EzThrottler.Check("Ice Box Wait");
+            return EzThrottler.Check(name);
         }
     }
 }

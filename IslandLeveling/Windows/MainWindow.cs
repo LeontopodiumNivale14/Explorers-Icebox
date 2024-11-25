@@ -1,59 +1,66 @@
-﻿using System;
+using System;
 using System.Numerics;
 using Dalamud.Interface.Internal;
 using Dalamud.Interface.Utility;
 using Dalamud.Interface.Windowing;
 using Dalamud.Plugin.Services;
+using ECommons.SimpleGui;
 using ImGuiNET;
 using IslandLeveling;
+using IslandLeveling.Scheduler;
 
-namespace SamplePlugin.Windows;
-
-public class MainWindow : Window, IDisposable
+namespace SamplePlugin.Windows
 {
-    private string GoatImagePath;
-    private ISLeveling isLeveling;
-
-    // We give this window a hidden ID using ##
-    // So that the user will see "My Amazing Window" as window title,
-    // but for ImGui the ID is "My Amazing Window##With a hidden ID"
-    public MainWindow(ISLeveling isLeveling, string goatImagePath)
-        : base("My Amazing Window##With a hidden ID", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse)
+    internal class MainWindow : ConfigWindow, IDisposable
     {
-        SizeConstraints = new WindowSizeConstraints
+        public MainWindow() : base()
         {
-            MinimumSize = new Vector2(375, 330),
-            MaximumSize = new Vector2(float.MaxValue, float.MaxValue)
-        };
-
-        GoatImagePath = goatImagePath;
-        this.isLeveling = isLeveling;
-    }
-
-    public void Dispose() { }
-
-    public override void Draw()
-    {
-        ImGui.Text($"The random config bool is {isLeveling.Config.SomePropertyToBeSavedAndWithADefault}");
-
-        if (ImGui.Button("Show Settings"))
-        {
-            isLeveling.ToggleConfigUI();
+            Flags = ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse | ImGuiWindowFlags.NoCollapse;
+            SizeConstraints = new WindowSizeConstraints
+            {
+                MinimumSize = new Vector2(100, 100),
+                MaximumSize = new Vector2(800, 600)
+            };
         }
-
-        ImGui.Spacing();
-
-        ImGui.Text("Have a goat:");
-        var goatImage = ISLeveling.TextureProvider.GetFromFile(GoatImagePath).GetWrapOrDefault();
-        if (goatImage != null)
+        public void Dispose()
         {
-            ImGuiHelpers.ScaledIndent(55f);
-            ImGui.Image(goatImage.ImGuiHandle, new Vector2(goatImage.Width, goatImage.Height));
-            ImGuiHelpers.ScaledIndent(-55f);
         }
-        else
+        private string addonName = "kpala";
+
+        public override void Draw()
         {
-            ImGui.Text("Image not found.");
+            ImGui.Text($"TerritoryID: " + Svc.ClientState.TerritoryType);
+            ImGui.SameLine();
+            ImGui.Text($"Target: " + Svc.Targets.Target);
+            ImGui.InputText("##Addon Visible", ref addonName, 100);
+            ImGui.SameLine();
+            ImGui.Text($"Addon Visible: " + IsAddonActive(addonName));
+            ImGui.Text($"PlayerPos: " + PlayerPosition());
+            ImGui.Text($"Navmesh BuildProgress :" + .navmesh.BuildProgress());//working ipc
+            ImGui.Text($"IsThereTradeItem " + IsThereTradeItem());
+            bool isRunning = SchedulerMain.AreWeTicking;
+            if (ImGui.Button(isRunning ? "Stop" : "Start"))
+            {
+                if (isRunning)
+                {
+                    SchedulerMain.DisablePlugin(); // Call DisablePlugin if running
+                }
+                else
+                {
+                    SchedulerMain.EnablePlugin(); // Call EnablePlugin if not running
+                }
+            }
+            ImGui.SameLine();
+            if (ImGuiEx.IconButton(FontAwesomeIcon.Wrench, "Settings"))
+                EzConfigGui.WindowSystem.Windows.FirstOrDefault(w => w.WindowName == SettingMenu.WindowName)!.IsOpen ^= true;
+            if (ImGui.Button("callback"))
+            {
+                P.taskManager.Enqueue(() => GenericHandlers.OpenCharaSettings());
+                P.taskManager.Enqueue(() => GenericHandlers.FireCallback("ConfigCharacter", true, 10, 0, 20));
+                P.taskManager.Enqueue(() => GenericHandlers.FireCallback("ConfigCharacter", true, 18, 300, C.MaxArmory ? 1 : 0));
+                P.taskManager.Enqueue(() => GenericHandlers.FireCallback("ConfigCharacter", true, 0));
+                P.taskManager.Enqueue(() => GenericHandlers.FireCallback("ConfigCharacter", true, -1));
+            }
         }
     }
 }

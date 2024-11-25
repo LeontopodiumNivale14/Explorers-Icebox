@@ -1,86 +1,62 @@
-﻿using System.IO;
-using Dalamud.Game.Command;
-using Dalamud.Interface.Windowing;
-using Dalamud.IoC;
-using Dalamud.Plugin;
-using Dalamud.Plugin.Services;
+using System.IO;
 using ECommons.Automation.NeoTaskManager;
 using ECommons.Configuration;
-using FFXIVClientStructs.FFXIV.Client.System.Resource.Handle;
+using ECommons.SimpleGui;
+using IslandLeveling.IPC;
 using IslandLeveling.Scheduler;
-using SamplePlugin;
+using IslandLeveling.Windows;
 using SamplePlugin.Windows;
 
 namespace IslandLeveling;
 
 public sealed class ISLeveling : IDalamudPlugin
 {
-    public string Name => "ISLeveling";
-    internal static ISLeveling P;
-    internal static Config C => P.Config;
-    internal TaskManager TaskManager;
-    private const string CommandName = "/pmycommand";    
+    private const string Command = "/globalt";
+    private static string[] Aliases => ["/pgt", "/pglobal"];
+
+    internal static ISLeveling P = null!;
+    private readonly Config config;
+
+    public static Config C => P.config;
+
+    internal TaskManager taskManager;
+    internal LifestreamIPC lifestream;
+    internal NavmeshIPC navmesh;
 
     public ISLeveling(IDalamudPluginInterface pluginInterface)
     {
-        {
-            P = this;
-            ECommonsMain.Init(pluginInterface, this, Module.DalamudReflector);
-            new TickScheduler(Load);
-        }
-    }
+        P = this;
+        ECommonsMain.Init(pluginInterface, P, ECommons.Module.DalamudReflector, ECommons.Module.ObjectFunctions);
+        config = EzConfig.Init<Config>();
 
-    // might need to be fixed.... not sure how
-    internal void SetConfig(Config c) => IslandLeveling.Config = c;
-    
-    public void Load()
-    {
-        // if for whatever reason this wasn't using EzConfig, this will fix that
-        EzConfig.Migrate<Config>();
-        
-        //Windows that needs to be loaded with the plugin
-        // ConfigWindow needs to be fixed....
-        ConfigWindow = new();
-        TaskManager = new(new(abortOnTimeout: true, timeLimitMS: 20000, showDebug: true));
+
+        EzConfigGui.Init(new MainWindow().Draw);
+        EzConfigGui.WindowSystem.AddWindow(new SettingMenu());
+        EzCmd.Add(Command, OnCommand, "Open Interface");
+        Aliases.ToList().ForEach(a => EzCmd.Add(a, OnCommand, $"{Command} Alias"));
+
+        taskManager = new();
+        lifestream = new();
+        navmesh = new();
         Svc.Framework.Update += Tick;
     }
-    
-    [PluginService] internal static ITextureProvider TextureProvider { get; private set; } = null!;
-    [PluginService] internal static ICommandManager CommandManager { get; private set; } = null!;
-
-    public Config Config { get; init; }
-
-    public readonly WindowSystem WindowSystem = new("IslandLeveling");
-    private ConfigWindow ConfigWindow { get; init; }
-    private MainWindow MainWindow { get; init; }
-
-    // Need to create the ScheulerMain from the other file... /import that over 
     private void Tick(object _)
     {
-        if (SchedulerMain.PluginEnabled && Svc.ClientState.LocalPlayer != null)
+        if (SchedulerMain.AreWeTicking && Svc.ClientState.LocalPlayer != null)
         {
             SchedulerMain.Tick();
         }
     }
-
     public void Dispose()
     {
-        WindowSystem.RemoveAllWindows();
-
-        ConfigWindow.Dispose();
-        MainWindow.Dispose();
-
-        CommandManager.RemoveHandler(CommandName);
+        Safe(() => Svc.Framework.Update -= Tick);
+        ECommonsMain.Dispose();
     }
-
     private void OnCommand(string command, string args)
     {
-        // in response to the slash command, just toggle the display status of our main ui
-        ToggleMainUI();
+        if (args.StartsWith("s"))
+            EzConfigGui.WindowSystem.Windows.First(w => w is SettingMenu).IsOpen ^= true;
+        else
+            EzConfigGui.Window.IsOpen = !EzConfigGui.Window.IsOpen;
     }
-
-    private void DrawUI() => WindowSystem.Draw();
-
-    public void ToggleConfigUI() => ConfigWindow.Toggle();
-    public void ToggleMainUI() => MainWindow.Toggle();
 }
