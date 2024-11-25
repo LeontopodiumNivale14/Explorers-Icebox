@@ -1,4 +1,11 @@
 Things I want to work on when I can:
 -> Make the CurrentAmount dynamically update the values like how the POS works
+  -> thought of this while at work/talking to Ucan, currently it only updates on start of plugin (due to it being refreshed then)
+  -> If i want to update at all times, then I should make a function that calls all of them at once to refresh it
+    -> could tie this to only doing so while it's in IS, 
+  -> could also use this to update all of them at once if I dont want permanent updates per tick
+  -> probably would be best to use the "update all" after every gathering node, would save on code
 -> Actually start testing Pcalls
 -> Get the general code working
+
+-> (thought of this at work
