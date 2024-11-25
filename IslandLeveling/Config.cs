@@ -1,12 +1,10 @@
 ﻿using Dalamud.Configuration;
-using Dalamud.Plugin;
-using System;
-using IslandLeveling;
+using ECommons.Configuration;
 
-namespace SamplePlugin;
+namespace IslandLeveling;
 
 [Serializable]
-public class Config : IPluginConfiguration
+public class Config : IPluginConfiguration, IEzConfig
 {
     public int Version { get; set; } = 0;
 
@@ -14,8 +12,5 @@ public class Config : IPluginConfiguration
     public bool SomePropertyToBeSavedAndWithADefault { get; set; } = true;
 
     // the below exist just to make saving less cumbersome
-    public void Save()
-    {
-        Plugin.PluginInterface.SavePluginConfig(this);
-    }
+    internal void Save() => Svc.PluginInterface.SavePluginConfig(this);
 }

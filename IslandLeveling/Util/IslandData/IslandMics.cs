@@ -1,13 +1,10 @@
-﻿using static IslandLeveling.Util.IslandData.IslandAmounts;
-using static IslandLeveling.Util.IslandData.IslandIDs;
-using static IslandLeveling.Util.IslandData.IslandWorkshop;
-using static IslandLeveling.Util.IslandData.IslandSend;
-using static IslandLeveling.Util.IslandData.IslandSell;
-
-namespace IslandLeveling.Util.IslandData;
+﻿namespace IslandLeveling.Util.IslandData;
 
 public class IslandMics
 {
+    //This is the current cap of items on Island Sanctuary Items, just so I can quickly pull it at all times
+    public const int MaxItems = 999;
+    
     // Route Loop Amounts
     public static int Route1Amount { get; set; }
     public static int Route2Amount { get; set; }
