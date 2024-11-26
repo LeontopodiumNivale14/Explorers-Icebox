@@ -10,6 +10,56 @@ public class IslandMics
     public static int Route2Amount { get; set; }
     
     // Tables to be used for Island Sanctuary information
+    
+    // This is so I can run a for if i = 1 statement to update the values of all the gatherable items
+    public static int[,] IslandGatherablesTable = new[,]
+    {
+        { PalmLeafID, PalmLeafAmount },
+        { BranchID, BranchAmount },
+        { StoneID, StoneAmount },
+        { ClamID, ClamAmount },
+        { LaverID, LaverAmount },
+        { CoralID, CoralAmount },
+        { IslewortID, IslewortAmount }, { SandID, SandAmount },
+        { VineID, VineAmount },
+        { SapID, SapAmount },
+        { AppleID, AppleAmount },
+        { LogID, LogAmount },
+        { PalmLogID, PalmLogAmount },
+        { CopperID, CopperAmount },
+        { LimestoneID, LimestoneAmount },
+        { RockSaltID, RockSaltAmount },
+        { ClayID, ClayAmount },
+        { TinsandID, TinsandAmount },
+        { SugarcaneID, SugarcaneAmount },
+        { CottonID, CottonAmount },
+        { HempID, HempAmount },
+        { IslefishID, IslefishAmount },
+        { SquidID, SquidAmount },
+        { JellyfishID, JellyfishAmount },
+        { IronOreID, IronOreAmount },
+        { QuartzID, QuartzAmount },
+        { LeucograniteID, LeucograniteAmount },
+        { MulticoloredIslebloomsID, MulticoloredIslebloomsAmount },
+        { ResinID, ResinAmount },
+        { CoconutID, CoconutAmount },
+        { BeehiveID, BeehiveAmount },
+        { WoodOpalID, WoodOpalAmount },
+        { CoalID, CoalAmount },
+        { GlimshroomID, GlimshroomAmount },
+        { EffervescentWaterID, EffervescentWaterAmount },
+        { ShaleID, ShaleAmount },
+        { MarbleID, MarbleAmount },
+        { MythrilOreID, MythrilOreAmount },
+        { SpectrineID, SpectrineAmount },
+        { DuriumSandID, DuriumSandAmount },
+        { YellowCopperOreID, YellowCopperOreAmount },
+        { GoldOreID, GoldOreAmount },
+        { HawksEyeSandID, HawksEyeSandAmount },
+        { CrystalFormationID, CrystalFormationAmount }
+    };
+    
+    // Route Tables
     // Has: Amount Gathered | ID | Amount | Workshop | Send | Sell | Can sell to full amount | Pcall value | Amount of loops per loop 
     public static int[,] Route1Table = new[,]
     {
