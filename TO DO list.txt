@@ -1,11 +1,8 @@
 Things I want to work on when I can:
--> Make the CurrentAmount dynamically update the values like how the POS works
-  -> thought of this while at work/talking to Ucan, currently it only updates on start of plugin (due to it being refreshed then)
-  -> If i want to update at all times, then I should make a function that calls all of them at once to refresh it
-    -> could tie this to only doing so while it's in IS, 
-  -> could also use this to update all of them at once if I dont want permanent updates per tick
-  -> probably would be best to use the "update all" after every gathering node, would save on code
 -> Actually start testing Pcalls
--> Get the general code working
+-> Change over the RouteLoopAmounts to be dynamic with how many items you are currently inputting (so for the groundxp loop, if I throw 20 sand in the workshop, then I want it to dynamically show how many loops it's expected to do
+-> While it's a forethought, I wonder if I can check to see if you have certain tools, that way it knows what it can/can't sell...
 
--> (thought of this at work
+*- 11.26 thoughts-*
+-> got the dynamic updating of items working in the workshop menu, but the values for the config/workshop is wrong.
+-> Also while it's a thought, the "shopsend" in every table needs to be removed from being a variable that's external to it, to just being a value per row. Just because if I try to have it dynamically update based on the information, then it's going to be hella work.
