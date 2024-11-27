@@ -61,6 +61,9 @@ namespace IslandLeveling.Windows
             int hawkseyesandWS = C.HawksEyeSandWS;
             int crystalformationWS = C.CrystalFormationWS;
 
+            float windowWidth = ImGui.GetWindowContentRegionMax().X; // Get the usable width of the window
+            float inputWidth = 100.0f; // Desired width of the input field
+            float offset = windowWidth - inputWidth; // Calculate position to hug the right wall
 
             ImGui.PushItemWidth(100);
             ImGui.PopItemWidth();
@@ -69,6 +72,7 @@ namespace IslandLeveling.Windows
             
             ImGui.Text($"Palm Leaf (Have: {PalmLeafAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Palm Leaf", ref palmleafWS))
             {
@@ -78,6 +82,7 @@ namespace IslandLeveling.Windows
             
             ImGui.Text($"Branch (Have: {BranchAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Branch Send", ref branchWS))
             {
@@ -87,6 +92,7 @@ namespace IslandLeveling.Windows
             
             ImGui.Text($"Stone (Have: {StoneAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Stone Send", ref stoneWS))
             {
@@ -96,6 +102,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Clam (Have: {ClamAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Clam Send", ref clamWS))
             {
@@ -105,6 +112,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Laver (Have: {LaverAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Laver Send", ref laverWS))
             {
@@ -114,6 +122,7 @@ namespace IslandLeveling.Windows
             
             ImGui.Text($"Coral (Have: {CoralAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Coral Send", ref coralWS))
             {
@@ -123,6 +132,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Islewort (Have: {IslewortAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Islewort Send", ref islewortWS))
             {
@@ -132,6 +142,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Sand (Have: {SandAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Sand Send", ref sandWS))
             {
@@ -141,6 +152,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Vine (Have: {VineAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Vine Send", ref vineWS))
             {
@@ -150,6 +162,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Sap (Have: {SapAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Sap Send", ref sapWS))
             {
@@ -158,7 +171,8 @@ namespace IslandLeveling.Windows
             }
 
             ImGui.Text($"Apple (Have: {AppleAmount})");
-            ImGui.SameLine();
+            ImGui.SameLine(); 
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Apple Send", ref appleWS))
             {
@@ -168,6 +182,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Log (Have: {LogAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Log Send", ref logWS))
             {
@@ -177,6 +192,7 @@ namespace IslandLeveling.Windows
             
             ImGui.Text($"Palm Log (Have: {PalmLogAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Palm Log Send", ref palmlogWS))
             {
@@ -186,6 +202,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Copper (Have: {CopperAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Copper Send", ref copperWS))
             {
@@ -195,6 +212,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Limestone (Have: {LimestoneAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Limestone Send", ref limestoneWS))
             {
@@ -204,6 +222,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Rock Salt (Have: {RockSaltAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Rock Salt Send", ref rocksaltWS))
             {
@@ -213,6 +232,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Clay (Have: {ClayAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Clay Send", ref clayWS))
             {
@@ -222,6 +242,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Tinsand (Have: {TinsandAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Tinsand Send", ref tinsandWS))
             {
@@ -231,6 +252,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Sugarcane (Have: {SugarcaneAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Sugarcane Send", ref sugarcaneWS))
             {
@@ -240,6 +262,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Cotton (Have: {CottonAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Cotton Send", ref cottonWS))
             {
@@ -249,6 +272,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Hemp (Have: {HempAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Hemp Send", ref hempWS))
             {
@@ -258,6 +282,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Islefish (Have: {IslefishAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Islefish Send", ref islefishWS))
             {
@@ -267,6 +292,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Squid (Have: {SquidAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Squid Send", ref squidWS))
             {
@@ -276,6 +302,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Jellyfish (Have: {JellyfishAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Jellyfish Send", ref jellyfishWS))
             {
@@ -285,6 +312,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Iron Ore (Have: {IronOreAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Iron Ore Send", ref ironoreWS))
             {
@@ -294,6 +322,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Quartz (Have: {QuartzAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Quartz Send", ref quartzWS))
             {
@@ -303,6 +332,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Leucogranite (Have: {LeucograniteAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Leucogranite Send", ref leucograniteWS))
             {
@@ -312,6 +342,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Multicolored Isleblooms (Have: {MulticoloredIslebloomsAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Multicolored Isleblooms Send", ref multicoloredislebloomsWS))
             {
@@ -321,6 +352,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Resin (Have: {ResinAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Resin Send", ref resinWS))
             {
@@ -330,6 +362,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Coconut (Have: {CoconutAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Coconut Send", ref coconutWS))
             {
@@ -339,6 +372,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Beehive (Have: {BeehiveAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Beehive Send", ref beehiveWS))
             {
@@ -348,6 +382,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Wood Opal (Have: {WoodOpalAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Wood Opal Send", ref woodopalWS))
             {
@@ -357,6 +392,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Coal (Have: {CoalAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Coal Send", ref coalWS))
             {
@@ -366,6 +402,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Glimshroom (Have: {GlimshroomAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Glimshroom Send", ref glimshroomWS))
             {
@@ -375,6 +412,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Effervescent Water (Have: {EffervescentWaterAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Effervescent Water Send", ref effervescentwaterWS))
             {
@@ -384,6 +422,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Shale (Have: {ShaleAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Shale Send", ref shaleWS))
             {
@@ -393,6 +432,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Marble (Have: {MarbleAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Marble Send", ref marbleWS))
             {
@@ -402,6 +442,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Mythril Ore (Have: {MythrilOreAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Mythril Ore Send", ref mythriloreWS))
             {
@@ -411,6 +452,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Spectrine (Have: {SpectrineAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Spectrine Send", ref spectrineWS))
             {
@@ -420,6 +462,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Durium Sand (Have: {DuriumSandAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Durium Sand Send", ref duriumsandWS))
             {
@@ -429,6 +472,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Yellow Copper Ore (Have: {YellowCopperOreAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Yellow Copper Ore Send", ref yellowcopperoreWS))
             {
@@ -438,6 +482,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Gold Ore (Have: {GoldOreAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Gold Ore Send", ref goldoreWS))
             {
@@ -447,6 +492,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Hawk's Eye Sand (Have: {HawksEyeSandAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Hawk's Eye Sand Send", ref hawkseyesandWS))
             {
@@ -456,6 +502,7 @@ namespace IslandLeveling.Windows
 
             ImGui.Text($"Crystal Formation (Have: {CrystalFormationAmount})");
             ImGui.SameLine();
+            ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Crystal Formation Send", ref crystalformationWS))
             {

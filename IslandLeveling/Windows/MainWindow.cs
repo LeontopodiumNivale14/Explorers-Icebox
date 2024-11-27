@@ -45,6 +45,8 @@ namespace IslandLeveling.Windows
             ImGui.SameLine();
             if (ImGuiEx.IconButton(FontAwesomeIcon.Wrench, "Settings"))
                 EzConfigGui.WindowSystem.Windows.FirstOrDefault(w => w.WindowName == SettingMenu.WindowName)!.IsOpen ^= true;
+            // this is kinda neat, there's...a HUGE section of icons. But not gonna fuck with this rn. Things to mess w/ later
+            // if (ImGuiEx.IconButton(FontAwesomeIcon.))
             if (ImGui.Button("Mount up!"))
             {
                 P.taskManager.Enqueue(PlayerHandlers.MountUp);
