@@ -16,50 +16,50 @@ namespace IslandLeveling.Windows
 
         public override void Draw()
         {
-            int palmleafSend = C.PalmLeafSend;
-            int branchSend = C.BranchSend;
-            int stoneSend = C.StoneSend;
-            int clamSend = C.ClamSend;
-            int laverSend = C.LaverSend;
-            int coralSend = C.CoralSend;
-            int islewortSend = C.IslewortSend;
-            int sandSend = C.SandSend;
-            int vineSend = C.VineSend;
-            int sapSend = C.SapSend;
-            int appleSend = C.AppleSend;
-            int logSend = C.LogSend;
-            int palmlogSend = C.PalmLogSend;
-            int copperSend = C.CopperSend;
-            int limestoneSend = C.LimestoneSend;
-            int rocksaltSend = C.RockSaltSend;
-            int claySend = C.ClaySend;
-            int tinsandSend = C.TinsandSend;
-            int sugarcaneSend = C.SugarcaneSend;
-            int cottonSend = C.CottonSend;
-            int hempSend = C.HempSend;
-            int islefishSend = C.IslefishSend;
-            int squidSend = C.SquidSend;
-            int jellyfishSend = C.JellyfishSend;
-            int ironoreSend = C.IronOreSend;
-            int quartzSend = C.QuartzSend;
-            int leucograniteSend = C.LeucograniteSend;
-            int multicoloredislebloomsSend = C.MulticoloredIslebloomsSend;
-            int resinSend = C.ResinSend;
-            int coconutSend = C.CoconutSend;
-            int beehiveSend = C.BeehiveSend;
-            int woodopalSend = C.WoodOpalSend;
-            int coalSend = C.CoalSend;
-            int glimshroomSend = C.GlimshroomSend;
-            int effervescentwaterSend = C.EffervescentWaterSend;
-            int shaleSend = C.ShaleSend;
-            int marbleSend = C.MarbleSend;
-            int mythriloreSend = C.MythrilOreSend;
-            int spectrineSend = C.SpectrineSend;
-            int duriumsandSend = C.DuriumSandSend;
-            int yellowcopperoreSend = C.YellowCopperOreSend;
-            int goldoreSend = C.GoldOreSend;
-            int hawkseyesandSend = C.HawksEyeSandSend;
-            int crystalformationSend = C.CrystalFormationSend;
+            int palmleafWS = C.PalmLeafWS;
+            int branchWS = C.BranchWS;
+            int stoneWS = C.StoneWS;
+            int clamWS = C.ClamWS;
+            int laverWS = C.LaverWS;
+            int coralWS = C.CoralWS;
+            int islewortWS = C.IslewortWS;
+            int sandWS = C.SandWS;
+            int vineWS = C.VineWS;
+            int sapWS = C.SapWS;
+            int appleWS = C.AppleWS;
+            int logWS = C.LogWS;
+            int palmlogWS = C.PalmLogWS;
+            int copperWS = C.CopperWS;
+            int limestoneWS = C.LimestoneWS;
+            int rocksaltWS = C.RockSaltWS;
+            int clayWS = C.ClayWS;
+            int tinsandWS = C.TinsandWS;
+            int sugarcaneWS = C.SugarcaneWS;
+            int cottonWS = C.CottonWS;
+            int hempWS = C.HempWS;
+            int islefishWS = C.IslefishWS;
+            int squidWS = C.SquidWS;
+            int jellyfishWS = C.JellyfishWS;
+            int ironoreWS = C.IronOreWS;
+            int quartzWS = C.QuartzWS;
+            int leucograniteWS = C.LeucograniteWS;
+            int multicoloredislebloomsWS = C.MulticoloredIslebloomsWS;
+            int resinWS = C.ResinWS;
+            int coconutWS = C.CoconutWS;
+            int beehiveWS = C.BeehiveWS;
+            int woodopalWS = C.WoodOpalWS;
+            int coalWS = C.CoalWS;
+            int glimshroomWS = C.GlimshroomWS;
+            int effervescentwaterWS = C.EffervescentWaterWS;
+            int shaleWS = C.ShaleWS;
+            int marbleWS = C.MarbleWS;
+            int mythriloreWS = C.MythrilOreWS;
+            int spectrineWS = C.SpectrineWS;
+            int duriumsandWS = C.DuriumSandWS;
+            int yellowcopperoreWS = C.YellowCopperOreWS;
+            int goldoreWS = C.GoldOreWS;
+            int hawkseyesandWS = C.HawksEyeSandWS;
+            int crystalformationWS = C.CrystalFormationWS;
 
 
             ImGui.PushItemWidth(100);
@@ -70,442 +70,398 @@ namespace IslandLeveling.Windows
             ImGui.Text($"Palm Leaf (Have: {PalmLeafAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Palm Leaf", ref palmleafSend))
+            if (ImGui.InputInt("##Palm Leaf", ref palmleafWS))
             {
-                if (palmleafSend < 0) palmleafSend = 0;
-                C.PalmLeafSend = palmleafSend;
+                if (palmleafWS < 0) palmleafWS = 0;
+                C.PalmLeafWS = palmleafWS;
             }
-            ImGui.NewLine();
             
             ImGui.Text($"Branch (Have: {BranchAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Branch Send", ref branchSend))
+            if (ImGui.InputInt("##Branch Send", ref branchWS))
             {
-                if (branchSend < 0) branchSend = 0;
-                C.BranchSend = branchSend;
+                if (branchWS < 0) branchWS = 0;
+                C.BranchWS = branchWS;
             }
-            ImGui.NewLine();
             
             ImGui.Text($"Stone (Have: {StoneAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Stone Send", ref stoneSend))
+            if (ImGui.InputInt("##Stone Send", ref stoneWS))
             {
-                if (stoneSend < 0) stoneSend = 0;
-                C.StoneSend = stoneSend;
+                if (stoneWS < 0) stoneWS = 0;
+                C.StoneWS = stoneWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Clam (Have: {ClamAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Clam Send", ref clamSend))
+            if (ImGui.InputInt("##Clam Send", ref clamWS))
             {
-                if (clamSend < 0) clamSend = 0;
-                C.ClamSend = clamSend;
+                if (clamWS < 0) clamWS = 0;
+                C.ClamWS = clamWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Laver (Have: {LaverAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Laver Send", ref laverSend))
+            if (ImGui.InputInt("##Laver Send", ref laverWS))
             {
-                if (laverSend < 0) laverSend = 0;
-                C.LaverSend = laverSend;
+                if (laverWS < 0) laverWS = 0;
+                C.LaverWS = laverWS;
             }
-            ImGui.NewLine();
             
             ImGui.Text($"Coral (Have: {CoralAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Coral Send", ref coralSend))
+            if (ImGui.InputInt("##Coral Send", ref coralWS))
             {
-                if (coralSend < 0) coralSend = 0;
-                C.CoralSend = coralSend;
+                if (coralWS < 0) coralWS = 0;
+                C.CoralWS = coralWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Islewort (Have: {IslewortAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Islewort Send", ref islewortSend))
+            if (ImGui.InputInt("##Islewort Send", ref islewortWS))
             {
-                if (islewortSend < 0) islewortSend = 0;
-                C.IslewortSend = islewortSend;
+                if (islewortWS < 0) islewortWS = 0;
+                C.IslewortWS = islewortWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Sand (Have: {SandAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Sand Send", ref sandSend))
+            if (ImGui.InputInt("##Sand Send", ref sandWS))
             {
-                if (sandSend < 0) sandSend = 0;
-                C.SandSend = sandSend;
+                if (sandWS < 0) sandWS = 0;
+                C.SandWS = sandWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Vine (Have: {VineAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Vine Send", ref vineSend))
+            if (ImGui.InputInt("##Vine Send", ref vineWS))
             {
-                if (vineSend < 0) vineSend = 0;
-                C.VineSend = vineSend;
+                if (vineWS < 0) vineWS = 0;
+                C.VineWS = vineWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Sap (Have: {SapAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Sap Send", ref sapSend))
+            if (ImGui.InputInt("##Sap Send", ref sapWS))
             {
-                if (sapSend < 0) sapSend = 0;
-                C.SapSend = sapSend;
+                if (sapWS < 0) sapWS = 0;
+                C.SapWS = sapWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Apple (Have: {AppleAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Apple Send", ref appleSend))
+            if (ImGui.InputInt("##Apple Send", ref appleWS))
             {
-                if (appleSend < 0) appleSend = 0;
-                C.AppleSend = appleSend;
+                if (appleWS < 0) appleWS = 0;
+                C.AppleWS = appleWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Log (Have: {LogAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Log Send", ref logSend))
+            if (ImGui.InputInt("##Log Send", ref logWS))
             {
-                if (logSend < 0) logSend = 0;
-                C.LogSend = logSend;
+                if (logWS < 0) logWS = 0;
+                C.LogWS = logWS;
             }
-            ImGui.NewLine();
             
             ImGui.Text($"Palm Log (Have: {PalmLogAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Palm Log Send", ref palmlogSend))
+            if (ImGui.InputInt("##Palm Log Send", ref palmlogWS))
             {
-                if (palmlogSend < 0) palmlogSend = 0;
-                C.PalmLogSend = palmlogSend;
+                if (palmlogWS < 0) palmlogWS = 0;
+                C.PalmLogWS = palmlogWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Copper (Have: {CopperAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Copper Send", ref copperSend))
+            if (ImGui.InputInt("##Copper Send", ref copperWS))
             {
-                if (copperSend < 0) copperSend = 0;
-                C.CopperSend = copperSend;
+                if (copperWS < 0) copperWS = 0;
+                C.CopperWS = copperWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Limestone (Have: {LimestoneAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Limestone Send", ref limestoneSend))
+            if (ImGui.InputInt("##Limestone Send", ref limestoneWS))
             {
-                if (limestoneSend < 0) limestoneSend = 0;
-                C.LimestoneSend = limestoneSend;
+                if (limestoneWS < 0) limestoneWS = 0;
+                C.LimestoneWS = limestoneWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Rock Salt (Have: {RockSaltAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Rock Salt Send", ref rocksaltSend))
+            if (ImGui.InputInt("##Rock Salt Send", ref rocksaltWS))
             {
-                if (rocksaltSend < 0) rocksaltSend = 0;
-                C.RockSaltSend = rocksaltSend;
+                if (rocksaltWS < 0) rocksaltWS = 0;
+                C.RockSaltWS = rocksaltWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Clay (Have: {ClayAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Clay Send", ref claySend))
+            if (ImGui.InputInt("##Clay Send", ref clayWS))
             {
-                if (claySend < 0) claySend = 0;
-                C.ClaySend = claySend;
+                if (clayWS < 0) clayWS = 0;
+                C.ClayWS = clayWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Tinsand (Have: {TinsandAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Tinsand Send", ref tinsandSend))
+            if (ImGui.InputInt("##Tinsand Send", ref tinsandWS))
             {
-                if (tinsandSend < 0) tinsandSend = 0;
-                C.TinsandSend = tinsandSend;
+                if (tinsandWS < 0) tinsandWS = 0;
+                C.TinsandWS = tinsandWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Sugarcane (Have: {SugarcaneAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Sugarcane Send", ref sugarcaneSend))
+            if (ImGui.InputInt("##Sugarcane Send", ref sugarcaneWS))
             {
-                if (sugarcaneSend < 0) sugarcaneSend = 0;
-                C.SugarcaneSend = sugarcaneSend;
+                if (sugarcaneWS < 0) sugarcaneWS = 0;
+                C.SugarcaneWS = sugarcaneWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Cotton (Have: {CottonAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Cotton Send", ref cottonSend))
+            if (ImGui.InputInt("##Cotton Send", ref cottonWS))
             {
-                if (cottonSend < 0) cottonSend = 0;
-                C.CottonSend = cottonSend;
+                if (cottonWS < 0) cottonWS = 0;
+                C.CottonWS = cottonWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Hemp (Have: {HempAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Hemp Send", ref hempSend))
+            if (ImGui.InputInt("##Hemp Send", ref hempWS))
             {
-                if (hempSend < 0) hempSend = 0;
-                C.HempSend = hempSend;
+                if (hempWS < 0) hempWS = 0;
+                C.HempWS = hempWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Islefish (Have: {IslefishAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Islefish Send", ref islefishSend))
+            if (ImGui.InputInt("##Islefish Send", ref islefishWS))
             {
-                if (islefishSend < 0) islefishSend = 0;
-                C.IslefishSend = islefishSend;
+                if (islefishWS < 0) islefishWS = 0;
+                C.IslefishWS = islefishWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Squid (Have: {SquidAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Squid Send", ref squidSend))
+            if (ImGui.InputInt("##Squid Send", ref squidWS))
             {
-                if (squidSend < 0) squidSend = 0;
-                C.SquidSend = squidSend;
+                if (squidWS < 0) squidWS = 0;
+                C.SquidWS = squidWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Jellyfish (Have: {JellyfishAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Jellyfish Send", ref jellyfishSend))
+            if (ImGui.InputInt("##Jellyfish Send", ref jellyfishWS))
             {
-                if (jellyfishSend < 0) jellyfishSend = 0;
-                C.JellyfishSend = jellyfishSend;
+                if (jellyfishWS < 0) jellyfishWS = 0;
+                C.JellyfishWS = jellyfishWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Iron Ore (Have: {IronOreAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Iron Ore Send", ref ironoreSend))
+            if (ImGui.InputInt("##Iron Ore Send", ref ironoreWS))
             {
-                if (ironoreSend < 0) ironoreSend = 0;
-                C.IronOreSend = ironoreSend;
+                if (ironoreWS < 0) ironoreWS = 0;
+                C.IronOreWS = ironoreWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Quartz (Have: {QuartzAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Quartz Send", ref quartzSend))
+            if (ImGui.InputInt("##Quartz Send", ref quartzWS))
             {
-                if (quartzSend < 0) quartzSend = 0;
-                C.QuartzSend = quartzSend;
+                if (quartzWS < 0) quartzWS = 0;
+                C.QuartzWS = quartzWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Leucogranite (Have: {LeucograniteAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Leucogranite Send", ref leucograniteSend))
+            if (ImGui.InputInt("##Leucogranite Send", ref leucograniteWS))
             {
-                if (leucograniteSend < 0) leucograniteSend = 0;
-                C.LeucograniteSend = leucograniteSend;
+                if (leucograniteWS < 0) leucograniteWS = 0;
+                C.LeucograniteWS = leucograniteWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Multicolored Isleblooms (Have: {MulticoloredIslebloomsAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Multicolored Isleblooms Send", ref multicoloredislebloomsSend))
+            if (ImGui.InputInt("##Multicolored Isleblooms Send", ref multicoloredislebloomsWS))
             {
-                if (multicoloredislebloomsSend < 0) multicoloredislebloomsSend = 0;
-                C.MulticoloredIslebloomsSend = multicoloredislebloomsSend;
+                if (multicoloredislebloomsWS < 0) multicoloredislebloomsWS = 0;
+                C.MulticoloredIslebloomsWS = multicoloredislebloomsWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Resin (Have: {ResinAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Resin Send", ref resinSend))
+            if (ImGui.InputInt("##Resin Send", ref resinWS))
             {
-                if (resinSend < 0) resinSend = 0;
-                C.ResinSend = resinSend;
+                if (resinWS < 0) resinWS = 0;
+                C.ResinWS = resinWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Coconut (Have: {CoconutAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Coconut Send", ref coconutSend))
+            if (ImGui.InputInt("##Coconut Send", ref coconutWS))
             {
-                if (coconutSend < 0) coconutSend = 0;
-                C.CoconutSend = coconutSend;
+                if (coconutWS < 0) coconutWS = 0;
+                C.CoconutWS = coconutWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Beehive (Have: {BeehiveAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Beehive Send", ref beehiveSend))
+            if (ImGui.InputInt("##Beehive Send", ref beehiveWS))
             {
-                if (beehiveSend < 0) beehiveSend = 0;
-                C.BeehiveSend = beehiveSend;
+                if (beehiveWS < 0) beehiveWS = 0;
+                C.BeehiveWS = beehiveWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Wood Opal (Have: {WoodOpalAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Wood Opal Send", ref woodopalSend))
+            if (ImGui.InputInt("##Wood Opal Send", ref woodopalWS))
             {
-                if (woodopalSend < 0) woodopalSend = 0;
-                C.WoodOpalSend = woodopalSend;
+                if (woodopalWS < 0) woodopalWS = 0;
+                C.WoodOpalWS = woodopalWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Coal (Have: {CoalAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Coal Send", ref coalSend))
+            if (ImGui.InputInt("##Coal Send", ref coalWS))
             {
-                if (coalSend < 0) coalSend = 0;
-                C.CoalSend = coalSend;
+                if (coalWS < 0) coalWS = 0;
+                C.CoalWS = coalWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Glimshroom (Have: {GlimshroomAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Glimshroom Send", ref glimshroomSend))
+            if (ImGui.InputInt("##Glimshroom Send", ref glimshroomWS))
             {
-                if (glimshroomSend < 0) glimshroomSend = 0;
-                C.GlimshroomSend = glimshroomSend;
+                if (glimshroomWS < 0) glimshroomWS = 0;
+                C.GlimshroomWS = glimshroomWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Effervescent Water (Have: {EffervescentWaterAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Effervescent Water Send", ref effervescentwaterSend))
+            if (ImGui.InputInt("##Effervescent Water Send", ref effervescentwaterWS))
             {
-                if (effervescentwaterSend < 0) effervescentwaterSend = 0;
-                C.EffervescentWaterSend = effervescentwaterSend;
+                if (effervescentwaterWS < 0) effervescentwaterWS = 0;
+                C.EffervescentWaterWS = effervescentwaterWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Shale (Have: {ShaleAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Shale Send", ref shaleSend))
+            if (ImGui.InputInt("##Shale Send", ref shaleWS))
             {
-                if (shaleSend < 0) shaleSend = 0;
-                C.ShaleSend = shaleSend;
+                if (shaleWS < 0) shaleWS = 0;
+                C.ShaleWS = shaleWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Marble (Have: {MarbleAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Marble Send", ref marbleSend))
+            if (ImGui.InputInt("##Marble Send", ref marbleWS))
             {
-                if (marbleSend < 0) marbleSend = 0;
-                C.MarbleSend = marbleSend;
+                if (marbleWS < 0) marbleWS = 0;
+                C.MarbleWS = marbleWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Mythril Ore (Have: {MythrilOreAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Mythril Ore Send", ref mythriloreSend))
+            if (ImGui.InputInt("##Mythril Ore Send", ref mythriloreWS))
             {
-                if (mythriloreSend < 0) mythriloreSend = 0;
-                C.MythrilOreSend = mythriloreSend;
+                if (mythriloreWS < 0) mythriloreWS = 0;
+                C.MythrilOreWS = mythriloreWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Spectrine (Have: {SpectrineAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Spectrine Send", ref spectrineSend))
+            if (ImGui.InputInt("##Spectrine Send", ref spectrineWS))
             {
-                if (spectrineSend < 0) spectrineSend = 0;
-                C.SpectrineSend = spectrineSend;
+                if (spectrineWS < 0) spectrineWS = 0;
+                C.SpectrineWS = spectrineWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Durium Sand (Have: {DuriumSandAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Durium Sand Send", ref duriumsandSend))
+            if (ImGui.InputInt("##Durium Sand Send", ref duriumsandWS))
             {
-                if (duriumsandSend < 0) duriumsandSend = 0;
-                C.DuriumSandSend = duriumsandSend;
+                if (duriumsandWS < 0) duriumsandWS = 0;
+                C.DuriumSandWS = duriumsandWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Yellow Copper Ore (Have: {YellowCopperOreAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Yellow Copper Ore Send", ref yellowcopperoreSend))
+            if (ImGui.InputInt("##Yellow Copper Ore Send", ref yellowcopperoreWS))
             {
-                if (yellowcopperoreSend < 0) yellowcopperoreSend = 0;
-                C.YellowCopperOreSend = yellowcopperoreSend;
+                if (yellowcopperoreWS < 0) yellowcopperoreWS = 0;
+                C.YellowCopperOreWS = yellowcopperoreWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Gold Ore (Have: {GoldOreAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Gold Ore Send", ref goldoreSend))
+            if (ImGui.InputInt("##Gold Ore Send", ref goldoreWS))
             {
-                if (goldoreSend < 0) goldoreSend = 0;
-                C.GoldOreSend = goldoreSend;
+                if (goldoreWS < 0) goldoreWS = 0;
+                C.GoldOreWS = goldoreWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Hawk's Eye Sand (Have: {HawksEyeSandAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Hawk's Eye Sand Send", ref hawkseyesandSend))
+            if (ImGui.InputInt("##Hawk's Eye Sand Send", ref hawkseyesandWS))
             {
-                if (hawkseyesandSend < 0) hawkseyesandSend = 0;
-                C.HawksEyeSandSend = hawkseyesandSend;
+                if (hawkseyesandWS < 0) hawkseyesandWS = 0;
+                C.HawksEyeSandWS = hawkseyesandWS;
             }
-            ImGui.NewLine();
 
             ImGui.Text($"Crystal Formation (Have: {CrystalFormationAmount})");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Crystal Formation Send", ref crystalformationSend))
+            if (ImGui.InputInt("##Crystal Formation Send", ref crystalformationWS))
             {
-                if (crystalformationSend < 0) crystalformationSend = 0;
-                C.CrystalFormationSend = crystalformationSend;
+                if (crystalformationWS < 0) crystalformationWS = 0;
+                C.CrystalFormationWS = crystalformationWS;
             }
-            ImGui.NewLine();
         }
     }
 }
