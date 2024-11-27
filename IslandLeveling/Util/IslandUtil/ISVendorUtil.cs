@@ -1,8 +1,8 @@
-﻿namespace IslandLeveling.Util.IslandUtil;
+namespace IslandLeveling.Util.IslandUtil;
 
 public class ISVendorUtil
 {
-        public static int ShopCalc(int itemAmount, int workshopKeep, int loopItemAmount, int loopAmount, int itemSellSafe)
+    public static int ShopCalc(int itemAmount, int workshopKeep, int loopItemAmount, int loopAmount, int itemSellSafe)
     {
         // Calculate RouteGathAmount
         var routeGathAmount = MaxItems - (loopItemAmount * loopAmount);
@@ -22,7 +22,7 @@ public class ISVendorUtil
             itemSend = MaxItems;
         }
 
-        // Adjust ItemSend if ItemSellSafe is true
+        // Adjust ItemSend if ItemSellSafe is true (aka, if you can sell to workshop amount and be fine)
         if (itemSellSafe == 1)
         {
             itemSend -= workshopKeep;

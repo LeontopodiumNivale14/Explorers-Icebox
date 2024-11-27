@@ -22,6 +22,7 @@ namespace IslandLeveling.Windows
 
         public override void Draw()
         {
+            ImGui.Text($"Quartz WS = {Route1Table[0, 3]}");
             ImGui.Text($"TerritoryID: " + Svc.ClientState.TerritoryType);
             ImGui.SameLine();
             ImGui.Text($"Target: " + Svc.Targets.Target);

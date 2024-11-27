@@ -1,4 +1,4 @@
-﻿namespace IslandLeveling.Util.IslandData;
+namespace IslandLeveling.Util.IslandData;
 
 public class IslandWorkshop
 {    
@@ -25,7 +25,7 @@ public class IslandWorkshop
     public static int CottonWorkshop { get; set; }
     public static int HempWorkshop { get; set; }
     public static int IslefishWorkshop { get; set; }
-    public static int SquWorkshop { get; set; }
+    public static int SquidWorkshop { get; set; }
     public static int JellyfishWorkshop { get; set; }
     public static int IronOreWorkshop { get; set; }
     public static int QuartzWorkshop { get; set; }
