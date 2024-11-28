@@ -4,7 +4,7 @@ using FFXIVClientStructs.FFXIV.Client.Game.UI;
 
 namespace IslandLeveling.Scheduler.Handers
 {
-    internal static unsafe class PlayerWorldHandlers
+    internal static unsafe class NPCHandlers
     {
         internal static bool? InteractShopNpc()
         {
