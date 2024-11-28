@@ -29,7 +29,7 @@ public static unsafe class Utils
     {
         return Player.Available
                && Player.Object.CastActionId == 0
-               && !ECommons.GenericHelpers.IsOccupied()
+               && !IsOccupied()
                && !Svc.Condition[ConditionFlag.Jumping]
                && Player.Object.IsTargetable;
     }
@@ -56,5 +56,67 @@ public static unsafe class Utils
     {
         var addon = RaptureAtkUnitManager.Instance()->GetAddonByName(AddonName);
         return addon != null && addon->IsVisible && addon->IsReady;
+    }
+
+    // Calulators for Island Sanctuary Routes
+
+    // How many items are you sending for this loop?
+    public static int ShopCalc(int itemAmount, int workshopKeep, int loopItemAmount, int loopAmount, int itemSellSafe)
+    {
+        var routeGathAmount = MaxItems - (loopItemAmount * loopAmount); // Calculate RouteGathAmount
+
+        if (routeGathAmount < 0) routeGathAmount = 0; // Ensure RouteGathAmount doesn't go below 0
+
+        var itemSend = itemAmount - routeGathAmount; // Calculate ItemSend based on RouteGathAmount
+
+        if (itemSend > MaxItems) itemSend = MaxItems; // Ensure ItemSend does not exceed ItemMax
+
+        if (itemSellSafe == 1) itemSend -= workshopKeep; // Adjust ItemSend if ItemSellSafe is true (aka, if you can sell to workshop amount and be fine)
+
+        return itemSend; // Return the calculated value
+    }
+
+    // Calcuator for how many loops you're doing for this route
+    private static int CalculateRouteLoopAmount(int workshopKeep, int itemPerLoop, int maxAmount)
+    {
+        // Calculate the base maximum loop
+            // baseMax =  999/6
+        var baseMaxLoop = maxAmount / itemPerLoop;
+
+        // Calculate the adjusted route loop amount
+           // 6 > 0 
+        if (workshopKeep > 0)
+        {
+
+            var workshopKeepLoop = (int)Math.Ceiling((double)workshopKeep / itemPerLoop);
+            return baseMaxLoop = baseMaxLoop - workshopKeepLoop;
+        }
+        else
+        {
+            // If no workshop items, return the base loop amount
+            return baseMaxLoop;
+        }
+    }
+
+    public static int RouteAmountCalc(int[,] table, params int[] workshops)
+    {
+        var CurrentMax = 999;
+
+        for (var i = 0; i < table.GetLength(0); i++) // Iterate through rows
+        {
+            var itemMax = MaxItems;
+            var itemPerLoop = table[i, 0];
+            var workshopKeep = workshops[i];
+            var skip = table[i, 4];
+
+            // Calculate the loop amount
+            if (skip == 0) 
+            {
+                var NewMax = CalculateRouteLoopAmount(workshopKeep, itemPerLoop, itemMax);
+                if (NewMax < CurrentMax) CurrentMax = NewMax;
+            }
+        }
+
+        return CurrentMax;
     }
 }
