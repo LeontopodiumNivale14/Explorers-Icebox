@@ -13,7 +13,7 @@ public class IslandMics
     
     // Route Tables
     // Has: Amount Gathered | ID | Send | Sell | Can sell to full amount (true/false) | Pcall value
-    public static int[,] Route1Table = new[,]
+    public static int[,] Route1Table = new[,] // FlyingXP Route
     {
         { 6, QuartzID, 0, 0, 0, 25},
         { 3, IronOreID, 0, 0, 0, 24},
@@ -22,7 +22,7 @@ public class IslandMics
         { 11, StoneID, 0, 0, 1, 2}
     };
 
-    public static int[,] Route2Table = new[,]
+    public static int[,] Route2Table = new[,] // GroundXP Route
     {
         { 7, ClayID, 0, 0, 0},
         { 2, TinsandID, 0, 0, 0},

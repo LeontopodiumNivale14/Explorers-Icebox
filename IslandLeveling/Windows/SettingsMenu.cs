@@ -1,4 +1,5 @@
 using Dalamud.Interface.Utility.Raii;
+using System.Runtime.CompilerServices;
 
 namespace IslandLeveling.Windows
 {
@@ -61,6 +62,13 @@ namespace IslandLeveling.Windows
             int hawkseyesandWS = HawksEyeSandWorkshop;
             int crystalformationWS = CrystalFormationWorkshop;
 
+            static int AmountSet(int input)
+            {
+                if (input < 0) input = 0;
+                else if (input > 999) input = 999;
+                return input;
+            }
+
             float windowWidth = ImGui.GetWindowContentRegionMax().X; // Get the usable width of the window
             float inputWidth = 100.0f; // Desired width of the input field
             float offset = windowWidth - inputWidth; // Calculate position to hug the right wall
@@ -76,8 +84,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Palm Leaf", ref palmleafWS))
             {
-                if (palmleafWS < 0) palmleafWS = 0;
-                PalmLeafWorkshop = palmleafWS;
+                PalmLeafWorkshop = AmountSet(palmleafWS);
             }
             
             ImGui.Text($"Branch (Have: {BranchAmount})");
@@ -86,8 +93,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Branch Send", ref branchWS))
             {
-                if (branchWS < 0) branchWS = 0;
-                BranchWorkshop = branchWS;
+                BranchWorkshop = AmountSet(branchWS);
             }
             
             ImGui.Text($"Stone (Have: {StoneAmount})");
@@ -96,8 +102,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Stone Send", ref stoneWS))
             {
-                if (stoneWS < 0) stoneWS = 0;
-                StoneWorkshop = stoneWS;
+                StoneWorkshop = AmountSet(stoneWS);
             }
 
             ImGui.Text($"Clam (Have: {ClamAmount})");
@@ -106,8 +111,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Clam Send", ref clamWS))
             {
-                if (clamWS < 0) clamWS = 0;
-                ClamWorkshop = clamWS;
+                ClamWorkshop = AmountSet(clamWS);
             }
 
             ImGui.Text($"Laver (Have: {LaverAmount})");
@@ -116,8 +120,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Laver Send", ref laverWS))
             {
-                if (laverWS < 0) laverWS = 0;
-                LaverWorkshop = laverWS;
+                LaverWorkshop = AmountSet(laverWS);
             }
             
             ImGui.Text($"Coral (Have: {CoralAmount})");
@@ -126,8 +129,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Coral Send", ref coralWS))
             {
-                if (coralWS < 0) coralWS = 0;
-                CoralWorkshop = coralWS;
+                CoralWorkshop = AmountSet(coralWS);
             }
 
             ImGui.Text($"Islewort (Have: {IslewortAmount})");
@@ -136,8 +138,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Islewort Send", ref islewortWS))
             {
-                if (islewortWS < 0) islewortWS = 0;
-                IslewortWorkshop = islewortWS;
+                IslewortWorkshop = AmountSet(islewortWS);
             }
 
             ImGui.Text($"Sand (Have: {SandAmount})");
@@ -146,8 +147,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Sand Send", ref sandWS))
             {
-                if (sandWS < 0) sandWS = 0;
-                SandWorkshop = sandWS;
+                SandWorkshop = AmountSet(sandWS);
             }
 
             ImGui.Text($"Vine (Have: {VineAmount})");
@@ -156,8 +156,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Vine Send", ref vineWS))
             {
-                if (vineWS < 0) vineWS = 0;
-                VineWorkshop = vineWS;
+                VineWorkshop = AmountSet(vineWS);
             }
 
             ImGui.Text($"Sap (Have: {SapAmount})");
@@ -166,8 +165,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Sap Send", ref sapWS))
             {
-                if (sapWS < 0) sapWS = 0;
-                SapWorkshop = sapWS;
+                SapWorkshop = AmountSet(sapWS);
             }
 
             ImGui.Text($"Apple (Have: {AppleAmount})");
@@ -176,8 +174,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Apple Send", ref appleWS))
             {
-                if (appleWS < 0) appleWS = 0;
-                AppleWorkshop = appleWS;
+                AppleWorkshop = AmountSet(appleWS);
             }
 
             ImGui.Text($"Log (Have: {LogAmount})");
@@ -186,8 +183,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Log Send", ref logWS))
             {
-                if (logWS < 0) logWS = 0;
-                LogWorkshop = logWS;
+                LogWorkshop = AmountSet(logWS);
             }
             
             ImGui.Text($"Palm Log (Have: {PalmLogAmount})");
@@ -196,8 +192,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Palm Log Send", ref palmlogWS))
             {
-                if (palmlogWS < 0) palmlogWS = 0;
-                PalmLogWorkshop = palmlogWS;
+                PalmLogWorkshop = AmountSet(palmlogWS);
             }
 
             ImGui.Text($"Copper (Have: {CopperAmount})");
@@ -206,8 +201,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Copper Send", ref copperWS))
             {
-                if (copperWS < 0) copperWS = 0;
-                CopperWorkshop = copperWS;
+                CopperWorkshop = AmountSet(copperWS);
             }
 
             ImGui.Text($"Limestone (Have: {LimestoneAmount})");
@@ -216,8 +210,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Limestone Send", ref limestoneWS))
             {
-                if (limestoneWS < 0) limestoneWS = 0;
-                LimestoneWorkshop = limestoneWS;
+                LimestoneWorkshop = AmountSet(limestoneWS);
             }
 
             ImGui.Text($"Rock Salt (Have: {RockSaltAmount})");
@@ -226,8 +219,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Rock Salt Send", ref rocksaltWS))
             {
-                if (rocksaltWS < 0) rocksaltWS = 0;
-                RockSaltWorkshop = rocksaltWS;
+                RockSaltWorkshop = AmountSet(rocksaltWS);
             }
 
             ImGui.Text($"Clay (Have: {ClayAmount})");
@@ -236,8 +228,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Clay Send", ref clayWS))
             {
-                if (clayWS < 0) clayWS = 0;
-                ClayWorkshop = clayWS;
+                ClayWorkshop = AmountSet(clayWS);
             }
 
             ImGui.Text($"Tinsand (Have: {TinsandAmount})");
@@ -246,8 +237,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Tinsand Send", ref tinsandWS))
             {
-                if (tinsandWS < 0) tinsandWS = 0;
-                TinsandWorkshop = tinsandWS;
+                TinsandWorkshop = AmountSet(tinsandWS);
             }
 
             ImGui.Text($"Sugarcane (Have: {SugarcaneAmount})");
@@ -256,8 +246,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Sugarcane Send", ref sugarcaneWS))
             {
-                if (sugarcaneWS < 0) sugarcaneWS = 0;
-                SugarcaneWorkshop = sugarcaneWS;
+                SugarcaneWorkshop = AmountSet(sugarcaneWS);
             }
 
             ImGui.Text($"Cotton (Have: {CottonAmount})");
@@ -266,8 +255,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Cotton Send", ref cottonWS))
             {
-                if (cottonWS < 0) cottonWS = 0;
-                CottonWorkshop = cottonWS;
+                CottonWorkshop = AmountSet(cottonWS);
             }
 
             ImGui.Text($"Hemp (Have: {HempAmount})");
@@ -276,8 +264,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Hemp Send", ref hempWS))
             {
-                if (hempWS < 0) hempWS = 0;
-                HempWorkshop = hempWS;
+                HempWorkshop = AmountSet(hempWS);
             }
 
             ImGui.Text($"Islefish (Have: {IslefishAmount})");
@@ -286,8 +273,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Islefish Send", ref islefishWS))
             {
-                if (islefishWS < 0) islefishWS = 0;
-                IslefishWorkshop = islefishWS;
+                IslefishWorkshop = AmountSet(islefishWS);
             }
 
             ImGui.Text($"Squid (Have: {SquidAmount})");
@@ -296,8 +282,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Squid Send", ref squidWS))
             {
-                if (squidWS < 0) squidWS = 0;
-                SquidWorkshop = squidWS;
+                SquidWorkshop = AmountSet(squidWS);
             }
 
             ImGui.Text($"Jellyfish (Have: {JellyfishAmount})");
@@ -306,8 +291,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Jellyfish Send", ref jellyfishWS))
             {
-                if (jellyfishWS < 0) jellyfishWS = 0;
-                JellyfishWorkshop = jellyfishWS;
+                JellyfishWorkshop = AmountSet(jellyfishWS);
             }
 
             ImGui.Text($"Iron Ore (Have: {IronOreAmount})");
@@ -316,8 +300,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Iron Ore Send", ref ironoreWS))
             {
-                if (ironoreWS < 0) ironoreWS = 0;
-                IronOreWorkshop = ironoreWS;
+                IronOreWorkshop = AmountSet(ironoreWS);
             }
 
             ImGui.Text($"Quartz (Have: {QuartzAmount})");
@@ -326,8 +309,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Quartz Send", ref quartzWS))
             {
-                if (quartzWS < 0) quartzWS = 0;
-                QuartzWorkshop = quartzWS;
+                QuartzWorkshop = AmountSet(quartzWS);
             }
 
             ImGui.Text($"Leucogranite (Have: {LeucograniteAmount})");
@@ -336,8 +318,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Leucogranite Send", ref leucograniteWS))
             {
-                if (leucograniteWS < 0) leucograniteWS = 0;
-                LeucograniteWorkshop = leucograniteWS;
+                LeucograniteWorkshop = AmountSet(leucograniteWS);
             }
 
             ImGui.Text($"Multicolored Isleblooms (Have: {MulticoloredIslebloomsAmount})");
@@ -346,8 +327,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Multicolored Isleblooms Send", ref multicoloredislebloomsWS))
             {
-                if (multicoloredislebloomsWS < 0) multicoloredislebloomsWS = 0;
-                MulticoloredIslebloomsWorkshop = multicoloredislebloomsWS;
+                MulticoloredIslebloomsWorkshop = AmountSet(multicoloredislebloomsWS);
             }
 
             ImGui.Text($"Resin (Have: {ResinAmount})");
@@ -356,8 +336,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Resin Send", ref resinWS))
             {
-                if (resinWS < 0) resinWS = 0;
-                ResinWorkshop = resinWS;
+                ResinWorkshop = AmountSet(resinWS);
             }
 
             ImGui.Text($"Coconut (Have: {CoconutAmount})");
@@ -366,8 +345,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Coconut Send", ref coconutWS))
             {
-                if (coconutWS < 0) coconutWS = 0;
-                CoconutWorkshop = coconutWS;
+                CoconutWorkshop = AmountSet(coconutWS);
             }
 
             ImGui.Text($"Beehive (Have: {BeehiveAmount})");
@@ -376,8 +354,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Beehive Send", ref beehiveWS))
             {
-                if (beehiveWS < 0) beehiveWS = 0;
-                BeehiveWorkshop = beehiveWS;
+                BeehiveWorkshop = AmountSet(beehiveWS);
             }
 
             ImGui.Text($"Wood Opal (Have: {WoodOpalAmount})");
@@ -386,8 +363,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Wood Opal Send", ref woodopalWS))
             {
-                if (woodopalWS < 0) woodopalWS = 0;
-                WoodOpalWorkshop = woodopalWS;
+                WoodOpalWorkshop = AmountSet(woodopalWS);
             }
 
             ImGui.Text($"Coal (Have: {CoalAmount})");
@@ -396,8 +372,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Coal Send", ref coalWS))
             {
-                if (coalWS < 0) coalWS = 0;
-                CoalWorkshop = coalWS;
+                CoalWorkshop = AmountSet(coalWS);
             }
 
             ImGui.Text($"Glimshroom (Have: {GlimshroomAmount})");
@@ -406,8 +381,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Glimshroom Send", ref glimshroomWS))
             {
-                if (glimshroomWS < 0) glimshroomWS = 0;
-                GlimshroomWorkshop = glimshroomWS;
+                GlimshroomWorkshop = AmountSet(glimshroomWS);
             }
 
             ImGui.Text($"Effervescent Water (Have: {EffervescentWaterAmount})");
@@ -416,8 +390,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Effervescent Water Send", ref effervescentwaterWS))
             {
-                if (effervescentwaterWS < 0) effervescentwaterWS = 0;
-                EffervescentWaterWorkshop = effervescentwaterWS;
+                EffervescentWaterWorkshop = AmountSet(effervescentwaterWS);
             }
 
             ImGui.Text($"Shale (Have: {ShaleAmount})");
@@ -426,8 +399,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Shale Send", ref shaleWS))
             {
-                if (shaleWS < 0) shaleWS = 0;
-                ShaleWorkshop = shaleWS;
+                ShaleWorkshop = AmountSet(shaleWS);
             }
 
             ImGui.Text($"Marble (Have: {MarbleAmount})");
@@ -436,8 +408,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Marble Send", ref marbleWS))
             {
-                if (marbleWS < 0) marbleWS = 0;
-                MarbleWorkshop = marbleWS;
+                MarbleWorkshop = AmountSet(marbleWS);
             }
 
             ImGui.Text($"Mythril Ore (Have: {MythrilOreAmount})");
@@ -446,8 +417,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Mythril Ore Send", ref mythriloreWS))
             {
-                if (mythriloreWS < 0) mythriloreWS = 0;
-                MythrilOreWorkshop = mythriloreWS;
+                MythrilOreWorkshop = AmountSet(mythriloreWS);
             }
 
             ImGui.Text($"Spectrine (Have: {SpectrineAmount})");
@@ -456,8 +426,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Spectrine Send", ref spectrineWS))
             {
-                if (spectrineWS < 0) spectrineWS = 0;
-                SpectrineWorkshop = spectrineWS;
+                SpectrineWorkshop = AmountSet(spectrineWS);
             }
 
             ImGui.Text($"Durium Sand (Have: {DuriumSandAmount})");
@@ -466,8 +435,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Durium Sand Send", ref duriumsandWS))
             {
-                if (duriumsandWS < 0) duriumsandWS = 0;
-                DuriumSandWorkshop = duriumsandWS;
+                DuriumSandWorkshop = AmountSet(duriumsandWS);
             }
 
             ImGui.Text($"Yellow Copper Ore (Have: {YellowCopperOreAmount})");
@@ -476,8 +444,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Yellow Copper Ore Send", ref yellowcopperoreWS))
             {
-                if (yellowcopperoreWS < 0) yellowcopperoreWS = 0;
-                YellowCopperOreWorkshop = yellowcopperoreWS;
+                YellowCopperOreWorkshop = AmountSet(yellowcopperoreWS);
             }
 
             ImGui.Text($"Gold Ore (Have: {GoldOreAmount})");
@@ -486,8 +453,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Gold Ore Send", ref goldoreWS))
             {
-                if (goldoreWS < 0) goldoreWS = 0;
-                GoldOreWorkshop = goldoreWS;
+                GoldOreWorkshop = AmountSet(goldoreWS);
             }
 
             ImGui.Text($"Hawk's Eye Sand (Have: {HawksEyeSandAmount})");
@@ -496,8 +462,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Hawk's Eye Sand Send", ref hawkseyesandWS))
             {
-                if (hawkseyesandWS < 0) hawkseyesandWS = 0;
-                HawksEyeSandWorkshop = hawkseyesandWS;
+                HawksEyeSandWorkshop = AmountSet(hawkseyesandWS);
             }
 
             ImGui.Text($"Crystal Formation (Have: {CrystalFormationAmount})");
@@ -506,8 +471,7 @@ namespace IslandLeveling.Windows
             ImGui.SetNextItemWidth(100);
             if (ImGui.InputInt("##Crystal Formation Send", ref crystalformationWS))
             {
-                if (crystalformationWS < 0) crystalformationWS = 0;
-                CrystalFormationWorkshop = crystalformationWS;
+                CrystalFormationWorkshop = AmountSet(crystalformationWS);
             }
         }
     }
