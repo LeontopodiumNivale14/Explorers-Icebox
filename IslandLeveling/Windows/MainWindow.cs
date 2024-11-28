@@ -57,7 +57,7 @@ namespace IslandLeveling.Windows
             ImGui.SameLine();
             if (ImGui.Button("Mammet interact"))
             {
-                P.taskManager.Enqueue(PlayerWorldHandlers.TargetShopNpc);
+                P.taskManager.Enqueue(NPCHandlers.TargetShopNpc);
             }
         }
     }
