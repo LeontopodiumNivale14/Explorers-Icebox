@@ -1,14 +1,27 @@
 using Dalamud.Game.ClientState.Conditions;
 using FFXIVClientStructs.FFXIV.Client.Game;
-using IslandLeveling.Scheduler.Handers;
 
 namespace IslandLeveling.Scheduler.Tasks
 {
-    internal static unsafe class TaskMountUp
+    internal static class TaskMountUp
     {
         public static void Enqueue()
         {
-            P.taskManager.Enqueue(PlayerHandlers.MountUp);
+            P.taskManager.Enqueue(() => MountUp());
+        }
+        // Mounting up on... well a mount. 
+        internal unsafe static bool? MountUp()
+        {
+            if (Svc.Condition[ConditionFlag.Mounted] && PlayerNotBusy()) return true;
+
+            if (CurrentTerritory() == 1055)
+            {
+                if (!Svc.Condition[ConditionFlag.Casting] && !Svc.Condition[ConditionFlag.Unknown57])
+                {
+                    ActionManager.Instance()->UseAction(ActionType.GeneralAction, 24);
+                }
+            }
+            return false;
         }
     }
 }

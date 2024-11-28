@@ -1,6 +1,7 @@
 using ECommons.SimpleGui;
 using IslandLeveling.Scheduler;
 using IslandLeveling.Scheduler.Handers;
+using IslandLeveling.Scheduler.Tasks;
 
 namespace IslandLeveling.Windows
 {
@@ -19,6 +20,10 @@ namespace IslandLeveling.Windows
         {
         }
         private string addonName = "kpala";
+        private float xPos = 0;
+        private float yPos = 0;
+        private float zPos = 0;
+        private int tolerance = 0;
 
         public override void Draw()
         {
@@ -52,12 +57,37 @@ namespace IslandLeveling.Windows
             // if (ImGuiEx.IconButton(FontAwesomeIcon.))
             if (ImGui.Button("Mount up!"))
             {
-                P.taskManager.Enqueue(PlayerHandlers.MountUp);
+                P.taskManager.Enqueue(() => TaskMountUp.Enqueue());
             }
             ImGui.SameLine();
             if (ImGui.Button("Mammet interact"))
             {
                 P.taskManager.Enqueue(NPCHandlers.TargetShopNpc);
+            }
+
+            ImGui.Text("X:");
+            ImGui.SameLine();
+            ImGui.SetNextItemWidth(75);
+            if (ImGui.InputFloat("##X Position", ref xPos));
+            ImGui.SameLine();
+            ImGui.Text("Y:");
+            ImGui.SameLine();
+            ImGui.SetNextItemWidth(75);
+            if (ImGui.InputFloat("##Y Position", ref yPos));
+            ImGui.SameLine();
+            ImGui.Text("Z:");
+            ImGui.SameLine();
+            ImGui.SetNextItemWidth(75);
+            if (ImGui.InputFloat("##Z Position", ref zPos));
+            ImGui.SameLine();
+            ImGui.Text("Tolerance:");
+            ImGui.SameLine();
+            ImGui.SetNextItemWidth(100);
+            if (ImGui.InputInt("##Tolerance", ref tolerance));
+            if (ImGui.Button("Vnav Moveto!"))
+            {
+                P.taskManager.Enqueue(() => TaskMoveTo.Enqueue(new Vector3(xPos, yPos, zPos), tolerance));
+                ECommons.Logging.InternalLog.Information("Firing off Vnav Moveto");
             }
         }
     }

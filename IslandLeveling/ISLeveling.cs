@@ -21,6 +21,7 @@ public sealed class ISLeveling : IDalamudPlugin
     internal TaskManager taskManager;
     internal LifestreamIPC lifestream;
     internal NavmeshIPC navmesh;
+    internal VislandIPC visland;
 
     public ISLeveling(IDalamudPluginInterface pluginInterface)
     {
@@ -37,6 +38,7 @@ public sealed class ISLeveling : IDalamudPlugin
         taskManager = new();
         lifestream = new();
         navmesh = new();
+        visland = new();
         Svc.Framework.Update += Tick;
     }
     private void Tick(object _)
