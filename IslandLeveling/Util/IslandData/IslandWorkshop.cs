@@ -1,7 +1,7 @@
 namespace IslandLeveling.Util.IslandData;
 
 public class IslandWorkshop
-{    
+{
     // Workshop amounts that will be sliders/customizable per player (or grabbed automatically, one/maybe both)
     public static int PalmLeafWorkshop { get; set; }
     public static int BranchWorkshop { get; set; }

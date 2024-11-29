@@ -4,7 +4,10 @@ public class IslandMics
 {
     //NPC ID's
     public const uint Baldin = 1043621; // NPC that leads to the IS
-    public const uint ExportMammet = 1043464; // Exports Mammet, used to trade your items -> Cowries
+    public const uint ExportMammet = 3758096384; // Exports Mammet, used to trade your items -> Cowries
+
+    //Test bool 
+    public static bool CanFly = false;
 
     //This is the current cap of items on Island Sanctuary Items, just so I can quickly pull it at all times
     public const int MaxItems = 999;

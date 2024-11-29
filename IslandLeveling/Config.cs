@@ -55,4 +55,9 @@ public class Config : IEzConfig
     public int GoldOreWS => GoldOreWorkshop;
     public int HawksEyeSandWS => HawksEyeSandWorkshop;
     public int CrystalFormationWS => CrystalFormationWorkshop;
+
+    public void Save()
+    {
+        EzConfig.Save();
+    }
 }

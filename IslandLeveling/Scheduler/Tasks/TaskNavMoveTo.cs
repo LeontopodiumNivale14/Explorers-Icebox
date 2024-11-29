@@ -6,14 +6,6 @@ namespace IslandLeveling.Scheduler.Tasks
 {
     internal static class TaskMoveTo
     {
-        private static float Distance(this Vector3 v, Vector3 v2)
-        {
-            return new Vector2(v.X - v2.X, v.Z - v2.Z).Length();
-        }
-        private static unsafe bool IsMoving()
-        {
-            return AgentMap.Instance()->IsPlayerMoving == 1;
-        }
         internal unsafe static void Enqueue(Vector3 targetPosition, float toleranceDistance = 3f)
         {
             P.taskManager.Enqueue(() => MoveTo(targetPosition, toleranceDistance));
@@ -25,7 +17,7 @@ namespace IslandLeveling.Scheduler.Tasks
                 P.navmesh.Stop();
                 return true;
             }
-            if (P.navmesh.PathfindInProgress() || P.navmesh.IsRunning() || IsMoving()) return false;
+            if (P.navmesh.PathfindInProgress() || P.navmesh.IsRunning() || PlayerHandlers.IsMoving()) return false;
 
             P.navmesh.PathfindAndMoveTo(targetPosition, false);
             P.navmesh.SetAlignCamera(true);

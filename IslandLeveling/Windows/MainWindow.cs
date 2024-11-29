@@ -19,24 +19,14 @@ namespace IslandLeveling.Windows
         public void Dispose()
         {
         }
-        private string addonName = "kpala";
-        private float xPos = 0;
-        private float yPos = 0;
-        private float zPos = 0;
-        private int tolerance = 0;
+
+        private bool radioButton = CanFly;
 
         public override void Draw()
         {
             ImGui.Text($"Quartz WS = {QuartzWorkshop}");
             ImGui.Text($"Route 1 loop amount is: {Route1Amount}");
             ImGui.Text($"Route 2 loop amount is: {Route2Amount}");
-            ImGui.Text($"TerritoryID: " + Svc.ClientState.TerritoryType);
-            ImGui.SameLine();
-            ImGui.Text($"Target: " + Svc.Targets.Target);
-            ImGui.InputText("##Addon Visible", ref addonName, 100);
-            ImGui.SameLine();
-            ImGui.Text($"Addon Visible: " + IsAddonActive(addonName));
-            ImGui.Text($"PlayerPos: " + PlayerPosition());
             ImGui.Text($"Navmesh BuildProgress :" + P.navmesh.BuildProgress());//working ipc
             bool isRunning = SchedulerMain.AreWeTicking;
             if (ImGui.Button(isRunning ? "Stop" : "Start"))
@@ -63,31 +53,6 @@ namespace IslandLeveling.Windows
             if (ImGui.Button("Mammet interact"))
             {
                 P.taskManager.Enqueue(NPCHandlers.TargetShopNpc);
-            }
-
-            ImGui.Text("X:");
-            ImGui.SameLine();
-            ImGui.SetNextItemWidth(75);
-            if (ImGui.InputFloat("##X Position", ref xPos));
-            ImGui.SameLine();
-            ImGui.Text("Y:");
-            ImGui.SameLine();
-            ImGui.SetNextItemWidth(75);
-            if (ImGui.InputFloat("##Y Position", ref yPos));
-            ImGui.SameLine();
-            ImGui.Text("Z:");
-            ImGui.SameLine();
-            ImGui.SetNextItemWidth(75);
-            if (ImGui.InputFloat("##Z Position", ref zPos));
-            ImGui.SameLine();
-            ImGui.Text("Tolerance:");
-            ImGui.SameLine();
-            ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Tolerance", ref tolerance));
-            if (ImGui.Button("Vnav Moveto!"))
-            {
-                P.taskManager.Enqueue(() => TaskMoveTo.Enqueue(new Vector3(xPos, yPos, zPos), tolerance));
-                ECommons.Logging.InternalLog.Information("Firing off Vnav Moveto");
             }
         }
     }

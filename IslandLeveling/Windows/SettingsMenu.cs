@@ -1,11 +1,13 @@
 using Dalamud.Interface.Utility.Raii;
+using ECommons.Configuration;
+using FFXIVClientStructs.FFXIV.Client.Game;
 using System.Runtime.CompilerServices;
 
 namespace IslandLeveling.Windows
 {
     internal class SettingMenu : Window ,IDisposable
     {
-        public new static readonly string WindowName = "Islanc Sanc Leveling Settings";
+        public new static readonly string WindowName = "Islanc Sanc Workshop Amounts";
         public SettingMenu() : base(WindowName)
         {
             Flags = ImGuiWindowFlags.NoCollapse;
@@ -85,6 +87,7 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Palm Leaf", ref palmleafWS))
             {
                 PalmLeafWorkshop = AmountSet(palmleafWS);
+                EzConfig.Save();
             }
             
             ImGui.Text($"Branch (Have: {BranchAmount})");
@@ -94,6 +97,7 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Branch Send", ref branchWS))
             {
                 BranchWorkshop = AmountSet(branchWS);
+                EzConfig.Save();
             }
             
             ImGui.Text($"Stone (Have: {StoneAmount})");
@@ -103,6 +107,7 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Stone Send", ref stoneWS))
             {
                 StoneWorkshop = AmountSet(stoneWS);
+                EzConfig.Save();
             }
 
             ImGui.Text($"Clam (Have: {ClamAmount})");
@@ -112,6 +117,7 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Clam Send", ref clamWS))
             {
                 ClamWorkshop = AmountSet(clamWS);
+                EzConfig.Save();
             }
 
             ImGui.Text($"Laver (Have: {LaverAmount})");

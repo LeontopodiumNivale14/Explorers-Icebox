@@ -119,4 +119,14 @@ public static unsafe class Utils
 
         return CurrentMax;
     }
+
+    public static int[,] TableSwap(int RouteValue)
+    {
+        return RouteValue switch
+        {
+            1 => Route1Table,
+            2 => Route2Table,
+            _ => throw new Exception("There's uh... not a table assigned to this"),
+        };
+    }
 }
