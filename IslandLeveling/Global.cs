@@ -24,6 +24,6 @@ global using static IslandLeveling.Util.Utils;
 // tables being used acrossed the plugin
 global using static IslandLeveling.Util.IslandData.IslandAmounts;
 global using static IslandLeveling.Util.IslandData.IslandIDs;
-global using static IslandLeveling.Util.IslandData.IslandWorkshop;
+global using static IslandLeveling.Config;
 global using static IslandLeveling.Util.IslandData.IslandMics;
 

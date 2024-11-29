@@ -19,55 +19,11 @@ namespace IslandLeveling.Windows
 
         public override void Draw()
         {
-            int palmleafWS = PalmLeafWorkshop;
-            int branchWS = BranchWorkshop;
-            int stoneWS = StoneWorkshop;
-            int clamWS = ClamWorkshop;
-            int laverWS = LaverWorkshop;
-            int coralWS = CoralWorkshop;
-            int islewortWS = IslewortWorkshop;
-            int sandWS = SandWorkshop;
-            int vineWS = VineWorkshop;
-            int sapWS = SapWorkshop;
-            int appleWS = AppleWorkshop;
-            int logWS = LogWorkshop;
-            int palmlogWS = PalmLogWorkshop;
-            int copperWS = CopperWorkshop;
-            int limestoneWS = LimestoneWorkshop;
-            int rocksaltWS = RockSaltWorkshop;
-            int clayWS = ClayWorkshop;
-            int tinsandWS = TinsandWorkshop;
-            int sugarcaneWS = SugarcaneWorkshop;
-            int cottonWS = CottonWorkshop;
-            int hempWS = HempWorkshop;
-            int islefishWS = IslefishWorkshop;
-            int squidWS = SquidWorkshop;
-            int jellyfishWS = JellyfishWorkshop;
-            int ironoreWS = IronOreWorkshop;
-            int quartzWS = QuartzWorkshop;
-            int leucograniteWS = LeucograniteWorkshop;
-            int multicoloredislebloomsWS = MulticoloredIslebloomsWorkshop;
-            int resinWS = ResinWorkshop;
-            int coconutWS = CoconutWorkshop;
-            int beehiveWS = BeehiveWorkshop;
-            int woodopalWS = WoodOpalWorkshop;
-            int coalWS = CoalWorkshop;
-            int glimshroomWS = GlimshroomWorkshop;
-            int effervescentwaterWS = EffervescentWaterWorkshop;
-            int shaleWS = ShaleWorkshop;
-            int marbleWS = MarbleWorkshop;
-            int mythriloreWS = MythrilOreWorkshop;
-            int spectrineWS = SpectrineWorkshop;
-            int duriumsandWS = DuriumSandWorkshop;
-            int yellowcopperoreWS = YellowCopperOreWorkshop;
-            int goldoreWS = GoldOreWorkshop;
-            int hawkseyesandWS = HawksEyeSandWorkshop;
-            int crystalformationWS = CrystalFormationWorkshop;
-
             static int AmountSet(int input)
             {
                 if (input < 0) input = 0;
                 else if (input > 999) input = 999;
+                EzConfig.Save();
                 return input;
             }
 
@@ -84,400 +40,396 @@ namespace IslandLeveling.Windows
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Palm Leaf", ref palmleafWS))
+            if (ImGui.InputInt("##Palm Leaf", ref C.PalmLeafWorkshop))
             {
-                PalmLeafWorkshop = AmountSet(palmleafWS);
-                EzConfig.Save();
+                C.PalmLeafWorkshop = AmountSet(C.PalmLeafWorkshop);
             }
             
             ImGui.Text($"Branch (Have: {BranchAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Branch Send", ref branchWS))
+            if (ImGui.InputInt("##Branch Send", ref C.BranchWorkshop))
             {
-                BranchWorkshop = AmountSet(branchWS);
-                EzConfig.Save();
+                C.BranchWorkshop = AmountSet(C.BranchWorkshop);
             }
             
             ImGui.Text($"Stone (Have: {StoneAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Stone Send", ref stoneWS))
+            if (ImGui.InputInt("##Stone Send", ref C.StoneWorkshop))
             {
-                StoneWorkshop = AmountSet(stoneWS);
-                EzConfig.Save();
+                C.StoneWorkshop = AmountSet(C.StoneWorkshop);
             }
 
             ImGui.Text($"Clam (Have: {ClamAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Clam Send", ref clamWS))
+            if (ImGui.InputInt("##Clam Send", ref C.ClamWorkshop))
             {
-                ClamWorkshop = AmountSet(clamWS);
-                EzConfig.Save();
+                C.ClamWorkshop = AmountSet(C.ClamWorkshop);
             }
 
             ImGui.Text($"Laver (Have: {LaverAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Laver Send", ref laverWS))
+            if (ImGui.InputInt("##Laver Send", ref C.LaverWorkshop))
             {
-                LaverWorkshop = AmountSet(laverWS);
+                C.LaverWorkshop = AmountSet(C.LaverWorkshop);
             }
             
             ImGui.Text($"Coral (Have: {CoralAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Coral Send", ref coralWS))
+            if (ImGui.InputInt("##Coral Send", ref C.CoralWorkshop))
             {
-                CoralWorkshop = AmountSet(coralWS);
+                C.CoralWorkshop = AmountSet(C.CoralWorkshop);
             }
 
             ImGui.Text($"Islewort (Have: {IslewortAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Islewort Send", ref islewortWS))
+            if (ImGui.InputInt("##Islewort Send", ref C.IslewortWorkshop))
             {
-                IslewortWorkshop = AmountSet(islewortWS);
+                C.IslewortWorkshop = AmountSet(C.IslewortWorkshop);
             }
 
             ImGui.Text($"Sand (Have: {SandAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Sand Send", ref sandWS))
+            if (ImGui.InputInt("##Sand Send", ref C.SandWorkshop))
             {
-                SandWorkshop = AmountSet(sandWS);
+                C.SandWorkshop = AmountSet(C.SandWorkshop);
             }
 
             ImGui.Text($"Vine (Have: {VineAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Vine Send", ref vineWS))
+            if (ImGui.InputInt("##Vine Send", ref C.VineWorkshop))
             {
-                VineWorkshop = AmountSet(vineWS);
+                C.VineWorkshop = AmountSet(C.VineWorkshop);
             }
 
             ImGui.Text($"Sap (Have: {SapAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Sap Send", ref sapWS))
+            if (ImGui.InputInt("##Sap Send", ref C.SapWorkshop))
             {
-                SapWorkshop = AmountSet(sapWS);
+                C.SapWorkshop = AmountSet(C.SapWorkshop);
             }
 
             ImGui.Text($"Apple (Have: {AppleAmount})");
             ImGui.SameLine(); 
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Apple Send", ref appleWS))
+            if (ImGui.InputInt("##Apple Send", ref C.AppleWorkshop))
             {
-                AppleWorkshop = AmountSet(appleWS);
+                C.AppleWorkshop = AmountSet(C.AppleWorkshop);
             }
 
             ImGui.Text($"Log (Have: {LogAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Log Send", ref logWS))
+            if (ImGui.InputInt("##Log Send", ref C.LogWorkshop))
             {
-                LogWorkshop = AmountSet(logWS);
+                C.LogWorkshop = AmountSet(C.LogWorkshop);
             }
             
             ImGui.Text($"Palm Log (Have: {PalmLogAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Palm Log Send", ref palmlogWS))
+            if (ImGui.InputInt("##Palm Log Send", ref C.PalmLogWorkshop))
             {
-                PalmLogWorkshop = AmountSet(palmlogWS);
+                C.PalmLogWorkshop = AmountSet(C.PalmLogWorkshop);
             }
 
             ImGui.Text($"Copper (Have: {CopperAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Copper Send", ref copperWS))
+            if (ImGui.InputInt("##Copper Send", ref C.CopperWorkshop))
             {
-                CopperWorkshop = AmountSet(copperWS);
+                C.CopperWorkshop = AmountSet(C.CopperWorkshop);
             }
 
             ImGui.Text($"Limestone (Have: {LimestoneAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Limestone Send", ref limestoneWS))
+            if (ImGui.InputInt("##Limestone Send", ref C.LimestoneWorkshop))
             {
-                LimestoneWorkshop = AmountSet(limestoneWS);
+                C.LimestoneWorkshop = AmountSet(C.LimestoneWorkshop);
             }
 
             ImGui.Text($"Rock Salt (Have: {RockSaltAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Rock Salt Send", ref rocksaltWS))
+            if (ImGui.InputInt("##Rock Salt Send", ref C.RockSaltWorkshop))
             {
-                RockSaltWorkshop = AmountSet(rocksaltWS);
+                C.RockSaltWorkshop = AmountSet(C.RockSaltWorkshop);
             }
 
             ImGui.Text($"Clay (Have: {ClayAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Clay Send", ref clayWS))
+            if (ImGui.InputInt("##Clay Send", ref C.ClayWorkshop))
             {
-                ClayWorkshop = AmountSet(clayWS);
+                C.ClayWorkshop = AmountSet(C.ClayWorkshop);
             }
 
             ImGui.Text($"Tinsand (Have: {TinsandAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Tinsand Send", ref tinsandWS))
+            if (ImGui.InputInt("##Tinsand Send", ref C.TinsandWorkshop))
             {
-                TinsandWorkshop = AmountSet(tinsandWS);
+                C.TinsandWorkshop = AmountSet(C.TinsandWorkshop);
             }
 
             ImGui.Text($"Sugarcane (Have: {SugarcaneAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Sugarcane Send", ref sugarcaneWS))
+            if (ImGui.InputInt("##Sugarcane Send", ref C.SugarcaneWorkshop))
             {
-                SugarcaneWorkshop = AmountSet(sugarcaneWS);
+                C.SugarcaneWorkshop = AmountSet(C.SugarcaneWorkshop);
             }
 
             ImGui.Text($"Cotton (Have: {CottonAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Cotton Send", ref cottonWS))
+            if (ImGui.InputInt("##Cotton Send", ref C.CottonWorkshop))
             {
-                CottonWorkshop = AmountSet(cottonWS);
+                C.CottonWorkshop = AmountSet(C.CottonWorkshop);
             }
 
             ImGui.Text($"Hemp (Have: {HempAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Hemp Send", ref hempWS))
+            if (ImGui.InputInt("##Hemp Send", ref C.HempWorkshop))
             {
-                HempWorkshop = AmountSet(hempWS);
+                C.HempWorkshop = AmountSet(C.HempWorkshop);
             }
 
             ImGui.Text($"Islefish (Have: {IslefishAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Islefish Send", ref islefishWS))
+            if (ImGui.InputInt("##Islefish Send", ref C.IslefishWorkshop))
             {
-                IslefishWorkshop = AmountSet(islefishWS);
+                C.IslefishWorkshop = AmountSet(C.IslefishWorkshop);
             }
 
             ImGui.Text($"Squid (Have: {SquidAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Squid Send", ref squidWS))
+            if (ImGui.InputInt("##Squid Send", ref C.SquidWorkshop))
             {
-                SquidWorkshop = AmountSet(squidWS);
+                C.SquidWorkshop = AmountSet(C.SquidWorkshop);
             }
 
             ImGui.Text($"Jellyfish (Have: {JellyfishAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Jellyfish Send", ref jellyfishWS))
+            if (ImGui.InputInt("##Jellyfish Send", ref C.JellyfishWorkshop))
             {
-                JellyfishWorkshop = AmountSet(jellyfishWS);
+                C.JellyfishWorkshop = AmountSet(C.JellyfishWorkshop);
             }
 
             ImGui.Text($"Iron Ore (Have: {IronOreAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Iron Ore Send", ref ironoreWS))
+            if (ImGui.InputInt("##Iron Ore Send", ref C.IronOreWorkshop))
             {
-                IronOreWorkshop = AmountSet(ironoreWS);
+                C.IronOreWorkshop = AmountSet(C.IronOreWorkshop);
             }
 
             ImGui.Text($"Quartz (Have: {QuartzAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Quartz Send", ref quartzWS))
+            if (ImGui.InputInt("##Quartz Send", ref C.QuartzWorkshop))
             {
-                QuartzWorkshop = AmountSet(quartzWS);
+                C.QuartzWorkshop = AmountSet(C.QuartzWorkshop);
             }
 
             ImGui.Text($"Leucogranite (Have: {LeucograniteAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Leucogranite Send", ref leucograniteWS))
+            if (ImGui.InputInt("##Leucogranite Send", ref C.LeucograniteWorkshop))
             {
-                LeucograniteWorkshop = AmountSet(leucograniteWS);
+                C.LeucograniteWorkshop = AmountSet(C.LeucograniteWorkshop);
             }
 
             ImGui.Text($"Multicolored Isleblooms (Have: {MulticoloredIslebloomsAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Multicolored Isleblooms Send", ref multicoloredislebloomsWS))
+            if (ImGui.InputInt("##Multicolored Isleblooms Send", ref C.MulticoloredIslebloomsWorkshop))
             {
-                MulticoloredIslebloomsWorkshop = AmountSet(multicoloredislebloomsWS);
+                C.MulticoloredIslebloomsWorkshop = AmountSet(C.MulticoloredIslebloomsWorkshop);
             }
 
             ImGui.Text($"Resin (Have: {ResinAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Resin Send", ref resinWS))
+            if (ImGui.InputInt("##Resin Send", ref C.ResinWorkshop))
             {
-                ResinWorkshop = AmountSet(resinWS);
+                C.ResinWorkshop = AmountSet(C.ResinWorkshop);
             }
 
             ImGui.Text($"Coconut (Have: {CoconutAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Coconut Send", ref coconutWS))
+            if (ImGui.InputInt("##Coconut Send", ref C.CoconutWorkshop))
             {
-                CoconutWorkshop = AmountSet(coconutWS);
+                C.LaverWorkshop = AmountSet(C.CoconutWorkshop);
             }
 
             ImGui.Text($"Beehive (Have: {BeehiveAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Beehive Send", ref beehiveWS))
+            if (ImGui.InputInt("##Beehive Send", ref C.BeehiveWorkshop))
             {
-                BeehiveWorkshop = AmountSet(beehiveWS);
+                C.BeehiveWorkshop = AmountSet(C.BeehiveWorkshop);
             }
 
             ImGui.Text($"Wood Opal (Have: {WoodOpalAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Wood Opal Send", ref woodopalWS))
+            if (ImGui.InputInt("##Wood Opal Send", ref C.WoodOpalWorkshop))
             {
-                WoodOpalWorkshop = AmountSet(woodopalWS);
+                C.WoodOpalWorkshop = AmountSet(C.WoodOpalWorkshop);
             }
 
             ImGui.Text($"Coal (Have: {CoalAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Coal Send", ref coalWS))
+            if (ImGui.InputInt("##Coal Send", ref C.CoalWorkshop))
             {
-                CoalWorkshop = AmountSet(coalWS);
+                C.CoalWorkshop = AmountSet(C.CoalWorkshop);
             }
 
             ImGui.Text($"Glimshroom (Have: {GlimshroomAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Glimshroom Send", ref glimshroomWS))
+            if (ImGui.InputInt("##Glimshroom Send", ref C.GlimshroomWorkshop))
             {
-                GlimshroomWorkshop = AmountSet(glimshroomWS);
+                C.GlimshroomWorkshop = AmountSet(C.GlimshroomWorkshop);
             }
 
             ImGui.Text($"Effervescent Water (Have: {EffervescentWaterAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Effervescent Water Send", ref effervescentwaterWS))
+            if (ImGui.InputInt("##Effervescent Water Send", ref C.EffervescentWaterWorkshop))
             {
-                EffervescentWaterWorkshop = AmountSet(effervescentwaterWS);
+                C.EffervescentWaterWorkshop = AmountSet(C.EffervescentWaterWorkshop);
             }
 
             ImGui.Text($"Shale (Have: {ShaleAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Shale Send", ref shaleWS))
+            if (ImGui.InputInt("##Shale Send", ref C.ShaleWorkshop))
             {
-                ShaleWorkshop = AmountSet(shaleWS);
+                C.ShaleWorkshop = AmountSet(C.ShaleWorkshop);
             }
 
             ImGui.Text($"Marble (Have: {MarbleAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Marble Send", ref marbleWS))
+            if (ImGui.InputInt("##Marble Send", ref C.MarbleWorkshop))
             {
-                MarbleWorkshop = AmountSet(marbleWS);
+                C.MarbleWorkshop = AmountSet(C.MarbleWorkshop);
             }
 
             ImGui.Text($"Mythril Ore (Have: {MythrilOreAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Mythril Ore Send", ref mythriloreWS))
+            if (ImGui.InputInt("##Mythril Ore Send", ref C.MythrilOreWorkshop))
             {
-                MythrilOreWorkshop = AmountSet(mythriloreWS);
+                C.MythrilOreWorkshop = AmountSet(C.MythrilOreWorkshop);
             }
 
             ImGui.Text($"Spectrine (Have: {SpectrineAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Spectrine Send", ref spectrineWS))
+            if (ImGui.InputInt("##Spectrine Send", ref C.SpectrineWorkshop))
             {
-                SpectrineWorkshop = AmountSet(spectrineWS);
+                C.SpectrineWorkshop = AmountSet(C.SpectrineWorkshop);
             }
 
             ImGui.Text($"Durium Sand (Have: {DuriumSandAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Durium Sand Send", ref duriumsandWS))
+            if (ImGui.InputInt("##Durium Sand Send", ref C.DuriumSandWorkshop))
             {
-                DuriumSandWorkshop = AmountSet(duriumsandWS);
+                C.DuriumSandWorkshop = AmountSet(C.DuriumSandWorkshop);
             }
 
             ImGui.Text($"Yellow Copper Ore (Have: {YellowCopperOreAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Yellow Copper Ore Send", ref yellowcopperoreWS))
+            if (ImGui.InputInt("##Yellow Copper Ore Send", ref C.YellowCopperOreWorkshop))
             {
-                YellowCopperOreWorkshop = AmountSet(yellowcopperoreWS);
+                C.YellowCopperOreWorkshop = AmountSet(C.YellowCopperOreWorkshop);
             }
 
             ImGui.Text($"Gold Ore (Have: {GoldOreAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Gold Ore Send", ref goldoreWS))
+            if (ImGui.InputInt("##Gold Ore Send", ref C.GoldOreWorkshop))
             {
-                GoldOreWorkshop = AmountSet(goldoreWS);
+               C.GoldOreWorkshop = AmountSet(C.GoldOreWorkshop);
             }
 
             ImGui.Text($"Hawk's Eye Sand (Have: {HawksEyeSandAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Hawk's Eye Sand Send", ref hawkseyesandWS))
+            if (ImGui.InputInt("##Hawk's Eye Sand Send", ref C.HawksEyeSandWorkshop))
             {
-                HawksEyeSandWorkshop = AmountSet(hawkseyesandWS);
+                C.HawksEyeSandWorkshop = AmountSet(C.HawksEyeSandWorkshop);
             }
 
             ImGui.Text($"Crystal Formation (Have: {CrystalFormationAmount})");
             ImGui.SameLine();
             ImGui.SetCursorPosX(offset);
             ImGui.SetNextItemWidth(100);
-            if (ImGui.InputInt("##Crystal Formation Send", ref crystalformationWS))
+            if (ImGui.InputInt("##Crystal Formation Send", ref C.CrystalFormationWorkshop))
             {
-                CrystalFormationWorkshop = AmountSet(crystalformationWS);
+                C.CrystalFormationWorkshop = AmountSet(C.CrystalFormationWorkshop);
             }
         }
     }

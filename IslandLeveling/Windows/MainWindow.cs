@@ -24,7 +24,7 @@ namespace IslandLeveling.Windows
 
         public override void Draw()
         {
-            ImGui.Text($"Quartz WS = {QuartzWorkshop}");
+            ImGui.Text($"Quartz WS = {C.QuartzWorkshop}");
             ImGui.Text($"Route 1 loop amount is: {Route1Amount}");
             ImGui.Text($"Route 2 loop amount is: {Route2Amount}");
             ImGui.Text($"Navmesh BuildProgress :" + P.navmesh.BuildProgress());//working ipc

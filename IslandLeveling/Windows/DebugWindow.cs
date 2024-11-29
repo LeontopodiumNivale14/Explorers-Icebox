@@ -34,7 +34,6 @@ namespace IslandLeveling.Windows
 
         private bool callbackbool = false;
         private string testRoute = "";
-        private int debugTestWS = 0;
 
         public override void Draw()
         {

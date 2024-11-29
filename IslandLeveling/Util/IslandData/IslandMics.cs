@@ -13,8 +13,8 @@ public class IslandMics
     public const int MaxItems = 999;
     
     // Route Loop Amounts
-    public static int Route1Amount => RouteAmountCalc(Route1Table, QuartzWorkshop, IronOreWorkshop, DuriumSandWorkshop, LeucograniteWorkshop, 0);
-    public static int Route2Amount => RouteAmountCalc(Route2Table, ClayWorkshop, TinsandWorkshop, MarbleWorkshop, LimestoneWorkshop, BranchWorkshop, LogWorkshop, ResinWorkshop, 0);
+    public static int Route1Amount => RouteAmountCalc(Route1Table, C.QuartzWorkshop, C.IronOreWorkshop, C.DuriumSandWorkshop, C.LeucograniteWorkshop, 0);
+    public static int Route2Amount => RouteAmountCalc(Route2Table, C.ClayWorkshop, C.TinsandWorkshop, C.MarbleWorkshop, C.LimestoneWorkshop, C.BranchWorkshop, C.LogWorkshop, C.ResinWorkshop, 0);
     
     // Tables to be used for Island Sanctuary information
     
