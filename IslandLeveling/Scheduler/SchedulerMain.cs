@@ -1,3 +1,5 @@
+using ECommons.Throttlers;
+using IslandLeveling.Scheduler.Handers;
 using IslandLeveling.Scheduler.Tasks;
 
 namespace IslandLeveling.Scheduler
@@ -26,12 +28,18 @@ namespace IslandLeveling.Scheduler
         {
             if (AreWeTicking)
             {
-                if (!P.taskManager.IsBusy)
+                if (GenericThrottle)
                 {
-                    TaskMountUp.Enqueue();
-                    if (!Yes)
+                    if (!P.taskManager.IsBusy)
                     {
-                        // more code that can be ran here. Justt need to figure out what...
+                        if (!atEntrance)
+                        {
+                            if (EzThrottler.Throttle("Return to base?", 5000))
+                            {
+                                TaskReturn.Enqueue();
+                                PluginLog("Just a test... to see if this works properly");
+                            }
+                        }
                     }
                 }
             }

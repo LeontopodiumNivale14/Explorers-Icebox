@@ -1,3 +1,4 @@
+using ECommons.Automation;
 using ECommons.SimpleGui;
 using IslandLeveling.Scheduler;
 using IslandLeveling.Scheduler.Handers;
@@ -28,6 +29,9 @@ namespace IslandLeveling.Windows
             ImGui.Text($"Route 1 loop amount is: {Route1Amount}");
             ImGui.Text($"Route 2 loop amount is: {Route2Amount}");
             ImGui.Text($"Navmesh BuildProgress :" + P.navmesh.BuildProgress());//working ipc
+            ImGui.Text($"Not at entrance = {atEntrance}");
+            ImGui.Text($"Current task is: {P.taskManager.CurrentTask}");
+            ImGui.Text($"Number of task: {P.taskManager.NumQueuedTasks}");
             bool isRunning = SchedulerMain.AreWeTicking;
             if (ImGui.Button(isRunning ? "Stop" : "Start"))
             {

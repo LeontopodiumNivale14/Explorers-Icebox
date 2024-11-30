@@ -1,11 +1,15 @@
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Objects.Types;
 using ECommons.GameHelpers;
+using ECommons.Logging;
 using ECommons.Reflection;
+using ECommons.Throttlers;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using FFXIVClientStructs.FFXIV.Client.Game.Object;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
+using FFXIVClientStructs.FFXIV.Client.System.Framework;
 using FFXIVClientStructs.FFXIV.Client.UI;
+using FFXIVClientStructs.FFXIV.Client.UI.Misc;
 
 namespace IslandLeveling.Util;
 
@@ -24,6 +28,15 @@ public static unsafe class Utils
     internal static unsafe float GetDistanceToPlayer(IGameObject gameObject) => GetDistanceToPlayer(gameObject.Position);
     internal static IGameObject? GetObjectByName(string name) => Svc.Objects.OrderBy(GetDistanceToPlayer).FirstOrDefault(o => o.Name.TextValue.Equals(name, StringComparison.CurrentCultureIgnoreCase));
     public static float GetDistanceToPoint(float x, float y, float z) => Vector3.Distance(Svc.ClientState.LocalPlayer?.Position ?? Vector3.Zero, new Vector3(x, y, z));
+    public static float GetDistanceToPointV(Vector3 targetPoint) => Vector3.Distance(Svc.ClientState.LocalPlayer?.Position ?? Vector3.Zero, targetPoint);
+    private static readonly unsafe nint PronounModule = (nint)Framework.Instance()->GetUIModule()->GetPronounModule();
+    private static readonly unsafe delegate* unmanaged<nint, uint, GameObject*> getGameObjectFromPronounID = (delegate* unmanaged<nint, uint, GameObject*>)Svc.SigScanner.ScanText("E8 ?? ?? ?? ?? 48 8B D8 48 85 C0 0F 85 ?? ?? ?? ?? 8D 4F DD");
+    public static unsafe GameObject* GetGameObjectFromPronounID(uint id) => getGameObjectFromPronounID(PronounModule, id);
+    public static bool IsBetweenAreas => (Svc.Condition[ConditionFlag.BetweenAreas] || Svc.Condition[ConditionFlag.BetweenAreas51]);
+    internal static bool GenericThrottle => FrameThrottler.Throttle("AutoRetainerGenericThrottle", 10);
+
+    public static void PluginLog(string message) => ECommons.Logging.PluginLog.Information(message);
+
 
     public static bool PlayerNotBusy()
     {
@@ -56,6 +69,57 @@ public static unsafe class Utils
     {
         var addon = RaptureAtkUnitManager.Instance()->GetAddonByName(AddonName);
         return addon != null && addon->IsVisible && addon->IsReady;
+    }
+
+    public static float GetPlayerRawXPos(string character = "")
+    {
+        if (!character.IsNullOrEmpty())
+        {
+            unsafe
+            {
+                if (int.TryParse(character, out var p))
+                {
+                    var go = Utils.GetGameObjectFromPronounID((uint)(p + 42));
+                    return go != null ? go->Position.X : -1;
+                }
+                else return Svc.Objects.Where(x => x.IsTargetable).FirstOrDefault(x => x.Name.ToString().Equals(character))?.Position.X ?? -1;
+            }
+        }
+        return Svc.ClientState.LocalPlayer!.Position.X;
+    }
+
+    public static float GetPlayerRawYPos(string character = "")
+    {
+        if (!character.IsNullOrEmpty())
+        {
+            unsafe
+            {
+                if (int.TryParse(character, out var p))
+                {
+                    var go = Utils.GetGameObjectFromPronounID((uint)(p + 42));
+                    return go != null ? go->Position.Y : -1;
+                }
+                else return Svc.Objects.Where(x => x.IsTargetable).FirstOrDefault(x => x.Name.ToString().Equals(character))?.Position.Y ?? -1;
+            }
+        }
+        return Svc.ClientState.LocalPlayer!.Position.Y;
+    }
+
+    public static float GetPlayerRawZPos(string character = "")
+    {
+        if (!character.IsNullOrEmpty())
+        {
+            unsafe
+            {
+                if (int.TryParse(character, out var p))
+                {
+                    var go = Utils.GetGameObjectFromPronounID((uint)(p + 42));
+                    return go != null ? go->Position.Z : -1;
+                }
+                else return Svc.Objects.Where(x => x.IsTargetable).FirstOrDefault(x => x.Name.ToString().Equals(character))?.Position.Z ?? -1;
+            }
+        }
+        return Svc.ClientState.LocalPlayer!.Position.Z;
     }
 
     // Calulators for Island Sanctuary Routes
