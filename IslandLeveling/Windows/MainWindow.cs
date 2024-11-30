@@ -21,17 +21,24 @@ namespace IslandLeveling.Windows
         {
         }
 
-        private bool radioButton = CanFly;
+        private string CurrentTask()
+        {
+            if (P.taskManager.NumQueuedTasks > 0 && P.taskManager.CurrentTask != null)
+            {
+                return P.taskManager.CurrentTask.Name?.ToString() ?? "None";
+            }
+            return "None";
+        }
+
 
         public override void Draw()
         {
-            ImGui.Text($"Quartz WS = {C.QuartzWorkshop}");
-            ImGui.Text($"Route 1 loop amount is: {Route1Amount}");
-            ImGui.Text($"Route 2 loop amount is: {Route2Amount}");
+            ImGui.Text($"Route Selected: ");
             ImGui.Text($"Navmesh BuildProgress :" + P.navmesh.BuildProgress());//working ipc
             ImGui.Text($"Not at entrance = {atEntrance}");
-            ImGui.Text($"Current task is: {P.taskManager.CurrentTask}");
+            ImGui.Text($"Current task is: {CurrentTask()}");
             ImGui.Text($"Number of task: {P.taskManager.NumQueuedTasks}");
+            ImGui.Text($"Item Dictionary test. Workshop = {IslandSancDictionary[QuartzID].Workshop} | Amount = {IslandSancDictionary[QuartzID].Amount}");
             bool isRunning = SchedulerMain.AreWeTicking;
             if (ImGui.Button(isRunning ? "Stop" : "Start"))
             {

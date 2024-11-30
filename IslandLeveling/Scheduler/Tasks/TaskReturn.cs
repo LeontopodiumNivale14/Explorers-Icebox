@@ -8,11 +8,11 @@ namespace IslandLeveling.Scheduler.Tasks
 {
     internal static class TaskReturn
     {
-        internal unsafe static void Enqueue()
+        internal static unsafe void Enqueue()
         {
-            P.taskManager.Enqueue(() => ReturntoBase(), "Returning to base");
+            P.taskManager.Enqueue(() => ReturntoBase(), "ReturningToBase");
         }
-        internal unsafe static bool? ReturntoBase()
+        internal static unsafe bool? ReturntoBase()
         {
             if (atEntrance && PlayerNotBusy()) return true;
 

@@ -20,6 +20,7 @@ namespace IslandLeveling.Scheduler
         internal static bool DisablePlugin()
         {
             EnableTicking = false;
+            P.taskManager.Abort();
             return true;
         }
 

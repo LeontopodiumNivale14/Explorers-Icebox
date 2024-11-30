@@ -1,4 +1,4 @@
-﻿namespace IslandLeveling.Util.IslandData;
+namespace IslandLeveling.Util.IslandData;
 
 public class IslandIDs
 {
@@ -40,7 +40,7 @@ public class IslandIDs
     public const int EffervescentWaterID = 39892;
     public const int ShaleID = 39888;
     public const int MarbleID = 39890;
-    public const int MythrilOreID = 39888;
+    public const int MythrilOreID = 39891;
     public const int SpectrineID = 39893;
     public const int DuriumSandID = 41630;
     public const int YellowCopperOreID = 41631;

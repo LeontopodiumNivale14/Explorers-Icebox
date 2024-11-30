@@ -63,6 +63,7 @@ namespace IslandLeveling.Windows
             if (input < 0) input = 0;
             else if (input > 999) input = 999;
             EzConfig.Save();
+            UpdateTableDict();
             return input;
         }
 
@@ -120,6 +121,7 @@ namespace IslandLeveling.Windows
         private void RenderRouteGround()
         {
             ImGui.Text("Displaying Ground XP Route Items.");
+            ImGui.Text($"Current maximum loop amount (Ground Route): {Route2Amount}");
             ClayImgui();
             TinsandImgui();
             MarbleImgui();
@@ -133,6 +135,7 @@ namespace IslandLeveling.Windows
         private void RenderRouteFly()
         {
             ImGui.Text("Displaying RouteFly items.");
+            ImGui.Text($"Current maximum loop amount (Fly Route): {Route1Amount}");
             // Add code to display "RouteFly" content
             ImGui.NewLine();
             QuartzImgui();
@@ -150,7 +153,6 @@ namespace IslandLeveling.Windows
             return offset;
         }
 
-
         private void PalmLeafImgui()
         {
             ImGui.Text($"Palm Leaf (Have: {PalmLeafAmount})");
@@ -160,9 +162,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Palm Leaf Send", ref C.PalmLeafWorkshop))
             {
                 C.PalmLeafWorkshop = AmountSet(C.PalmLeafWorkshop);
+                IslandSancDictionary[PalmLeafID].Workshop = C.PalmLeafWorkshop;
             }
         }
-
 
         private void BranchImgui()
         {
@@ -173,9 +175,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Branch Send", ref C.BranchWorkshop))
             {
                 C.BranchWorkshop = AmountSet(C.BranchWorkshop);
+                IslandSancDictionary[BranchID].Workshop = C.BranchWorkshop;
             }
         }
-
 
         private void StoneImgui()
         {
@@ -186,9 +188,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Stone Send", ref C.StoneWorkshop))
             {
                 C.StoneWorkshop = AmountSet(C.StoneWorkshop);
+                IslandSancDictionary[StoneID].Workshop = C.StoneWorkshop;
             }
         }
-
 
         private void ClamImgui()
         {
@@ -199,9 +201,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Clam Send", ref C.ClamWorkshop))
             {
                 C.ClamWorkshop = AmountSet(C.ClamWorkshop);
+                IslandSancDictionary[ClamID].Workshop = C.ClamWorkshop;
             }
         }
-
 
         private void LaverImgui()
         {
@@ -212,9 +214,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Laver Send", ref C.LaverWorkshop))
             {
                 C.LaverWorkshop = AmountSet(C.LaverWorkshop);
+                IslandSancDictionary[LaverID].Workshop= C.LaverWorkshop;
             }
         }
-
 
         private void CoralImgui()
         {
@@ -225,9 +227,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Coral Send", ref C.CoralWorkshop))
             {
                 C.CoralWorkshop = AmountSet(C.CoralWorkshop);
+                IslandSancDictionary[CoralID].Workshop =(C.CoralWorkshop);
             }
         }
-
 
         private void IslewortImgui()
         {
@@ -238,9 +240,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Islewort Send", ref C.IslewortWorkshop))
             {
                 C.IslewortWorkshop = AmountSet(C.IslewortWorkshop);
+                IslandSancDictionary[IslewortID].Workshop = C.IslewortWorkshop;
             }
         }
-
 
         private void SandImgui()
         {
@@ -251,9 +253,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Sand Send", ref C.SandWorkshop))
             {
                 C.SandWorkshop = AmountSet(C.SandWorkshop);
+                IslandSancDictionary[SandID].Workshop=(C.SandWorkshop);
             }
         }
-
 
         private void VineImgui()
         {
@@ -264,9 +266,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Vine Send", ref C.VineWorkshop))
             {
                 C.VineWorkshop = AmountSet(C.VineWorkshop);
+                IslandSancDictionary[VineID].Workshop =(C.VineWorkshop);
             }
         }
-
 
         private void SapImgui()
         {
@@ -277,9 +279,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Sap Send", ref C.SapWorkshop))
             {
                 C.SapWorkshop = AmountSet(C.SapWorkshop);
+                IslandSancDictionary[SapID].Workshop = (C.SapWorkshop);
             }
         }
-
 
         private void AppleImgui()
         {
@@ -290,9 +292,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Apple Send", ref C.AppleWorkshop))
             {
                 C.AppleWorkshop = AmountSet(C.AppleWorkshop);
+                IslandSancDictionary[AppleID].Workshop = (C.AppleWorkshop);
             }
         }
-
 
         private void LogImgui()
         {
@@ -303,9 +305,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Log Send", ref C.LogWorkshop))
             {
                 C.LogWorkshop = AmountSet(C.LogWorkshop);
+                IslandSancDictionary[LogID].Workshop= (C.LogWorkshop);
             }
         }
-
 
         private void PalmLogImgui()
         {
@@ -316,9 +318,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Palm Log Send", ref C.PalmLogWorkshop))
             {
                 C.PalmLogWorkshop = AmountSet(C.PalmLogWorkshop);
+                IslandSancDictionary[LogID].Workshop=(C.PalmLogWorkshop);
             }
         }
-
 
         private void CopperImgui()
         {
@@ -329,9 +331,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Copper Send", ref C.CopperWorkshop))
             {
                 C.CopperWorkshop = AmountSet(C.CopperWorkshop);
+                IslandSancDictionary[CopperID].Workshop =(C.CopperWorkshop);
             }
         }
-
 
         private void LimestoneImgui()
         {
@@ -342,9 +344,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Limestone Send", ref C.LimestoneWorkshop))
             {
                 C.LimestoneWorkshop = AmountSet(C.LimestoneWorkshop);
+                IslandSancDictionary[LimestoneID].Workshop = (C.LimestoneWorkshop);
             }
         }
-
 
         private void RockSaltImgui()
         {
@@ -355,9 +357,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Rock Salt Send", ref C.RockSaltWorkshop))
             {
                 C.RockSaltWorkshop = AmountSet(C.RockSaltWorkshop);
+                IslandSancDictionary[RockSaltID].Workshop= (C.RockSaltWorkshop);
             }
         }
-
 
         private void ClayImgui()
         {
@@ -368,9 +370,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Clay Send", ref C.ClayWorkshop))
             {
                 C.ClayWorkshop = AmountSet(C.ClayWorkshop);
+                IslandSancDictionary[ClayID].Workshop =(C.ClayWorkshop);
             }
         }
-
 
         private void TinsandImgui()
         {
@@ -381,9 +383,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Tinsand Send", ref C.TinsandWorkshop))
             {
                 C.TinsandWorkshop = AmountSet(C.TinsandWorkshop);
+                IslandSancDictionary[TinsandID].Workshop = (C.TinsandWorkshop);
             }
         }
-
 
         private void SugarcaneImgui()
         {
@@ -394,9 +396,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Sugarcane Send", ref C.SugarcaneWorkshop))
             {
                 C.SugarcaneWorkshop = AmountSet(C.SugarcaneWorkshop);
+                IslandSancDictionary[SugarcaneID].Workshop = C.SugarcaneWorkshop;
             }
         }
-
 
         private void CottonImgui()
         {
@@ -407,9 +409,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Cotton Send", ref C.CottonWorkshop))
             {
                 C.CottonWorkshop = AmountSet(C.CottonWorkshop);
+                IslandSancDictionary[CottonID].Workshop= C.CottonWorkshop;
             }
         }
-
 
         private void HempImgui()
         {
@@ -420,9 +422,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Hemp Send", ref C.HempWorkshop))
             {
                 C.HempWorkshop = AmountSet(C.HempWorkshop);
+                IslandSancDictionary[HempID].Workshop = C.HempWorkshop;
             }
         }
-
 
         private void IslefishImgui()
         {
@@ -433,9 +435,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Islefish Send", ref C.IslefishWorkshop))
             {
                 C.IslefishWorkshop = AmountSet(C.IslefishWorkshop);
+                IslandSancDictionary[IslefishID].Workshop = C.IslefishWorkshop;
             }
         }
-
 
         private void SquidImgui()
         {
@@ -446,9 +448,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Squid Send", ref C.SquidWorkshop))
             {
                 C.SquidWorkshop = AmountSet(C.SquidWorkshop);
+                IslandSancDictionary[SquidID].Workshop= C.SquidWorkshop;
             }
         }
-
 
         private void JellyfishImgui()
         {
@@ -459,9 +461,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Jellyfish Send", ref C.JellyfishWorkshop))
             {
                 C.JellyfishWorkshop = AmountSet(C.JellyfishWorkshop);
+                IslandSancDictionary[SquidID].Workshop = C.JellyfishWorkshop;
             }
         }
-
 
         private void IronOreImgui()
         {
@@ -472,9 +474,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##IronOre Send", ref C.IronOreWorkshop))
             {
                 C.IronOreWorkshop = AmountSet(C.IronOreWorkshop);
+                IslandSancDictionary[IronOreID].Workshop = C.IronOreWorkshop;
             }
         }
-
 
         private void QuartzImgui()
         {
@@ -485,9 +487,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Quartz Send", ref C.QuartzWorkshop))
             {
                 C.QuartzWorkshop = AmountSet(C.QuartzWorkshop);
+                IslandSancDictionary[QuartzID].Workshop = C.QuartzWorkshop;
             }
         }
-
 
         private void LeucograniteImgui()
         {
@@ -498,9 +500,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Leucogranite Send", ref C.LeucograniteWorkshop))
             {
                 C.LeucograniteWorkshop = AmountSet(C.LeucograniteWorkshop);
+                IslandSancDictionary[LeucograniteID].Workshop = C.LeucograniteWorkshop;
             }
         }
-
 
         private void MulticoloredIslebloomsImgui()
         {
@@ -511,9 +513,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Multicolored Isleblooms Send", ref C.MulticoloredIslebloomsWorkshop))
             {
                 C.MulticoloredIslebloomsWorkshop = AmountSet(C.MulticoloredIslebloomsWorkshop);
+                IslandSancDictionary[MulticoloredIslebloomsID].Workshop = C.MulticoloredIslebloomsWorkshop;
             }
         }
-
 
         private void ResinImgui()
         {
@@ -524,9 +526,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Resin Send", ref C.ResinWorkshop))
             {
                 C.ResinWorkshop = AmountSet(C.ResinWorkshop);
+                IslandSancDictionary[ResinID].Workshop = C.ResinWorkshop;
             }
         }
-
 
         private void CoconutImgui()
         {
@@ -537,9 +539,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Coconut Send", ref C.CoconutWorkshop))
             {
                 C.CoconutWorkshop = AmountSet(C.CoconutWorkshop);
+                IslandSancDictionary[CoconutID].Workshop= C.CoconutWorkshop;
             }
         }
-
 
         private void BeehiveImgui()
         {
@@ -550,9 +552,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Beehive Send", ref C.BeehiveWorkshop))
             {
                 C.BeehiveWorkshop = AmountSet(C.BeehiveWorkshop);
+                IslandSancDictionary[BeehiveID].Workshop = C.BeehiveWorkshop;
             }
         }
-
 
         private void WoodOpalImgui()
         {
@@ -563,9 +565,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Wood Opal Send", ref C.WoodOpalWorkshop))
             {
                 C.WoodOpalWorkshop = AmountSet(C.WoodOpalWorkshop);
+                IslandSancDictionary[WoodOpalID].Workshop = C.WoodOpalWorkshop;
             }
         }
-
 
         private void CoalImgui()
         {
@@ -576,9 +578,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Coal Send", ref C.CoalWorkshop))
             {
                 C.CoalWorkshop = AmountSet(C.CoalWorkshop);
+                IslandSancDictionary[CoalID].Workshop = C.CoalWorkshop;
             }
         }
-
 
         private void GlimshroomImgui()
         {
@@ -589,9 +591,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Glimshroom Send", ref C.GlimshroomWorkshop))
             {
                 C.GlimshroomWorkshop = AmountSet(C.GlimshroomWorkshop);
+                IslandSancDictionary[GlimshroomID].Workshop= C.GlimshroomWorkshop;
             }
         }
-
 
         private void EffervescentWaterImgui()
         {
@@ -602,9 +604,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Effervescent Water Send", ref C.EffervescentWaterWorkshop))
             {
                 C.EffervescentWaterWorkshop = AmountSet(C.EffervescentWaterWorkshop);
+                IslandSancDictionary[EffervescentWaterID].Workshop = C.EffervescentWaterWorkshop;
             }
         }
-
 
         private void ShaleImgui()
         {
@@ -615,9 +617,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Shale Send", ref C.ShaleWorkshop))
             {
                 C.ShaleWorkshop = AmountSet(C.ShaleWorkshop);
+                IslandSancDictionary[ShaleID].Workshop = C.ShaleWorkshop;
             }
         }
-
 
         private void MarbleImgui()
         {
@@ -628,9 +630,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Marble Send", ref C.MarbleWorkshop))
             {
                 C.MarbleWorkshop = AmountSet(C.MarbleWorkshop);
+                IslandSancDictionary[MarbleID].Workshop = C.MarbleWorkshop;
             }
         }
-
 
         private void MythrilOreImgui()
         {
@@ -641,9 +643,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Mythril Ore Send", ref C.MythrilOreWorkshop))
             {
                 C.MythrilOreWorkshop = AmountSet(C.MythrilOreWorkshop);
+                IslandSancDictionary[MythrilOreID].Workshop = C.MythrilOreWorkshop;
             }
         }
-
 
         private void SpectrineImgui()
         {
@@ -654,9 +656,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Spectrine Send", ref C.SpectrineWorkshop))
             {
                 C.SpectrineWorkshop = AmountSet(C.SpectrineWorkshop);
+                IslandSancDictionary[SpectrineID].Workshop= C.SpectrineWorkshop;
             }
         }
-
 
         private void DuriumSandImgui()
         {
@@ -667,9 +669,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Durium Sand Send", ref C.DuriumSandWorkshop))
             {
                 C.DuriumSandWorkshop = AmountSet(C.DuriumSandWorkshop);
+                IslandSancDictionary[DuriumSandID].Workshop = C.DuriumSandWorkshop;
             }
         }
-
 
         private void YellowCopperOreImgui()
         {
@@ -680,9 +682,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Yellow Copper Ore Send", ref C.YellowCopperOreWorkshop))
             {
                 C.YellowCopperOreWorkshop = AmountSet(C.YellowCopperOreWorkshop);
+                IslandSancDictionary[YellowCopperOreID].Workshop = C.YellowCopperOreWorkshop;
             }
         }
-
 
         private void GoldOreImgui()
         {
@@ -693,9 +695,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Gold Ore Send", ref C.GoldOreWorkshop))
             {
                 C.GoldOreWorkshop = AmountSet(C.GoldOreWorkshop);
+                IslandSancDictionary[GoldOreID].Workshop= C.GoldOreWorkshop;
             }
         }
-
 
         private void HawksEyeSandImgui()
         {
@@ -706,9 +708,9 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Hawks Eye Sand Send", ref C.HawksEyeSandWorkshop))
             {
                 C.HawksEyeSandWorkshop = AmountSet(C.HawksEyeSandWorkshop);
+                IslandSancDictionary[HawksEyeSandID].Workshop = C.HawksEyeSandWorkshop;
             }
         }
-
 
         private void CrystalFormationImgui()
         {
@@ -719,6 +721,7 @@ namespace IslandLeveling.Windows
             if (ImGui.InputInt("##Crystal Formation Send", ref C.CrystalFormationWorkshop))
             {
                 C.CrystalFormationWorkshop = AmountSet(C.CrystalFormationWorkshop);
+                IslandSancDictionary[CrystalFormationID].Workshop = C.CrystalFormationWorkshop;
             }
         }
 

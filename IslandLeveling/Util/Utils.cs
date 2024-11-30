@@ -21,8 +21,10 @@ public static unsafe class Utils
     }
 
     public static unsafe int GetItemCount(int itemID, bool includeHq = true)
-        => includeHq ? InventoryManager.Instance()->GetInventoryItemCount((uint)itemID, true) + InventoryManager.Instance()->GetInventoryItemCount((uint)itemID) + InventoryManager.Instance()->GetInventoryItemCount((uint)itemID + 500_000)
-               : InventoryManager.Instance()->GetInventoryItemCount((uint)itemID) + InventoryManager.Instance()->GetInventoryItemCount((uint)itemID + 500_000);
+        => includeHq ? InventoryManager.Instance()->GetInventoryItemCount((uint)itemID, true) 
+        + InventoryManager.Instance()->GetInventoryItemCount((uint)itemID) + InventoryManager.Instance()->GetInventoryItemCount((uint)itemID + 500_000)
+        : InventoryManager.Instance()->GetInventoryItemCount((uint)itemID) + InventoryManager.Instance()->GetInventoryItemCount((uint)itemID + 500_000);
+
     public static bool ExecuteTeleport(uint aetheryteId) => UIState.Instance()->Telepo.Teleport(aetheryteId, 0);
     internal static unsafe float GetDistanceToPlayer(Vector3 v3) => Vector3.Distance(v3, Player.GameObject->Position);
     internal static unsafe float GetDistanceToPlayer(IGameObject gameObject) => GetDistanceToPlayer(gameObject.Position);
@@ -36,7 +38,6 @@ public static unsafe class Utils
     internal static bool GenericThrottle => FrameThrottler.Throttle("AutoRetainerGenericThrottle", 10);
 
     public static void PluginLog(string message) => ECommons.Logging.PluginLog.Information(message);
-
 
     public static bool PlayerNotBusy()
     {
@@ -127,48 +128,32 @@ public static unsafe class Utils
     // How many items are you sending for this loop?
     public static int ShopCalc(int itemAmount, int workshopKeep, int loopItemAmount, int loopAmount, int itemSellSafe)
     {
-        var routeGathAmount = MaxItems - (loopItemAmount * loopAmount); // Calculate RouteGathAmount
-
-        if (routeGathAmount < 0) routeGathAmount = 0; // Ensure RouteGathAmount doesn't go below 0
-
-        var itemSend = itemAmount - routeGathAmount; // Calculate ItemSend based on RouteGathAmount
-
-        if (itemSend > MaxItems) itemSend = MaxItems; // Ensure ItemSend does not exceed ItemMax
-
-        if (itemSellSafe == 1) itemSend -= workshopKeep; // Adjust ItemSend if ItemSellSafe is true (aka, if you can sell to workshop amount and be fine)
-
-        return itemSend; // Return the calculated value
+        var routeGathAmount = MaxItems - (loopItemAmount*loopAmount); // Calculate RouteGathAmount
+        if (routeGathAmount < 0) routeGathAmount = 0;                 // Ensure RouteGathAmount doesn't go below 0
+        var itemSend = itemAmount - routeGathAmount;                  // Calculate ItemSend based on RouteGathAmount
+        if (itemSend > MaxItems) itemSend = MaxItems;                 // Ensure ItemSend does not exceed ItemMax
+        if (itemSellSafe == 1) itemSend -= workshopKeep;              // Adjust ItemSend if ItemSellSafe is true (aka, if you can sell to workshop amount and be fine)
+        return itemSend;                                              // Return the calculated value
     }
 
     // Calcuator for how many loops you're doing for this route
-    private static int CalculateRouteLoopAmount(int workshopKeep, int itemPerLoop, int maxAmount)
+    private static int CalculateRouteLoopAmount(int workshopKeep, int itemPerLoop)
     {
-        // Calculate the base maximum loop
-            // baseMax =  999/6
-        var baseMaxLoop = maxAmount / itemPerLoop;
-
-        // Calculate the adjusted route loop amount
-           // 6 > 0 
-        if (workshopKeep > 0)
+        var baseMaxLoop = MaxItems / itemPerLoop; // Calculate the base maximum loop          // baseMax = 999/6
+        if (workshopKeep > 0)                     // Calculate the adjusted route loop amount // 6 > 0 
         {
-
-            var workshopKeepLoop = (int)Math.Ceiling((double)workshopKeep / itemPerLoop);
+            var workshopKeepLoop = (int)Math.Ceiling((double)workshopKeep / itemPerLoop); // gives back how many loops you'd need to take off from the maximum amount of loops possible
             return baseMaxLoop = baseMaxLoop - workshopKeepLoop;
         }
-        else
-        {
-            // If no workshop items, return the base loop amount
-            return baseMaxLoop;
-        }
+        else return baseMaxLoop; // If no workshop items, return the base loop amount
     }
 
     public static int RouteAmountCalc(int[,] table, params int[] workshops)
     {
-        var CurrentMax = 999;
+        var CurrentMax = 999; // setting a cieling for it to always start at... ideally. 
 
         for (var i = 0; i < table.GetLength(0); i++) // Iterate through rows
         {
-            var itemMax = MaxItems;
             var itemPerLoop = table[i, 0];
             var workshopKeep = workshops[i];
             var skip = table[i, 4];
@@ -176,7 +161,7 @@ public static unsafe class Utils
             // Calculate the loop amount
             if (skip == 0) 
             {
-                var NewMax = CalculateRouteLoopAmount(workshopKeep, itemPerLoop, itemMax);
+                var NewMax = CalculateRouteLoopAmount(workshopKeep, itemPerLoop);
                 if (NewMax < CurrentMax) CurrentMax = NewMax;
             }
         }
@@ -193,4 +178,22 @@ public static unsafe class Utils
             _ => throw new Exception("There's uh... not a table assigned to this"),
         };
     }
+
+    public static void UpdateTableDict()
+    {
+        foreach (var item in IslandSancDictionary.Keys.ToList())
+        {
+            IslandSancDictionary[item].Amount = GetItemCount(item);
+        }
+    }
+
+    /*
+    public static void TableSell_WorkshopUpdate(int[,] table)
+    {
+        for (var i = 0; i < table.GetLength(0); i++)
+        {
+            table[i, 3] = 
+        }
+    }
+    */
 }

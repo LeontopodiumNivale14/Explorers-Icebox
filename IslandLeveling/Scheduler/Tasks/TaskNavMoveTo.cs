@@ -20,7 +20,7 @@ namespace IslandLeveling.Scheduler.Tasks
             if (P.navmesh.PathfindInProgress() || P.navmesh.IsRunning() || PlayerHandlers.IsMoving()) return false;
 
             P.navmesh.PathfindAndMoveTo(targetPosition, false);
-            P.navmesh.SetAlignCamera(true);
+            P.navmesh.SetAlignCamera(false);
             return false;
         }
     }

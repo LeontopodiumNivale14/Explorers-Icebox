@@ -7,10 +7,7 @@ public class Config : IEzConfig
 {
     [JsonIgnore]
     public const int CurrentConfigVersion = 1;
-        
-    // Send Amounts (to be grabbed for the tables)
-    // this is currently being updated properly but... (Palm Leaf is atleast)
-    // but it's also not re-applying the data. Need to work on that
+
     public int PalmLeafWorkshop = 0;
     public int BranchWorkshop = 0;
     public int StoneWorkshop = 0;
@@ -55,6 +52,8 @@ public class Config : IEzConfig
     public int GoldOreWorkshop = 0;
     public int HawksEyeSandWorkshop = 0;
     public int CrystalFormationWorkshop = 0;
+
+    public int routeSelected = 1;
 
     public void Save()
     {
