@@ -10,7 +10,7 @@ public class IslandMics
     public const uint ExportMammet = 3758096384; // Exports Mammet, used to trade your items -> Cowries
     //Test bool 
     public static bool CanFly = false;
-    public static bool atEntrance => (GetDistanceToPointV(workshopEntrance) <= 5);
+    public static bool atEntrance => (GetDistanceToPointV(workshopEntrance) <= 2);
 
     // Table selection
 
