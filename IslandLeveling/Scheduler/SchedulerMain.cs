@@ -1,6 +1,7 @@
 using ECommons.Throttlers;
 using IslandLeveling.Scheduler.Handers;
 using IslandLeveling.Scheduler.Tasks;
+using IslandLeveling.Scheduler.Tasks.GroupTask;
 
 namespace IslandLeveling.Scheduler
 {
@@ -33,13 +34,11 @@ namespace IslandLeveling.Scheduler
                 {
                     if (!P.taskManager.IsBusy)
                     {
-                        if (!atEntrance)
+                        UpdateTableDict();
+                        TableSellUpdate(CurrentRouteTable);
+                        if (TotalSellItems(CurrentRouteTable) > 0)
                         {
-                            if (EzThrottler.Throttle("Return to base?", 5000))
-                            {
-                                TaskReturn.Enqueue();
-                                PluginLog("Just a test... to see if this works properly");
-                            }
+                            GroupMammetTask.Enqueue(CurrentRouteTable);
                         }
                     }
                 }

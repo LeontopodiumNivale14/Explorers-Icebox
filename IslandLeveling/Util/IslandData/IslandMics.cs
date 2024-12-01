@@ -15,9 +15,9 @@ public class IslandMics
 
     // Table selection
 
-    public static object table => GetTable(C.routeSelected);
+    public static int[,] CurrentRouteTable => GetTable(C.routeSelected);
 
-    public static object GetTable(int tableNumber)
+    public static int[,] GetTable(int tableNumber)
     {
         return tableNumber switch
         {
@@ -66,7 +66,7 @@ public class IslandMics
         { 3, IronOreID, 0, 0, 24},
         { 3, DuriumSandID, 0, 0, 39},
         { 2, LeucograniteID, 0, 0, 26},
-        { 11, StoneID, 0, 1, 3}
+        { 11, StoneID, 0, 1, 2}
     };
 
     public class ItemData

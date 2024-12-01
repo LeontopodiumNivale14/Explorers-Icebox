@@ -3,6 +3,7 @@ using ECommons.SimpleGui;
 using IslandLeveling.Scheduler;
 using IslandLeveling.Scheduler.Handers;
 using IslandLeveling.Scheduler.Tasks;
+using IslandLeveling.Scheduler.Tasks.GroupTask;
 
 namespace IslandLeveling.Windows
 {
@@ -76,6 +77,10 @@ namespace IslandLeveling.Windows
             if (ImGui.Button("Mammet interact"))
             {
                 P.taskManager.Enqueue(NPCHandlers.TargetShopNpc);
+            }
+            if (ImGui.Button("Pcall"))
+            {
+                TaskSellTo.Enqueue();
             }
         }
     }

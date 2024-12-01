@@ -11,7 +11,8 @@ namespace IslandLeveling.Scheduler.Tasks
     {
         public static void Enqueue(uint dataID)
         {
-            P.taskManager.Enqueue(() => PlayerHandlers.InteractObject(dataID));
+            P.taskManager.Enqueue(() => PlayerHandlers.InteractObject(dataID), "Interacting");
+            PluginLog($"Interacting with target. DataID is: {dataID}");
         }
     }
 }

@@ -131,7 +131,7 @@ public static unsafe class Utils
         var itemSend = itemAmount - routeGathAmount;                  // Calculate ItemSend based on RouteGathAmount
         if (itemSend > MaxItems) itemSend = MaxItems;                 // Ensure ItemSend does not exceed ItemMax
         if (itemSellSafe == 1) itemSend -= workshopKeep;              // Adjust ItemSend if ItemSellSafe is true (aka, if you can sell to workshop amount and be fine)
-        if (itemSend < 0) itemSend = -1;                              // Just to show that it was calculated properly, just don't need to sell any
+        if (itemSend < 0) itemSend = 0;                               // Flattening out to make sure that it doesn't interfere w/ the "need to sell" value
         return itemSend;                                              // Return the calculated value
     }
 
@@ -207,7 +207,6 @@ public static unsafe class Utils
             _ => throw new Exception("There's uh... not a table assigned to this"),
         };
     }
-
     public static void UpdateTableDict()
     {
         foreach (var item in IslandSancDictionary.Keys.ToList())
@@ -229,5 +228,14 @@ public static unsafe class Utils
             table[i, 2] = ShopCalc(itemAmount, itemWorkshop, itemPerLoop, routeTotal, itemSellSafe);
             PluginLog($"Item sell amount has been updated to: {table[i, 2]}");
         }
+    }
+    public static int TotalSellItems(int[,] table)
+    {
+        int totalSellItems = 0;
+        for (var i = 0;i < table.GetLength(0); i++)
+        {
+            totalSellItems += table[i, 2];
+        }
+        return totalSellItems;
     }
 }
