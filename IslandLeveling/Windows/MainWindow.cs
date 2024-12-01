@@ -33,21 +33,24 @@ namespace IslandLeveling.Windows
         public override void Draw()
         {
             ImGui.Text($"Route Selected: {CurrentRoute(C.routeSelected)}");
-            if (ImGui.RadioButton("Flying/Fast XP Route", C.routeSelected == 19))
-            {
-                C.routeSelected = 19; // Sets the option to 0 (Option #1)
-                PluginLog("Changed the selected route to Quartz [Mountain XP Loop]");
-            }
             if (ImGui.RadioButton("Ground XP Route", C.routeSelected == 8))
             {
                 C.routeSelected = 8; // Sets the option to 1 (Option #2)
                 PluginLog("Changed the selected route to Clay/Sand [Ground XP Loop]");
             }
+            if (ImGui.RadioButton("Flying/Fast XP Route", C.routeSelected == 19))
+            {
+                C.routeSelected = 19; // Sets the option to 0 (Option #1)
+                PluginLog("Changed the selected route to Quartz [Mountain XP Loop]");
+            }
             ImGui.Text($"Navmesh BuildProgress :" + P.navmesh.BuildProgress());//working ipc
-            ImGui.Text($"Not at entrance = {atEntrance}");
             ImGui.Text($"Current task is: {CurrentTask()}");
             ImGui.Text($"Number of task: {P.taskManager.NumQueuedTasks}");
-            ImGui.Text($"Item Dictionary test. Workshop = {IslandSancDictionary[QuartzID].Workshop} | Amount = {IslandSancDictionary[QuartzID].Amount}");
+            ImGui.Text($"Item Sell for fly route [Quartz] is: {Route19Table[0, 2]}");
+            if (ImGui.Button("Calculate sell amount"))
+            {
+                TableSellUpdate(Route19Table);
+            }
             bool isRunning = SchedulerMain.AreWeTicking;
             if (ImGui.Button(isRunning ? "Stop" : "Start"))
             {
@@ -61,7 +64,7 @@ namespace IslandLeveling.Windows
                 }
             }
             ImGui.SameLine();
-            if (ImGuiEx.IconButton(FontAwesomeIcon.Wrench, "Settings"))
+            if (ImGuiEx.IconButton(FontAwesomeIcon.Wrench, "Workshop"))
                 EzConfigGui.WindowSystem.Windows.FirstOrDefault(w => w.WindowName == SettingMenu.WindowName)!.IsOpen ^= true;
             // this is kinda neat, there's...a HUGE section of icons. But not gonna fuck with this rn. Things to mess w/ later
             // if (ImGuiEx.IconButton(FontAwesomeIcon.))

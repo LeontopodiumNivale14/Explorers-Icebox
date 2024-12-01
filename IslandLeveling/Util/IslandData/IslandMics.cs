@@ -27,6 +27,16 @@ public class IslandMics
         };
     }
 
+    public static int RouteAmount(int routeSelected)
+    {
+        return routeSelected switch
+        {
+            8 => Route8Amount,
+            19 => Route19Amount,
+            _ => 0
+        };
+    }
+
     //This is the current cap of items on Island Sanctuary Items, just so I can quickly pull it at all times
     public const int MaxItems = 999;
 
