@@ -110,11 +110,6 @@ namespace IslandLeveling.Windows
                     TaskCallback.Enqueue("MJIDisposeShop", true, 12, 1);
                 }
             }
-
-            if (ImGui.Button("Mammet Interact"))
-            {
-                TaskInteract.Enqueue(1043464);
-            }
             ImGui.InputText("Route Base64", ref testRoute, 2000);
             if (ImGui.Button("Visland Test"))
             {

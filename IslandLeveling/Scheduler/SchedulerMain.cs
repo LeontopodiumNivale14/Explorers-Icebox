@@ -22,10 +22,13 @@ namespace IslandLeveling.Scheduler
         {
             EnableTicking = false;
             P.taskManager.Abort();
+            RunRoute = false;
             return true;
         }
 
         private static bool Yes = false;
+        private static bool RunRoute = false;
+
         internal static void Tick()
         {
             if (AreWeTicking)
@@ -36,10 +39,12 @@ namespace IslandLeveling.Scheduler
                     {
                         UpdateTableDict();
                         TableSellUpdate(CurrentRouteTable);
-                        if (TotalSellItems(CurrentRouteTable) > 0)
+                        if (TotalSellItems(CurrentRouteTable) > 0 && !RunRoute)
                         {
                             GroupMammetTask.Enqueue(CurrentRouteTable);
                         }
+                        RunRoute = true;
+
                     }
                 }
             }

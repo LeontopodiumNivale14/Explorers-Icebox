@@ -74,14 +74,6 @@ namespace IslandLeveling.Windows
                 P.taskManager.Enqueue(() => TaskMountUp.Enqueue());
             }
             ImGui.SameLine();
-            if (ImGui.Button("Mammet interact"))
-            {
-                P.taskManager.Enqueue(NPCHandlers.TargetShopNpc);
-            }
-            if (ImGui.Button("Pcall"))
-            {
-                TaskSellTo.Enqueue();
-            }
         }
     }
 }

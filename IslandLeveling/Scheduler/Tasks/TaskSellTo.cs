@@ -16,7 +16,7 @@ namespace IslandLeveling.Scheduler.Tasks
         {
             string NpcName = string.Empty;
             if (Svc.ClientState.TerritoryType == 1055) //Idyllshire
-                NpcName = "Enterprising Export";
+                NpcName = "Enterprising Exporter";
             Log.Debug("TargetNpc" + NpcName);
 
             var target = GetObjectByName(NpcName);

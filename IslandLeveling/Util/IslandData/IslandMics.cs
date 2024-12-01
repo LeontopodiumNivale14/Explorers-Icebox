@@ -8,7 +8,6 @@ public class IslandMics
     //NPC ID's
     public const uint Baldin = 1043621; // NPC that leads to the IS
     public const uint ExportMammet = 3758096384; // Exports Mammet, used to trade your items -> Cowries
-
     //Test bool 
     public static bool CanFly = false;
     public static bool atEntrance => (GetDistanceToPointV(workshopEntrance) <= 5);
@@ -51,14 +50,14 @@ public class IslandMics
     //                                  | 1 = true (skip in calcuation) : 0 = false |
     public static int[,] Route8Table = new[,] // GroundXP Route
     {
-        { 7, ClayID, 0, 0, 1},
-        { 2, TinsandID, 0, 0, 3},
-        { 1, MarbleID, 0, 0, 4},
-        { 1, LimestoneID, 0, 0, 5},
-        { 1, BranchID, 0, 0, 6},
-        { 1, LogID, 0, 0, 7},
-        { 1, ResinID, 0, 0, 8},
-        { 10, SandID, 0, 1, 9},
+        { 7, ClayID, 0, 0, 16},
+        { 2, TinsandID, 0, 0, 17},
+        { 1, MarbleID, 0, 0, 36},
+        { 1, LimestoneID, 0, 0, 14},
+        { 1, BranchID, 0, 0, 1},
+        { 1, LogID, 0, 0, 11},
+        { 1, ResinID, 0, 0, 28},
+        { 10, SandID, 0, 1, 7},
     };
     public static int[,] Route19Table = new[,] // FlyingXP Route
     {
