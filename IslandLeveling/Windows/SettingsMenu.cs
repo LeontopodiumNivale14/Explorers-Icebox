@@ -121,7 +121,7 @@ namespace IslandLeveling.Windows
         private void RenderRouteGround()
         {
             ImGui.Text("Displaying Ground XP Route Items.");
-            ImGui.Text($"Current maximum loop amount (Ground Route): {Route2Amount}");
+            ImGui.Text($"Current maximum loop amount (Ground Route): {Route8Amount}");
             ClayImgui();
             TinsandImgui();
             MarbleImgui();
@@ -135,7 +135,7 @@ namespace IslandLeveling.Windows
         private void RenderRouteFly()
         {
             ImGui.Text("Displaying RouteFly items.");
-            ImGui.Text($"Current maximum loop amount (Fly Route): {Route1Amount}");
+            ImGui.Text($"Current maximum loop amount (Fly Route): {Route19Amount}");
             // Add code to display "RouteFly" content
             ImGui.NewLine();
             QuartzImgui();

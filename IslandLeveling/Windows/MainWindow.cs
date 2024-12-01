@@ -30,10 +30,19 @@ namespace IslandLeveling.Windows
             return "None";
         }
 
-
         public override void Draw()
         {
-            ImGui.Text($"Route Selected: ");
+            ImGui.Text($"Route Selected: {CurrentRoute(C.routeSelected)}");
+            if (ImGui.RadioButton("Flying/Fast XP Route", C.routeSelected == 19))
+            {
+                C.routeSelected = 19; // Sets the option to 0 (Option #1)
+                PluginLog("Changed the selected route to Quartz [Mountain XP Loop]");
+            }
+            if (ImGui.RadioButton("Ground XP Route", C.routeSelected == 8))
+            {
+                C.routeSelected = 8; // Sets the option to 1 (Option #2)
+                PluginLog("Changed the selected route to Clay/Sand [Ground XP Loop]");
+            }
             ImGui.Text($"Navmesh BuildProgress :" + P.navmesh.BuildProgress());//working ipc
             ImGui.Text($"Not at entrance = {atEntrance}");
             ImGui.Text($"Current task is: {CurrentTask()}");

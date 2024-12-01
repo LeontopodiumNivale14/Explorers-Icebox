@@ -21,8 +21,8 @@ public class IslandMics
     {
         return tableNumber switch
         {
-            1 => Route1Table,// Flying Required | Best XP per hour
-            2 => Route2Table,// Ground XP Route, great for starting out/if you don't have flying unlocked
+            8 => Route8Table,// Ground XP Route, great for starting out/if you don't have flying unlocked
+            19 => Route19Table,// Flying Required | Best XP per hour
             _ => throw new ArgumentException("Invalid number. Not sure how you got this but..."),
         };
     }
@@ -31,33 +31,32 @@ public class IslandMics
     public const int MaxItems = 999;
 
     // Route Loop Amounts
-    public static int Route1Amount => RouteAmountCalc(Route1Table, C.QuartzWorkshop, C.IronOreWorkshop, C.DuriumSandWorkshop, C.LeucograniteWorkshop, 0);
-    public static int Route2Amount => RouteAmountCalc(Route2Table, C.ClayWorkshop, C.TinsandWorkshop, C.MarbleWorkshop, C.LimestoneWorkshop, C.BranchWorkshop, C.LogWorkshop, C.ResinWorkshop, 0);
+    public static int Route8Amount => RouteAmountCalc(Route8Table, C.ClayWorkshop, C.TinsandWorkshop, C.MarbleWorkshop, C.LimestoneWorkshop, C.BranchWorkshop, C.LogWorkshop, C.ResinWorkshop, 0);
+    public static int Route19Amount => RouteAmountCalc(Route19Table, C.QuartzWorkshop, C.IronOreWorkshop, C.DuriumSandWorkshop, C.LeucograniteWorkshop, 0);
 
     // Tables to be used for Island Sanctuary information
 
     // Route Tables
-    // Has: Amount Gathered | ID | Sell | Workshop Amount |    Can sell to full amount (true/false)   | Pcall value
-    //                                                    | 1 = true (skip in calcuation) | 0 = false |
-    public static int[,] Route1Table = new[,] // FlyingXP Route
+    // Has: Amount Gathered | ID | Sell | Can sell to full amount (true/false)      | Pcall value
+    //                                  | 1 = true (skip in calcuation) : 0 = false |
+    public static int[,] Route8Table = new[,] // GroundXP Route
     {
-        { 6, QuartzID, 0, 0, 0, 25},
-        { 3, IronOreID, 0, 0, 0, 24},
-        { 3, DuriumSandID, 0, 0, 0, 39},
-        { 2, LeucograniteID, 0, 0, 0, 26},
-        { 11, StoneID, 0, 0, 1, 3}
+        { 7, ClayID, 0, 0, 1},
+        { 2, TinsandID, 0, 0, 3},
+        { 1, MarbleID, 0, 0, 4},
+        { 1, LimestoneID, 0, 0, 5},
+        { 1, BranchID, 0, 0, 6},
+        { 1, LogID, 0, 0, 7},
+        { 1, ResinID, 0, 0, 8},
+        { 10, SandID, 0, 1, 9},
     };
-
-    public static int[,] Route2Table = new[,] // GroundXP Route
+    public static int[,] Route19Table = new[,] // FlyingXP Route
     {
-        { 7, ClayID, 0, 0, 0, 1},
-        { 2, TinsandID, 0, 0, 0, 3},
-        { 1, MarbleID, 0, 0, 0, 4},
-        { 1, LimestoneID, 0, 0, 0, 5},
-        { 1, BranchID, 0, 0, 0, 6},
-        { 1, LogID, 0, 0, 0, 7},
-        { 1, ResinID, 0, 0, 0, 8},
-        { 10, SandID, 0, 0, 1, 9},
+        { 6, QuartzID, 0, 0, 25},
+        { 3, IronOreID, 0, 0, 24},
+        { 3, DuriumSandID, 0, 0, 39},
+        { 2, LeucograniteID, 0, 0, 26},
+        { 11, StoneID, 0, 1, 3}
     };
 
     public class ItemData

@@ -1,7 +1,6 @@
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Objects.Types;
 using ECommons.GameHelpers;
-using ECommons.Logging;
 using ECommons.Reflection;
 using ECommons.Throttlers;
 using FFXIVClientStructs.FFXIV.Client.Game;
@@ -9,7 +8,6 @@ using FFXIVClientStructs.FFXIV.Client.Game.Object;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Client.System.Framework;
 using FFXIVClientStructs.FFXIV.Client.UI;
-using FFXIVClientStructs.FFXIV.Client.UI.Misc;
 
 namespace IslandLeveling.Util;
 
@@ -169,12 +167,42 @@ public static unsafe class Utils
         return CurrentMax;
     }
 
+    public static string CurrentRoute(int routeNumber)
+    {
+        return routeNumber switch
+        {
+            1 => "Clam/Islefish",
+            2 => "Islewort",
+            3 => "Sugarcane",
+            4 => "Tinsand",
+            5 => "Coconut",
+            6 => "Apple",
+            7 => "Marble | Limestone",
+            8 => "Clay | Sand [Ground XP Loop]",
+            9 => "Cotton",
+            10 => "Branch | Log | Resin",
+            11 => "Copper / Mythril",
+            12 => "Opal / Log / Sap",
+            13 => "Hemp",
+            14 => "Multi - colored Isleblooms",
+            15 => "Iron Ore",
+            16 => "Laver / Squid | Jellyfish / Coral",
+            17 => "Rocksalt",
+            18 => "Leucogranite",
+            19 => "Quartz [Mountain XP Loop]",
+            20 => "Coal / Shale | Glimshroom",
+            21 => "Effervescent Water",
+            22 => "Crystal / Hawk Sand | Yelow Copper / Gold Ore[x2]",
+            _ => "Invalid route",
+        };
+    }
+
     public static int[,] TableSwap(int RouteValue)
     {
         return RouteValue switch
         {
-            1 => Route1Table,
-            2 => Route2Table,
+            1 => Route19Table,
+            2 => Route8Table,
             _ => throw new Exception("There's uh... not a table assigned to this"),
         };
     }
@@ -186,9 +214,8 @@ public static unsafe class Utils
             IslandSancDictionary[item].Amount = GetItemCount(item);
         }
     }
-
     /*
-    public static void TableSell_WorkshopUpdate(int[,] table)
+    public static void TableSellUpdate(int[,] table)
     {
         for (var i = 0; i < table.GetLength(0); i++)
         {
