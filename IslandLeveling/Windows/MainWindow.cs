@@ -1,9 +1,12 @@
+using Dalamud.Game.ClientState.Objects.Types;
 using ECommons.Automation;
 using ECommons.SimpleGui;
 using IslandLeveling.Scheduler;
 using IslandLeveling.Scheduler.Handers;
 using IslandLeveling.Scheduler.Tasks;
 using IslandLeveling.Scheduler.Tasks.GroupTask;
+using IslandLeveling.Util;
+using IslandLeveling.Util.IslandData;
 
 namespace IslandLeveling.Windows
 {
@@ -30,6 +33,8 @@ namespace IslandLeveling.Windows
             }
             return "None";
         }
+
+        private int amount = 0;
 
         public override void Draw()
         {
@@ -74,6 +79,14 @@ namespace IslandLeveling.Windows
                 P.taskManager.Enqueue(() => TaskMountUp.Enqueue());
             }
             ImGui.SameLine();
+            if (ImGui.Button("Target Test"))
+            {
+                while (amount < RouteAmount(C.routeSelected))
+                {
+                    TaskVislandTemp.Enqueue(VislandRoutes.QuartzVisland);
+                    amount++;
+                }
+            }
         }
     }
 }

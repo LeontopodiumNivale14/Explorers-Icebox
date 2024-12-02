@@ -1,3 +1,4 @@
+using ECommons.Automation.NeoTaskManager;
 using ECommons.GameHelpers;
 using FFXIVClientStructs.FFXIV.Client.UI.Agent;
 using IslandLeveling.Scheduler.Handers;
@@ -6,11 +7,11 @@ namespace IslandLeveling.Scheduler.Tasks
 {
     internal static class TaskMoveTo
     {
-        internal unsafe static void Enqueue(Vector3 targetPosition, string destination, float toleranceDistance = 3f)
+        internal unsafe static void Enqueue(Vector3 targetPosition, string destination, bool fly, float toleranceDistance = 3f)
         {
-            P.taskManager.Enqueue(() => MoveTo(targetPosition, toleranceDistance), destination);
+            P.taskManager.Enqueue(() => MoveTo(targetPosition, fly, toleranceDistance), destination, configuration: DConfig);
         }
-        internal unsafe static bool? MoveTo(Vector3 targetPosition, float toleranceDistance = 3f)
+        internal unsafe static bool? MoveTo(Vector3 targetPosition, bool fly, float toleranceDistance = 3f)
         {
             if (targetPosition.Distance(Player.GameObject->Position) <= toleranceDistance)
             {
@@ -19,9 +20,10 @@ namespace IslandLeveling.Scheduler.Tasks
             }
             if (P.navmesh.PathfindInProgress() || P.navmesh.IsRunning() || PlayerHandlers.IsMoving()) return false;
 
-            P.navmesh.PathfindAndMoveTo(targetPosition, false);
+            P.navmesh.PathfindAndMoveTo(targetPosition, fly);
             P.navmesh.SetAlignCamera(false);
             return false;
         }
+        private static TaskManagerConfiguration DConfig => new(timeLimitMS: 10 * 60 * 1000, abortOnTimeout: false);
     }
 }

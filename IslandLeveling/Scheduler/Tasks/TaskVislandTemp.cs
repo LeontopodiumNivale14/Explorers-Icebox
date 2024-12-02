@@ -1,3 +1,5 @@
+using Dalamud.Game.ClientState.Conditions;
+using ECommons.Automation.NeoTaskManager;
 using IslandLeveling.Scheduler.Handers;
 using System;
 using System.Collections.Generic;
@@ -11,11 +13,11 @@ namespace IslandLeveling.Scheduler.Tasks
     {
         internal unsafe static void Enqueue(string VRoute)
         {
-            P.taskManager.Enqueue(() => VislandExec(VRoute));
+            P.taskManager.Enqueue(() => VislandExec(VRoute), configuration: DConfig);
         }
         internal unsafe static bool? VislandExec(string VRoute)
         {
-            if (P.visland.IsRouteRunning() == false)
+            if (P.visland.IsRouteRunning() == false && !Svc.Condition[ConditionFlag.OccupiedInQuestEvent])
             {
                 P.visland.StartRoute(VRoute, true);
                 return true;
@@ -24,5 +26,6 @@ namespace IslandLeveling.Scheduler.Tasks
             if (P.visland.IsRouteRunning() || PlayerHandlers.IsMoving()) return false;
             return false;
         }
+        private static TaskManagerConfiguration DConfig => new(timeLimitMS: 10 * 60 * 1000, abortOnTimeout: false);
     }
 }

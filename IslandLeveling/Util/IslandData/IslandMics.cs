@@ -1,3 +1,4 @@
+using Dalamud.Game.ClientState.Objects.Types;
 using FFXIVClientStructs.FFXIV.Client.UI.Agent;
 using System.Collections.Generic;
 
@@ -6,11 +7,11 @@ namespace IslandLeveling.Util.IslandData;
 public class IslandMics
 {
     //NPC ID's
-    public const uint Baldin = 1043621; // NPC that leads to the IS
-    public const uint ExportMammet = 3758096384; // Exports Mammet, used to trade your items -> Cowries
+    public const uint BaldinID = 1043621; // NPC that leads to the IS
+    public const uint ExportMammetID = 1043464; // Exports Mammet, used to trade your items -> Cowries
     //Test bool 
     public static bool CanFly = false;
-    public static bool atEntrance => (GetDistanceToPointV(workshopEntrance) <= 2);
+    public static bool atEntrance => (GetDistanceToPointV(workshopEntrancePos) <= 2);
 
     // Table selection
 
@@ -121,4 +122,12 @@ public class IslandMics
         { HawksEyeSandID, new ItemData { Workshop = C.HawksEyeSandWorkshop, Amount = GetItemCount(HawksEyeSandID) } },
         { CrystalFormationID, new ItemData { Workshop = C.CrystalFormationWorkshop, Amount = GetItemCount(CrystalFormationID) } },
     };
+
+    public class GatheringPointPos
+    {
+        public int Pos { get; set; }
+
+    }
+
+    // public static Dictionary<int, Quar
 }

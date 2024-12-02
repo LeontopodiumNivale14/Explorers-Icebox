@@ -91,7 +91,7 @@ namespace IslandLeveling.Windows
             }
             if (ImGui.Button("Vnav Moveto!"))
             {
-                P.taskManager.Enqueue(() => TaskMoveTo.Enqueue(new Vector3(xPos, yPos, zPos), "Interact string", tolerance));
+                P.taskManager.Enqueue(() => TaskMoveTo.Enqueue(new Vector3(xPos, yPos, zPos), "Interact string", false, tolerance));
                 ECommons.Logging.InternalLog.Information("Firing off Vnav Moveto");
             }
 

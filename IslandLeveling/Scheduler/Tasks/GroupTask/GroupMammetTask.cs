@@ -11,9 +11,11 @@ namespace IslandLeveling.Scheduler.Tasks.GroupTask
     {
         internal unsafe static void Enqueue(int[,] table)
         {
-            if (!atEntrance) TaskReturn.Enqueue();
-            TaskMoveTo.Enqueue(mammetExportPos, "Mammet Export", 1);
-            TaskSellTo.Enqueue();
+            if (!atEntrance) 
+                TaskReturn.Enqueue();
+            TaskMoveTo.Enqueue(mammetExportPos, "Mammet Export", false, 1);
+            // TaskSellTo.Enqueue(); old targeting code, keeping it here for reference
+            TaskTargetV2.Enqueue(ExportMammetID);
             TaskCallback.Enqueue("SelectString", true, 0);
             for (int i = 0; i < table.GetLength(0); i++)
             {
@@ -36,7 +38,7 @@ namespace IslandLeveling.Scheduler.Tasks.GroupTask
             TaskCallback.Enqueue("MJIDisposeShop", true, 1);
             P.taskManager.Enqueue(() => !IsAddonActive("MJIDisposeShop"));
             P.taskManager.EnqueueDelay(20);
-            TaskMoveTo.Enqueue(workshopEntrance, "Entrance of shop", 1);
+            TaskMoveTo.Enqueue(workshopExitPos, "Entrance of shop", false, 1);
         }
     }
 }

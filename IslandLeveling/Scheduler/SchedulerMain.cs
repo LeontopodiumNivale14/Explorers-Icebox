@@ -2,6 +2,7 @@ using ECommons.Throttlers;
 using IslandLeveling.Scheduler.Handers;
 using IslandLeveling.Scheduler.Tasks;
 using IslandLeveling.Scheduler.Tasks.GroupTask;
+using System.Linq.Expressions;
 
 namespace IslandLeveling.Scheduler
 {
@@ -26,8 +27,8 @@ namespace IslandLeveling.Scheduler
             return true;
         }
 
-        private static bool Yes = false;
         private static bool RunRoute = false;
+        private static int loopAmount = 0;
 
         internal static void Tick()
         {
@@ -44,6 +45,11 @@ namespace IslandLeveling.Scheduler
                             GroupMammetTask.Enqueue(CurrentRouteTable);
                         }
                         RunRoute = true;
+                        if (RunRoute)
+                        {
+                            TaskMoveTo.Enqueue(QuartzRoutePos, "Quartz Island", true, 1);
+                            // while (
+                        }
 
                     }
                 }
