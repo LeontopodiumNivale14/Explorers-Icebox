@@ -1,19 +1,14 @@
 using Dalamud.Game.ClientState.Conditions;
 using ECommons.Automation.NeoTaskManager;
 using IslandLeveling.Scheduler.Handers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IslandLeveling.Scheduler.Tasks
 {
     internal static class TaskVislandTemp
     {
-        internal unsafe static void Enqueue(string VRoute)
+        internal unsafe static void Enqueue(string VRoute, string Taskname)
         {
-            P.taskManager.Enqueue(() => VislandExec(VRoute), configuration: DConfig);
+            P.taskManager.Enqueue(() => VislandExec(VRoute), Taskname, configuration: DConfig);
         }
         internal unsafe static bool? VislandExec(string VRoute)
         {

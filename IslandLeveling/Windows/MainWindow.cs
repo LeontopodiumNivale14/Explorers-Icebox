@@ -38,7 +38,7 @@ namespace IslandLeveling.Windows
 
         public override void Draw()
         {
-            ImGui.Text($"Route Selected: {CurrentRoute(C.routeSelected)}");
+            ImGui.Text($"Route Selected: {RouteDataPoint[C.routeSelected].Name}");
             if (ImGui.RadioButton("Ground XP Route", C.routeSelected == 8))
             {
                 C.routeSelected = 8; // Sets the option to 1 (Option #2)
@@ -52,11 +52,6 @@ namespace IslandLeveling.Windows
             ImGui.Text($"Navmesh BuildProgress :" + P.navmesh.BuildProgress());//working ipc
             ImGui.Text($"Current task is: {CurrentTask()}");
             ImGui.Text($"Number of task: {P.taskManager.NumQueuedTasks}");
-            ImGui.Text($"Item Sell for fly route [Quartz] is: {Route19Table[0, 2]}");
-            if (ImGui.Button("Calculate sell amount"))
-            {
-                TableSellUpdate(Route19Table);
-            }
             bool isRunning = SchedulerMain.AreWeTicking;
             if (ImGui.Button(isRunning ? "Stop" : "Start"))
             {
@@ -83,7 +78,7 @@ namespace IslandLeveling.Windows
             {
                 while (amount < RouteAmount(C.routeSelected))
                 {
-                    TaskVislandTemp.Enqueue(VislandRoutes.QuartzVisland);
+                    TaskVislandTemp.Enqueue(VislandRoutes.QuartzVisland, $"{RouteDataPoint[C.routeSelected].Name}'s Route is running currently");
                     amount++;
                 }
             }

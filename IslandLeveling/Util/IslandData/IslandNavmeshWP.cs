@@ -12,7 +12,10 @@ internal class IslandNavmeshWP
     public static readonly Vector3 mammetExportPos = new Vector3(-268.3f, 41f, 209.88f);
     public static readonly Vector3 workshopExitPos = new Vector3(-268.27f, 40f, 232.9f);
 
-    public static readonly Vector3 Clay_SandPos = new Vector3(213.4f, 58.66f, 88.73f);
+    public static readonly Vector3 Clay_SandRoutePos = new Vector3(213.4f, 58.66f, 88.73f);
     public static readonly Vector3 QuartzRoutePos = new Vector3(349.53f, 397.14f, -401.77f);
+
+    // dummy things till I can fully check them in
+    public static readonly Vector3 DummmyPos = new Vector3(0, 0, 0);
 
 }

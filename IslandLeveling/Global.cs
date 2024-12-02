@@ -10,7 +10,6 @@ global using Dalamud.Interface;
 global using Dalamud.Plugin;
 global using ECommons.DalamudServices;
 global using ECommons.ImGuiMethods;
-global using ECommons.Schedulers;
 global using ECommons;
 global using ImGuiNET;
 global using System.Linq;
@@ -26,5 +25,7 @@ global using static IslandLeveling.Util.IslandData.IslandAmounts;
 global using static IslandLeveling.Util.IslandData.IslandIDs;
 global using static IslandLeveling.Util.IslandData.IslandMics;
 global using static IslandLeveling.Util.IslandData.IslandNavmeshWP;
-global using static IslandLeveling.Config;
+global using static IslandLeveling.Util.IslandData.VislandRoutes;
+global using static IslandLeveling.Util.IslandData.IslandTables;
+
 

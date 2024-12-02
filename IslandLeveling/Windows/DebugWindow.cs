@@ -113,7 +113,7 @@ namespace IslandLeveling.Windows
             ImGui.InputText("Route Base64", ref testRoute, 2000);
             if (ImGui.Button("Visland Test"))
             {
-                TaskVislandTemp.Enqueue(testRoute);
+                TaskVislandTemp.Enqueue(testRoute, "Test Base64 Route");
             }
         }
     }

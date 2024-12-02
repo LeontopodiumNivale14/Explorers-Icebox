@@ -9,6 +9,7 @@ using FFXIVClientStructs.FFXIV.Client.Game.Object;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Client.System.Framework;
 using FFXIVClientStructs.FFXIV.Client.UI;
+using System.Collections.Generic;
 
 namespace IslandLeveling.Util;
 
@@ -124,119 +125,11 @@ public static unsafe class Utils
 
     // Calulators for Island Sanctuary Routes
 
-    // How many items are you sending for this loop?
-    public static int ShopCalc(int itemAmount, int workshopKeep, int loopItemAmount, int loopAmount, int itemSellSafe)
-    {
-        var routeGathAmount = MaxItems - (loopItemAmount*loopAmount); // Calculate RouteGathAmount
-        if (routeGathAmount < 0) routeGathAmount = 0;                 // Ensure RouteGathAmount doesn't go below 0
-        var itemSend = itemAmount - routeGathAmount;                  // Calculate ItemSend based on RouteGathAmount
-        if (itemSend > MaxItems) itemSend = MaxItems;                 // Ensure ItemSend does not exceed ItemMax
-        if (itemSellSafe == 1) itemSend -= workshopKeep;              // Adjust ItemSend if ItemSellSafe is true (aka, if you can sell to workshop amount and be fine)
-        if (itemSend < 0) itemSend = 0;                               // Flattening out to make sure that it doesn't interfere w/ the "need to sell" value
-        return itemSend;                                              // Return the calculated value
-    }
-
-    // Calcuator for how many loops you're doing for this route
-    private static int CalculateRouteLoopAmount(int workshopKeep, int itemPerLoop)
-    {
-        var baseMaxLoop = MaxItems / itemPerLoop; // Calculate the base maximum loop          // baseMax = 999/6
-        if (workshopKeep > 0)                     // Calculate the adjusted route loop amount // 6 > 0 
-        {
-            var workshopKeepLoop = (int)Math.Ceiling((double)workshopKeep / itemPerLoop); // gives back how many loops you'd need to take off from the maximum amount of loops possible
-            return baseMaxLoop = baseMaxLoop - workshopKeepLoop;
-        }
-        else return baseMaxLoop; // If no workshop items, return the base loop amount
-    }
-
-    public static int RouteAmountCalc(int[,] table, params int[] workshops)
-    {
-        var CurrentMax = 999; // setting a cieling for it to always start at... ideally. 
-
-        for (var i = 0; i < table.GetLength(0); i++) // Iterate through rows
-        {
-            var itemPerLoop = table[i, 0];
-            var workshopKeep = workshops[i];
-            var skip = table[i, 3];
-
-            // Calculate the loop amount
-            if (skip == 0) 
-            {
-                var NewMax = CalculateRouteLoopAmount(workshopKeep, itemPerLoop);
-                if (NewMax < CurrentMax) CurrentMax = NewMax;
-            }
-        }
-
-        return CurrentMax;
-    }
-
-    public static string CurrentRoute(int routeNumber)
-    {
-        return routeNumber switch
-        {
-            1 => "Clam/Islefish",
-            2 => "Islewort",
-            3 => "Sugarcane",
-            4 => "Tinsand",
-            5 => "Coconut",
-            6 => "Apple",
-            7 => "Marble | Limestone",
-            8 => "Clay | Sand [Ground XP Loop]",
-            9 => "Cotton",
-            10 => "Branch | Log | Resin",
-            11 => "Copper / Mythril",
-            12 => "Opal / Log / Sap",
-            13 => "Hemp",
-            14 => "Multi - colored Isleblooms",
-            15 => "Iron Ore",
-            16 => "Laver / Squid | Jellyfish / Coral",
-            17 => "Rocksalt",
-            18 => "Leucogranite",
-            19 => "Quartz [Mountain XP Loop]",
-            20 => "Coal / Shale | Glimshroom",
-            21 => "Effervescent Water",
-            22 => "Crystal / Hawk Sand | Yelow Copper / Gold Ore[x2]",
-            _ => "Invalid route",
-        };
-    }
-
-    public static int[,] TableSwap(int RouteValue)
-    {
-        return RouteValue switch
-        {
-            1 => Route19Table,
-            2 => Route8Table,
-            _ => throw new Exception("There's uh... not a table assigned to this"),
-        };
-    }
     public static void UpdateTableDict()
     {
         foreach (var item in IslandSancDictionary.Keys.ToList())
         {
             IslandSancDictionary[item].Amount = GetItemCount(item);
         }
-    }
-    public static void TableSellUpdate(int[,] table)
-    {
-        for (var i = 0; i < table.GetLength(0); i++)
-        {
-            var itemPerLoop = table[i, 0];
-            var itemID = table[i, 1];
-            var sellAmount = table[i, 2];
-            var itemSellSafe = table[i, 3];
-            var routeTotal = RouteAmount(C.routeSelected);
-            var itemAmount = IslandSancDictionary[itemID].Amount;
-            var itemWorkshop = IslandSancDictionary[itemID].Workshop;
-            table[i, 2] = ShopCalc(itemAmount, itemWorkshop, itemPerLoop, routeTotal, itemSellSafe);
-            PluginLog($"Item sell amount has been updated to: {table[i, 2]}");
-        }
-    }
-    public static int TotalSellItems(int[,] table)
-    {
-        int totalSellItems = 0;
-        for (var i = 0;i < table.GetLength(0); i++)
-        {
-            totalSellItems += table[i, 2];
-        }
-        return totalSellItems;
     }
 }

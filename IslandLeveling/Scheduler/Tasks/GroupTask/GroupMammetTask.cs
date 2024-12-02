@@ -9,7 +9,7 @@ namespace IslandLeveling.Scheduler.Tasks.GroupTask
 {
     internal static class GroupMammetTask
     {
-        internal unsafe static void Enqueue(int[,] table)
+        internal unsafe static void Enqueue(List<RouteEntry> routeEntries)
         {
             if (!atEntrance) 
                 TaskReturn.Enqueue();
@@ -17,20 +17,20 @@ namespace IslandLeveling.Scheduler.Tasks.GroupTask
             // TaskSellTo.Enqueue(); old targeting code, keeping it here for reference
             TaskTargetV2.Enqueue(ExportMammetID);
             TaskCallback.Enqueue("SelectString", true, 0);
-            for (int i = 0; i < table.GetLength(0); i++)
+            for (int i = 0; i < routeEntries.Count; i++)
             {
-                if (table[i, 2] > 0)
+                if (routeEntries[i].Sell > 0)
                 {
-                    PluginLog($"{table[i, 1]} has enough to sell");
-                    PluginLog($"{table[i, 2]} <-- selling this much");
+                    PluginLog($"{routeEntries[i].ID} has enough to sell");
+                    PluginLog($"{routeEntries[i].Sell} <-- selling this much");
                     P.taskManager.EnqueueDelay(100);
-                    TaskCallback.Enqueue("MJIDisposeShop", true, 12, table[i, 4]);
+                    TaskCallback.Enqueue("MJIDisposeShop", true, 12, routeEntries[i].PCallValue);
                     P.taskManager.EnqueueDelay(100);
-                    TaskCallback.Enqueue("MJIDisposeShopShipping", true, 11, table[i, 2]);
+                    TaskCallback.Enqueue("MJIDisposeShopShipping", true, 11, routeEntries[i].Sell);
                     P.taskManager.EnqueueDelay(100);
                     P.taskManager.Enqueue(() => !IsAddonActive("MJIDisposeShopShipping"));
                     P.taskManager.Enqueue(() => UpdateTableDict());
-                    P.taskManager.Enqueue(() => TableSellUpdate(CurrentRouteTable));
+                    P.taskManager.Enqueue(() => TableSellUpdate(currentTable));
                     P.taskManager.EnqueueDelay(500);
                 }
             }

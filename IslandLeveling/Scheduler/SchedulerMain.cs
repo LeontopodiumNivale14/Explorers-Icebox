@@ -2,6 +2,8 @@ using ECommons.Throttlers;
 using IslandLeveling.Scheduler.Handers;
 using IslandLeveling.Scheduler.Tasks;
 using IslandLeveling.Scheduler.Tasks.GroupTask;
+using IslandLeveling.Util.IslandData;
+using Lumina.Excel.Sheets;
 using System.Linq.Expressions;
 
 namespace IslandLeveling.Scheduler
@@ -28,7 +30,7 @@ namespace IslandLeveling.Scheduler
         }
 
         private static bool RunRoute = false;
-        private static int loopAmount = 0;
+        private static int LoopAmount = 0;
 
         internal static void Tick()
         {
@@ -39,16 +41,22 @@ namespace IslandLeveling.Scheduler
                     if (!P.taskManager.IsBusy)
                     {
                         UpdateTableDict();
-                        TableSellUpdate(CurrentRouteTable);
-                        if (TotalSellItems(CurrentRouteTable) > 0 && !RunRoute)
+                        TableSellUpdate(currentTable);
+                        if (TotalSellItems(currentTable) > 0 && !RunRoute)
                         {
-                            GroupMammetTask.Enqueue(CurrentRouteTable);
+                            GroupMammetTask.Enqueue(currentTable);
                         }
-                        RunRoute = true;
+                        P.taskManager.Enqueue(() => RunRoute = true);
                         if (RunRoute)
                         {
-                            TaskMoveTo.Enqueue(QuartzRoutePos, "Quartz Island", true, 1);
-                            // while (
+                            TaskVislandTemp.Enqueue(RouteDataPoint[C.routeSelected].Location, RouteDataPoint[C.routeSelected].Name);
+                            while (LoopAmount < RouteAmount(C.routeSelected))
+                            {
+                                TaskVislandTemp.Enqueue(VislandRoutes.QuartzVisland, $"{RouteDataPoint[C.routeSelected].Name}'s Route is running currently");
+                                LoopAmount++;
+                            }
+                            P.taskManager.Enqueue(() => RunRoute = false, "Changing Runroute to false");
+                            P.taskManager.Enqueue(() => PluginLog("Setting Run Route to false"));
                         }
 
                     }
