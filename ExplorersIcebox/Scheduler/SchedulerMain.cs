@@ -47,7 +47,7 @@ namespace ExplorersIcebox.Scheduler
                         TaskVislandTemp.Enqueue(RouteDataPoint[C.routeSelected].Location, RouteDataPoint[C.routeSelected].Name);
                         while (LoopAmount < RouteAmount(C.routeSelected))
                         {
-                            TaskVislandTemp.Enqueue(VislandRoutes.QuartzVisland, $"Enabling the following Route: {RouteDataPoint[C.routeSelected].Name}");
+                            TaskVislandTemp.Enqueue(RouteDataPoint[C.routeSelected].Base64Export, $"Enabling the following Route: {RouteDataPoint[C.routeSelected].Name}");
                             P.taskManager.EnqueueDelay(100);
                             P.taskManager.Enqueue(() => P.visland.IsRouteRunning() == false, $"{RouteDataPoint[C.routeSelected].Name} is currently running", configuration: DConfig);
                             LoopAmount++;
