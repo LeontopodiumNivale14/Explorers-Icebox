@@ -170,7 +170,7 @@ internal class IslandTables
             var itemPerLoop = entry.AmountGatherable;
             var itemID = entry.ID;
             var sellAmount = entry.Sell;
-            var itemSellSafe = entry.CanSellFullAmount ? 1 : 0; // Assuming 1 if true, 0 if false
+            var itemSellSafe = entry.CanSellFullAmount;
             var routeTotal = RouteAmount(C.routeSelected); // Ensure RouteAmount is updated for new structure
             var itemAmount = IslandSancDictionary[itemID].Amount;
             var itemWorkshop = IslandSancDictionary[itemID].Workshop;
@@ -186,7 +186,10 @@ internal class IslandTables
         int totalSellItems = 0;
         foreach (var entry in routeEntries)
         {
-            totalSellItems += entry.Sell;
+            if (entry.Sell > 0)
+            {
+                totalSellItems += entry.Sell;
+            }
         }
         return totalSellItems;
     }
@@ -198,17 +201,19 @@ internal class IslandTables
         _ => throw new InvalidOperationException("Invalid table index")
     };
 
-    // How many items are you sending for this loop?
-    public static int ShopCalc(int itemAmount, int workshopKeep, int loopItemAmount, int loopAmount, int itemSellSafe)
+    public static int ShopCalc(int itemAmount, int workshopKeep, int loopItemAmount, int loopAmount, bool itemSellSafe)
     {
-        var routeGathAmount = MaxItems - (loopItemAmount * loopAmount); // Calculate RouteGathAmount
-        if (routeGathAmount < 0) routeGathAmount = 0;                   // Ensure RouteGathAmount doesn't go below 0
-        var itemSend = itemAmount - routeGathAmount;                    // Calculate ItemSend based on RouteGathAmount
-        if (itemSend > MaxItems) itemSend = MaxItems;                   // Ensure ItemSend does not exceed ItemMax
-        if (itemSellSafe == 1) itemSend -= workshopKeep;                // Adjust ItemSend if ItemSellSafe is true (aka, if you can sell to workshop amount and be fine)
-        if (itemSend < 0) itemSend = 0;                                 // Flattening out to make sure that it doesn't interfere w/ the "need to sell" value
-        return itemSend;                                                // Return the calculated value
+        var amountGathered = (loopItemAmount * loopAmount);
+        if (amountGathered > 999) amountGathered = 999;
+        var newAmount = MaxItems - amountGathered;
+        var itemSend = itemAmount - newAmount;
+        if (itemSellSafe == true)
+        {
+            itemSend = itemSend - workshopKeep;
+        }
+        return itemSend;
     }
+
     public static int CalculateRouteLoopAmount(int workshopKeep, int itemPerLoop)
     {
         var baseMaxLoop = (int)Math.Floor((double)MaxItems / itemPerLoop); // Maximum loops possible

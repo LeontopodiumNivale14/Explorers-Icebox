@@ -18,7 +18,7 @@ namespace ExplorersIcebox.Windows
         public void Dispose() { }
 
         private string[] options = { "All Items", "RouteGround", "RouteFly" }; // Dropdown options
-        private string currentOption = "All Items"; // Currently selected option
+        public static string currentOption = "All Items"; // Currently selected option
 
         public override void Draw()
         {

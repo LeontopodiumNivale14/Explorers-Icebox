@@ -36,7 +36,39 @@ namespace ExplorersIcebox.Windows
 
         public override void Draw()
         {
+            if (ImGui.BeginTabBar("Test Tab Bar"))
+            {
+                if (ImGui.BeginTabItem("Player Info"))
+                {
+                    PlayerInfoDubug();
+                    ImGui.EndTabItem();
+                }
+                if (ImGui.BeginTabItem("Test Tab"))
+                {
+                    NavmeshInfoDebug();
+                    ImGui.EndTabItem();
+                }
+                if (ImGui.BeginTabItem("Misc Info"))
+                {
+                    MiscInfoDebug();
+                    ImGui.EndTabItem();
+                }
+                if (ImGui.BeginTabItem("Route Sell"))
+                {
+                    RouteSellDebug();
+                    ImGui.EndTable();
+                }
+                if (ImGui.BeginTabItem("Imgui Test"))
+                {
+                    TestGuiDebug();
+                    ImGui.EndTabItem();
+                }
+                ImGui.EndTabBar();
+            }
+        }
 
+        private void PlayerInfoDubug()
+        {
             ImGui.Text($"General Information");
             ImGui.Text($"TerritoryID: " + Svc.ClientState.TerritoryType);
             ImGui.Text($"Target: " + Svc.Targets.Target);
@@ -46,7 +78,10 @@ namespace ExplorersIcebox.Windows
             ImGui.Text($"Navmesh information");
             ImGui.Text($"PlayerPos: " + PlayerPosition());
             ImGui.Text($"Navmesh BuildProgress :" + P.navmesh.BuildProgress());//working ipc
+        }
 
+        private void NavmeshInfoDebug()
+        {
             ImGui.Text("X:");
             ImGui.SameLine();
             ImGui.SetNextItemWidth(75);
@@ -92,10 +127,26 @@ namespace ExplorersIcebox.Windows
                 P.taskManager.Enqueue(() => TaskMoveTo.Enqueue(new Vector3(xPos, yPos, zPos), "Interact string", false, tolerance));
                 ECommons.Logging.InternalLog.Information("Firing off Vnav Moveto");
             }
-            ImGui.NewLine();
+        }
+
+        private void RouteSellDebug()
+        {
+            if (ImGui.Button("Update"))
+            {
+                UpdateTableDict();
+                for (int i = 0; i < 1; i++)
+                {
+                    //TableSellUpdate(Routes.Route8Table[i].Sell);
+                }
+                //TableSellUpdate(Routes.Route8Table[]);
+            }
+        }
+
+        private void MiscInfoDebug()
+        {
             ImGui.Text("Callback Test");
             // Standard checkbox for a boolean variable
-            ImGui.Checkbox("True | False", ref callbackbool);
+            ImGui.Checkbox("1st Item | 2nd Item", ref callbackbool);
             if (ImGui.Button("Addon Fire Test"))
             {
                 if (callbackbool)
@@ -122,6 +173,23 @@ namespace ExplorersIcebox.Windows
                 TableSellUpdate(currentTable);
             }
             ImGui.Text($"New Calculated loop amount = {newLoopAmount}");
+        }
+    
+        private void TestGuiDebug()
+        {
+            ImGui.Text("Kinda where I just test all the gui things to see what they look like");
+            ImGui.Text("Tree Nodes");
+            if (ImGui.TreeNode("Settings")) // Example of treenode, note that these must end in TreePop();
+            {
+                ImGui.Text("Option 1");
+                ImGui.Text("Option 2");
+                if (ImGui.TreeNode("Example of a tree in a tree"))
+                {
+                    ImGui.Text("Surprise tree");
+                    ImGui.TreePop();
+                }
+                ImGui.TreePop();
+            }
         }
     }
 }

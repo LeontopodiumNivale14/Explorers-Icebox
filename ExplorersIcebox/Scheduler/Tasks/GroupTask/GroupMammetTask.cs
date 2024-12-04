@@ -13,7 +13,7 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
             // TaskSellTo.Enqueue(); old targeting code, keeping it here for reference
             TaskTargetV2.Enqueue(ExportMammetID);
             TaskCallback.Enqueue("SelectString", true, 0);
-            for (int i = 0; i < routeEntries.Count; i++)
+            for (var i = 0; i < routeEntries.Count; i++)
             {
                 if (routeEntries[i].Sell > 0)
                 {

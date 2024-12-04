@@ -2,6 +2,7 @@ using ECommons.SimpleGui;
 using ExplorersIcebox.Scheduler;
 using ExplorersIcebox.Scheduler.Tasks;
 using ExplorersIcebox.Util.IslandData;
+using System.Runtime.CompilerServices;
 
 namespace ExplorersIcebox.Windows
 {
@@ -33,15 +34,34 @@ namespace ExplorersIcebox.Windows
 
         public override void Draw()
         {
+            if (ImGui.BeginTabBar("Test Tab Bar"))
+            {
+                if (ImGui.BeginTabItem("Current Window"))
+                {
+                    CurrentWindow();
+                    ImGui.EndTabItem();
+                }
+                if (ImGui.BeginTabItem("Test Tab"))
+                {
+                    ImGui.Text("Test tab is operational");
+                    CurrentWindowV2();
+                    ImGui.EndTabItem();
+                }
+                ImGui.EndTabBar();
+            }
+        }
+
+        private void CurrentWindow()
+        {
             ImGui.Text($"Route Selected: {RouteDataPoint[C.routeSelected].Name}");
             if (ImGui.RadioButton("Ground XP Route", C.routeSelected == 8))
             {
-                C.routeSelected = 8; // Sets the option to 1 (Option #2)
+                C.routeSelected = 8; // Sets the option to 8 (Option #1)
                 PluginLog("Changed the selected route to Clay/Sand [Ground XP Loop]");
             }
             if (ImGui.RadioButton("Flying/Fast XP Route", C.routeSelected == 19))
             {
-                C.routeSelected = 19; // Sets the option to 0 (Option #1)
+                C.routeSelected = 19; // Sets the option to 19 (Option #2)
                 PluginLog("Changed the selected route to Quartz [Mountain XP Loop]");
             }
             ImGui.Text($"Navmesh BuildProgress :" + P.navmesh.BuildProgress());//working ipc
@@ -76,6 +96,25 @@ namespace ExplorersIcebox.Windows
                     TaskVislandTemp.Enqueue(VislandRoutes.QuartzVisland, $"{RouteDataPoint[C.routeSelected].Name}'s Route is running currently");
                     amount++;
                 }
+            }
+        }
+        private void CurrentWindowV2()
+        {
+            ImGui.Text("XP | Cowries Grind");
+            if (ImGui.RadioButton("Ground XP Route", C.routeSelected == 8))
+            {
+                C.routeSelected = 8; // Sets the option to 8 (Option #1)
+                PluginLog("Changed the selected route to Clay/Sand [Ground XP Loop]");
+            }
+            ImGui.SameLine();
+            ImGuiEx.AddHeaderIcon(FontAwesomeIcon.Question, );
+            if (ImGui.IsItemHovered())
+            {
+                ImGui.BeginTooltip();
+                ImGui.Text("Test tooltip");
+                ImGui.Separator();
+                ImGui.Text("to show how it works?");
+                ImGui.EndTooltip();
             }
         }
     }
