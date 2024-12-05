@@ -27,5 +27,6 @@ global using static ExplorersIcebox.Util.IslandData.IslandMics;
 global using static ExplorersIcebox.Util.IslandData.IslandNavmeshWP;
 global using static ExplorersIcebox.Util.IslandData.VislandRoutes;
 global using static ExplorersIcebox.Util.IslandData.IslandTables;
+global using static ExplorersIcebox.Util.IslandData.IslandUiWindows;
 
 

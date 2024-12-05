@@ -54,6 +54,8 @@ public class Config : IEzConfig
     public int CrystalFormationWorkshop = 0;
 
     public int routeSelected = 1;
+    public bool runInfinite = true;
+    public int runAmount = 0;
 
     public void Save()
     {

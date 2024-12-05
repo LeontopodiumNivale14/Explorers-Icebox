@@ -1,7 +1,10 @@
+using Dalamud.Interface.Components;
+using ECommons.Configuration;
 using ECommons.SimpleGui;
 using ExplorersIcebox.Scheduler;
 using ExplorersIcebox.Scheduler.Tasks;
 using ExplorersIcebox.Util.IslandData;
+using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
 
 namespace ExplorersIcebox.Windows
@@ -100,21 +103,72 @@ namespace ExplorersIcebox.Windows
         }
         private void CurrentWindowV2()
         {
+            ImGui.PushStyleVar(ImGuiStyleVar.FramePadding, new System.Numerics.Vector2(4, 4));
+            ImGui.PushStyleVar(ImGuiStyleVar.ItemSpacing, new System.Numerics.Vector2(4, 4));
+
             ImGui.Text("XP | Cowries Grind");
-            if (ImGui.RadioButton("Ground XP Route", C.routeSelected == 8))
+            if (ImGui.RadioButton("Ground Loop ", C.routeSelected == 8))
             {
                 C.routeSelected = 8; // Sets the option to 8 (Option #1)
                 PluginLog("Changed the selected route to Clay/Sand [Ground XP Loop]");
             }
             ImGui.SameLine();
-            ImGuiEx.AddHeaderIcon(FontAwesomeIcon.Question, );
-            if (ImGui.IsItemHovered())
+            ImGuiComponents.HelpMarker("Best to use from lv. 5 -> Lv. 10 \nThe slower of the two options, but doesn't require flying to be unlocked");
+            ImGui.SameLine();
+            ImGui.Text("                   ");
+            ImGui.SameLine();
+            if (ImGui.RadioButton("Run Infinitely", C.runInfinite == true))
             {
-                ImGui.BeginTooltip();
-                ImGui.Text("Test tooltip");
-                ImGui.Separator();
-                ImGui.Text("to show how it works?");
-                ImGui.EndTooltip();
+                C.runInfinite = true;
+                EzConfig.Save();
+            }
+            if (ImGui.RadioButton("Flying/Fast XP Route", C.routeSelected == 19))
+            {
+                C.routeSelected = 19; // Sets the option to 19 (Option #2)
+                PluginLog("Changed the selected route to Quartz [Mountain XP Loop]");
+            }
+            ImGui.SameLine();
+            ImGuiComponents.HelpMarker("Faster leveling route. Best use from Lv. 10+ \nFlying is REQUIRED to do this one.");
+            ImGui.SameLine();
+            ImGui.Text("    ");
+            ImGui.SameLine();
+            if (ImGui.RadioButton("Run x times", C.runInfinite == false))
+            {
+                C.runInfinite = false;
+                EzConfig.Save();
+            }
+            if (!C.runInfinite)
+            {
+                ImGui.SameLine();
+                ImGui.SetNextItemWidth(85);
+                if (ImGui.InputInt("##RunAmount", ref C.runAmount))
+                {
+                    EzConfig.Save();
+                }
+            }
+            ImGui.NewLine();
+            ImGui.Text("Workshop Items");
+            ImGui.SameLine();
+            ImGuiComponents.HelpMarker("Input the amount of items that you want to keep from this loop.\nThis will automatically adjust how many loops of this route it can do.");
+
+            if (C.routeSelected == 8)
+            {
+                ClayImgui();
+                TinsandImgui();
+                MarbleImgui();
+                LimestoneImgui();
+                BranchImgui();
+                LogImgui();
+                ResinImgui();
+                SandImgui();
+            }
+            else if (C.routeSelected == 19)
+            {
+                QuartzImgui();
+                IronOreImgui();
+                DuriumSandImgui();
+                LeucograniteImgui();
+                StoneImgui();
             }
         }
     }
