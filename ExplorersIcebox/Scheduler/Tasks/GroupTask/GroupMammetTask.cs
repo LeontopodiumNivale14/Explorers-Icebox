@@ -9,6 +9,7 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
         {
             if (Svc.Condition[ConditionFlag.Mounted])
                 TaskDisMount.Enqueue();
+            P.taskManager.Enqueue(() => SchedulerMain.CurrentProcess = "Selling Items to Mammet");
             TaskMoveTo.Enqueue(mammetExportPos, "Mammet Export", false, 1);
             // TaskSellTo.Enqueue(); old targeting code, keeping it here for reference
             TaskTargetV2.Enqueue(ExportMammetID);
@@ -17,10 +18,11 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
             {
                 if (routeEntries[i].Sell > 0)
                 {
-                    PluginLog($"{routeEntries[i].ID} has enough to sell");
+                    int itemID = routeEntries[i].ID;
+                    PluginLog($"{itemID} has enough to sell");
                     PluginLog($"{routeEntries[i].Sell} <-- selling this much");
                     P.taskManager.EnqueueDelay(100);
-                    TaskCallback.Enqueue("MJIDisposeShop", true, 12, routeEntries[i].PCallValue);
+                    TaskCallback.Enqueue("MJIDisposeShop", true, 12, IslandSancDictionary[itemID].Callback);
                     P.taskManager.EnqueueDelay(100);
                     TaskCallback.Enqueue("MJIDisposeShopShipping", true, 11, routeEntries[i].Sell);
                     P.taskManager.EnqueueDelay(100);
@@ -34,6 +36,7 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
             TaskCallback.Enqueue("MJIDisposeShop", true, 1);
             P.taskManager.Enqueue(() => !IsAddonActive("MJIDisposeShop"));
             P.taskManager.EnqueueDelay(20);
+            P.taskManager.Enqueue(() => SchedulerMain.CurrentProcess = "Back to entrance");
             TaskMoveTo.Enqueue(workshopExitPos, "Entrance of shop", false, 1);
         }
     }

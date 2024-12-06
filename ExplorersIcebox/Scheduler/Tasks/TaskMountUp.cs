@@ -7,6 +7,7 @@ namespace ExplorersIcebox.Scheduler.Tasks
     {
         public static void Enqueue()
         {
+            P.taskManager.Enqueue(() => SchedulerMain.CurrentProcess = "Mounting up");
             P.taskManager.Enqueue(() => MountUp());
         }
         // Mounting up on... well a mount. 

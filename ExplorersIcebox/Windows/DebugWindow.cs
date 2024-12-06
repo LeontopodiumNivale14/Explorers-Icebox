@@ -56,7 +56,7 @@ namespace ExplorersIcebox.Windows
                 if (ImGui.BeginTabItem("Route Sell"))
                 {
                     RouteSellDebug();
-                    ImGui.EndTable();
+                    ImGui.EndTabItem();
                 }
                 if (ImGui.BeginTabItem("Imgui Test"))
                 {
@@ -131,15 +131,7 @@ namespace ExplorersIcebox.Windows
 
         private void RouteSellDebug()
         {
-            if (ImGui.Button("Update"))
-            {
-                UpdateTableDict();
-                for (int i = 0; i < 1; i++)
-                {
-                    //TableSellUpdate(Routes.Route8Table[i].Sell);
-                }
-                //TableSellUpdate(Routes.Route8Table[]);
-            }
+            ImGui.Text("This is where the route sell debug would be... IF I HAD ONE");
         }
 
         private void MiscInfoDebug()

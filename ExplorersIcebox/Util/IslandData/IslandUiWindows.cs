@@ -29,6 +29,7 @@ internal class IslandUiWindows
 
     public static void PalmLeafImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Palm Leaf (Have: {PalmLeafAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -42,6 +43,7 @@ internal class IslandUiWindows
 
     public static void BranchImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Branch (Have: {BranchAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -55,6 +57,7 @@ internal class IslandUiWindows
 
     public static void StoneImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Stone (Have: {StoneAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -68,6 +71,7 @@ internal class IslandUiWindows
 
     public static void ClamImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Clam (Have: {ClamAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -81,6 +85,7 @@ internal class IslandUiWindows
 
     public static void LaverImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Laver (Have: {LaverAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -94,6 +99,7 @@ internal class IslandUiWindows
 
     public static void CoralImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Coral (Have: {CoralAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -107,6 +113,7 @@ internal class IslandUiWindows
 
     public static void IslewortImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Islewort (Have: {IslewortAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -120,6 +127,7 @@ internal class IslandUiWindows
 
     public static void SandImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Sand (Have: {SandAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -133,6 +141,7 @@ internal class IslandUiWindows
 
     public static void VineImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Vine (Have: {VineAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -146,6 +155,7 @@ internal class IslandUiWindows
 
     public static void SapImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Sap (Have: {SapAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -159,6 +169,7 @@ internal class IslandUiWindows
 
     public static void AppleImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Apple (Have: {AppleAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -172,6 +183,7 @@ internal class IslandUiWindows
 
     public static void LogImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Log (Have: {LogAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -185,6 +197,7 @@ internal class IslandUiWindows
 
     public static void PalmLogImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Palm Log (Have: {PalmLogAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -198,6 +211,7 @@ internal class IslandUiWindows
 
     public static void CopperImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Copper (Have: {CopperAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -211,6 +225,7 @@ internal class IslandUiWindows
 
     public static void LimestoneImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Limestone (Have: {LimestoneAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -224,6 +239,7 @@ internal class IslandUiWindows
 
     public static void RockSaltImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Rock Salt (Have: {RockSaltAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -237,6 +253,7 @@ internal class IslandUiWindows
 
     public static void ClayImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Clay (Have: {ClayAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -250,6 +267,7 @@ internal class IslandUiWindows
 
     public static void TinsandImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Tinsand (Have: {TinsandAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -263,6 +281,7 @@ internal class IslandUiWindows
 
     public static void SugarcaneImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Sugarcane (Have: {SugarcaneAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -276,6 +295,7 @@ internal class IslandUiWindows
 
     public static void CottonImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Cotton (Have: {CottonAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -289,6 +309,7 @@ internal class IslandUiWindows
 
     public static void HempImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Hemp (Have: {HempAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -302,6 +323,7 @@ internal class IslandUiWindows
 
     public static void IslefishImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Islefish (Have: {IslefishAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -315,6 +337,7 @@ internal class IslandUiWindows
 
     public static void SquidImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Squid (Have: {SquidAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -328,6 +351,7 @@ internal class IslandUiWindows
 
     public static void JellyfishImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Jellyfish (Have: {JellyfishAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -341,6 +365,7 @@ internal class IslandUiWindows
 
     public static void IronOreImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"IronOre (Have: {IronOreAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -354,6 +379,7 @@ internal class IslandUiWindows
 
     public static void QuartzImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Quartz (Have: {QuartzAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -367,6 +393,7 @@ internal class IslandUiWindows
 
     public static void LeucograniteImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Leucogranite (Have: {LeucograniteAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -380,6 +407,7 @@ internal class IslandUiWindows
 
     public static void MulticoloredIslebloomsImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Multicolored Isleblooms (Have: {MulticoloredIslebloomsAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -393,6 +421,7 @@ internal class IslandUiWindows
 
     public static void ResinImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Resin (Have: {ResinAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -406,6 +435,7 @@ internal class IslandUiWindows
 
     public static void CoconutImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Coconut (Have: {CoconutAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -419,6 +449,7 @@ internal class IslandUiWindows
 
     public static void BeehiveImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Beehive (Have: {BeehiveAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -432,6 +463,7 @@ internal class IslandUiWindows
 
     public static void WoodOpalImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Wood Opal (Have: {WoodOpalAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -445,6 +477,7 @@ internal class IslandUiWindows
 
     public static void CoalImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Coal (Have: {CoalAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -458,6 +491,7 @@ internal class IslandUiWindows
 
     public static void GlimshroomImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Glimshroom (Have: {GlimshroomAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -471,6 +505,7 @@ internal class IslandUiWindows
 
     public static void EffervescentWaterImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Effervescent Water (Have: {EffervescentWaterAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -484,6 +519,7 @@ internal class IslandUiWindows
 
     public static void ShaleImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Shale (Have: {ShaleAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -497,6 +533,7 @@ internal class IslandUiWindows
 
     public static void MarbleImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Marble (Have: {MarbleAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -510,6 +547,7 @@ internal class IslandUiWindows
 
     public static void MythrilOreImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Mythril Ore (Have: {MythrilOreAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -523,6 +561,7 @@ internal class IslandUiWindows
 
     public static void SpectrineImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Spectrine (Have: {SpectrineAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -536,6 +575,7 @@ internal class IslandUiWindows
 
     public static void DuriumSandImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Durium Sand (Have: {DuriumSandAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -549,6 +589,7 @@ internal class IslandUiWindows
 
     public static void YellowCopperOreImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Yellow Copper Ore (Have: {YellowCopperOreAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -562,6 +603,7 @@ internal class IslandUiWindows
 
     public static void GoldOreImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Gold Ore (Have: {GoldOreAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -575,6 +617,7 @@ internal class IslandUiWindows
 
     public static void HawksEyeSandImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Hawks Eye Sand (Have: {HawksEyeSandAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());
@@ -588,6 +631,7 @@ internal class IslandUiWindows
 
     public static void CrystalFormationImgui()
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text($"Crystal Formation (Have: {CrystalFormationAmount})");
         ImGui.SameLine();
         ImGui.SetCursorPosX(offSet());

@@ -28,7 +28,7 @@ public class IslandMics
     public const int MaxItems = 999;
 
     // Route Loop Amounts
-    public static int Route8Amount => RouteAmountCalc(Routes.Route8Table, C.ClayWorkshop, C.TinsandWorkshop, C.MarbleWorkshop, C.LimestoneWorkshop, C.BranchWorkshop, C.LogWorkshop, C.ResinWorkshop, 0);
+    public static int Route8Amount => RouteAmountCalc(Routes.Route8Table, C.ClayWorkshop, C.TinsandWorkshop, C.MarbleWorkshop, C.LimestoneWorkshop, C.StoneWorkshop, C.BranchWorkshop, C.LogWorkshop, C.ResinWorkshop, C.SugarcaneWorkshop, C.VineWorkshop, 0);
     public static int Route19Amount => RouteAmountCalc(Routes.Route19Table, C.QuartzWorkshop, C.IronOreWorkshop, C.DuriumSandWorkshop, C.LeucograniteWorkshop, 0);
 
 

@@ -13,16 +13,14 @@ internal class IslandTables
         public int ID { get; set; }
         public int Sell { get; set; }
         public bool CanSellFullAmount { get; set; }
-        public int PCallValue { get; set; }
 
         // Optional: Add a constructor for easier initialization
-        public RouteEntry(int amountGatherable, int id, int sell, bool canSellFullAmount, int pCallValue)
+        public RouteEntry(int amountGatherable, int id, int sell, bool canSellFullAmount)
         {
             AmountGatherable = amountGatherable;
             ID = id;
             Sell = sell;
             CanSellFullAmount = canSellFullAmount;
-            PCallValue = pCallValue;
         }
     }
 
@@ -31,24 +29,27 @@ internal class IslandTables
         // Clay | Sand Route [Ground XP Route]
         public static List<RouteEntry> Route8Table =
         [
-            new RouteEntry(7, ClayID, 0, false, 16),
-            new RouteEntry(2, TinsandID, 0, false, 17),
-            new RouteEntry(1, MarbleID, 0, false, 36),
-            new RouteEntry(1, LimestoneID, 0, false, 14),
-            new RouteEntry(1, BranchID, 0, false, 1),
-            new RouteEntry(1, LogID, 0, false, 11),
-            new RouteEntry(1, ResinID, 0, false, 28),
-            new RouteEntry(10, SandID, 0, true, 7),
+            new RouteEntry(7, ClayID, 0, false),
+            new RouteEntry(2, TinsandID, 0, false),
+            new RouteEntry(1, MarbleID, 0, false),
+            new RouteEntry(1, LimestoneID, 0, false),
+            new RouteEntry(1, StoneID, 0, false),
+            new RouteEntry(1, BranchID, 0, false),
+            new RouteEntry(1, LogID, 0, false),
+            new RouteEntry(1, ResinID, 0, false),
+            new RouteEntry(1, SugarcaneID, 0, false),
+            new RouteEntry(1, VineID, 0, false),
+            new RouteEntry(10, SandID, 0, true),
         ];
 
         //Quartz Route [Flying XP Route]
         public static List<RouteEntry> Route19Table =
         [
-            new RouteEntry(6, QuartzID, 0, false, 25),
-            new RouteEntry(3, IronOreID, 0, false, 24),
-            new RouteEntry(3, DuriumSandID, 0, false, 39),
-            new RouteEntry(2, LeucograniteID, 0, false, 26),
-            new RouteEntry(11, StoneID, 0, true, 2),
+            new RouteEntry(6, QuartzID, 0, false),
+            new RouteEntry(3, IronOreID, 0, false),
+            new RouteEntry(3, DuriumSandID, 0, false),
+            new RouteEntry(2, LeucograniteID, 0, false),
+            new RouteEntry(11, StoneID, 0, true),
         ];
     }
 
@@ -57,54 +58,55 @@ internal class IslandTables
     {
         public int Workshop { get; set; }
         public int Amount { get; set; }
+        public int Callback { get; set; }
     }
 
     public static Dictionary<int, ItemData> IslandSancDictionary = new()
     {
-        { PalmLeafID, new ItemData { Workshop = C.PalmLeafWorkshop, Amount = GetItemCount(PalmLeafID) } },
-        { BranchID, new ItemData { Workshop = C.BranchWorkshop, Amount = GetItemCount(BranchID) } },
-        { StoneID, new ItemData { Workshop = C.StoneWorkshop, Amount = GetItemCount(StoneID) } },
-        { ClamID, new ItemData { Workshop = C.ClamWorkshop, Amount = GetItemCount(ClamID) } },
-        { LaverID, new ItemData { Workshop = C.LaverWorkshop, Amount = GetItemCount(LaverID) } },
-        { CoralID, new ItemData { Workshop = C.CoralWorkshop, Amount = GetItemCount(CoralID) } },
-        { IslewortID, new ItemData { Workshop = C.IslewortWorkshop, Amount = GetItemCount(IslewortID) } },
-        { SandID, new ItemData { Workshop = C.SandWorkshop, Amount = GetItemCount(SandID) } },
-        { VineID, new ItemData { Workshop = C.VineWorkshop, Amount = GetItemCount(VineID) } },
-        { SapID, new ItemData { Workshop = C.SapWorkshop, Amount = GetItemCount(SapID) } },
-        { AppleID, new ItemData { Workshop = C.AppleWorkshop, Amount = GetItemCount(AppleID) } },
-        { LogID, new ItemData { Workshop = C.LogWorkshop, Amount = GetItemCount(LogID) } },
-        { PalmLogID, new ItemData { Workshop = C.PalmLogWorkshop, Amount = GetItemCount(PalmLogID) } },
-        { CopperID, new ItemData { Workshop = C.CopperWorkshop, Amount = GetItemCount(CopperID) } },
-        { LimestoneID, new ItemData { Workshop = C.LimestoneWorkshop, Amount = GetItemCount(LimestoneID) } },
-        { RockSaltID, new ItemData { Workshop = C.RockSaltWorkshop, Amount = GetItemCount(RockSaltID) } },
-        { ClayID, new ItemData { Workshop = C.ClayWorkshop, Amount = GetItemCount(ClayID) } },
-        { TinsandID, new ItemData { Workshop = C.TinsandWorkshop, Amount = GetItemCount(TinsandID) } },
-        { SugarcaneID, new ItemData { Workshop = C.SugarcaneWorkshop, Amount = GetItemCount(SugarcaneID) } },
-        { CottonID, new ItemData { Workshop = C.CottonWorkshop, Amount = GetItemCount(CottonID) } },
-        { HempID, new ItemData { Workshop = C.HempWorkshop, Amount = GetItemCount(HempID) } },
-        { IslefishID, new ItemData { Workshop = C.IslefishWorkshop, Amount = GetItemCount(IslefishID) } },
-        { SquidID, new ItemData { Workshop = C.SquidWorkshop, Amount = GetItemCount(SquidID) } },
-        { JellyfishID, new ItemData { Workshop = C.JellyfishWorkshop, Amount = GetItemCount(JellyfishID) } },
-        { IronOreID, new ItemData { Workshop = C.IronOreWorkshop, Amount = GetItemCount(IronOreID) } },
-        { QuartzID, new ItemData { Workshop = C.QuartzWorkshop, Amount = GetItemCount(QuartzID) } },
-        { LeucograniteID, new ItemData { Workshop = C.LeucograniteWorkshop, Amount = GetItemCount(LeucograniteID) } },
-        { MulticoloredIslebloomsID, new ItemData { Workshop = C.MulticoloredIslebloomsWorkshop, Amount = GetItemCount(MulticoloredIslebloomsID) } },
-        { ResinID, new ItemData { Workshop = C.ResinWorkshop, Amount = GetItemCount(ResinID) } },
-        { CoconutID, new ItemData { Workshop = C.CoconutWorkshop, Amount = GetItemCount(CoconutID) } },
-        { BeehiveID, new ItemData { Workshop = C.BeehiveWorkshop, Amount = GetItemCount(BeehiveID) } },
-        { WoodOpalID, new ItemData { Workshop = C.WoodOpalWorkshop, Amount = GetItemCount(WoodOpalID) } },
-        { CoalID, new ItemData { Workshop = C.CoalWorkshop, Amount = GetItemCount(CoalID) } },
-        { GlimshroomID, new ItemData { Workshop = C.GlimshroomWorkshop, Amount = GetItemCount(GlimshroomID) } },
-        { EffervescentWaterID, new ItemData { Workshop = C.EffervescentWaterWorkshop, Amount = GetItemCount(EffervescentWaterID) } },
-        { ShaleID, new ItemData { Workshop = C.ShaleWorkshop, Amount = GetItemCount(ShaleID) } },
-        { MarbleID, new ItemData { Workshop = C.MarbleWorkshop, Amount = GetItemCount(MarbleID) } },
-        { MythrilOreID, new ItemData { Workshop = C.MythrilOreWorkshop, Amount = GetItemCount(MythrilOreID) } },
-        { SpectrineID, new ItemData { Workshop = C.SpectrineWorkshop, Amount = GetItemCount(SpectrineID) } },
-        { DuriumSandID, new ItemData { Workshop = C.DuriumSandWorkshop, Amount = GetItemCount(DuriumSandID) } },
-        { YellowCopperOreID, new ItemData { Workshop = C.YellowCopperOreWorkshop, Amount = GetItemCount(YellowCopperOreID) } },
-        { GoldOreID, new ItemData { Workshop = C.GoldOreWorkshop, Amount = GetItemCount(GoldOreID) } },
-        { HawksEyeSandID, new ItemData { Workshop = C.HawksEyeSandWorkshop, Amount = GetItemCount(HawksEyeSandID) } },
-        { CrystalFormationID, new ItemData { Workshop = C.CrystalFormationWorkshop, Amount = GetItemCount(CrystalFormationID) } },
+        { PalmLeafID, new ItemData { Workshop = C.PalmLeafWorkshop, Amount = GetItemCount(PalmLeafID), Callback = 0 } },
+        { BranchID, new ItemData { Workshop = C.BranchWorkshop, Amount = GetItemCount(BranchID), Callback = 1 } },
+        { StoneID, new ItemData { Workshop = C.StoneWorkshop, Amount = GetItemCount(StoneID), Callback = 2 } },
+        { ClamID, new ItemData { Workshop = C.ClamWorkshop, Amount = GetItemCount(ClamID), Callback = 3 } },
+        { LaverID, new ItemData { Workshop = C.LaverWorkshop, Amount = GetItemCount(LaverID), Callback = 4 } },
+        { CoralID, new ItemData { Workshop = C.CoralWorkshop, Amount = GetItemCount(CoralID), Callback = 5 } },
+        { IslewortID, new ItemData { Workshop = C.IslewortWorkshop, Amount = GetItemCount(IslewortID), Callback = 6 } },
+        { SandID, new ItemData { Workshop = C.SandWorkshop, Amount = GetItemCount(SandID), Callback = 7 } },
+        { VineID, new ItemData { Workshop = C.VineWorkshop, Amount = GetItemCount(VineID), Callback = 8 } },
+        { SapID, new ItemData { Workshop = C.SapWorkshop, Amount = GetItemCount(SapID), Callback = 9 } },
+        { AppleID, new ItemData { Workshop = C.AppleWorkshop, Amount = GetItemCount(AppleID), Callback = 10 } },
+        { LogID, new ItemData { Workshop = C.LogWorkshop, Amount = GetItemCount(LogID), Callback = 11 } },
+        { PalmLogID, new ItemData { Workshop = C.PalmLogWorkshop, Amount = GetItemCount(PalmLogID), Callback = 12 } },
+        { CopperID, new ItemData { Workshop = C.CopperWorkshop, Amount = GetItemCount(CopperID), Callback = 13 } },
+        { LimestoneID, new ItemData { Workshop = C.LimestoneWorkshop, Amount = GetItemCount(LimestoneID), Callback = 14 } },
+        { RockSaltID, new ItemData { Workshop = C.RockSaltWorkshop, Amount = GetItemCount(RockSaltID), Callback = 15 } },
+        { ClayID, new ItemData { Workshop = C.ClayWorkshop, Amount = GetItemCount(ClayID), Callback = 16 } },
+        { TinsandID, new ItemData { Workshop = C.TinsandWorkshop, Amount = GetItemCount(TinsandID), Callback = 17 } },
+        { SugarcaneID, new ItemData { Workshop = C.SugarcaneWorkshop, Amount = GetItemCount(SugarcaneID), Callback = 18 } },
+        { CottonID, new ItemData { Workshop = C.CottonWorkshop, Amount = GetItemCount(CottonID), Callback = 19 } },
+        { HempID, new ItemData { Workshop = C.HempWorkshop, Amount = GetItemCount(HempID), Callback = 20 } },
+        { IslefishID, new ItemData { Workshop = C.IslefishWorkshop, Amount = GetItemCount(IslefishID), Callback = 21 } },
+        { SquidID, new ItemData { Workshop = C.SquidWorkshop, Amount = GetItemCount(SquidID), Callback = 22 } },
+        { JellyfishID, new ItemData { Workshop = C.JellyfishWorkshop, Amount = GetItemCount(JellyfishID), Callback = 23 } },
+        { IronOreID, new ItemData { Workshop = C.IronOreWorkshop, Amount = GetItemCount(IronOreID), Callback = 24 } },
+        { QuartzID, new ItemData { Workshop = C.QuartzWorkshop, Amount = GetItemCount(QuartzID), Callback = 25 } },
+        { LeucograniteID, new ItemData { Workshop = C.LeucograniteWorkshop, Amount = GetItemCount(LeucograniteID), Callback = 26 } },
+        { MulticoloredIslebloomsID, new ItemData { Workshop = C.MulticoloredIslebloomsWorkshop, Amount = GetItemCount(MulticoloredIslebloomsID), Callback = 27 } },
+        { ResinID, new ItemData { Workshop = C.ResinWorkshop, Amount = GetItemCount(ResinID), Callback = 28 } },
+        { CoconutID, new ItemData { Workshop = C.CoconutWorkshop, Amount = GetItemCount(CoconutID), Callback = 29 } },
+        { BeehiveID, new ItemData { Workshop = C.BeehiveWorkshop, Amount = GetItemCount(BeehiveID), Callback = 30 } },
+        { WoodOpalID, new ItemData { Workshop = C.WoodOpalWorkshop, Amount = GetItemCount(WoodOpalID), Callback = 31 } },
+        { CoalID, new ItemData { Workshop = C.CoalWorkshop, Amount = GetItemCount(CoalID), Callback = 32 } },
+        { GlimshroomID, new ItemData { Workshop = C.GlimshroomWorkshop, Amount = GetItemCount(GlimshroomID), Callback = 33 } },
+        { EffervescentWaterID, new ItemData { Workshop = C.EffervescentWaterWorkshop, Amount = GetItemCount(EffervescentWaterID), Callback = 34 } },
+        { ShaleID, new ItemData { Workshop = C.ShaleWorkshop, Amount = GetItemCount(ShaleID), Callback = 35 } },
+        { MarbleID, new ItemData { Workshop = C.MarbleWorkshop, Amount = GetItemCount(MarbleID), Callback = 36 } },
+        { MythrilOreID, new ItemData { Workshop = C.MythrilOreWorkshop, Amount = GetItemCount(MythrilOreID), Callback = 37 } },
+        { SpectrineID, new ItemData { Workshop = C.SpectrineWorkshop, Amount = GetItemCount(SpectrineID), Callback = 38 } },
+        { DuriumSandID, new ItemData { Workshop = C.DuriumSandWorkshop, Amount = GetItemCount(DuriumSandID), Callback = 39 } },
+        { YellowCopperOreID, new ItemData { Workshop = C.YellowCopperOreWorkshop, Amount = GetItemCount(YellowCopperOreID), Callback = 40 } },
+        { GoldOreID, new ItemData { Workshop = C.GoldOreWorkshop, Amount = GetItemCount(GoldOreID), Callback = 41 } },
+        { HawksEyeSandID, new ItemData { Workshop = C.HawksEyeSandWorkshop, Amount = GetItemCount(HawksEyeSandID), Callback = 42 } },
+        { CrystalFormationID, new ItemData { Workshop = C.CrystalFormationWorkshop, Amount = GetItemCount(CrystalFormationID), Callback = 43 } },
     };
 
     // quick way to access everything for routes
