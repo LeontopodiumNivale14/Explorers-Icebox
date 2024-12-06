@@ -17,6 +17,7 @@ namespace ExplorersIcebox.Scheduler
             EnableTicking = true;
             LoopAmount = 0;
             CurrentLoop = 0;
+            UpdatedShop = false;
             return true;
         }
         internal static bool DisablePlugin()
@@ -30,6 +31,7 @@ namespace ExplorersIcebox.Scheduler
         private static int LoopAmount = 0;
         private static int CurrentLoop = 0;
         internal static string CurrentProcess = "";
+        internal static bool UpdatedShop = false;
 
         internal static void Tick()
         {
@@ -39,32 +41,40 @@ namespace ExplorersIcebox.Scheduler
                 {
                     if (!P.taskManager.IsBusy)
                     {
-                        if (C.runInfinite || (!C.runInfinite && C.runAmount > CurrentLoop))
+                        if (!UpdatedShop && !C.everythingUnlocked)
                         {
-                            LoopAmount = 0;
-                            if (!atEntrance)
-                                TaskReturn.Enqueue();
-                            UpdateTableDict();
-                            TableSellUpdate(currentTable);
-                            if (TotalSellItems(currentTable) > 0)
-                            {
-                                GroupMammetTask.Enqueue(currentTable);
-                            }
-                            TaskVislandTemp.Enqueue(RouteDataPoint[C.routeSelected].Location, RouteDataPoint[C.routeSelected].Name);
-                            while (LoopAmount < RouteAmount(C.routeSelected))
-                            {
-                                P.taskManager.Enqueue(() => CurrentProcess = $"Running Visland Route. On {LoopAmount} / {RouteAmount(C.routeSelected)}");
-                                TaskVislandTemp.Enqueue(RouteDataPoint[C.routeSelected].Base64Export, $"Enabling the following Route: {RouteDataPoint[C.routeSelected].Name}");
-                                P.taskManager.EnqueueDelay(100);
-                                P.taskManager.Enqueue(() => P.visland.IsRouteRunning() == false, $"{RouteDataPoint[C.routeSelected].Name} is currently running", configuration: DConfig);
-                                LoopAmount++;
-                            }
-                            P.taskManager.Enqueue(() => PluginLog("A full cycle has been completed!"));
-                            CurrentLoop = CurrentLoop + 1;
+                            TaskUpdateShopID.Enqueue();
+                            UpdatedShop = true;
                         }
                         else
                         {
-                            DisablePlugin();
+                            if (C.runInfinite || (!C.runInfinite && C.runAmount > CurrentLoop))
+                            {
+                                LoopAmount = 0;
+                                if (!atEntrance)
+                                    TaskReturn.Enqueue();
+                                UpdateTableDict();
+                                TableSellUpdate(currentTable);
+                                if (TotalSellItems(currentTable) > 0)
+                                {
+                                    GroupMammetTask.Enqueue(currentTable);
+                                }
+                                TaskVislandTemp.Enqueue(RouteDataPoint[C.routeSelected].Location, RouteDataPoint[C.routeSelected].Name);
+                                while (LoopAmount < RouteAmount(C.routeSelected))
+                                {
+                                    P.taskManager.Enqueue(() => CurrentProcess = $"Running Visland Route. On {LoopAmount} / {RouteAmount(C.routeSelected)}");
+                                    TaskVislandTemp.Enqueue(RouteDataPoint[C.routeSelected].Base64Export, $"Enabling the following Route: {RouteDataPoint[C.routeSelected].Name}");
+                                    P.taskManager.EnqueueDelay(100);
+                                    P.taskManager.Enqueue(() => P.visland.IsRouteRunning() == false, $"{RouteDataPoint[C.routeSelected].Name} is currently running", configuration: DConfig);
+                                    LoopAmount++;
+                                }
+                                P.taskManager.Enqueue(() => PluginLog("A full cycle has been completed!"));
+                                CurrentLoop = CurrentLoop + 1;
+                            }
+                            else
+                            {
+                                DisablePlugin();
+                            }
                         }
                     }
                 }

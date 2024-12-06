@@ -12,7 +12,7 @@ namespace ExplorersIcebox.Windows
             SizeConstraints = new WindowSizeConstraints
             {
                 MinimumSize = new Vector2(100, 100),
-                MaximumSize = new Vector2(800, 600)
+                MaximumSize = new Vector2(800, 1200)
             };
         }
 
@@ -32,6 +32,8 @@ namespace ExplorersIcebox.Windows
         private int newLoopTotal => ((int)Math.Floor((double)999 / 6) - (int)Math.Ceiling((double)C.QuartzWorkshop / 6));
         private int quartzGather => (newLoopTotal * 6);
         private int newLoopAmount => CalculateRouteLoopAmount(C.QuartzWorkshop, 6);
+        private int inputbox = 0;
+        private ushort itemID = 0;
 
 
         public override void Draw()
@@ -61,6 +63,7 @@ namespace ExplorersIcebox.Windows
                 if (ImGui.BeginTabItem("Imgui Test"))
                 {
                     TestGuiDebug();
+                    DisplayItemData();
                     ImGui.EndTabItem();
                 }
                 ImGui.EndTabBar();
@@ -169,6 +172,7 @@ namespace ExplorersIcebox.Windows
     
         private void TestGuiDebug()
         {
+            bool unlocked = CheckIfItemLocked(itemID);
             ImGui.Text("Kinda where I just test all the gui things to see what they look like");
             ImGui.Text("Tree Nodes");
             if (ImGui.TreeNode("Settings")) // Example of treenode, note that these must end in TreePop();
@@ -181,6 +185,33 @@ namespace ExplorersIcebox.Windows
                     ImGui.TreePop();
                 }
                 ImGui.TreePop();
+            }
+            ImGui.Text($"Item {itemID} is {unlocked}");
+            if (ImGui.InputInt("##ItemIDforText", ref inputbox))
+            {
+                inputbox = Math.Clamp(inputbox, ushort.MinValue, ushort.MaxValue);
+                itemID = (ushort)inputbox;
+            }
+            if (ImGui.Button("Update Callback"))
+            {
+                TaskUpdateShopID.Enqueue();
+            }
+        }
+
+        public static void DisplayItemData()
+        {
+            // Iterate over the dictionary
+            foreach (var entry in IslandSancDictionary)
+            {
+                // Extract the key (Item ID) and value (ItemData)
+                var itemId = entry.Key;
+                ItemData itemData = entry.Value;
+
+                // Format the display text
+                string displayText = $"Item ID: {itemId}, Callback: {itemData.Callback}";
+
+                // Display the text using ImGui
+                ImGui.Text(displayText);
             }
         }
     }

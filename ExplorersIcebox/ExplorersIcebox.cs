@@ -32,6 +32,7 @@ public sealed class ExplorersIcebox : IDalamudPlugin
 
 
         EzConfigGui.Init(new MainWindow().Draw);
+        MainWindow.SetWindowProperties();
         EzConfigGui.WindowSystem.AddWindow(new SettingMenu());
         EzConfigGui.WindowSystem.AddWindow(new DebugWindow());
         EzCmd.Add(Command, OnCommand, "Open Interface");

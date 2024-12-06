@@ -19,10 +19,10 @@ internal class IslandUiWindows
         return input;
     }
 
-    public static float offSet()
+    public static float offSet(float value)
     {
         float windowWidth = ImGui.GetWindowContentRegionMax().X; // Get the usable width of the window
-        float inputWidth = 100.0f; // Desired width of the input field
+        float inputWidth = value; // Desired width of the input field
         float offset = windowWidth - inputWidth; // Calculate position to hug the right wall
         return offset;
     }
@@ -32,7 +32,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Palm Leaf (Have: {PalmLeafAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Palm Leaf Send", ref C.PalmLeafWorkshop))
         {
@@ -46,7 +46,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Branch (Have: {BranchAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Branch Send", ref C.BranchWorkshop))
         {
@@ -60,7 +60,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Stone (Have: {StoneAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Stone Send", ref C.StoneWorkshop))
         {
@@ -74,7 +74,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Clam (Have: {ClamAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Clam Send", ref C.ClamWorkshop))
         {
@@ -88,7 +88,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Laver (Have: {LaverAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Laver Send", ref C.LaverWorkshop))
         {
@@ -102,7 +102,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Coral (Have: {CoralAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Coral Send", ref C.CoralWorkshop))
         {
@@ -116,7 +116,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Islewort (Have: {IslewortAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Islewort Send", ref C.IslewortWorkshop))
         {
@@ -130,7 +130,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Sand (Have: {SandAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Sand Send", ref C.SandWorkshop))
         {
@@ -144,7 +144,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Vine (Have: {VineAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Vine Send", ref C.VineWorkshop))
         {
@@ -158,7 +158,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Sap (Have: {SapAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Sap Send", ref C.SapWorkshop))
         {
@@ -172,7 +172,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Apple (Have: {AppleAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Apple Send", ref C.AppleWorkshop))
         {
@@ -186,7 +186,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Log (Have: {LogAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Log Send", ref C.LogWorkshop))
         {
@@ -200,7 +200,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Palm Log (Have: {PalmLogAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Palm Log Send", ref C.PalmLogWorkshop))
         {
@@ -214,7 +214,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Copper (Have: {CopperAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Copper Send", ref C.CopperWorkshop))
         {
@@ -228,7 +228,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Limestone (Have: {LimestoneAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Limestone Send", ref C.LimestoneWorkshop))
         {
@@ -242,7 +242,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Rock Salt (Have: {RockSaltAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Rock Salt Send", ref C.RockSaltWorkshop))
         {
@@ -256,7 +256,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Clay (Have: {ClayAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Clay Send", ref C.ClayWorkshop))
         {
@@ -270,7 +270,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Tinsand (Have: {TinsandAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Tinsand Send", ref C.TinsandWorkshop))
         {
@@ -284,7 +284,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Sugarcane (Have: {SugarcaneAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Sugarcane Send", ref C.SugarcaneWorkshop))
         {
@@ -298,7 +298,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Cotton (Have: {CottonAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Cotton Send", ref C.CottonWorkshop))
         {
@@ -312,7 +312,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Hemp (Have: {HempAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Hemp Send", ref C.HempWorkshop))
         {
@@ -326,7 +326,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Islefish (Have: {IslefishAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Islefish Send", ref C.IslefishWorkshop))
         {
@@ -340,7 +340,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Squid (Have: {SquidAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Squid Send", ref C.SquidWorkshop))
         {
@@ -354,7 +354,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Jellyfish (Have: {JellyfishAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Jellyfish Send", ref C.JellyfishWorkshop))
         {
@@ -368,7 +368,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"IronOre (Have: {IronOreAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##IronOre Send", ref C.IronOreWorkshop))
         {
@@ -382,7 +382,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Quartz (Have: {QuartzAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Quartz Send", ref C.QuartzWorkshop))
         {
@@ -396,7 +396,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Leucogranite (Have: {LeucograniteAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Leucogranite Send", ref C.LeucograniteWorkshop))
         {
@@ -410,7 +410,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Multicolored Isleblooms (Have: {MulticoloredIslebloomsAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Multicolored Isleblooms Send", ref C.MulticoloredIslebloomsWorkshop))
         {
@@ -424,7 +424,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Resin (Have: {ResinAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Resin Send", ref C.ResinWorkshop))
         {
@@ -438,7 +438,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Coconut (Have: {CoconutAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Coconut Send", ref C.CoconutWorkshop))
         {
@@ -452,7 +452,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Beehive (Have: {BeehiveAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Beehive Send", ref C.BeehiveWorkshop))
         {
@@ -466,7 +466,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Wood Opal (Have: {WoodOpalAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Wood Opal Send", ref C.WoodOpalWorkshop))
         {
@@ -480,7 +480,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Coal (Have: {CoalAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Coal Send", ref C.CoalWorkshop))
         {
@@ -494,7 +494,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Glimshroom (Have: {GlimshroomAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Glimshroom Send", ref C.GlimshroomWorkshop))
         {
@@ -508,7 +508,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Effervescent Water (Have: {EffervescentWaterAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Effervescent Water Send", ref C.EffervescentWaterWorkshop))
         {
@@ -522,7 +522,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Shale (Have: {ShaleAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Shale Send", ref C.ShaleWorkshop))
         {
@@ -536,7 +536,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Marble (Have: {MarbleAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Marble Send", ref C.MarbleWorkshop))
         {
@@ -550,7 +550,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Mythril Ore (Have: {MythrilOreAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Mythril Ore Send", ref C.MythrilOreWorkshop))
         {
@@ -564,7 +564,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Spectrine (Have: {SpectrineAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Spectrine Send", ref C.SpectrineWorkshop))
         {
@@ -578,7 +578,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Durium Sand (Have: {DuriumSandAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Durium Sand Send", ref C.DuriumSandWorkshop))
         {
@@ -592,7 +592,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Yellow Copper Ore (Have: {YellowCopperOreAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Yellow Copper Ore Send", ref C.YellowCopperOreWorkshop))
         {
@@ -606,7 +606,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Gold Ore (Have: {GoldOreAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Gold Ore Send", ref C.GoldOreWorkshop))
         {
@@ -620,7 +620,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Hawks Eye Sand (Have: {HawksEyeSandAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Hawks Eye Sand Send", ref C.HawksEyeSandWorkshop))
         {
@@ -634,7 +634,7 @@ internal class IslandUiWindows
         ImGui.AlignTextToFramePadding();
         ImGui.Text($"Crystal Formation (Have: {CrystalFormationAmount})");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet());
+        ImGui.SetCursorPosX(offSet(100.0f));
         ImGui.SetNextItemWidth(100);
         if (ImGui.InputInt("##Crystal Formation Send", ref C.CrystalFormationWorkshop))
         {

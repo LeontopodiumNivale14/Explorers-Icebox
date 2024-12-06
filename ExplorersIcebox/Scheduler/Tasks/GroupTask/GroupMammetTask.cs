@@ -18,7 +18,7 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
             {
                 if (routeEntries[i].Sell > 0)
                 {
-                    int itemID = routeEntries[i].ID;
+                    var itemID = routeEntries[i].ID;
                     PluginLog($"{itemID} has enough to sell");
                     PluginLog($"{routeEntries[i].Sell} <-- selling this much");
                     P.taskManager.EnqueueDelay(100);
