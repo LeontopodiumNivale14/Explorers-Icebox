@@ -19,8 +19,8 @@ namespace ExplorersIcebox.Windows
         public void Dispose() { }
         
         // dropdown options
-        private string[] options = { "All Items", "Route 1: Islefish | Clam", "Route 2: Islewort", "Route 3: Sugarcane | Vine", "Route 4: Tinsand | Sand",
-        "Route 5: Apple | Beehive | Vine", "Route 6: Coconut | Palm Log | Palm leaf", "Route 7: Cotton", "Route 8: Clay | Sand [Ground XP Loop",
+        private string[] options = { "All Items [By Slot]", "Route 1: Islefish | Clam", "Route 2: Islewort", "Route 3: Sugarcane | Vine", "Route 4: Tinsand | Sand",
+        "Route 5: Apple | Beehive | Vine", "Route 6: Coconut | Palm Log | Palm leaf", "Route 7: Cotton", "Route 8: Clay | Sand [Ground XP Loop]",
         "Route 19: Quartz | Stone [Flying XP Loop]"}; 
 
 
@@ -52,7 +52,7 @@ namespace ExplorersIcebox.Windows
             // Render content based on selected option
             switch (currentOption)
             {
-                case "All Items":
+                case "All Items [By Slot]":
                     RenderAllItems();
                     break;
                 case "Route 1: Islefish | Clam":
@@ -76,7 +76,7 @@ namespace ExplorersIcebox.Windows
                 case "Route 7: Cotton":
                     Route7WorkshopGui();
                     break;
-                case "Route 8: Clay | Sand [Ground XP Loop":
+                case "Route 8: Clay | Sand [Ground XP Loop]":
                     Route8WorkshopGui();
                     break;
                 case "Route 19: Quartz | Stone [Flying XP Loop]":
