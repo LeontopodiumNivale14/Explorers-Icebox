@@ -29,6 +29,75 @@ internal class IslandTables
 
     public static class Routes
     {
+        // Islefish/Clam | Laver Squid
+        public static List<RouteEntry> Route1Table =
+        [
+            new RouteEntry(8, IslefishID, 0, false),
+            new RouteEntry(8, ClamID, 0, false),
+            new RouteEntry(4, SquidID, 0, false),
+            new RouteEntry(4, LaverID, 0, false),
+        ];
+
+        // Islewort (Yes... just Islewort)
+        public static List<RouteEntry> Route2Table =
+        [
+            new RouteEntry(14, IslewortID, 0, false),
+        ];
+
+        // Sugarcane/Vine Route
+        public static List<RouteEntry> Route3Table =
+        [
+            new RouteEntry(11, SugarcaneID, 0, false),
+            new RouteEntry(11, VineID, 0, false),
+        ];
+
+        // Tinsand/Sand Route
+        public static List<RouteEntry> Route4Table =
+        [
+            new RouteEntry(7, TinsandID, 0, false),
+            new RouteEntry(7, SandID, 0, false),
+            new RouteEntry(4, MarbleID, 0, false),
+            new RouteEntry(4, LimestoneID, 0, false),
+            new RouteEntry(4, StoneID, 0, false),
+        ];
+
+        // Apple/Beehive/Vine Route
+        public static List<RouteEntry> Route5Table =
+        [
+            new RouteEntry(5, AppleID, 0, false),
+            new RouteEntry(5, BeehiveID, 0, false),
+            new RouteEntry(5, VineID, 0, false),
+            new RouteEntry(3, SapID, 0, false),
+            new RouteEntry(3, WoodOpalID, 0, false),
+            new RouteEntry(2, BranchID, 0, false),
+            new RouteEntry(2, ResinID, 0, false),
+            new RouteEntry(1, SandID, 0, false),
+            new RouteEntry(1, ClayID, 0, false),
+            new RouteEntry(5, LogID, 0, false),
+        ];
+
+        // Coconut/PalmLog/PalmLeaf
+        public static List<RouteEntry> Route6Table =
+        [
+            new RouteEntry(7, CoconutID, 0, false),
+            new RouteEntry(7, PalmLogID, 0, false),
+            new RouteEntry(7, PalmLeafID, 0, false),
+            new RouteEntry(4, LimestoneID, 0, false),
+            new RouteEntry(4, MarbleID, 0, false),
+            new RouteEntry(4, StoneID, 0, false),
+        ];
+
+        // Cotton Route
+        public static List<RouteEntry> Route7Table =
+        [
+            new RouteEntry(7, CottonID, 0, false),
+            new RouteEntry(3, HempID, 0, false),
+            new RouteEntry(1, CoconutID, 0, false),
+            new RouteEntry(1, PalmLogID, 0, false),
+            new RouteEntry(1, PalmLeafID, 0, false),
+            new RouteEntry(1, IslewortID, 0, true)
+        ];
+
         // Clay | Sand Route [Ground XP Route]
         public static List<RouteEntry> Route8Table =
         [
@@ -113,7 +182,6 @@ internal class IslandTables
         { CrystalFormationID, new ItemData { Workshop = C.CrystalFormationWorkshop, Amount = GetItemCount(CrystalFormationID), Callback = 43, NodeID = 100043 } },
     };
 
-
     // quick way to access everything for routes
     public class GatheringPointData
     {
@@ -125,15 +193,15 @@ internal class IslandTables
     // Routes 1-7, 9-18, 20-22 still need to be properly updated, This is just setting up the basework so i can go back and edit this after...
     public static Dictionary<int, GatheringPointData> RouteDataPoint = new Dictionary<int, GatheringPointData>
     {
-        { 1, new GatheringPointData {Name = "Clam/Islefish", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 2, new GatheringPointData {Name = "Islewort", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 3, new GatheringPointData {Name = "Sugarcane", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 4, new GatheringPointData {Name = "Tinsand", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 5, new GatheringPointData {Name = "Coconut", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 6, new GatheringPointData {Name = "Apple", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 7, new GatheringPointData {Name = "Marble | Limestone", Location = DummyVisland, Base64Export = DummyVisland} },
+        { 1, new GatheringPointData {Name = "Clam | Islefish", Location = Base2Clam, Base64Export = ClamVisland} },
+        { 2, new GatheringPointData {Name = "Islewort", Location = Base2Islewort, Base64Export = IslewortVisland} },
+        { 3, new GatheringPointData {Name = "Sugarcane | Vine", Location = Base2Sugarcane, Base64Export = SugarcaneVisland} },
+        { 4, new GatheringPointData {Name = "Tinsand | Sand", Location = Base2Ttinsand, Base64Export = TinsandVisland} },
+        { 5, new GatheringPointData {Name = "Apple| Beehive | Vine", Location = Base2Apple, Base64Export = AppleVisland} },
+        { 6, new GatheringPointData {Name = "Coconut | Palm Log | Palm Leaf", Location = Base2Coconut, Base64Export = CoconutVisland} },
+        { 7, new GatheringPointData {Name = "Cotton", Location = Base2Cotton, Base64Export = CottonVisland} },
         { 8, new GatheringPointData {Name = "Clay | Sand [Ground XP Loop]", Location = Base2Clay, Base64Export = ClayVisland} }, // done
-        { 9, new GatheringPointData {Name = "Cotton", Location = DummyVisland, Base64Export = DummyVisland} },
+        { 9, new GatheringPointData {Name = "Marble | Limestone", Location = DummyVisland, Base64Export = DummyVisland} },
         { 10, new GatheringPointData {Name = "Branch | Log | Resin", Location = DummyVisland, Base64Export = DummyVisland} },
         { 11, new GatheringPointData {Name = "Copper / Mythril", Location = DummyVisland, Base64Export = DummyVisland} },
         { 12, new GatheringPointData {Name = "Opal / Log / Sap", Location = DummyVisland, Base64Export = DummyVisland} },

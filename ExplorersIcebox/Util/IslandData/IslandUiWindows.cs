@@ -642,4 +642,105 @@ internal class IslandUiWindows
             IslandSancDictionary[CrystalFormationID].Workshop = C.CrystalFormationWorkshop;
         }
     }
+
+    public static void Route1WorkshopGui()
+    {
+        ImGui.TextWrapped("Route 1: Islefish | Clam");
+        ImGui.TextWrapped($"Route 1 is set to run -> {Route1Amount} loops");
+        IslefishImgui();
+        ClamImgui();
+        SquidImgui();
+        LaverImgui();
+    }
+
+    public static void Route2WorkshopGui()
+    {
+        ImGui.TextWrapped("Route 2: Islewort");
+        ImGui.TextWrapped($"Route 2 is set to run -> {Route2Amount} loops");
+        IslewortImgui();
+    }
+
+    public static void Route3WorkshopGui()
+    {
+        ImGui.TextWrapped("Route 3: Sugarcane | Vine");
+        ImGui.TextWrapped($"Route 3 is set to run -> {Route3Amount} loops");
+        SugarcaneImgui();
+        VineImgui();
+    }
+
+    public static void Route4WorkshopGui()
+    {
+        ImGui.TextWrapped("Route 4: Tinsand | Sand");
+        ImGui.TextWrapped($"Route 4 is set to run -> {Route4Amount} loops");
+        TinsandImgui();
+        SandImgui();
+        MarbleImgui();
+        LimestoneImgui();
+        StoneImgui();
+    }
+
+    public static void Route5WorkshopGui()
+    {
+        ImGui.TextWrapped("Route 5: Apple | Beehive | Vine");
+        ImGui.TextWrapped($"Route 5 is set to run -> {Route5Amount} loops");
+        AppleImgui();
+        BeehiveImgui();
+        VineImgui();
+        SapImgui();
+        WoodOpalImgui();
+        BranchImgui();
+        ResinImgui();
+        SandImgui();
+        ClayImgui();
+        LogImgui();
+    }
+
+    public static void Route6WorkshopGui()
+    {
+        ImGui.TextWrapped("Route 6: Coconut | Palm Log | Palm leaf");
+        ImGui.TextWrapped($"Route 6 is set to run -> {Route6Amount} loops");
+        CoconutImgui();
+        PalmLogImgui();
+        PalmLeafImgui();
+        LimestoneImgui();
+        MarbleImgui();
+        StoneImgui();
+    }
+
+    public static void Route7WorkshopGui()
+    {
+        ImGui.TextWrapped("Route 7: Cotton");
+        ImGui.TextWrapped($"Route 7 is set to run -> {Route7Amount} loops");
+        CottonImgui();
+        HempImgui();
+        CoconutImgui();
+        PalmLogImgui();
+        PalmLeafImgui();
+        IslewortImgui();
+    }
+
+    public static void Route8WorkshopGui()
+    {
+        ImGui.Text("Route 8: Clay | Sand [Ground XP Loop");
+        ImGui.Text($"Route 8 is set to run -> {Route8Amount} loops");
+        ClayImgui();
+        TinsandImgui();
+        MarbleImgui();
+        LimestoneImgui();
+        BranchImgui();
+        LogImgui();
+        ResinImgui();
+        SandImgui();
+    }
+
+    public static void Route19WorkshopGui()
+    {
+        ImGui.Text("Route 19: Quartz | Stone [Flying XP Loop]");
+        ImGui.Text($"Route 19 is set to run -> {Route19Amount} loops");
+        QuartzImgui();
+        IronOreImgui();
+        DuriumSandImgui();
+        LeucograniteImgui();
+        StoneImgui();
+    }
 }

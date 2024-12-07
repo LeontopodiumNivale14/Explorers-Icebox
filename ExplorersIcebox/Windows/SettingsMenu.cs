@@ -1,6 +1,7 @@
 using Dalamud.Interface.Utility.Raii;
 using ECommons.Configuration;
 using FFXIVClientStructs.FFXIV.Client.Game;
+using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.Havok.Common.Base.Container.String;
 using System.Runtime.CompilerServices;
 
@@ -16,8 +17,13 @@ namespace ExplorersIcebox.Windows
         }
         
         public void Dispose() { }
+        
+        // dropdown options
+        private string[] options = { "All Items", "Route 1: Islefish | Clam", "Route 2: Islewort", "Route 3: Sugarcane | Vine", "Route 4: Tinsand | Sand",
+        "Route 5: Apple | Beehive | Vine", "Route 6: Coconut | Palm Log | Palm leaf", "Route 7: Cotton", "Route 8: Clay | Sand [Ground XP Loop",
+        "Route 19: Quartz | Stone [Flying XP Loop]"}; 
 
-        private string[] options = { "All Items", "RouteGround", "RouteFly" }; // Dropdown options
+
         public static string currentOption = "All Items"; // Currently selected option
 
         public override void Draw()
@@ -49,11 +55,32 @@ namespace ExplorersIcebox.Windows
                 case "All Items":
                     RenderAllItems();
                     break;
-                case "RouteGround":
-                    RenderRouteGround();
+                case "Route 1: Islefish | Clam":
+                    Route1WorkshopGui();
                     break;
-                case "RouteFly":
-                    RenderRouteFly();
+                case "Route 2: Islewort":
+                    Route2WorkshopGui();
+                    break;
+                case "Route 3: Sugarcane | Vine":
+                    Route3WorkshopGui();
+                    break;
+                case "Route 4: Tinsand | Sand":
+                    Route4WorkshopGui();
+                    break;
+                case "Route 5: Apple | Beehive | Vine":
+                    Route5WorkshopGui();
+                    break;
+                case "Route 6: Coconut | Palm Log | Palm leaf":
+                    Route6WorkshopGui();
+                    break;
+                case "Route 7: Cotton":
+                    Route7WorkshopGui();
+                    break;
+                case "Route 8: Clay | Sand [Ground XP Loop":
+                    Route8WorkshopGui();
+                    break;
+                case "Route 19: Quartz | Stone [Flying XP Loop]":
+                    Route19WorkshopGui();
                     break;
             }
         }
@@ -107,33 +134,6 @@ namespace ExplorersIcebox.Windows
             GoldOreImgui();
             HawksEyeSandImgui();
             CrystalFormationImgui();
-        }
-
-        private void RenderRouteGround()
-        {
-            ImGui.Text("Displaying Ground XP Route Items.");
-            ImGui.Text($"Current maximum loop amount (Ground Route): {Route8Amount}");
-            ClayImgui();
-            TinsandImgui();
-            MarbleImgui();
-            LimestoneImgui();
-            BranchImgui();
-            LogImgui();
-            ResinImgui();
-            SandImgui();
-        }
-
-        private void RenderRouteFly()
-        {
-            ImGui.Text("Displaying RouteFly items.");
-            ImGui.Text($"Current maximum loop amount (Fly Route): {Route19Amount}");
-            // Add code to display "RouteFly" content
-            ImGui.NewLine();
-            QuartzImgui();
-            IronOreImgui();
-            DuriumSandImgui();
-            LeucograniteImgui();
-            StoneImgui();
         }
     }
 }
