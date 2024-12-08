@@ -1,3 +1,4 @@
+using ECommons.Configuration;
 using FFXIVClientStructs.FFXIV.Client.Game.MJI;
 using Lumina.Excel.Sheets;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ internal class IslandTables
     public static class Routes
     {
         // Islefish/Clam | Laver Squid
-        public static List<RouteEntry> Route1Table =
+        public static List<RouteEntry> Route0Table =
         [
             new RouteEntry(8, IslefishID, 0, false),
             new RouteEntry(8, ClamID, 0, false),
@@ -39,20 +40,20 @@ internal class IslandTables
         ];
 
         // Islewort (Yes... just Islewort)
-        public static List<RouteEntry> Route2Table =
+        public static List<RouteEntry> Route1Table =
         [
             new RouteEntry(14, IslewortID, 0, false),
         ];
 
         // Sugarcane/Vine Route
-        public static List<RouteEntry> Route3Table =
+        public static List<RouteEntry> Route2Table =
         [
             new RouteEntry(11, SugarcaneID, 0, false),
             new RouteEntry(11, VineID, 0, false),
         ];
 
         // Tinsand/Sand Route
-        public static List<RouteEntry> Route4Table =
+        public static List<RouteEntry> Route3Table =
         [
             new RouteEntry(7, TinsandID, 0, false),
             new RouteEntry(7, SandID, 0, false),
@@ -62,7 +63,7 @@ internal class IslandTables
         ];
 
         // Apple/Beehive/Vine Route
-        public static List<RouteEntry> Route5Table =
+        public static List<RouteEntry> Route4Table =
         [
             new RouteEntry(5, AppleID, 0, false),
             new RouteEntry(5, BeehiveID, 0, false),
@@ -77,7 +78,7 @@ internal class IslandTables
         ];
 
         // Coconut/PalmLog/PalmLeaf
-        public static List<RouteEntry> Route6Table =
+        public static List<RouteEntry> Route5Table =
         [
             new RouteEntry(7, CoconutID, 0, false),
             new RouteEntry(7, PalmLogID, 0, false),
@@ -88,7 +89,7 @@ internal class IslandTables
         ];
 
         // Cotton Route
-        public static List<RouteEntry> Route7Table =
+        public static List<RouteEntry> Route6Table =
         [
             new RouteEntry(7, CottonID, 0, false),
             new RouteEntry(3, HempID, 0, false),
@@ -99,7 +100,7 @@ internal class IslandTables
         ];
 
         // Clay | Sand Route [Ground XP Route]
-        public static List<RouteEntry> Route8Table =
+        public static List<RouteEntry> Route7Table =
         [
             new RouteEntry(7, ClayID, 0, false),
             new RouteEntry(2, TinsandID, 0, false),
@@ -114,8 +115,93 @@ internal class IslandTables
             new RouteEntry(10, SandID, 0, true),
         ];
 
+        // Marble | Limestone | Stone
+        public static List<RouteEntry> Route8Table =
+        [
+            new RouteEntry(7, MarbleID, 0, false),
+            new RouteEntry(7, LimestoneID, 0, false),
+            new RouteEntry(7, StoneID, 0, false),
+            new RouteEntry(1, SugarcaneID, 0, false),
+            new RouteEntry(1, VineID, 0, false),
+            new RouteEntry(1, CoconutID, 0, false),
+            new RouteEntry(1, PalmLeafID, 0, false),
+            new RouteEntry(1, PalmLogID, 0, false),
+            new RouteEntry(1, TinsandID, 0, false),
+            new RouteEntry(1, SandID, 0, false),
+            new RouteEntry(1, HempID, 0, false),
+            new RouteEntry(1, IslewortID, 0, false),
+        ];
+
+        public static List<RouteEntry> Route9Table =
+        [
+            new RouteEntry(8, BranchID, 0, false),
+            new RouteEntry(8, ResinID, 0, false),
+            new RouteEntry(1, SapID, 0, false),
+            new RouteEntry(1, WoodOpalID, 0, false),
+            new RouteEntry(1, LogID, 0, false),
+            new RouteEntry(2, ClayID, 0, false),
+            new RouteEntry(2, SandID, 0, false),
+            new RouteEntry(9, LogID, 0, true),
+        ];
+
+        public static List<RouteEntry> Route10Table =
+        [
+            new RouteEntry(7, CopperID, 0, false),
+            new RouteEntry(7, MythrilOreID, 0, false),
+            new RouteEntry(2, HempID, 0, false),
+            new RouteEntry(1, CoconutID, 0, false),
+            new RouteEntry(1, PalmLogID, 0, false),
+            new RouteEntry(1, PalmLeafID, 0, false),
+            new RouteEntry(1, CottonID, 0, false),
+            new RouteEntry(3, IslewortID, 0, false),
+            new RouteEntry(7, StoneID, 0, false)
+        ];
+
+        public static List<RouteEntry> Route11Table =
+        [
+            new RouteEntry(8, SapID, 0, false),
+            new RouteEntry(8, WoodOpalID, 0, false),
+            new RouteEntry(8, LogID, 0, false),
+            new RouteEntry(1, HempID, 0, false),
+            new RouteEntry(3, IslewortID, 0, false),
+        ];
+
+        /*
+        public static List<RouteEntry> RoutexTable =
+        [
+
+        ];
+        */
+
+        /*
+        public static List<RouteEntry> RoutexTable =
+        [
+
+        ];
+        */
+
+        /*
+        public static List<RouteEntry> RoutexTable =
+        [
+
+        ];
+        */
+
+        /*
+        public static List<RouteEntry> RoutexTable =
+        [
+
+        ];
+        */
+
+        /*
+        public static List<RouteEntry> RoutexTable =
+        [
+
+        ];
+        */
         //Quartz Route [Flying XP Route]
-        public static List<RouteEntry> Route19Table =
+        public static List<RouteEntry> Route17Table =
         [
             new RouteEntry(6, QuartzID, 0, false),
             new RouteEntry(3, IronOreID, 0, false),
@@ -188,33 +274,34 @@ internal class IslandTables
         public required string Name { get; set; }
         public required string Location { get; set; }
         public required string Base64Export { get; set; }
+        public bool GatherRoute { get; set; }
     }
 
     // Routes 1-7, 9-18, 20-22 still need to be properly updated, This is just setting up the basework so i can go back and edit this after...
     public static Dictionary<int, GatheringPointData> RouteDataPoint = new Dictionary<int, GatheringPointData>
     {
-        { 1, new GatheringPointData {Name = "Clam | Islefish", Location = Base2Clam, Base64Export = ClamVisland} },
-        { 2, new GatheringPointData {Name = "Islewort", Location = Base2Islewort, Base64Export = IslewortVisland} },
-        { 3, new GatheringPointData {Name = "Sugarcane | Vine", Location = Base2Sugarcane, Base64Export = SugarcaneVisland} },
-        { 4, new GatheringPointData {Name = "Tinsand | Sand", Location = Base2Ttinsand, Base64Export = TinsandVisland} },
-        { 5, new GatheringPointData {Name = "Apple| Beehive | Vine", Location = Base2Apple, Base64Export = AppleVisland} },
-        { 6, new GatheringPointData {Name = "Coconut | Palm Log | Palm Leaf", Location = Base2Coconut, Base64Export = CoconutVisland} },
-        { 7, new GatheringPointData {Name = "Cotton", Location = Base2Cotton, Base64Export = CottonVisland} },
-        { 8, new GatheringPointData {Name = "Clay | Sand [Ground XP Loop]", Location = Base2Clay, Base64Export = ClayVisland} }, // done
-        { 9, new GatheringPointData {Name = "Marble | Limestone", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 10, new GatheringPointData {Name = "Branch | Log | Resin", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 11, new GatheringPointData {Name = "Copper / Mythril", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 12, new GatheringPointData {Name = "Opal / Log / Sap", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 13, new GatheringPointData {Name = "Hemp", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 14, new GatheringPointData {Name = "Multicolored Isleblooms", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 15, new GatheringPointData {Name = "Iron Ore", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 16, new GatheringPointData {Name = "Laver / Squid | Jellyfish / Coral", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 17, new GatheringPointData {Name = "Rocksalt", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 18, new GatheringPointData {Name = "Leucogranite", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 19, new GatheringPointData {Name = "Quartz [Mountain XP Loop]", Location = Base2Quartz, Base64Export = QuartzVisland} }, // done
-        { 20, new GatheringPointData {Name = "Coal / Shale | Glimshroom", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 21, new GatheringPointData {Name = "Effervescent Water", Location = DummyVisland, Base64Export = DummyVisland} },
-        { 22, new GatheringPointData {Name = "Crystal / Hawk Sand | Yelow Copper / Gold Ore[x2]", Location = DummyVisland, Base64Export = DummyVisland} },
+        { 0, new GatheringPointData {Name = "Clam | Islefish", Location = Base2Clam, Base64Export = ClamVisland, GatherRoute = C.Route0} },
+        { 1, new GatheringPointData {Name = "Islewort", Location = Base2Islewort, Base64Export = IslewortVisland, GatherRoute = C.Route1} },
+        { 2, new GatheringPointData {Name = "Sugarcane | Vine", Location = Base2Sugarcane, Base64Export = SugarcaneVisland, GatherRoute = C.Route2} },
+        { 3, new GatheringPointData {Name = "Tinsand | Sand", Location = Base2Ttinsand, Base64Export = TinsandVisland, GatherRoute = C.Route3} },
+        { 4, new GatheringPointData {Name = "Apple| Beehive | Vine", Location = Base2Apple, Base64Export = AppleVisland, GatherRoute = C.Route4} },
+        { 5, new GatheringPointData {Name = "Coconut | Palm Log | Palm Leaf", Location = Base2Coconut, Base64Export = CoconutVisland, GatherRoute = C.Route5} },
+        { 6, new GatheringPointData {Name = "Cotton", Location = Base2Cotton, Base64Export = CottonVisland, GatherRoute = C.Route6} },
+        { 7, new GatheringPointData {Name = "Clay | Sand [Ground XP Loop]", Location = Base2Clay, Base64Export = ClayVisland, GatherRoute = C.Route7} }, // done
+        { 8, new GatheringPointData {Name = "Marble | Limestone | (Stone)", Location = DummyVisland, Base64Export = DummyVisland, GatherRoute = C.Route8} },
+        { 9, new GatheringPointData {Name = "Branch | Resin | (Log)", Location = DummyVisland, Base64Export = DummyVisland, GatherRoute = C.Route9} },
+        { 10, new GatheringPointData {Name = "Copper / Mythril", Location = DummyVisland, Base64Export = DummyVisland, GatherRoute = C.Route10} },
+        { 11, new GatheringPointData {Name = "Opal / Log / Sap", Location = DummyVisland, Base64Export = DummyVisland, GatherRoute = C.Route11} },
+        { 12, new GatheringPointData {Name = "Hemp", Location = DummyVisland, Base64Export = DummyVisland, GatherRoute = C.Route12} },
+        { 13, new GatheringPointData {Name = "Multicolored Isleblooms", Location = DummyVisland, Base64Export = DummyVisland, GatherRoute = C.Route13} },
+        { 14, new GatheringPointData {Name = "Iron Ore", Location = DummyVisland, Base64Export = DummyVisland, GatherRoute = C.Route14} },
+        { 15, new GatheringPointData {Name = "Laver / Squid | Jellyfish / Coral", Location = DummyVisland, Base64Export = DummyVisland, GatherRoute = C.Route15} },
+        { 16, new GatheringPointData {Name = "Rocksalt", Location = DummyVisland, Base64Export = DummyVisland, GatherRoute = C.Route16} },
+        { 17, new GatheringPointData {Name = "Leucogranite", Location = DummyVisland, Base64Export = DummyVisland, GatherRoute = C.Route17} },
+        { 18, new GatheringPointData {Name = "Quartz [Mountain XP Loop]", Location = Base2Quartz, Base64Export = QuartzVisland, GatherRoute = C.Route18} }, // done
+        { 19, new GatheringPointData {Name = "Coal / Shale | Glimshroom", Location = DummyVisland, Base64Export = DummyVisland, GatherRoute = C.Route19} },
+        { 20, new GatheringPointData {Name = "Effervescent Water", Location = DummyVisland, Base64Export = DummyVisland, GatherRoute = C.Route20} },
+        { 21, new GatheringPointData {Name = "Crystal / Hawk Sand | Yelow Copper / Gold Ore[x2]", Location = DummyVisland, Base64Export = DummyVisland, GatherRoute = C.Route21} },
     };
 
     public static int RouteAmountCalc(List<RouteEntry> routeEntries, params int[] workshops)
@@ -256,6 +343,33 @@ internal class IslandTables
         }
     }
 
+    public static void GatherAllUpdate()
+    {
+        RouteDataPoint[0].GatherRoute = C.Route0;
+        RouteDataPoint[1].GatherRoute = C.Route1;
+        RouteDataPoint[2].GatherRoute = C.Route2;
+        RouteDataPoint[3].GatherRoute = C.Route3;
+        RouteDataPoint[4].GatherRoute = C.Route4;
+        RouteDataPoint[5].GatherRoute = C.Route5;
+        RouteDataPoint[6].GatherRoute = C.Route6;
+        RouteDataPoint[7].GatherRoute = C.Route7;
+        RouteDataPoint[8].GatherRoute = C.Route8;
+        RouteDataPoint[9].GatherRoute = C.Route9;
+        RouteDataPoint[10].GatherRoute = C.Route10;
+        RouteDataPoint[11].GatherRoute = C.Route11;
+        RouteDataPoint[12].GatherRoute = C.Route12;
+        RouteDataPoint[13].GatherRoute = C.Route13;
+        RouteDataPoint[14].GatherRoute = C.Route14;
+        RouteDataPoint[15].GatherRoute = C.Route15;
+        RouteDataPoint[16].GatherRoute = C.Route16;
+        RouteDataPoint[17].GatherRoute = C.Route17;
+        RouteDataPoint[18].GatherRoute = C.Route18;
+        RouteDataPoint[19].GatherRoute = C.Route19;
+        RouteDataPoint[20].GatherRoute = C.Route20;
+        RouteDataPoint[21].GatherRoute = C.Route21;
+        EzConfig.Save();
+    }
+
     public static int TotalSellItems(List<RouteEntry> routeEntries)
     {
         int totalSellItems = 0;
@@ -271,8 +385,15 @@ internal class IslandTables
     
     public static List<RouteEntry> currentTable => C.routeSelected switch
     {
-        8 => Routes.Route8Table,
-        19 => Routes.Route19Table,
+        0 => Routes.Route0Table,
+        1 => Routes.Route1Table,
+        2 => Routes.Route2Table,
+        3 => Routes.Route3Table,
+        4 => Routes.Route4Table,
+        5 => Routes.Route5Table,
+        6 => Routes.Route6Table,
+        7 => Routes.Route7Table,
+        18 => Routes.Route17Table,
         _ => throw new InvalidOperationException("Invalid table index")
     };
 
@@ -303,4 +424,21 @@ internal class IslandTables
             return baseMaxLoop; // No workshop items, return base loops
         }
     }
+
+    // For Gathering Every Item, checks to see what routes are set to true. And then outputs the value
+    public static int? CheckGatherRoutes(Dictionary<int, GatheringPointData> routeDataPoint, out bool allFalse)
+    {
+        allFalse = true; // Start assuming all are false
+
+        foreach (var kvp in routeDataPoint)
+        {
+            if (kvp.Value.GatherRoute)
+            {
+                allFalse = false; // Found at least one true value
+                return kvp.Key;   // Return the key where GatherRoute is true
+            }
+        }
+        return null; // If none are true, return null
+    }
+    
 }

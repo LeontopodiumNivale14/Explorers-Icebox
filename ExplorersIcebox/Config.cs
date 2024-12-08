@@ -57,7 +57,9 @@ public class Config : IEzConfig
     public bool runInfinite = true;
     public int runAmount = 0;
     public bool everythingUnlocked = true;
+    public bool XPGrind = true;
 
+    public bool Route0 = true;
     public bool Route1 = true;
     public bool Route2 = true;
     public bool Route3 = true;
@@ -79,8 +81,6 @@ public class Config : IEzConfig
     public bool Route19 = true;
     public bool Route20 = true;
     public bool Route21 = true;
-    public bool Route22 = true;
-
 
     public void Save()
     {

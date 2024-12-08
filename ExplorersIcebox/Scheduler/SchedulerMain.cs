@@ -15,7 +15,6 @@ namespace ExplorersIcebox.Scheduler
         internal static bool EnablePlugin()
         {
             EnableTicking = true;
-            LoopAmount = 0;
             CurrentLoop = 0;
             UpdatedShop = false;
             return true;
@@ -28,7 +27,6 @@ namespace ExplorersIcebox.Scheduler
             P.navmesh.Stop();
             return true;
         }
-        private static int LoopAmount = 0;
         private static int CurrentLoop = 0;
         internal static string CurrentProcess = "";
         internal static bool UpdatedShop = false;
@@ -48,32 +46,43 @@ namespace ExplorersIcebox.Scheduler
                         }
                         else
                         {
-                            if (C.runInfinite || (!C.runInfinite && C.runAmount > CurrentLoop))
+                            if (C.XPGrind)
                             {
-                                LoopAmount = 0;
-                                if (!atEntrance)
-                                    TaskReturn.Enqueue();
-                                UpdateTableDict();
-                                TableSellUpdate(currentTable);
-                                if (TotalSellItems(currentTable) > 0)
+                                if (C.runInfinite || (!C.runInfinite && C.runAmount > CurrentLoop))
                                 {
-                                    GroupMammetTask.Enqueue(currentTable);
+                                    GroupIslandTask.Enqueue(currentTable);
+                                    P.taskManager.Enqueue(() => CurrentLoop = CurrentLoop + 1);
                                 }
-                                TaskVislandTemp.Enqueue(RouteDataPoint[C.routeSelected].Location, RouteDataPoint[C.routeSelected].Name);
-                                while (LoopAmount < RouteAmount(C.routeSelected))
+                                else
                                 {
-                                    P.taskManager.Enqueue(() => CurrentProcess = $"Running Visland Route. On {LoopAmount} / {RouteAmount(C.routeSelected)}");
-                                    TaskVislandTemp.Enqueue(RouteDataPoint[C.routeSelected].Base64Export, $"Enabling the following Route: {RouteDataPoint[C.routeSelected].Name}");
-                                    P.taskManager.EnqueueDelay(100);
-                                    P.taskManager.Enqueue(() => P.visland.IsRouteRunning() == false, $"{RouteDataPoint[C.routeSelected].Name} is currently running", configuration: DConfig);
-                                    LoopAmount++;
+                                    DisablePlugin();
                                 }
-                                P.taskManager.Enqueue(() => PluginLog("A full cycle has been completed!"));
-                                CurrentLoop = CurrentLoop + 1;
                             }
-                            else
+                            else if (!C.XPGrind)
                             {
-                                DisablePlugin();
+                                C.routeSelected = 0;
+                                bool isAllFalse = true; // Assume all are false initially.
+
+                                foreach (var entry in RouteDataPoint)
+                                {
+                                    if (entry.Value.GatherRoute)
+                                    {
+                                        C.routeSelected = entry.Key; // Update the selected route in C.
+                                        isAllFalse = false; // At least one route is true.
+                                        PluginLog($"Current route is now: {C.routeSelected}");
+                                        break; // Exit loop as we've found the first true entry.
+                                    }
+                                }
+                                if (!isAllFalse)
+                                {
+                                    GroupIslandTask.Enqueue(currentTable);
+                                    RouteDataPoint[C.routeSelected].GatherRoute = false;
+                                }
+                                if (isAllFalse)
+                                {
+                                    DisablePlugin();
+                                }
+
                             }
                         }
                     }

@@ -643,35 +643,31 @@ internal class IslandUiWindows
         }
     }
 
-    public static void Route1WorkshopGui()
+    public static void Route0WorkshopGui()
     {
-        ImGui.TextWrapped("Route 1: Islefish | Clam");
-        ImGui.TextWrapped($"Route 1 is set to run -> {Route1Amount} loops");
+        ImGui.TextWrapped($"Route 0 is set to run -> {Route0Amount} loops");
         IslefishImgui();
         ClamImgui();
         SquidImgui();
         LaverImgui();
     }
 
-    public static void Route2WorkshopGui()
+    public static void Route1WorkshopGui()
     {
-        ImGui.TextWrapped("Route 2: Islewort");
-        ImGui.TextWrapped($"Route 2 is set to run -> {Route2Amount} loops");
+        ImGui.TextWrapped($"Route 1 is set to run -> {Route1Amount} loops");
         IslewortImgui();
     }
 
-    public static void Route3WorkshopGui()
+    public static void Route2WorkshopGui()
     {
-        ImGui.TextWrapped("Route 3: Sugarcane | Vine");
-        ImGui.TextWrapped($"Route 3 is set to run -> {Route3Amount} loops");
+        ImGui.TextWrapped($"Route 2 is set to run -> {Route2Amount} loops");
         SugarcaneImgui();
         VineImgui();
     }
 
-    public static void Route4WorkshopGui()
+    public static void Route3WorkshopGui()
     {
-        ImGui.TextWrapped("Route 4: Tinsand | Sand");
-        ImGui.TextWrapped($"Route 4 is set to run -> {Route4Amount} loops");
+        ImGui.TextWrapped($"Route 3 is set to run -> {Route3Amount} loops");
         TinsandImgui();
         SandImgui();
         MarbleImgui();
@@ -679,10 +675,9 @@ internal class IslandUiWindows
         StoneImgui();
     }
 
-    public static void Route5WorkshopGui()
+    public static void Route4WorkshopGui()
     {
-        ImGui.TextWrapped("Route 5: Apple | Beehive | Vine");
-        ImGui.TextWrapped($"Route 5 is set to run -> {Route5Amount} loops");
+        ImGui.TextWrapped($"Route 4 is set to run -> {Route4Amount} loops");
         AppleImgui();
         BeehiveImgui();
         VineImgui();
@@ -695,10 +690,9 @@ internal class IslandUiWindows
         LogImgui();
     }
 
-    public static void Route6WorkshopGui()
+    public static void Route5WorkshopGui()
     {
-        ImGui.TextWrapped("Route 6: Coconut | Palm Log | Palm leaf");
-        ImGui.TextWrapped($"Route 6 is set to run -> {Route6Amount} loops");
+        ImGui.TextWrapped($"Route 5 is set to run -> {Route5Amount} loops");
         CoconutImgui();
         PalmLogImgui();
         PalmLeafImgui();
@@ -707,10 +701,9 @@ internal class IslandUiWindows
         StoneImgui();
     }
 
-    public static void Route7WorkshopGui()
+    public static void Route6WorkshopGui()
     {
-        ImGui.TextWrapped("Route 7: Cotton");
-        ImGui.TextWrapped($"Route 7 is set to run -> {Route7Amount} loops");
+        ImGui.TextWrapped($"Route 6 is set to run -> {Route6Amount} loops");
         CottonImgui();
         HempImgui();
         CoconutImgui();
@@ -719,10 +712,9 @@ internal class IslandUiWindows
         IslewortImgui();
     }
 
-    public static void Route8WorkshopGui()
+    public static void Route7WorkshopGui()
     {
-        ImGui.Text("Route 8: Clay | Sand [Ground XP Loop");
-        ImGui.Text($"Route 8 is set to run -> {Route8Amount} loops");
+        ImGui.Text($"Route 7 is set to run -> {Route7Amount} loops");
         ClayImgui();
         TinsandImgui();
         MarbleImgui();
@@ -733,10 +725,25 @@ internal class IslandUiWindows
         SandImgui();
     }
 
-    public static void Route19WorkshopGui()
+    public static void Route8WorkshopGui()
     {
-        ImGui.Text("Route 19: Quartz | Stone [Flying XP Loop]");
-        ImGui.Text($"Route 19 is set to run -> {Route19Amount} loops");
+        MarbleImgui();
+        LimestoneImgui();
+        StoneImgui();
+        SugarcaneImgui();
+        VineImgui();
+        CoconutImgui();
+        PalmLeafImgui();
+        PalmLogImgui();
+        TinsandImgui();
+        SandImgui();
+        HempImgui();
+        IslewortImgui();
+    }
+
+    public static void Route17WorkshopGui()
+    {
+        ImGui.Text($"Route 17 is set to run -> {Route17Amount} loops");
         QuartzImgui();
         IronOreImgui();
         DuriumSandImgui();

@@ -1,3 +1,4 @@
+using ECommons.Automation.LegacyTaskManager;
 using ExplorersIcebox.Scheduler.Tasks;
 using System.IO;
 
@@ -81,6 +82,9 @@ namespace ExplorersIcebox.Windows
             ImGui.Text($"Navmesh information");
             ImGui.Text($"PlayerPos: " + PlayerPosition());
             ImGui.Text($"Navmesh BuildProgress :" + P.navmesh.BuildProgress());//working ipc
+            ImGui.Text($"Current task time remaining is: {P.taskManager.RemainingTimeMS}");
+            ImGui.Text($"Current task is: {P.taskManager.CurrentTask}");
+
         }
 
         private void NavmeshInfoDebug()

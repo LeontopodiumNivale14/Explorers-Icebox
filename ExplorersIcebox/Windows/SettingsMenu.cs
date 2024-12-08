@@ -45,7 +45,6 @@ namespace ExplorersIcebox.Windows
                         ImGui.SetItemDefaultFocus();
                     }
                 }
-
                 ImGui.EndCombo();
             }
 
@@ -56,31 +55,31 @@ namespace ExplorersIcebox.Windows
                     RenderAllItems();
                     break;
                 case "Route 1: Islefish | Clam":
-                    Route1WorkshopGui();
+                    Route0WorkshopGui();
                     break;
                 case "Route 2: Islewort":
-                    Route2WorkshopGui();
+                    Route1WorkshopGui();
                     break;
                 case "Route 3: Sugarcane | Vine":
-                    Route3WorkshopGui();
+                    Route2WorkshopGui();
                     break;
                 case "Route 4: Tinsand | Sand":
-                    Route4WorkshopGui();
+                    Route3WorkshopGui();
                     break;
                 case "Route 5: Apple | Beehive | Vine":
-                    Route5WorkshopGui();
+                    Route4WorkshopGui();
                     break;
                 case "Route 6: Coconut | Palm Log | Palm leaf":
-                    Route6WorkshopGui();
+                    Route5WorkshopGui();
                     break;
                 case "Route 7: Cotton":
-                    Route7WorkshopGui();
+                    Route6WorkshopGui();
                     break;
                 case "Route 8: Clay | Sand [Ground XP Loop]":
-                    Route8WorkshopGui();
+                    Route7WorkshopGui();
                     break;
                 case "Route 19: Quartz | Stone [Flying XP Loop]":
-                    Route19WorkshopGui();
+                    Route17WorkshopGui();
                     break;
             }
         }
