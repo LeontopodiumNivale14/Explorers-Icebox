@@ -132,7 +132,7 @@ internal class IslandTables
             new RouteEntry(1, IslewortID, 0, false),
         ];
 
-        // Branch | Log
+        // Branch | Sap | Log
         public static List<RouteEntry> Route9Table =
         [
             new RouteEntry(8, BranchID, 0, false),
@@ -192,6 +192,7 @@ internal class IslandTables
             new RouteEntry(7, StoneID, 0, true),
         ];
 
+        // Iron Ore
         public static List<RouteEntry> Route14Table =
         [
             new RouteEntry(11, IronOreID, 0, false),

@@ -44,28 +44,6 @@ public class MainWindow : ConfigWindow, IDisposable
     public static string currentMode = "XP | Cowries Grind";
     public static string currentlyDoing = SchedulerMain.CurrentProcess;
     private bool everythingUnlocked = false;
-    private bool route1 = C.Route0;
-    private bool route2 = C.Route1;
-    private bool route3 = C.Route2;
-    private bool route4 = C.Route3;
-    private bool route5 = C.Route4;
-    private bool route6 = C.Route5;
-    private bool route7 = C.Route6;
-    private bool route8 = C.Route7;
-    private bool route9 = C.Route8;
-    private bool route10 = C.Route9;
-    private bool route11 = C.Route10;
-    private bool route12 = C.Route11;
-    private bool route13 = C.Route12;
-    private bool route14 = C.Route13;
-    private bool route15 = C.Route14;
-    private bool route16 = C.Route15;
-    private bool route17 = C.Route16;
-    private bool route18 = C.Route17;
-    private bool route19 = C.Route18;
-    private bool route20 = C.Route19;
-    private bool route21 = C.Route20;
-    private bool route22 = C.Route21;
 
     public override void Draw()
     {
@@ -225,11 +203,12 @@ public class MainWindow : ConfigWindow, IDisposable
     {
         ImGui.TextWrapped("Select which routes you would like to cap items from:");
         ImGui.Spacing();
-        if (ImGui.TreeNode("Islefish | Clam [Route 1]"))
+        if (ImGui.TreeNode("Islefish | Clam [Route 0]"))
         {
-            if (ImGui.Checkbox("Enable Route 1", ref route1))
+            bool route0 = C.Route0;
+            if (ImGui.Checkbox("Enable Route 0", ref route0))
             {
-                if (route1)
+                if (route0)
                 {
                     C.Route0 = true;
                     GatherAllUpdate();
@@ -243,11 +222,12 @@ public class MainWindow : ConfigWindow, IDisposable
             Route0WorkshopGui();
             ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Islewort [Route 2]"))
+        if (ImGui.TreeNode("Islewort [Route 1]"))
         {
-            if (ImGui.Checkbox("Enable Route 2", ref route2))
+            bool route1 = C.Route1;
+            if (ImGui.Checkbox("Enable Route 1", ref route1))
             {
-                if (route2)
+                if (route1)
                 {
                     C.Route1 = true;
                     GatherAllUpdate();
@@ -261,11 +241,12 @@ public class MainWindow : ConfigWindow, IDisposable
             Route1WorkshopGui();
             ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Sugarcane | Vine [Route 3]"))
+        if (ImGui.TreeNode("Sugarcane | Vine [Route 2]"))
         {
-            if (ImGui.Checkbox("Enable Route 3", ref route3))
+            bool route2 = C.Route2;
+            if (ImGui.Checkbox("Enable Route 2", ref route2))
             {
-                if (route3)
+                if (route2)
                 {
                     C.Route2 = true;
                     GatherAllUpdate();
@@ -279,11 +260,12 @@ public class MainWindow : ConfigWindow, IDisposable
             Route2WorkshopGui();
             ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Tinsand | Sand [Route 4]"))
+        if (ImGui.TreeNode("Tinsand | Sand [Route 3]"))
         {
-            if (ImGui.Checkbox("Enable Route 4", ref route4))
+            bool route3 = C.Route3;
+            if (ImGui.Checkbox("Enable Route 4", ref route3))
             {
-                if (route4)
+                if (route3)
                 {
                     C.Route3 = true;
                     GatherAllUpdate();
@@ -297,11 +279,12 @@ public class MainWindow : ConfigWindow, IDisposable
             Route3WorkshopGui();
             ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Apple | Beehive | Vine [Route 5]"))
+        if (ImGui.TreeNode("Apple | Beehive | Vine [Route 4]"))
         {
-            if (ImGui.Checkbox("Enable Route 5", ref route5))
+            bool route4 = C.Route4;
+            if (ImGui.Checkbox("Enable Route 5", ref route4))
             {
-                if (route5)
+                if (route4)
                 {
                     C.Route4 = true;
                     GatherAllUpdate();
@@ -315,11 +298,12 @@ public class MainWindow : ConfigWindow, IDisposable
             Route4WorkshopGui();
             ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Coconut | Palm Log | Palm leaf [Route 6]"))
+        if (ImGui.TreeNode("Coconut | Palm Log | Palm leaf [Route 5]"))
         {
-            if (ImGui.Checkbox("Enable Route 6", ref route6))
+            bool route5 = C.Route5;
+            if (ImGui.Checkbox("Enable Route 5", ref route5))
             {
-                if (route6)
+                if (route5)
                 {
                     C.Route5 = true;
                     GatherAllUpdate();
@@ -333,11 +317,12 @@ public class MainWindow : ConfigWindow, IDisposable
             Route5WorkshopGui();
             ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Cotton [Route 7]"))
+        if (ImGui.TreeNode("Cotton [Route 6]"))
         {
-            if (ImGui.Checkbox("Enable Route 7", ref route7))
+            bool route6 = C.Route6;
+            if (ImGui.Checkbox("Enable Route 7", ref route6))
             {
-                if (route7)
+                if (route6)
                 {
                     C.Route6 = true;
                     GatherAllUpdate();
@@ -351,11 +336,12 @@ public class MainWindow : ConfigWindow, IDisposable
             Route6WorkshopGui();
             ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Clay | Sand [Route 8]"))
+        if (ImGui.TreeNode("Clay | Sand [Route 7]"))
         {
-            if (ImGui.Checkbox("Enable Route 8", ref route8))
+            bool route7 = C.Route7;
+            if (ImGui.Checkbox("Enable Route 7", ref route7))
             {
-                if (route8)
+                if (route7)
                 {
                     C.Route7 = true;
                     GatherAllUpdate();
@@ -369,11 +355,145 @@ public class MainWindow : ConfigWindow, IDisposable
             Route7WorkshopGui();
             ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Quartz | Stone [Route 19]"))
+        if (ImGui.TreeNode("Marble | Limestone | Stone [Route 8]"))
         {
-            if (ImGui.Checkbox("Enable Route 19", ref route19))
+            bool route8 = C.Route8;
+            if (ImGui.Checkbox("Enable Route 8", ref route8))
             {
-                if (route19)
+                if (route8)
+                {
+                    C.Route8 = true;
+                    GatherAllUpdate();
+                }
+                else
+                {
+                    C.Route8 = false;
+                    GatherAllUpdate();
+                }
+            }
+            Route8WorkshopGui();
+            ImGui.TreePop();
+        }
+        if (ImGui.TreeNode("Branch | Sap | Log [Route 9]"))
+        {
+            bool route9 = C.Route9;
+            if (ImGui.Checkbox("Enable Route 9", ref route9))
+            {
+                if (route9)
+                {
+                    C.Route9 = true;
+                    GatherAllUpdate();
+                }
+                else
+                {
+                    C.Route9 = false;
+                    GatherAllUpdate();
+                }
+            }
+            Route9WorkshopGui();
+            ImGui.TreePop();
+        }
+        if (ImGui.TreeNode("Copper | Mythril [Route 10]"))
+        {
+            bool route10 = C.Route10;
+            if (ImGui.Checkbox("Enable Route 10", ref route10))
+            {
+                if (route10)
+                {
+                    C.Route10 = true;
+                    GatherAllUpdate();
+                }
+                else
+                {
+                    C.Route10 = false;
+                    GatherAllUpdate();
+                }
+            }
+            Route10WorkshopGui();
+            ImGui.TreePop();
+        }
+        if (ImGui.TreeNode("Opal | Sap | (Log) [Route 11]"))
+        {
+            bool route11 = C.Route11;
+            if (ImGui.Checkbox("Enable Route 11", ref route11))
+            {
+                if (route11)
+                {
+                    C.Route11 = true;
+                    GatherAllUpdate();
+                }
+                else
+                {
+                    C.Route11 = false;
+                    GatherAllUpdate();
+                }
+            }
+            Route11WorkshopGui();
+            ImGui.TreePop();
+        }
+        if (ImGui.TreeNode("Hemp | (Islewort) [Route 12]"))
+        {
+            bool route12 = C.Route12;
+            if (ImGui.Checkbox("Enable Route 12", ref route12))
+            {
+                if (route12)
+                {
+                    C.Route12 = true;
+                    GatherAllUpdate();
+                }
+                else
+                {
+                    C.Route12 = false;
+                    GatherAllUpdate();
+                }
+            }
+            Route12WorkshopGui();
+            ImGui.TreePop();
+        }
+        if (ImGui.TreeNode("Multicolorblooms [Route 13]"))
+        {
+            bool route13 = C.Route13;
+            if (ImGui.Checkbox("Enable Route 13", ref route13))
+            {
+                if (route13)
+                {
+                    C.Route13 = true;
+                    GatherAllUpdate();
+                }
+                else
+                {
+                    C.Route13 = false;
+                    GatherAllUpdate();
+                }
+            }
+            Route13WorkshopGui();
+            ImGui.TreePop();
+        }
+        if (ImGui.TreeNode("Iron Ore [Route 14]"))
+        {
+            bool route14 = C.Route14;
+            if (ImGui.Checkbox("Enable Route 14", ref route14))
+            {
+                if (route14)
+                {
+                    C.Route14 = true;
+                    GatherAllUpdate();
+                }
+                else
+                {
+                    C.Route14 = false;
+                    GatherAllUpdate();
+                }
+            }
+            Route14WorkshopGui();
+            ImGui.TreePop();
+        }
+        if (ImGui.TreeNode("Quartz | Stone [Route 18]"))
+        {
+            bool route18 = C.Route18;
+            if (ImGui.Checkbox("Enable Route 18", ref route18))
+            {
+                if (route18)
                 {
                     C.Route18 = true;
                     GatherAllUpdate();
