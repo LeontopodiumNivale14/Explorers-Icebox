@@ -1,6 +1,7 @@
 using ECommons.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -741,13 +742,145 @@ internal class IslandUiWindows
         IslewortImgui();
     }
 
-    public static void Route17WorkshopGui()
+    public static void Route9WorkshopGui()
     {
-        ImGui.Text($"Route 17 is set to run -> {Route17Amount} loops");
+        ImGui.Text($"Route 9 is set to run -> {Route9Amount} loops");
+        BranchImgui();
+        ResinImgui();
+        SapImgui();
+        WoodOpalImgui();
+        LogImgui();
+        ClayImgui();
+        SandImgui();
+        LogImgui();
+    }
+
+    public static void Route10WorkshopGui()
+    {
+        ImGui.Text($"Route 10 is set to run -> {Route10Amount} loops");
+        CopperImgui();
+        MythrilOreImgui();
+        HempImgui();
+        CoconutImgui();
+        PalmLogImgui();
+        PalmLeafImgui();
+        CottonImgui();
+        IslewortImgui();
+        StoneImgui();
+    }
+
+    public static void Route11WorkshopGui()
+    {
+        ImGui.Text($"Route 11 is set to run -> {Route11Amount} loops");
+        SapImgui();
+        WoodOpalImgui();
+        LogImgui();
+        HempImgui();
+        IslewortImgui();
+    }
+
+    public static void Route12WorkshopGui()
+    {
+        ImGui.Text($"Route 12 is set to run -> {Route12Amount} loops");
+        HempImgui();
+        IslewortImgui();
+        SandImgui();
+        ClayImgui();
+        CoconutImgui();
+        PalmLogImgui();
+        PalmLeafImgui();
+    }
+
+    public static void Route13WorkshopGui()
+    {
+        ImGui.Text($"Route 13 is set to run -> {Route13Amount} loops");
+        MulticoloredIslebloomsImgui();
         QuartzImgui();
         IronOreImgui();
         DuriumSandImgui();
         LeucograniteImgui();
+        StoneImgui();
+    }
+
+    public static void Route14WorkshopGui()
+    {
+        ImGui.Text($"Route 14 is set to run -> {Route14Amount} loops");
+        IronOreImgui();
+        StoneImgui();
+    }
+
+    public static void Route15WorkshopGui()
+    {
+        ImGui.Text($"Route 15 is set to run -> {Route15Amount} loops");
+        LaverImgui();
+        SquidImgui();
+        JellyfishImgui();
+        CoralImgui();
+    }
+
+    public static void Route16WorkshopGui()
+    {
+        ImGui.Text($"Route 16 is set to run -> {Route16Amount} loops");
+        RockSaltImgui();
+        StoneImgui();
+        ClayImgui();
+        SandImgui();
+        IslewortImgui();
+        HempImgui();
+    }
+
+    public static void Route17WorkshopGui()
+    {
+        ImGui.Text($"Route 17 is set to run -> {Route17Amount} loops");
+        LeucograniteImgui();
+        CopperImgui();
+        MythrilOreImgui();
+        IronOreImgui();
+        DuriumSandImgui();
+        StoneImgui();
+    }
+
+    public static void Route18WorkshopGui()
+    {
+        ImGui.Text($"Route 18 is set to run -> {Route18Amount} loops");
+        QuartzImgui();
+        IronOreImgui();
+        DuriumSandImgui();
+        LeucograniteImgui();
+        StoneImgui();
+    }
+
+    public static void Route19WorkshopGui()
+    {
+        ImGui.Text($"Route 19 is set to run -> {Route19Amount} loops");
+        GlimshroomImgui();
+        ShaleImgui();
+        CoalImgui();
+        StoneImgui();
+    }
+
+    public static void Route20WorkshopGui()
+    {
+        ImGui.Text($"Route 20 is set to run -> {Route20Amount} loops");
+        EffervescentWaterImgui();
+        SpectrineImgui();
+        ShaleImgui();
+        CoalImgui();
+        StoneImgui();
+    }
+
+    public static void Route21WorkshopGui()
+    {
+        ImGui.Text($"Route 21 is set to run -> {Route21Amount} loops");
+        YellowCopperOreImgui();
+        GoldOreImgui();
+        CrystalFormationImgui();
+        HawksEyeSandImgui();
+        GlimshroomImgui();
+        EffervescentWaterImgui();
+        SpectrineImgui();
+        ShaleImgui();
+        CoalImgui();
         StoneImgui();
     }
 }

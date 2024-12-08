@@ -384,7 +384,7 @@ public class MainWindow : ConfigWindow, IDisposable
                     GatherAllUpdate();
                 }
             }
-            Route17WorkshopGui();
+            Route18WorkshopGui();
             ImGui.TreePop();
         }
     }
@@ -400,7 +400,7 @@ public class MainWindow : ConfigWindow, IDisposable
         }
         else if (C.routeSelected == 18)
         {
-            Route17WorkshopGui();
+            Route18WorkshopGui();
         }
     }
 

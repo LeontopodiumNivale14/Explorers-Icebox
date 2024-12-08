@@ -79,7 +79,7 @@ namespace ExplorersIcebox.Windows
                     Route7WorkshopGui();
                     break;
                 case "Route 19: Quartz | Stone [Flying XP Loop]":
-                    Route17WorkshopGui();
+                    Route18WorkshopGui();
                     break;
             }
         }
