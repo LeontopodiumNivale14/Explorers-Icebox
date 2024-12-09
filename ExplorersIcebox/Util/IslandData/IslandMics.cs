@@ -67,7 +67,7 @@ public class IslandMics
     public static int Route7Amount => RouteAmountCalc(Routes.Route7Table, C.ClayWorkshop, C.TinsandWorkshop, C.MarbleWorkshop, C.LimestoneWorkshop, C.StoneWorkshop, C.BranchWorkshop, C.LogWorkshop, C.ResinWorkshop, C.SugarcaneWorkshop, C.VineWorkshop, 0);
     public static int Route8Amount => RouteAmountCalc(Routes.Route8Table, C.MarbleWorkshop, C.LimestoneWorkshop, 0, C.SugarcaneWorkshop, C.VineWorkshop, C.CoconutWorkshop, C.PalmLeafWorkshop, C.PalmLogWorkshop, C.TinsandWorkshop, C.SandWorkshop, C.HempWorkshop, C.IslewortWorkshop);
     public static int Route9Amount => RouteAmountCalc(Routes.Route9Table, C.BranchWorkshop, C.ResinWorkshop, C.SapWorkshop, C.WoodOpalWorkshop, C.LogWorkshop, C.ClayWorkshop, C.SandWorkshop, 0);
-    public static int Route10Amount => RouteAmountCalc(Routes.Route10Table, C.CopperWorkshop, C.MythrilOreWorkshop, C.HempWorkshop, C.PalmLogWorkshop, C.PalmLeafWorkshop, C.CottonWorkshop, C.IslewortWorkshop, 0);
+    public static int Route10Amount => RouteAmountCalc(Routes.Route10Table, C.CopperWorkshop, C.MythrilOreWorkshop, C.HempWorkshop, C.CoconutWorkshop ,C.PalmLogWorkshop, C.PalmLeafWorkshop, C.CottonWorkshop, C.IslewortWorkshop, 0);
     public static int Route11Amount => RouteAmountCalc(Routes.Route11Table, C.SapWorkshop, C.WoodOpalWorkshop, 0, C.HempWorkshop, C.IslewortWorkshop);
     public static int Route12Amount => RouteAmountCalc(Routes.Route12Table, C.HempWorkshop, 0, C.SandWorkshop, C.ClayWorkshop, C.CoconutWorkshop, C.PalmLogWorkshop, C.PalmLeafWorkshop);
     public static int Route13Amount => RouteAmountCalc(Routes.Route13Table, C.MulticoloredIslebloomsWorkshop, C.QuartzWorkshop, C.IronOreWorkshop, C.DuriumSandWorkshop, C.LeucograniteWorkshop, 0);

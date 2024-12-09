@@ -68,6 +68,7 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
             P.taskManager.Enqueue(() => PluginLog("A full cycle has been completed!"));
             P.taskManager.Enqueue(() => displayCurrentRoute = "");
             P.taskManager.Enqueue(() => displayCurrentTask = "");
+            TaskReturn.Enqueue();
         }
     }
 }

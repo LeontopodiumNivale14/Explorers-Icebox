@@ -2,6 +2,7 @@ using System.ComponentModel.Design;
 using System.IO;
 using ECommons.Automation.NeoTaskManager;
 using ECommons.Configuration;
+using ECommons.Reflection;
 using ECommons.SimpleGui;
 using ExplorersIcebox.IPC;
 using ExplorersIcebox.Scheduler;
@@ -29,7 +30,6 @@ public sealed class ExplorersIcebox : IDalamudPlugin
         P = this;
         ECommonsMain.Init(pluginInterface, P, ECommons.Module.DalamudReflector, ECommons.Module.ObjectFunctions);
         config = EzConfig.Init<Config>();
-
 
         EzConfigGui.Init(new MainWindow().Draw);
         MainWindow.SetWindowProperties();

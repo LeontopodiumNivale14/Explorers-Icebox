@@ -240,6 +240,7 @@ internal class IslandTables
             new RouteEntry(11, StoneID, 0, true),
         ];
 
+        // Glimshroom | Shale / Coal 
         public static List<RouteEntry> Route19Table =
         [
             new RouteEntry(8, GlimshroomID, 0, false),
@@ -248,6 +249,7 @@ internal class IslandTables
             new RouteEntry(8, StoneID, 0, false),
         ];
 
+        // Effervescent Water / Spectrine
         public static List<RouteEntry> Route20Table =
         [
             new RouteEntry(10, EffervescentWaterID, 0, false),
@@ -257,6 +259,7 @@ internal class IslandTables
             new RouteEntry(11, StoneID, 0, true),
         ];
 
+        // Yellow Copper Ore / Gold Ore | Crystal Formation | HawksEyeSand
         public static List<RouteEntry> Route21Table =
         [
             new RouteEntry(4, YellowCopperOreID, 0, false),
@@ -349,20 +352,20 @@ internal class IslandTables
         { 5, new GatheringPointData {Name = "Coconut | Palm Log | Palm Leaf", Location = Base2Coconut, Base64Export = CoconutVisland, GatherRoute = C.Route5} },
         { 6, new GatheringPointData {Name = "Cotton", Location = Base2Cotton, Base64Export = CottonVisland, GatherRoute = C.Route6} },
         { 7, new GatheringPointData {Name = "Clay | Sand [Ground XP Loop]", Location = Base2Clay, Base64Export = ClayVisland, GatherRoute = C.Route7} }, // done
-        { 8, new GatheringPointData {Name = "Marble | Limestone | (Stone)", Location = DummyVisland, Base64Export = MarbleVisland, GatherRoute = C.Route8} },
-        { 9, new GatheringPointData {Name = "Branch | Resin | (Log)", Location = DummyVisland, Base64Export = BranchVisland, GatherRoute = C.Route9} },
-        { 10, new GatheringPointData {Name = "Copper / Mythril", Location = DummyVisland, Base64Export = CopperVisland, GatherRoute = C.Route10} },
-        { 11, new GatheringPointData {Name = "Opal / Log / Sap", Location = DummyVisland, Base64Export = OpalVisland, GatherRoute = C.Route11} },
-        { 12, new GatheringPointData {Name = "Hemp", Location = DummyVisland, Base64Export = HempVisland, GatherRoute = C.Route12} },
-        { 13, new GatheringPointData {Name = "Multicolored Isleblooms", Location = DummyVisland, Base64Export = MulticoloredVisland, GatherRoute = C.Route13} },
-        { 14, new GatheringPointData {Name = "Iron Ore", Location = DummyVisland, Base64Export = IronVisland, GatherRoute = C.Route14} },
-        { 15, new GatheringPointData {Name = "Laver / Squid | Jellyfish / Coral", Location = DummyVisland, Base64Export = LaverJellyfishVisland, GatherRoute = C.Route15} },
-        { 16, new GatheringPointData {Name = "Rocksalt", Location = DummyVisland, Base64Export = RocksaltVisland, GatherRoute = C.Route16} },
-        { 17, new GatheringPointData {Name = "Leucogranite", Location = DummyVisland, Base64Export = LeucograniteVisland, GatherRoute = C.Route17} },
+        { 8, new GatheringPointData {Name = "Marble | Limestone | (Stone)", Location = Base2Marble, Base64Export = MarbleVisland, GatherRoute = C.Route8} },
+        { 9, new GatheringPointData {Name = "Branch | Resin | (Log)", Location = Base2Branch, Base64Export = BranchVisland, GatherRoute = C.Route9} },
+        { 10, new GatheringPointData {Name = "Copper / Mythril", Location = Base2Copper, Base64Export = CopperVisland, GatherRoute = C.Route10} },
+        { 11, new GatheringPointData {Name = "Opal / Log / Sap", Location = Base2Opal, Base64Export = OpalVisland, GatherRoute = C.Route11} },
+        { 12, new GatheringPointData {Name = "Hemp", Location = Base2Hemp, Base64Export = HempVisland, GatherRoute = C.Route12} },
+        { 13, new GatheringPointData {Name = "Multicolored Isleblooms", Location = Base2MultiColor, Base64Export = MulticoloredVisland, GatherRoute = C.Route13} },
+        { 14, new GatheringPointData {Name = "Iron Ore", Location = Base2Iron, Base64Export = IronVisland, GatherRoute = C.Route14} },
+        { 15, new GatheringPointData {Name = "Laver / Squid | Jellyfish / Coral", Location = Base2Laver, Base64Export = LaverJellyfishVisland, GatherRoute = C.Route15} },
+        { 16, new GatheringPointData {Name = "Rocksalt", Location = Base2RockSalt, Base64Export = RocksaltVisland, GatherRoute = C.Route16} },
+        { 17, new GatheringPointData {Name = "Leucogranite", Location = Base2Leucogranite, Base64Export = LeucograniteVisland, GatherRoute = C.Route17} },
         { 18, new GatheringPointData {Name = "Quartz [Mountain XP Loop]", Location = Base2Quartz, Base64Export = QuartzVisland, GatherRoute = C.Route18} }, // done
-        { 19, new GatheringPointData {Name = "Coal / Shale | Glimshroom", Location = DummyVisland, Base64Export = CoalVisland, GatherRoute = C.Route19} },
-        { 20, new GatheringPointData {Name = "Effervescent Water", Location = DummyVisland, Base64Export = WaterVisland, GatherRoute = C.Route20} },
-        { 21, new GatheringPointData {Name = "Crystal / Hawk Sand | Yelow Copper / Gold Ore[x2]", Location = DummyVisland, Base64Export = CrystalVisland, GatherRoute = C.Route21} },
+        { 19, new GatheringPointData {Name = "Coal / Shale | Glimshroom", Location = Base2Glimshroom, Base64Export = CoalVisland, GatherRoute = C.Route19} },
+        { 20, new GatheringPointData {Name = "Effervescent Water", Location = Base2Water, Base64Export = WaterVisland, GatherRoute = C.Route20} },
+        { 21, new GatheringPointData {Name = "Crystal / Hawk Sand | Yelow Copper / Gold Ore", Location = Base2Crystal, Base64Export = CrystalVisland, GatherRoute = C.Route21} },
     };
 
     public static int RouteAmountCalc(List<RouteEntry> routeEntries, params int[] workshops)

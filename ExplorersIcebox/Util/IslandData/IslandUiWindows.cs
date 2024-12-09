@@ -720,6 +720,7 @@ internal class IslandUiWindows
         TinsandImgui();
         MarbleImgui();
         LimestoneImgui();
+        StoneImgui();
         BranchImgui();
         LogImgui();
         ResinImgui();
@@ -728,6 +729,7 @@ internal class IslandUiWindows
 
     public static void Route8WorkshopGui()
     {
+        ImGui.Text($"Route 8 is set to run -> {Route8Amount} loops");
         MarbleImgui();
         LimestoneImgui();
         StoneImgui();

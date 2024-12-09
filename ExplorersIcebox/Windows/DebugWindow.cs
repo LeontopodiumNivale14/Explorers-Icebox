@@ -139,6 +139,15 @@ namespace ExplorersIcebox.Windows
         private void RouteSellDebug()
         {
             ImGui.Text("This is where the route sell debug would be... IF I HAD ONE");
+            if (IPC.NavmeshIPC.Installed)
+            {
+                ImGui.Text("Navmesh is installed. Woohoo!");
+            }
+            else
+            {
+                ImGui.Text("Navmesh is not installed. BOOOOO");
+            }
+
         }
 
         private void MiscInfoDebug()

@@ -1,4 +1,5 @@
 using ECommons.EzIpcManager;
+using ExplorersIcebox.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ public class NavmeshIPC
     public const string Name = "vnavmesh";
     public const string Repo = "https://puni.sh/api/repository/veyn";
     public NavmeshIPC() => EzIPC.Init(this, Name);
+    public static bool Installed => HasPlugin(Name);
 
     [EzIPC("Nav.%m")] public readonly Func<bool> IsReady;
     [EzIPC("Nav.%m")] public readonly Func<float> BuildProgress;
