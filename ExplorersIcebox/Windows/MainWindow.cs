@@ -166,10 +166,7 @@ public class MainWindow : ConfigWindow, IDisposable
 
     private void GrindXPGui()
     {
-        ImGui.Text("XP | Cowries Grind     ");
-        ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet(25f));
-        SettingImgui();
+        ImGui.Text("XP | Cowries Grind");
         ImGui.AlignTextToFramePadding();
         ImGui.Text("Run Setting:");
         ImGui.SameLine();

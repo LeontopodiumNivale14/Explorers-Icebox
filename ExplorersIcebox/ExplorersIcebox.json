@@ -1,12 +1,12 @@
 {
-  "Author": "Ice (Lenopis)",
-  "Name": "Explorer's Icebox'",
-  "Punchline": "What if, we held hands underneath the quartz mountain.",
-  "Description": "A tool that is used to help you level up in Island Sanctuary, from gathering items to fully automating leveling",
-  "ApplicableVersion": "any",
-  "Tags": [
-    "Island Sanctuary",
-    "Island",
-    "Sanctuary"
-  ]
+    "Author": "Ice (Lenopis)",
+    "Name": "ExplorersIcebox'",
+    "Punchline": "What if, we held hands underneath the quartz mountain.",
+    "Description": "A little helper that lets you level up, or gather all the materials on Island Sanctary. Requires Navmesh & Visland.\nPop open a cold one while the tedious parts of exploration is handled by your good friend cousin robby",
+    "ApplicableVersion": "any",
+    "Tags": [
+        "Island Sanctuary",
+        "Island",
+        "Sanctuary"
+    ]
 }

@@ -13,7 +13,7 @@ namespace ExplorersIcebox;
 public sealed class ExplorersIcebox : IDalamudPlugin
 {
     private const string Command = "/explorersicebox";
-    private static string[] Aliases => ["/picebox", "/icebox", "pei"];
+    private static string[] Aliases => ["/picebox", "/icebox"];
 
     internal static ExplorersIcebox P = null!;
     private readonly Config config;
