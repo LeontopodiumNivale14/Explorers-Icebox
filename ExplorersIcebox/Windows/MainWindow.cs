@@ -216,9 +216,10 @@ public class MainWindow : ConfigWindow, IDisposable
         ImGuiComponents.HelpMarker("Faster leveling route. Best use from Lv. 10+ \nFlying is REQUIRED to do this one.");
 
     }
-
+    string searchQuery = ""; // Variable to store the search query
     private void MaxIslandMatsGui()
     {
+        ImGui.InputText("Search", ref searchQuery, 100);
         ImGui.TextWrapped("Select which routes you would like to cap items from:");
         ImGui.Spacing();
         bool route0 = C.Route0;
@@ -301,410 +302,482 @@ public class MainWindow : ConfigWindow, IDisposable
 
         }
         UpdateWSImGui();
-        if (ImGui.TreeNode("Islefish | Clam [Route 0]"))
+
+        if (string.IsNullOrEmpty(searchQuery) || "Islefish | Clam [Route 0]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 0", ref route0))
+            if (ImGui.TreeNode("Islefish | Clam [Route 0]"))
             {
-                if (route0)
+                if (ImGui.Checkbox("Enable Route 0", ref route0))
                 {
-                    C.Route0 = true;
-                    GatherAllUpdate();
+                    if (route0)
+                    {
+                        C.Route0 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route0 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route0 = false;
-                    GatherAllUpdate();
-                }
+                Route0WorkshopGui();
+                ImGui.TreePop();
             }
-            Route0WorkshopGui();
-            ImGui.TreePop();
         }
-        ImGui.SameLine();
-        ImGuiComponents.HelpMarker("Flying is required, due to how going under water works...");
-        if (ImGui.TreeNode("Islewort [Route 1]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Islewort [Route 1]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 1", ref route1))
+            ImGui.SameLine();
+            ImGuiComponents.HelpMarker("Flying is required, due to how going under water works...");
+            if (ImGui.TreeNode("Islewort [Route 1]"))
             {
-                if (route1)
+                if (ImGui.Checkbox("Enable Route 1", ref route1))
                 {
-                    C.Route1 = true;
-                    GatherAllUpdate();
+                    if (route1)
+                    {
+                        C.Route1 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route1 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route1 = false;
-                    GatherAllUpdate();
-                }
+                Route1WorkshopGui();
+                ImGui.TreePop();
             }
-            Route1WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Sugarcane | Vine [Route 2]"))
+
+        if (string.IsNullOrEmpty(searchQuery) || "Sugarcane | Vine [Route 2]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 2", ref route2))
+            if (ImGui.TreeNode("Sugarcane | Vine [Route 2]"))
             {
-                if (route2)
+                if (ImGui.Checkbox("Enable Route 2", ref route2))
                 {
-                    C.Route2 = true;
-                    GatherAllUpdate();
+                    if (route2)
+                    {
+                        C.Route2 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route2 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route2 = false;
-                    GatherAllUpdate();
-                }
+                Route2WorkshopGui();
+                ImGui.TreePop();
             }
-            Route2WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Tinsand | Sand [Route 3]"))
+
+        if (string.IsNullOrEmpty(searchQuery) || "Tinsand | Sand [Route 3]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 3", ref route3))
+            if (ImGui.TreeNode("Tinsand | Sand [Route 3]"))
             {
-                if (route3)
+                if (ImGui.Checkbox("Enable Route 3", ref route3))
                 {
-                    C.Route3 = true;
-                    GatherAllUpdate();
+                    if (route3)
+                    {
+                        C.Route3 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route3 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route3 = false;
-                    GatherAllUpdate();
-                }
+                Route3WorkshopGui();
+                ImGui.TreePop();
             }
-            Route3WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Apple | Beehive | Vine [Route 4]"))
+
+        if (string.IsNullOrEmpty(searchQuery) || "Apple | Beehive | Vine [Route 4]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 4", ref route4))
+            if (ImGui.TreeNode("Apple | Beehive | Vine [Route 4]"))
             {
-                if (route4)
+                if (ImGui.Checkbox("Enable Route 4", ref route4))
                 {
-                    C.Route4 = true;
-                    GatherAllUpdate();
+                    if (route4)
+                    {
+                        C.Route4 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route4 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route4 = false;
-                    GatherAllUpdate();
-                }
+                Route4WorkshopGui();
+                ImGui.TreePop();
             }
-            Route4WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Coconut | Palm Log | Palm leaf [Route 5]"))
+
+        if (string.IsNullOrEmpty(searchQuery) || "Coconut | Palm Log | Palm leaf [Route 5]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 5", ref route5))
+            if (ImGui.TreeNode("Coconut | Palm Log | Palm leaf [Route 5]"))
             {
-                if (route5)
+                if (ImGui.Checkbox("Enable Route 5", ref route5))
                 {
-                    C.Route5 = true;
-                    GatherAllUpdate();
+                    if (route5)
+                    {
+                        C.Route5 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route5 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route5 = false;
-                    GatherAllUpdate();
-                }
+                Route5WorkshopGui();
+                ImGui.TreePop();
             }
-            Route5WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Cotton [Route 6]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Cotton [Route 6]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 6", ref route6))
+            if (ImGui.TreeNode("Cotton [Route 6]"))
             {
-                if (route6)
+                if (ImGui.Checkbox("Enable Route 6", ref route6))
                 {
-                    C.Route6 = true;
-                    GatherAllUpdate();
+                    if (route6)
+                    {
+                        C.Route6 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route6 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route6 = false;
-                    GatherAllUpdate();
-                }
+                Route6WorkshopGui();
+                ImGui.TreePop();
             }
-            Route6WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Clay | Sand [Route 7]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Clay | Sand [Route 7]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 7", ref route7))
+            if (ImGui.TreeNode("Clay | Sand [Route 7]"))
             {
-                if (route7)
+                if (ImGui.Checkbox("Enable Route 7", ref route7))
                 {
-                    C.Route7 = true;
-                    GatherAllUpdate();
+                    if (route7)
+                    {
+                        C.Route7 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route7 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route7 = false;
-                    GatherAllUpdate();
-                }
+                Route7WorkshopGui();
+                ImGui.TreePop();
             }
-            Route7WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Marble | Limestone | Stone [Route 8]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Marble | Limestone | Stone [Route 8]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 8", ref route8))
+            if (ImGui.TreeNode("Marble | Limestone | Stone [Route 8]"))
             {
-                if (route8)
+                if (ImGui.Checkbox("Enable Route 8", ref route8))
                 {
-                    C.Route8 = true;
-                    GatherAllUpdate();
+                    if (route8)
+                    {
+                        C.Route8 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route8 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route8 = false;
-                    GatherAllUpdate();
-                }
+                Route8WorkshopGui();
+                ImGui.TreePop();
             }
-            Route8WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Branch | Resin | Log [Route 9]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Branch | Resin | Log [Route 9]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 9", ref route9))
+            if (ImGui.TreeNode("Branch | Resin | Log [Route 9]"))
             {
-                if (route9)
+                if (ImGui.Checkbox("Enable Route 9", ref route9))
                 {
-                    C.Route9 = true;
-                    GatherAllUpdate();
+                    if (route9)
+                    {
+                        C.Route9 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route9 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route9 = false;
-                    GatherAllUpdate();
-                }
+                Route9WorkshopGui();
+                ImGui.TreePop();
             }
-            Route9WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Copper | Mythril [Route 10]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Copper | Mythril [Route 10]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 10", ref route10))
+            if (ImGui.TreeNode("Copper | Mythril [Route 10]"))
             {
-                if (route10)
+                if (ImGui.Checkbox("Enable Route 10", ref route10))
                 {
-                    C.Route10 = true;
-                    GatherAllUpdate();
+                    if (route10)
+                    {
+                        C.Route10 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route10 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route10 = false;
-                    GatherAllUpdate();
-                }
+                Route10WorkshopGui();
+                ImGui.TreePop();
             }
-            Route10WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Opal | Sap | (Log) [Route 11]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Opal | Sap | (Log) [Route 11]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 11", ref route11))
+            if (ImGui.TreeNode("Opal | Sap | (Log) [Route 11]"))
             {
-                if (route11)
+                if (ImGui.Checkbox("Enable Route 11", ref route11))
                 {
-                    C.Route11 = true;
-                    GatherAllUpdate();
+                    if (route11)
+                    {
+                        C.Route11 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route11 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route11 = false;
-                    GatherAllUpdate();
-                }
+                Route11WorkshopGui();
+                ImGui.TreePop();
             }
-            Route11WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Hemp | (Islewort) [Route 12]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Hemp | (Islewort) [Route 12]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 12", ref route12))
+            if (ImGui.TreeNode("Hemp | (Islewort) [Route 12]"))
             {
-                if (route12)
+                if (ImGui.Checkbox("Enable Route 12", ref route12))
                 {
-                    C.Route12 = true;
-                    GatherAllUpdate();
+                    if (route12)
+                    {
+                        C.Route12 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route12 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route12 = false;
-                    GatherAllUpdate();
-                }
+                Route12WorkshopGui();
+                ImGui.TreePop();
             }
-            Route12WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Multicolorblooms [Route 13]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Multicolorblooms [Route 13]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 13", ref route13))
+            if (ImGui.TreeNode("Multicolorblooms [Route 13]"))
             {
-                if (route13)
+                if (ImGui.Checkbox("Enable Route 13", ref route13))
                 {
-                    C.Route13 = true;
-                    GatherAllUpdate();
+                    if (route13)
+                    {
+                        C.Route13 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route13 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route13 = false;
-                    GatherAllUpdate();
-                }
+                Route13WorkshopGui();
+                ImGui.TreePop();
             }
-            Route13WorkshopGui();
-            ImGui.TreePop();
         }
-        ImGui.SameLine();
-        ImGuiComponents.HelpMarker("Flying required");
-        if (ImGui.TreeNode("Iron Ore [Route 14]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Iron Ore [Route 14]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 14", ref route14))
+            ImGui.SameLine();
+            ImGuiComponents.HelpMarker("Flying required");
+            if (ImGui.TreeNode("Iron Ore [Route 14]"))
             {
-                if (route14)
+                if (ImGui.Checkbox("Enable Route 14", ref route14))
                 {
-                    C.Route14 = true;
-                    GatherAllUpdate();
+                    if (route14)
+                    {
+                        C.Route14 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route14 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route14 = false;
-                    GatherAllUpdate();
-                }
+                Route14WorkshopGui();
+                ImGui.TreePop();
             }
-            Route14WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Laver | Squid / Jellyfish | Coral [Route 15]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Laver | Squid / Jellyfish | Coral [Route 15]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 15", ref route15))
+            if (ImGui.TreeNode("Laver | Squid / Jellyfish | Coral [Route 15]"))
             {
-                if (route15)
+                if (ImGui.Checkbox("Enable Route 15", ref route15))
                 {
-                    C.Route15 = true;
-                    GatherAllUpdate();
+                    if (route15)
+                    {
+                        C.Route15 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route15 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route15 = false;
-                    GatherAllUpdate();
-                }
+                Route15WorkshopGui();
+                ImGui.TreePop();
             }
-            Route15WorkshopGui();
-            ImGui.TreePop();
         }
-        ImGui.SameLine();
-        ImGuiComponents.HelpMarker("Flying is required, due to how going under water works...");
-        if (ImGui.TreeNode("Rocksalt [Route 16]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Rocksalt [Route 16]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 16", ref route16))
+            ImGui.SameLine();
+            ImGuiComponents.HelpMarker("Flying is required, due to how going under water works...");
+            if (ImGui.TreeNode("Rocksalt [Route 16]"))
             {
-                if (route16)
+                if (ImGui.Checkbox("Enable Route 16", ref route16))
                 {
-                    C.Route16 = true;
-                    GatherAllUpdate();
+                    if (route16)
+                    {
+                        C.Route16 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route16 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route16 = false;
-                    GatherAllUpdate();
-                }
+                Route16WorkshopGui();
+                ImGui.TreePop();
             }
-            Route16WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Leucogranite [Route 17}"))
+        if (string.IsNullOrEmpty(searchQuery) || "Leucogranite [Route 17}".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 17", ref route17))
+            if (ImGui.TreeNode("Leucogranite [Route 17}"))
             {
-                if (route17)
+                if (ImGui.Checkbox("Enable Route 17", ref route17))
                 {
-                    C.Route17 = true;
-                    GatherAllUpdate();
+                    if (route17)
+                    {
+                        C.Route17 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route17 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route17 = false;
-                    GatherAllUpdate();
-                }
+                Route17WorkshopGui();
+                ImGui.TreePop();
             }
-            Route17WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Quartz | Stone [Route 18]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Quartz | Stone [Route 18]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 18", ref route18))
+            if (ImGui.TreeNode("Quartz | Stone [Route 18]"))
             {
-                if (route18)
+                if (ImGui.Checkbox("Enable Route 18", ref route18))
                 {
-                    C.Route18 = true;
-                    GatherAllUpdate();
+                    if (route18)
+                    {
+                        C.Route18 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route18 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route18 = false;
-                    GatherAllUpdate();
-                }
+                Route18WorkshopGui();
+                ImGui.TreePop();
             }
-            Route18WorkshopGui();
-            ImGui.TreePop();
         }
-        ImGui.SameLine();
-        ImGuiComponents.HelpMarker("Flying is required");
-        if (ImGui.TreeNode("Glimshroom | Shale / Coal [Route 19]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Glimshroom | Shale / Coal [Route 19]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 19", ref route19))
+            ImGui.SameLine();
+            ImGuiComponents.HelpMarker("Flying is required");
+            if (ImGui.TreeNode("Glimshroom | Shale / Coal [Route 19]"))
             {
-                if (route19)
+                if (ImGui.Checkbox("Enable Route 19", ref route19))
                 {
-                    C.Route19 = true;
-                    GatherAllUpdate();
+                    if (route19)
+                    {
+                        C.Route19 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route19 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {  
-                    C.Route19 = false;
-                    GatherAllUpdate();
-                }
+                Route19WorkshopGui();
+                ImGui.TreePop();
             }
-            Route19WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Effervescent Water / Spectrine [Route 20]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Effervescent Water / Spectrine [Route 20]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 20", ref route20))
+
+            if (ImGui.TreeNode("Effervescent Water / Spectrine [Route 20]"))
             {
-                if (route20)
+                if (ImGui.Checkbox("Enable Route 20", ref route20))
                 {
-                    C.Route20 = true;
-                    GatherAllUpdate();
+                    if (route20)
+                    {
+                        C.Route20 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route20 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route20 = false;
-                    GatherAllUpdate();
-                }
+                Route20WorkshopGui();
+                ImGui.TreePop();
             }
-            Route20WorkshopGui();
-            ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Yellow Copper | Gold | Crystal Formation | HawksEyeSand [Route 21]"))
+        if (string.IsNullOrEmpty(searchQuery) || "Yellow Copper | Gold | Crystal Formation | HawksEyeSand [Route 21]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            if (ImGui.Checkbox("Enable Route 21", ref route21))
+            if (ImGui.TreeNode("Yellow Copper | Gold | Crystal Formation | HawksEyeSand [Route 21]"))
             {
-                if (route21)
+                if (ImGui.Checkbox("Enable Route 21", ref route21))
                 {
-                    C.Route21 = true;
-                    GatherAllUpdate();
+                    if (route21)
+                    {
+                        C.Route21 = true;
+                        GatherAllUpdate();
+                    }
+                    else
+                    {
+                        C.Route21 = false;
+                        GatherAllUpdate();
+                    }
                 }
-                else
-                {
-                    C.Route21 = false;
-                    GatherAllUpdate();
-                }
+                Route21WorkshopGui();
+                ImGui.TreePop();
             }
-            Route21WorkshopGui();
-            ImGui.TreePop();
-        }
+        }   
     }
 
     private void WorkshopImGui()
