@@ -25,6 +25,7 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
                 P.taskManager.Enqueue(() => UpdateDisplayText("Selling to the shop"));
                 if (Svc.Condition[ConditionFlag.Mounted])
                     TaskDisMount.Enqueue();
+                P.taskManager.EnqueueDelay(1000);
                 TaskMoveTo.Enqueue(mammetExportPos, "Mammet Export", false, 1);
                 // TaskSellTo.Enqueue(); old targeting code, keeping it here for reference
                 TaskTargetV2.Enqueue(ExportMammetID);

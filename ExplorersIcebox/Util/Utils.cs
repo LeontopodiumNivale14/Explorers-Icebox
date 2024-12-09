@@ -182,10 +182,20 @@ public static unsafe class Utils
     {
         MJIManager* mjiManager = MJIManager.Instance();
 
-        bool isLocked = mjiManager->IsPouchItemLocked(itemId);
-        return isLocked;
-    }
+        /*
+        bool isLocked = mjiManager->IsItemLocked(itemId);
+        return !isLocked;
+        */
 
+        bool isLocked = mjiManager->IsKeyItemUnlocked(itemId);
+        return !isLocked;
+        /*
+        / THE WAY THIS WORKS FOR MYSELF.
+        / -> If it returns true, then that means you haven't unlocked that slot
+        / -> If it returns false, then that means that slot is available/has been aquired
+        */
+    }
+    
     public static void UpdateShopCallback()
     {
         PluginLog("---- Starting the Update Callback ----");
@@ -215,5 +225,53 @@ public static unsafe class Utils
         {
             IslandSancDictionary[item].Amount = GetItemCount(item);
         }
+    }
+
+    public static void QuickWorkshopKeepUpdate(int update)
+    {
+        C.PalmLeafWorkshop = update;
+        C.BranchWorkshop = update;
+        C.StoneWorkshop = update;
+        C.ClamWorkshop = update;
+        C.LaverWorkshop = update;
+        C.CoralWorkshop = update;
+        C.IslewortWorkshop = update;
+        C.SandWorkshop = update;
+        C.VineWorkshop = update;
+        C.SapWorkshop = update;
+        C.AppleWorkshop = update;
+        C.LogWorkshop = update;
+        C.PalmLogWorkshop = update;
+        C.CopperWorkshop = update;
+        C.LimestoneWorkshop = update;
+        C.RockSaltWorkshop = update;
+        C.ClayWorkshop = update;
+        C.TinsandWorkshop = update;
+        C.SugarcaneWorkshop = update;
+        C.CottonWorkshop = update;
+        C.HempWorkshop = update;
+        C.IslefishWorkshop = update;
+        C.SquidWorkshop = update;
+        C.JellyfishWorkshop = update;
+        C.IronOreWorkshop = update;
+        C.QuartzWorkshop = update;
+        C.LeucograniteWorkshop = update;
+        C.MulticoloredIslebloomsWorkshop = update;
+        C.ResinWorkshop = update;
+        C.CoconutWorkshop = update;
+        C.BeehiveWorkshop = update;
+        C.WoodOpalWorkshop = update;
+        C.CoalWorkshop = update;
+        C.GlimshroomWorkshop = update;
+        C.EffervescentWaterWorkshop = update;
+        C.ShaleWorkshop = update;
+        C.MarbleWorkshop = update;
+        C.MythrilOreWorkshop = update;
+        C.SpectrineWorkshop = update;
+        C.DuriumSandWorkshop = update;
+        C.YellowCopperOreWorkshop = update;
+        C.GoldOreWorkshop = update;
+        C.HawksEyeSandWorkshop = update;
+        C.CrystalFormationWorkshop = update;
     }
 }

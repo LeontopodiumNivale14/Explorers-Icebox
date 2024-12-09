@@ -45,6 +45,7 @@ public class MainWindow : ConfigWindow, IDisposable
     public static string currentlyDoing = SchedulerMain.CurrentProcess;
     private bool everythingUnlocked = true;
     private bool copyButton = false;
+    private int updateAllWS = 0;
 
     public override void Draw()
     {
@@ -299,6 +300,7 @@ public class MainWindow : ConfigWindow, IDisposable
             PluginLog("Disabled all routes");
 
         }
+        UpdateWSImGui();
         if (ImGui.TreeNode("Islefish | Clam [Route 0]"))
         {
             if (ImGui.Checkbox("Enable Route 0", ref route0))
@@ -463,7 +465,7 @@ public class MainWindow : ConfigWindow, IDisposable
             Route8WorkshopGui();
             ImGui.TreePop();
         }
-        if (ImGui.TreeNode("Branch | Sap | Log [Route 9]"))
+        if (ImGui.TreeNode("Branch | Resin | Log [Route 9]"))
         {
             if (ImGui.Checkbox("Enable Route 9", ref route9))
             {
@@ -718,6 +720,22 @@ public class MainWindow : ConfigWindow, IDisposable
         {
             Route18WorkshopGui();
         }
+    }
+
+    private void UpdateWSImGui()
+    {
+        int updateAll = updateAllWS;
+        ImGui.SameLine();
+        ImGui.SetCursorPosX(offSet(106f));
+        ImGui.SetNextItemWidth(85);
+        if (ImGui.InputInt("##Update All Workshops", ref updateAll))
+        {
+            updateAllWS = updateAll;
+            QuickWorkshopKeepUpdate(updateAllWS);
+        }
+        ImGuiComponents.HelpMarker("Quick way to update all workshops to the same value.");
+
+
     }
 
     private void SettingImgui()

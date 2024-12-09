@@ -199,7 +199,7 @@ namespace ExplorersIcebox.Windows
                 }
                 ImGui.TreePop();
             }
-            ImGui.Text($"Item {itemID} is {unlocked}");
+            ImGui.Text($"Item {itemID} is {(unlocked ? "locked" : "unlocked")}");
             if (ImGui.InputInt("##ItemIDforText", ref inputbox))
             {
                 inputbox = Math.Clamp(inputbox, ushort.MinValue, ushort.MaxValue);
