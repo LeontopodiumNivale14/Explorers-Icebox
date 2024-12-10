@@ -178,24 +178,25 @@ public static unsafe class Utils
     }
 
     // A way to check to make sure all the values for the sell table is correct
-    public static bool CheckIfItemLocked(ushort itemId)
+    public static bool CheckIfItemLocked(ushort slotID)
     {
         MJIManager* mjiManager = MJIManager.Instance();
 
-        /*
-        bool isLocked = mjiManager->IsItemLocked(itemId);
+        bool isLocked = mjiManager->IsKeyItemUnlocked(slotID);
         return !isLocked;
-        */
 
-        bool isLocked = mjiManager->IsKeyItemUnlocked(itemId);
-        return !isLocked;
         /*
-        / THE WAY THIS WORKS FOR MYSELF.
-        / -> If it returns true, then that means you haven't unlocked that slot
-        / -> If it returns false, then that means that slot is available/has been aquired
+        0 -> 6
+        8 -> 18
+        23
+        slot | Item | ItemID
+        0 -> Stone Hatchet (37679)
+        1 -> Stone Hammer (37680)
+        2 -> Islekeep's Shovel (Need to put ItemID Here
+        8 -> Basic Mammet-Sized Builders Tools (37687) 
         */
     }
-    
+
     public static void UpdateShopCallback()
     {
         PluginLog("---- Starting the Update Callback ----");

@@ -4,8 +4,10 @@ using ECommons.SimpleGui;
 using ExplorersIcebox.Scheduler;
 using ExplorersIcebox.Scheduler.Tasks;
 using ExplorersIcebox.Util.IslandData;
+using ImGuiScene;
 using Lumina.Excel.Sheets;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace ExplorersIcebox.Windows;
@@ -58,22 +60,30 @@ public class MainWindow : ConfigWindow, IDisposable
                     ImGui.Text($"Current task --> {displayCurrentTask}");
                     ImGui.Text($"Route --> {displayCurrentRoute}");
                     bool isXPRunning = SchedulerMain.AreWeTicking;
-                    if (ImGui.Checkbox(" Enable Farm", ref isXPRunning))
+                    if (!CheckIfItemLocked(2))
                     {
-                        if (isXPRunning)
+                        if (ImGui.Checkbox(" Enable Farm", ref isXPRunning))
                         {
-                            PluginLog("Enabling the route Gathering");
-                            if (currentMode == "Island Gathering Mode") C.XPGrind = false;
-                            if (currentMode == "XP | Cowries Grind") C.XPGrind = true;
-                            SchedulerMain.EnablePlugin();
-                            displayCurrentTask = "Currently Running";
+                            if (isXPRunning)
+                            {
+                                PluginLog("Enabling the route Gathering");
+                                if (currentMode == "Island Gathering Mode") C.XPGrind = false;
+                                if (currentMode == "XP | Cowries Grind") C.XPGrind = true;
+                                SchedulerMain.EnablePlugin();
+                                displayCurrentTask = "Currently Running";
+                            }
+                            else
+                            {
+                                PluginLog("Disabling the Route gathering");
+                                displayCurrentTask = "";
+                                SchedulerMain.DisablePlugin();
+                            }
                         }
-                        else
-                        {
-                            PluginLog("Disabling the Route gathering");
-                            displayCurrentTask = "";
-                            SchedulerMain.DisablePlugin();
-                        }
+                    }
+                    else
+                    {
+                        ImGui.TextWrapped("You don't have the shovel yet, please get to lv. 5 and unlock the shovel please. (I will have a fix for this soon™)");
+                        ImGui.NewLine();
                     }
                     ImGui.SameLine();
                     ImGui.SetCursorPosX(offSet(140f));
@@ -98,7 +108,6 @@ public class MainWindow : ConfigWindow, IDisposable
                             {
                                 currentMode = option;
                             }
-
                             // Set focus to the selected item for better UX
                             if (option == currentMode)
                             {
@@ -119,14 +128,58 @@ public class MainWindow : ConfigWindow, IDisposable
                     }
                     ImGui.EndTabItem();
                 }
-                if (ImGui.BeginTabItem("How to"))
+                if (ImGui.BeginTabItem("Help"))
                 {
                     ImGui.Text("XP | Cowries Grind");
                     ImGui.Text("The purpose of this mode is one of two reasons.");
                     ImGui.TextWrapped("-> Reason 1: A quick and surefire way to level up your characters. This uses what Overseas Casuals (aka Island Sanctuary Discord) consideres/have figured to be the best XP Routes.");
                     ImGui.TextWrapped("-> Reason 2: if you want to get green Cowries for things, this is also great! Personally use this to refill my cordial stash");
+                    ImGui.TextWrapped("-> Currently, you need to be alteast lv. 5 (to unlock the shovel) to be able to use the leveling mode. I'm working on making it work at Lv. 4, it's going to take a little bit");
+                    ImGui.Text("Island Gathering Mode");
+                    ImGui.TextWrapped("Here, you can select all the routes that you would like to max out on items on.");
+                    ImGui.TextWrapped("You can pick and choose which routes to enable/disable quickly, and also input the amount of workshop items you want to keep of that kind");
+                    ImGui.TextWrapped("This will automatically update how many routes you can do in that particular item, so it SHOULDN'T get locked");
+                    ImGui.TextWrapped("Search bar is also there if you want to quickly look up a particular item to farm.");
                     ImGui.NewLine();
                     ImGui.EndTabItem();
+                }
+                if (ImGui.BeginTabItem("Version Notes + Misc"))
+                {
+                    ImGui.PushStyleColor(ImGuiCol.Button, new System.Numerics.Vector4(1.0f, 0.0f, 0.0f, 1.0f)); // Red color
+                    ImGui.PushStyleColor(ImGuiCol.ButtonHovered, new System.Numerics.Vector4(0.8f, 0.0f, 0.0f, 1.0f)); // Darker red when hovered
+                    ImGui.PushStyleColor(ImGuiCol.ButtonActive, new System.Numerics.Vector4(0.6f, 0.0f, 0.0f, 1.0f)); // Even darker red when clicked
+
+                    ImGui.SetCursorPosX(offSet(70f));
+                    if (ImGui.Button("Ko-fi Link"))
+                    {
+                        OpenUrl("https://ko-fi.com/ice643269");
+                    }
+
+                    ImGui.NewLine();
+
+                    ImGui.SetCursorPosX(offSet(150f));
+                    if (ImGui.Button("Don't press this button"))
+                    {
+                        OpenUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                    }
+
+                    ImGui.PopStyleColor(3);
+
+                    if (ImGui.TreeNode("Version 1.0.0 [RELEASE]"))
+                    {
+                        ImGui.Text("First actual... release. Holy fuck");
+                        ImGui.Text("-> Initial creation of plugin, includes:");
+                        ImGui.Text("-> 2 Leveling/Grind Routes");
+                        ImGui.Text("  -> Ground [Clay/Sand");
+                        ImGui.Text("  -> Flying [Quartz]");
+                        ImGui.Text("-> Island Gathering Mode");
+                        ImGui.TextWrapped("Being able to select which routes to run + search through them for items");
+                        ImGui.TextWrapped("For both: Set workshop values to keep a certain amount of items, allowing for dynamic loop amounts");
+                        ImGui.NewLine();
+                        ImGui.TextWrapped("Safety check to make sure you have the shovel unlocked. Will remove this whenever I update routes to be more dynamic");
+                    }
+                    ImGui.TreePop();
+
                 }
                 ImGui.EndTabBar();
             }
@@ -347,7 +400,6 @@ public class MainWindow : ConfigWindow, IDisposable
                 ImGui.TreePop();
             }
         }
-
         if (string.IsNullOrEmpty(searchQuery) || "Sugarcane | Vine [Route 2]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
             if (ImGui.TreeNode("Sugarcane | Vine [Route 2]"))
@@ -369,7 +421,6 @@ public class MainWindow : ConfigWindow, IDisposable
                 ImGui.TreePop();
             }
         }
-
         if (string.IsNullOrEmpty(searchQuery) || "Tinsand | Sand [Route 3]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
             if (ImGui.TreeNode("Tinsand | Sand [Route 3]"))
@@ -391,7 +442,6 @@ public class MainWindow : ConfigWindow, IDisposable
                 ImGui.TreePop();
             }
         }
-
         if (string.IsNullOrEmpty(searchQuery) || "Apple | Beehive | Vine [Route 4]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
             if (ImGui.TreeNode("Apple | Beehive | Vine [Route 4]"))
@@ -413,7 +463,6 @@ public class MainWindow : ConfigWindow, IDisposable
                 ImGui.TreePop();
             }
         }
-
         if (string.IsNullOrEmpty(searchQuery) || "Coconut | Palm Log | Palm leaf [Route 5]".Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
         {
             if (ImGui.TreeNode("Coconut | Palm Log | Palm leaf [Route 5]"))
@@ -816,5 +865,21 @@ public class MainWindow : ConfigWindow, IDisposable
         //Unused Settings, DON'T DELETE THIS... Need to figure where to place
         if (ImGuiEx.IconButton(FontAwesomeIcon.Wrench, "Workshop"))
             EzConfigGui.WindowSystem.Windows.FirstOrDefault(w => w.WindowName == SettingMenu.WindowName)!.IsOpen ^= true;
+    }
+
+    private static void OpenUrl(string url)
+    {
+        try
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = url,
+                UseShellExecute = true // Ensures it works cross-platform
+            });
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Failed to open URL: {ex.Message}");
+        }
     }
 }
