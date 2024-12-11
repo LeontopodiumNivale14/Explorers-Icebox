@@ -39,50 +39,41 @@ namespace ExplorersIcebox.Scheduler
                 {
                     if (!P.taskManager.IsBusy)
                     {
-                        if (!UpdatedShop && !C.everythingUnlocked)
+                        if (C.XPGrind)
                         {
-                            TaskUpdateShopID.Enqueue();
-                            UpdatedShop = true;
-                        }
-                        else
-                        {
-                            if (C.XPGrind)
+                            if (C.runInfinite || (!C.runInfinite && C.runAmount > CurrentLoop))
                             {
-                                if (C.runInfinite || (!C.runInfinite && C.runAmount > CurrentLoop))
+                                GroupIslandTask.Enqueue(currentTable);
+                                P.taskManager.Enqueue(() => CurrentLoop = CurrentLoop + 1);
+                            }
+                            else
+                            {
+                                DisablePlugin();
+                            }
+                        }
+                        else if (!C.XPGrind)
+                        {
+                            C.routeSelected = 0;
+                            bool isAllFalse = true; // Assume all are false initially.
+
+                            foreach (var entry in RouteDataPoint)
+                            {
+                                if (entry.Value.GatherRoute)
                                 {
-                                    GroupIslandTask.Enqueue(currentTable);
-                                    P.taskManager.Enqueue(() => CurrentLoop = CurrentLoop + 1);
-                                }
-                                else
-                                {
-                                    DisablePlugin();
+                                    C.routeSelected = entry.Key; // Update the selected route in C.
+                                    isAllFalse = false; // At least one route is true.
+                                    PluginLog($"Current route is now: {C.routeSelected}");
+                                    break; // Exit loop as we've found the first true entry.
                                 }
                             }
-                            else if (!C.XPGrind)
+                            if (!isAllFalse)
                             {
-                                C.routeSelected = 0;
-                                bool isAllFalse = true; // Assume all are false initially.
-
-                                foreach (var entry in RouteDataPoint)
-                                {
-                                    if (entry.Value.GatherRoute)
-                                    {
-                                        C.routeSelected = entry.Key; // Update the selected route in C.
-                                        isAllFalse = false; // At least one route is true.
-                                        PluginLog($"Current route is now: {C.routeSelected}");
-                                        break; // Exit loop as we've found the first true entry.
-                                    }
-                                }
-                                if (!isAllFalse)
-                                {
-                                    GroupIslandTask.Enqueue(currentTable);
-                                    RouteDataPoint[C.routeSelected].GatherRoute = false;
-                                }
-                                if (isAllFalse)
-                                {
-                                    DisablePlugin();
-                                }
-
+                                GroupIslandTask.Enqueue(currentTable);
+                                RouteDataPoint[C.routeSelected].GatherRoute = false;
+                            }
+                            if (isAllFalse)
+                            {
+                                DisablePlugin();
                             }
                         }
                     }

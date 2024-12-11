@@ -143,6 +143,39 @@ public static unsafe class Utils
         return node != null && node->IsVisible();
     }
 
+    public static unsafe string GetNodeText(string addonName, params int[] nodeNumbers)
+    {
+
+        var ptr = Svc.GameGui.GetAddonByName(addonName, 1);
+
+        var addon = (AtkUnitBase*)ptr;
+        var uld = addon->UldManager;
+
+        AtkResNode* node = null;
+        var debugString = string.Empty;
+        for (var i = 0; i < nodeNumbers.Length; i++)
+        {
+            var nodeNumber = nodeNumbers[i];
+
+            var count = uld.NodeListCount;
+
+            node = uld.NodeList[nodeNumber];
+            debugString += $"[{nodeNumber}]";
+
+            // More nodes to traverse
+            if (i < nodeNumbers.Length - 1)
+            {
+                uld = ((AtkComponentNode*)node)->Component->UldManager;
+            }
+        }
+
+        if (node->Type == NodeType.Counter)
+            return ((AtkCounterNode*)node)->NodeText.ToString();
+
+        var textNode = (AtkTextNode*)node;
+        return textNode->NodeText.ExtractText();
+    }
+
     private static unsafe AtkResNode* GetNodeByIDChain(AtkResNode* node, params int[] ids)
     {
         if (node == null || ids.Length <= 0)

@@ -16,6 +16,6 @@ namespace ExplorersIcebox.IPC
         [EzIPC] public Func<bool> TeleportToFC;
         [EzIPC] public Func<bool> TeleportToApartment;
         [EzIPC] public Func<bool> IsBusy;
-        [EzIPC] public Action<string> ExecuteCommand;
+        [EzIPC] public Action<string> ExecuteCommand; //
     }
 }

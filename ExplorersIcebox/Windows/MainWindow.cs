@@ -45,7 +45,6 @@ public class MainWindow : ConfigWindow, IDisposable
     private string[] modeSelect = { "XP | Cowries Grind", "Island Gathering Mode" };
     public static string currentMode = "XP | Cowries Grind";
     public static string currentlyDoing = SchedulerMain.CurrentProcess;
-    private bool everythingUnlocked = true;
     private bool copyButton = false;
     private int updateAllWS = 0;
 
@@ -60,6 +59,8 @@ public class MainWindow : ConfigWindow, IDisposable
                     UpdateXPTable();
                     ImGui.Text($"Current task --> {displayCurrentTask}");
                     ImGui.Text($"Route --> {displayCurrentRoute}");
+                    if (CurrentTerritory() == 1055)
+                        ImGui.Text($"Current level is: {GetNodeText("MJIHud", 14)}");
                     bool isXPRunning = SchedulerMain.AreWeTicking;
                     if (ImGui.Checkbox(" Enable Farm", ref isXPRunning))
                     {
@@ -76,24 +77,6 @@ public class MainWindow : ConfigWindow, IDisposable
                             PluginLog("Disabling the Route gathering");
                             displayCurrentTask = "";
                             SchedulerMain.DisablePlugin();
-                        }
-                    }
-                    else // if missing the shovel, then you'll get this message (or if you're not on the Island)
-                    {
-                        ImGui.TextWrapped("You don't have the shovel yet, please get to lv. 5 and unlock the shovel please. (I will have a fix for this soon™)");
-                        ImGui.NewLine();
-                    }
-                    ImGui.SameLine();
-                    ImGui.SetCursorPosX(offSet(140f));
-                    if (ImGui.Checkbox("All Items Unlocked", ref everythingUnlocked))
-                    {
-                        if (everythingUnlocked)
-                        {
-                            C.everythingUnlocked = true;
-                        }
-                        else
-                        {
-                            C.everythingUnlocked = false;
                         }
                     }
                     ImGui.SetNextItemWidth(175);
@@ -163,6 +146,15 @@ public class MainWindow : ConfigWindow, IDisposable
 
                     ImGui.PopStyleColor(3);
 
+                    if (ImGui.TreeNode("Version 1.0.1"))
+                    {
+                        ImGui.TextWrapped($"First update within 24 hours? Still so much to do... \n" +
+                                   $"-> Actually got the level requirement down to lv 4! Now you can do it from the earliest point.\n" +
+                                   $"-> Made the routes more modular in accepting workshop amount from multiple item types (So Iron + Durium sand now dynamically updates properly\n" +
+                                   $"-> Fixed the cabin 4 not pathing properly (Hopefully)... tested it against the rest of the cabins as well and didn't seem to have problems anymore\n" +
+                                   $"-> Removed the \"All Item's Unlocked\" checkbox, partially due to it being redundant. But also it being true when you first enable the plugin probably wasn't the best idea...");
+                    }
+                    ImGui.TreePop();
                     if (ImGui.TreeNode("Version 1.0.0 [RELEASE]"))
                     {
                         ImGui.Text("First actual... release. Holy fuck");
