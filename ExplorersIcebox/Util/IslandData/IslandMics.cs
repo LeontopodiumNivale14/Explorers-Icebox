@@ -57,29 +57,52 @@ public class IslandMics
     public const int MaxItems = 999;
 
     // Route Loop Amounts
-    public static int Route0Amount => RouteAmountCalc(Routes.Route0Table, C.IslefishWorkshop, C.ClamWorkshop, C.SquidWorkshop, C.LaverWorkshop);
+    public static int Route0Amount => RouteAmountCalc(Routes.Route0Table, Math.Min(C.IslefishWorkshop, C.ClamWorkshop), 0, Math.Min(C.SquidWorkshop, C.LaverWorkshop), 0);
     public static int Route1Amount => RouteAmountCalc(Routes.Route1Table, C.IslewortWorkshop);
-    public static int Route2Amount => RouteAmountCalc(Routes.Route2Table, C.SugarcaneWorkshop, C.VineWorkshop);
-    public static int Route3Amount => RouteAmountCalc(Routes.Route3Table, C.TinsandWorkshop, C.SandWorkshop, C.MarbleWorkshop, C.LimestoneWorkshop, C.StoneWorkshop);
-    public static int Route4Amount => RouteAmountCalc(Routes.Route4Table, C.AppleWorkshop, C.BeehiveWorkshop, C.VineWorkshop, C.SapWorkshop, C.WoodOpalWorkshop, C.BranchWorkshop, C.ResinWorkshop, C.SandWorkshop, C.ClamWorkshop, 0);
-    public static int Route5Amount => RouteAmountCalc(Routes.Route5Table, C.CoconutWorkshop, C.PalmLeafWorkshop, C.PalmLeafWorkshop, C.LimestoneWorkshop, C.MarbleWorkshop, C.StoneWorkshop);
-    public static int Route6Amount => RouteAmountCalc(Routes.Route6Table, C.CottonWorkshop, C.HempWorkshop, C.CoconutWorkshop, C.PalmLogWorkshop, C.PalmLeafWorkshop, C.IslewortWorkshop);
-    public static int Route7Amount => RouteAmountCalc(Routes.Route7Table, C.ClayWorkshop, C.TinsandWorkshop, C.MarbleWorkshop, C.LimestoneWorkshop, C.StoneWorkshop, C.BranchWorkshop, C.LogWorkshop, C.ResinWorkshop, C.SugarcaneWorkshop, C.VineWorkshop, 0);
-    public static int Route8Amount => RouteAmountCalc(Routes.Route8Table, C.MarbleWorkshop, C.LimestoneWorkshop, 0, C.SugarcaneWorkshop, C.VineWorkshop, C.CoconutWorkshop, C.PalmLeafWorkshop, C.PalmLogWorkshop, C.TinsandWorkshop, C.SandWorkshop, C.HempWorkshop, C.IslewortWorkshop);
-    public static int Route9Amount => RouteAmountCalc(Routes.Route9Table, C.BranchWorkshop, C.ResinWorkshop, C.SapWorkshop, C.WoodOpalWorkshop, C.LogWorkshop, C.ClayWorkshop, C.SandWorkshop, 0);
-    public static int Route10Amount => RouteAmountCalc(Routes.Route10Table, C.CopperWorkshop, C.MythrilOreWorkshop, C.HempWorkshop, C.CoconutWorkshop ,C.PalmLogWorkshop, C.PalmLeafWorkshop, C.CottonWorkshop, C.IslewortWorkshop, 0);
-    public static int Route11Amount => RouteAmountCalc(Routes.Route11Table, C.SapWorkshop, C.WoodOpalWorkshop, 0, C.HempWorkshop, C.IslewortWorkshop);
-    public static int Route12Amount => RouteAmountCalc(Routes.Route12Table, C.HempWorkshop, 0, C.SandWorkshop, C.ClayWorkshop, C.CoconutWorkshop, C.PalmLogWorkshop, C.PalmLeafWorkshop);
-    public static int Route13Amount => RouteAmountCalc(Routes.Route13Table, C.MulticoloredIslebloomsWorkshop, C.QuartzWorkshop, C.IronOreWorkshop, C.DuriumSandWorkshop, C.LeucograniteWorkshop, 0);
-    public static int Route14Amount => RouteAmountCalc(Routes.Route14Table, C.IronOreWorkshop, 0);
-    public static int Route15Amount => RouteAmountCalc(Routes.Route15Table, C.LaverWorkshop, C.SquidWorkshop, C.JellyfishWorkshop, C.CoralWorkshop);
-    public static int Route16Amount => RouteAmountCalc(Routes.Route16Table, C.RockSaltWorkshop, 0, C.ClayWorkshop, C.SandWorkshop, C.SandWorkshop, C.IslewortWorkshop, C.HempWorkshop);
-    public static int Route17Amount => RouteAmountCalc(Routes.Route17Table, C.LeucograniteWorkshop, C.CopperWorkshop, C.MythrilOreWorkshop, C.IronOreWorkshop, C.DuriumSandWorkshop, 0);
-    public static int Route18Amount => RouteAmountCalc(Routes.Route18Table, C.QuartzWorkshop, C.IronOreWorkshop, C.DuriumSandWorkshop, C.LeucograniteWorkshop, 0);
-    public static int Route19Amount => RouteAmountCalc(Routes.Route19Table, C.GlimshroomWorkshop, C.ShaleWorkshop, C.CoalWorkshop, 0);
-    public static int Route20Amount => RouteAmountCalc(Routes.Route20Table, C.EffervescentWaterWorkshop, C.SpectrineWorkshop, C.ShaleWorkshop, C.CoalWorkshop, 0);
-    public static int Route21Amount => RouteAmountCalc(Routes.Route21Table, C.YellowCopperOreWorkshop, C.GoldOreWorkshop, C.CrystalFormationWorkshop, C.HawksEyeSandWorkshop, C.GlimshroomWorkshop, C.EffervescentWaterWorkshop, C.SpectrineWorkshop, C.ShaleWorkshop, C.CoalWorkshop, 0);
+    public static int Route2Amount => RouteAmountCalc(Routes.Route2Table, Math.Min(C.SugarcaneWorkshop, C.VineWorkshop), 0);
+    public static int Route3Amount => RouteAmountCalc(Routes.Route3Table, Math.Min(C.TinsandWorkshop, C.SandWorkshop), 0, Math.Min(Math.Min(C.MarbleWorkshop, C.LimestoneWorkshop), C.StoneWorkshop), 0, 0);
+    public static int Route4Amount => RouteAmountCalc(Routes.Route4Table, Math.Min(Math.Min(C.AppleWorkshop, C.BeehiveWorkshop), C.VineWorkshop), 0, 0, Math.Min(C.SapWorkshop, C.WoodOpalWorkshop), 0, Math.Min(C.BranchWorkshop, C.ResinWorkshop), 0, Math.Min(C.SandWorkshop, C.ClamWorkshop), 0, 0 /* Log*/);
+    public static int Route5Amount => RouteAmountCalc(Routes.Route5Table, Math.Min(Math.Min(C.CoconutWorkshop, C.PalmLeafWorkshop), C.PalmLeafWorkshop), 0, 0, Math.Min(Math.Min(C.LimestoneWorkshop, C.MarbleWorkshop), C.StoneWorkshop), 0, 0);
+    public static int Route6Amount => RouteAmountCalc(Routes.Route6Table, C.CottonWorkshop, C.HempWorkshop, Math.Min(Math.Min(C.CoconutWorkshop, C.PalmLogWorkshop), C.PalmLeafWorkshop), 0, 0, 0);
+    public static int Route7Amount => RouteAmountCalc(Routes.Route7Table, Math.Min(C.ClayWorkshop, C.TinsandWorkshop), 0, Math.Min(Math.Min(C.MarbleWorkshop, C.LimestoneWorkshop), C.StoneWorkshop), 0, 0, Math.Min(Math.Min(C.BranchWorkshop, C.LogWorkshop), C.ResinWorkshop), 0, 0, Math.Min(C.SugarcaneWorkshop, C.VineWorkshop), 0, ShovelCheck());
+    public static int Route8Amount => RouteAmountCalc(Routes.Route8Table, Math.Min(Math.Min(C.MarbleWorkshop, C.LimestoneWorkshop), C.StoneWorkshop), 0, 0, Math.Min(C.SugarcaneWorkshop, C.VineWorkshop), 0, Math.Min(Math.Min(C.CoconutWorkshop, C.PalmLeafWorkshop), C.PalmLogWorkshop), 0, 0, Math.Min(C.TinsandWorkshop, C.SandWorkshop), 0, Math.Min(C.HempWorkshop, C.IslewortWorkshop), 0);
+    public static int Route9Amount => RouteAmountCalc(Routes.Route9Table, Math.Min(C.BranchWorkshop, C.ResinWorkshop), 0, Math.Min(C.SapWorkshop, C.WoodOpalWorkshop), 0, Math.Min(C.ClayWorkshop, C.SandWorkshop), 0, 0);
+    public static int Route10Amount => RouteAmountCalc(Routes.Route10Table, Math.Min(Math.Min(C.CopperWorkshop, C.MythrilOreWorkshop), C.StoneWorkshop), 0, 0, C.HempWorkshop, Math.Min(Math.Min(C.CoconutWorkshop, C.PalmLeafWorkshop), C.PalmLogWorkshop), 0, 0, C.CottonWorkshop, C.IslewortWorkshop);
+    public static int Route11Amount => RouteAmountCalc(Routes.Route11Table, Math.Min(Math.Min(C.SapWorkshop, C.WoodOpalWorkshop), C.LogWorkshop), 0, 0, C.HempWorkshop, C.IslewortWorkshop);
+    public static int Route12Amount => RouteAmountCalc(Routes.Route12Table, Math.Min(C.HempWorkshop, C.IslewortWorkshop), 0, Math.Min(C.SandWorkshop, C.ClayWorkshop), 0, Math.Min(Math.Min(C.CoconutWorkshop, C.PalmLeafWorkshop), C.PalmLogWorkshop), 0, 0);
+    public static int Route13Amount => RouteAmountCalc(Routes.Route13Table, C.MulticoloredIslebloomsWorkshop, C.QuartzWorkshop, Math.Min(C.IronOreWorkshop, C.DuriumSandWorkshop), 0, C.LeucograniteWorkshop, 0);
+    public static int Route14Amount => RouteAmountCalc(Routes.Route14Table, Math.Min(Math.Min(C.IronOreWorkshop, C.StoneWorkshop), C.DuriumSandWorkshop), 0, 0);
+    public static int Route15Amount => RouteAmountCalc(Routes.Route15Table, Math.Min(C.LaverWorkshop, C.SquidWorkshop), 0, Math.Min(C.JellyfishWorkshop, C.CoralWorkshop), 0);
+    public static int Route16Amount => RouteAmountCalc(Routes.Route16Table, Math.Min(C.RockSaltWorkshop, C.StoneWorkshop), 0, Math.Min(C.ClayWorkshop, C.SandWorkshop), 0, Math.Min(C.IslewortWorkshop, C.HempWorkshop), 0);
+    public static int Route17Amount => RouteAmountCalc(Routes.Route17Table, C.LeucograniteWorkshop, Math.Min(C.CopperWorkshop, C.MythrilOreWorkshop), 0, Math.Min(C.IronOreWorkshop, C.DuriumSandWorkshop), 0, 0);
+    public static int Route18Amount => RouteAmountCalc(Routes.Route18Table, C.QuartzWorkshop, Math.Min(C.IronOreWorkshop, C.DuriumSandWorkshop), 0, C.LeucograniteWorkshop, 0);
+    public static int Route19Amount => RouteAmountCalc(Routes.Route19Table, C.GlimshroomWorkshop, Math.Min(Math.Min(C.ShaleWorkshop, C.CoalWorkshop), C.StoneWorkshop), 0, 0);
+    public static int Route20Amount => RouteAmountCalc(Routes.Route20Table, Math.Min(C.EffervescentWaterWorkshop, C.SpectrineWorkshop), 0, Math.Min(C.ShaleWorkshop, C.CoalWorkshop), 0, 0);
+    public static int Route21Amount => RouteAmountCalc(Routes.Route21Table, Math.Min(C.YellowCopperOreWorkshop, C.GoldOreWorkshop), 0, Math.Min(C.CrystalFormationWorkshop, C.HawksEyeSandWorkshop), 0, C.GlimshroomWorkshop, Math.Min(C.EffervescentWaterWorkshop, C.SpectrineWorkshop), 0, Math.Min(C.ShaleWorkshop, C.CoalWorkshop), 0, 0);
 
+    public static int ShovelCheck()
+    {
+        if (!CheckIfItemLocked(2))
+        {
+            return 0;
+        }
+        else
+        {
+            return C.SandWorkshop;
+        }
+    }
+
+    public static void UpdateXPTable()
+    {
+        if (!CheckIfItemLocked(2))
+        {
+            Routes.Route7Table[10].CanSellFullAmount = true;
+        }
+        else
+        {
+            Routes.Route7Table[10].CanSellFullAmount = false;
+        }
+    }
 
     public class GatheringPointPos
     {

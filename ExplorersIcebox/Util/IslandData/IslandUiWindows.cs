@@ -808,6 +808,7 @@ internal class IslandUiWindows
     {
         ImGui.Text($"Route 14 is set to run -> {Route14Amount} loops");
         IronOreImgui();
+        DuriumSandImgui();
         StoneImgui();
     }
 

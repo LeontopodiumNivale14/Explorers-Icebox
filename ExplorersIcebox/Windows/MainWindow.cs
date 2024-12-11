@@ -57,30 +57,28 @@ public class MainWindow : ConfigWindow, IDisposable
             {
                 if (ImGui.BeginTabItem("XP/Cowries Grind"))
                 {
+                    UpdateXPTable();
                     ImGui.Text($"Current task --> {displayCurrentTask}");
                     ImGui.Text($"Route --> {displayCurrentRoute}");
                     bool isXPRunning = SchedulerMain.AreWeTicking;
-                    if (!CheckIfItemLocked(2))
+                    if (ImGui.Checkbox(" Enable Farm", ref isXPRunning))
                     {
-                        if (ImGui.Checkbox(" Enable Farm", ref isXPRunning))
+                        if (isXPRunning)
                         {
-                            if (isXPRunning)
-                            {
-                                PluginLog("Enabling the route Gathering");
-                                if (currentMode == "Island Gathering Mode") C.XPGrind = false;
-                                if (currentMode == "XP | Cowries Grind") C.XPGrind = true;
-                                SchedulerMain.EnablePlugin();
-                                displayCurrentTask = "Currently Running";
-                            }
-                            else
-                            {
-                                PluginLog("Disabling the Route gathering");
-                                displayCurrentTask = "";
-                                SchedulerMain.DisablePlugin();
-                            }
+                            PluginLog("Enabling the route Gathering");
+                            if (currentMode == "Island Gathering Mode") C.XPGrind = false;
+                            if (currentMode == "XP | Cowries Grind") C.XPGrind = true;
+                            SchedulerMain.EnablePlugin();
+                            displayCurrentTask = "Currently Running";
+                        }
+                        else
+                        {
+                            PluginLog("Disabling the Route gathering");
+                            displayCurrentTask = "";
+                            SchedulerMain.DisablePlugin();
                         }
                     }
-                    else
+                    else // if missing the shovel, then you'll get this message (or if you're not on the Island)
                     {
                         ImGui.TextWrapped("You don't have the shovel yet, please get to lv. 5 and unlock the shovel please. (I will have a fix for this soon™)");
                         ImGui.NewLine();

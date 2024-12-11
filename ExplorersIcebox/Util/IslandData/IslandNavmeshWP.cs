@@ -9,7 +9,7 @@ namespace ExplorersIcebox.Util.IslandData;
 internal class IslandNavmeshWP
 {
     public static readonly Vector3 workshopEntrancePos = new Vector3(-268f, 40f, 226f);
-    public static readonly Vector3 mammetExportPos = new Vector3(-268.3f, 41f, 209.88f);
+    public static readonly Vector3 mammetExportPos = new Vector3(-266.74f, 41.03f, 209.97f);
     public static readonly Vector3 workshopExitPos = new Vector3(-268.27f, 40f, 232.9f);
 
     public static readonly Vector3 Clay_SandRoutePos = new Vector3(213.4f, 58.66f, 88.73f);

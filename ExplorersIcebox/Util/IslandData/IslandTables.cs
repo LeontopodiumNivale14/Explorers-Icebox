@@ -139,7 +139,6 @@ internal class IslandTables
             new RouteEntry(8, ResinID, 0, false),
             new RouteEntry(1, SapID, 0, false),
             new RouteEntry(1, WoodOpalID, 0, false),
-            new RouteEntry(1, LogID, 0, false),
             new RouteEntry(2, ClayID, 0, false),
             new RouteEntry(2, SandID, 0, false),
             new RouteEntry(9, LogID, 0, true),
@@ -150,13 +149,13 @@ internal class IslandTables
         [
             new RouteEntry(7, CopperID, 0, false),
             new RouteEntry(7, MythrilOreID, 0, false),
+            new RouteEntry(7, StoneID, 0, false),
             new RouteEntry(2, HempID, 0, false),
             new RouteEntry(1, CoconutID, 0, false),
             new RouteEntry(1, PalmLogID, 0, false),
             new RouteEntry(1, PalmLeafID, 0, false),
             new RouteEntry(1, CottonID, 0, false),
             new RouteEntry(3, IslewortID, 0, false),
-            new RouteEntry(7, StoneID, 0, false)
         ];
 
         // Opal | Sap | (Log)
@@ -192,10 +191,11 @@ internal class IslandTables
             new RouteEntry(7, StoneID, 0, true),
         ];
 
-        // Iron Ore
+        // Iron Ore | Durium Sand
         public static List<RouteEntry> Route14Table =
         [
             new RouteEntry(11, IronOreID, 0, false),
+            new RouteEntry(11, DuriumSandID, 0, false),
             new RouteEntry(11, StoneID, 0, false),
         ];
 

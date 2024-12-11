@@ -1,16 +1,17 @@
-Things I want to work on when I can:
--> Actually start testing Pcalls
--> While it's a forethought, I wonder if I can check to see if you have certain tools, that way it knows what it can/can't sell...
--> Need to setup a path after you return to the base to go to the workshop (now that you can actually return permanently)
--> Setup selling the items
+// things I want to do post update (Thanks @Croizat for the actual ideas)
 
-(ImGui things)
--> Need to have a radio/checkbox for which route you wanna do (Ground XP vs Flying/Best XP grind)
--> Once selected which one you will do, have that set a value for which table to pull
--> Whenever you get to the shop, calculate the items you're selling
--> leave the shop (not sure if I want to make this a function... probably? Can only imagine so. Be a minor pain but, save time long run)
--> Head to destination
--> Start farming
-(future thought) -> Setup a menu where you can select between farm XP/Cowries, or gather every item. (That way I can setup 2 seperate functions on how they would operate... cause trying to intertwine them sounds like a bad idea)
-                 -> Like... atleast could use the function of ShopSell -> Goto Area -> Farm x amount of times for both, but can't have a "farm" loop and then a "gatherall" loop in the same instance.
 
+public static void ItemImGui(uint itemId)
+{
+  if (!GetRow<Item>(itemId) is { } row) return;
+  ImGui.AlignTextToFramePadding();
+  ImGui.Text($"{row.Name} (Have: {GetItemCount(itemId})");
+  // the rest
+}
+
+// change all the itemImGui's to have this instead. 
+// this would also require me to change the rest of the information into a dictionary too.. but that's fine. Code cleanup is best practice.
+// So probably have the dictionary have 
+// -> ItemID as Key
+// -> General GetItemCount (Not sure if this is necessary but would just be good to have as reference
+// -> Workshop amount/input to be pulled/referenced
