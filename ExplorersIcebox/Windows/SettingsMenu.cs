@@ -88,51 +88,6 @@ namespace ExplorersIcebox.Windows
         {
             ImGui.Text("Displaying all items.");
             // Add code to display "All Items" content
-
-            PalmLeafImgui();
-            BranchImgui();
-            StoneImgui();
-            ClamImgui();
-            LaverImgui();
-            CoralImgui();
-            IslewortImgui();
-            SandImgui();
-            VineImgui();
-            SapImgui();
-            AppleImgui();
-            LogImgui();
-            PalmLogImgui();
-            CopperImgui();
-            LimestoneImgui();
-            RockSaltImgui();
-            ClayImgui();
-            TinsandImgui();
-            SugarcaneImgui();
-            CottonImgui();
-            HempImgui();
-            IslefishImgui();
-            SquidImgui();
-            JellyfishImgui();
-            IronOreImgui();
-            QuartzImgui();
-            LeucograniteImgui();
-            MulticoloredIslebloomsImgui();
-            ResinImgui();
-            CoconutImgui();
-            BeehiveImgui();
-            WoodOpalImgui();
-            CoalImgui();
-            GlimshroomImgui();
-            EffervescentWaterImgui();
-            ShaleImgui();
-            MarbleImgui();
-            MythrilOreImgui();
-            SpectrineImgui();
-            DuriumSandImgui();
-            YellowCopperOreImgui();
-            GoldOreImgui();
-            HawksEyeSandImgui();
-            CrystalFormationImgui();
         }
     }
 }

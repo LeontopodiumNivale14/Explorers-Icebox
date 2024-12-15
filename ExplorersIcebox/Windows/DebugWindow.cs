@@ -28,11 +28,6 @@ namespace ExplorersIcebox.Windows
 
         private bool callbackbool = false;
         private string testRoute = "";
-        private int maxLoops = (int)Math.Floor((double) 999 / 6);
-        private int workshopKeepLoop => (int)Math.Ceiling((double)C.QuartzWorkshop / 6);
-        private int newLoopTotal => ((int)Math.Floor((double)999 / 6) - (int)Math.Ceiling((double)C.QuartzWorkshop / 6));
-        private int quartzGather => (newLoopTotal * 6);
-        private int newLoopAmount => CalculateRouteLoopAmount(C.QuartzWorkshop, 6);
         private int inputbox = 0;
         private ushort itemID = 0;
 
@@ -171,16 +166,11 @@ namespace ExplorersIcebox.Windows
             {
                 TaskVislandTemp.Enqueue(testRoute, "Test Base64 Route");
             }
-            ImGui.Text($"Max loops = {maxLoops}");
-            ImGui.Text($"Loops to take off = {workshopKeepLoop}");
-            ImGui.Text($"New total loops = {newLoopTotal}");
-            ImGui.Text($"Quartz gatherabled amount = {quartzGather}");
             ImGui.Text($"Quartz sell = {currentTable[0].Sell}");
             if (ImGui.Button("Calculate sell"))
             {
                 TableSellUpdate(currentTable);
             }
-            ImGui.Text($"New Calculated loop amount = {newLoopAmount}");
         }
     
         private void TestGuiDebug()
@@ -214,7 +204,7 @@ namespace ExplorersIcebox.Windows
         public static void DisplayItemData()
         {
             // Iterate over the dictionary
-            foreach (var entry in IslandSancDictionary)
+            foreach (var entry in IslandItemDict)
             {
                 // Extract the key (Item ID) and value (ItemData)
                 var itemId = entry.Key;

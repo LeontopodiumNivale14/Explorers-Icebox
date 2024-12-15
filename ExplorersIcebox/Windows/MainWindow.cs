@@ -6,6 +6,7 @@ using ExplorersIcebox.Scheduler.Tasks;
 using ExplorersIcebox.Util.IslandData;
 using ImGuiScene;
 using Lumina.Excel.Sheets;
+using System.Collections;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -136,40 +137,29 @@ public class MainWindow : ConfigWindow, IDisposable
                         OpenUrl("https://ko-fi.com/ice643269");
                     }
 
-                    ImGui.NewLine();
-
-                    ImGui.SetCursorPosX(offSet(150f));
-                    if (ImGui.Button("Don't press this button"))
-                    {
-                        OpenUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-                    }
-
                     ImGui.PopStyleColor(3);
 
-                    if (ImGui.TreeNode("Version 1.0.1"))
-                    {
-                        ImGui.TextWrapped($"First update within 24 hours? Still so much to do... \n" +
-                                   $"-> Actually got the level requirement down to lv 4! Now you can do it from the earliest point.\n" +
-                                   $"-> Made the routes more modular in accepting workshop amount from multiple item types (So Iron + Durium sand now dynamically updates properly\n" +
-                                   $"-> Fixed the cabin 4 not pathing properly (Hopefully)... tested it against the rest of the cabins as well and didn't seem to have problems anymore\n" +
-                                   $"-> Removed the \"All Item's Unlocked\" checkbox, partially due to it being redundant. But also it being true when you first enable the plugin probably wasn't the best idea...");
-                    }
-                    ImGui.TreePop();
-                    if (ImGui.TreeNode("Version 1.0.0 [RELEASE]"))
-                    {
-                        ImGui.Text("First actual... release. Holy fuck");
-                        ImGui.Text("-> Initial creation of plugin, includes:");
-                        ImGui.Text("-> 2 Leveling/Grind Routes");
-                        ImGui.Text("  -> Ground [Clay/Sand");
-                        ImGui.Text("  -> Flying [Quartz]");
-                        ImGui.Text("-> Island Gathering Mode");
-                        ImGui.TextWrapped("Being able to select which routes to run + search through them for items");
-                        ImGui.TextWrapped("For both: Set workshop values to keep a certain amount of items, allowing for dynamic loop amounts");
-                        ImGui.NewLine();
-                        ImGui.TextWrapped("Safety check to make sure you have the shovel unlocked. Will remove this whenever I update routes to be more dynamic");
-                    }
-                    ImGui.TreePop();
+                    ImGui.NewLine();
 
+                    ImGui.TextWrapped($"V1.0.1\n" +
+                                      $"First update within 24 hours? Still so much to do... \n" +
+                                      $"-> Actually got the level requirement down to lv 4! Now you can do it from the earliest point.\n" +
+                                      $"-> Made the routes more modular in accepting workshop amount from multiple item types (So Iron + Durium sand now dynamically updates properly\n" +
+                                      $"-> Fixed the cabin 4 not pathing properly (Hopefully)... tested it against the rest of the cabins as well and didn't seem to have problems anymore\n" +
+                                      $"-> Removed the \"All Item's Unlocked\" checkbox, partially due to it being redundant. But also it being true when you first enable the plugin probably wasn't the best idea...");
+                    ImGui.Spacing();
+                    ImGui.TextWrapped($"V1.0.0\n" +
+                                      $"First actual... release. Holy fuck\n" +
+                                      $"Initial creation of plugin, includes:)\n" +
+                                      $"-> 2 Leveling/Grind Routes\n" +
+                                      $"  -> Ground [Clay/Sand\n" +
+                                      $"  -> Flying [Quartz]\n" +
+                                      $"-> Island Gathering Mode\n" +
+                                      $"Being able to select which routes to run + search through them for items\n" +
+                                      $"For both: Set workshop values to keep a certain amount of items, allowing for dynamic loop amounts");
+                    ImGui.NewLine();
+                    ImGui.TextWrapped("Safety check to make sure you have the shovel unlocked. Will remove this whenever I update routes to be more dynamic\n" +
+                                      "This has been completed in V1.0.1. WOO!");
                 }
                 ImGui.EndTabBar();
             }
@@ -842,8 +832,13 @@ public class MainWindow : ConfigWindow, IDisposable
         ImGui.SetNextItemWidth(85);
         if (ImGui.InputInt("##Update All Workshops", ref updateAll))
         {
-            updateAllWS = updateAll;
-            QuickWorkshopKeepUpdate(updateAllWS);
+            updateAllWS = AmountSet(updateAll);
+            {
+                foreach (var item in IslandItemDict.Keys.ToList())
+                {
+                    IslandItemDict[item].Workshop = AmountSet(updateAll);
+                }
+            }
         }
         ImGuiComponents.HelpMarker("Quick way to update all workshops to the same value.");
 

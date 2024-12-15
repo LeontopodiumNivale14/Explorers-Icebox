@@ -38,11 +38,12 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
                         var itemID = routeEntries[i].ID;
                         PluginLog($"{itemID} has enough to sell");
                         PluginLog($"{routeEntries[i].Sell} <-- selling this much");
-                        P.taskManager.EnqueueDelay(100);
-                        TaskCallback.Enqueue("MJIDisposeShop", true, 12, IslandSancDictionary[itemID].Callback);
-                        P.taskManager.EnqueueDelay(100);
+                        P.taskManager.Enqueue(() => displayCurrentTask = $"Selling item with this ID: {itemID}");
+                        P.taskManager.EnqueueDelay(200);
+                        TaskCallback.Enqueue("MJIDisposeShop", true, 12, IslandItemDict[itemID].Callback);
+                        P.taskManager.EnqueueDelay(200);
                         TaskCallback.Enqueue("MJIDisposeShopShipping", true, 11, routeEntries[i].Sell);
-                        P.taskManager.EnqueueDelay(100);
+                        P.taskManager.EnqueueDelay(200);
                         P.taskManager.Enqueue(() => !IsAddonActive("MJIDisposeShopShipping"));
                         P.taskManager.EnqueueDelay(500);
                     }

@@ -238,15 +238,15 @@ public static unsafe class Utils
         {
             var itemID = ListitemIDs[i];
             PluginLog($"Index {i}: ID {itemID}");
-            if (IsNodeVisible("MJIPouch", 1, 8, IslandSancDictionary[itemID].NodeID, 2))
+            if (IsNodeVisible("MJIPouch", 1, 8, IslandItemDict[itemID].NodeID, 2))
             {
-                IslandSancDictionary[itemID].Callback = callback;
+                IslandItemDict[itemID].Callback = callback;
                 callback = callback + 1;
                 PluginLog($" updated: {callback}");
             }
             else
             {
-                IslandSancDictionary[itemID].Callback = 0;
+                IslandItemDict[itemID].Callback = 0;
             }
         }
     }
@@ -255,57 +255,9 @@ public static unsafe class Utils
 
     public static void UpdateTableDict()
     {
-        foreach (var item in IslandSancDictionary.Keys.ToList())
+        foreach (var item in IslandItemDict.Keys.ToList())
         {
-            IslandSancDictionary[item].Amount = GetItemCount(item);
+            IslandItemDict[item].Amount = GetItemCount(item);
         }
-    }
-
-    public static void QuickWorkshopKeepUpdate(int update)
-    {
-        C.PalmLeafWorkshop = update;
-        C.BranchWorkshop = update;
-        C.StoneWorkshop = update;
-        C.ClamWorkshop = update;
-        C.LaverWorkshop = update;
-        C.CoralWorkshop = update;
-        C.IslewortWorkshop = update;
-        C.SandWorkshop = update;
-        C.VineWorkshop = update;
-        C.SapWorkshop = update;
-        C.AppleWorkshop = update;
-        C.LogWorkshop = update;
-        C.PalmLogWorkshop = update;
-        C.CopperWorkshop = update;
-        C.LimestoneWorkshop = update;
-        C.RockSaltWorkshop = update;
-        C.ClayWorkshop = update;
-        C.TinsandWorkshop = update;
-        C.SugarcaneWorkshop = update;
-        C.CottonWorkshop = update;
-        C.HempWorkshop = update;
-        C.IslefishWorkshop = update;
-        C.SquidWorkshop = update;
-        C.JellyfishWorkshop = update;
-        C.IronOreWorkshop = update;
-        C.QuartzWorkshop = update;
-        C.LeucograniteWorkshop = update;
-        C.MulticoloredIslebloomsWorkshop = update;
-        C.ResinWorkshop = update;
-        C.CoconutWorkshop = update;
-        C.BeehiveWorkshop = update;
-        C.WoodOpalWorkshop = update;
-        C.CoalWorkshop = update;
-        C.GlimshroomWorkshop = update;
-        C.EffervescentWaterWorkshop = update;
-        C.ShaleWorkshop = update;
-        C.MarbleWorkshop = update;
-        C.MythrilOreWorkshop = update;
-        C.SpectrineWorkshop = update;
-        C.DuriumSandWorkshop = update;
-        C.YellowCopperOreWorkshop = update;
-        C.GoldOreWorkshop = update;
-        C.HawksEyeSandWorkshop = update;
-        C.CrystalFormationWorkshop = update;
     }
 }

@@ -57,28 +57,113 @@ public class IslandMics
     public const int MaxItems = 999;
 
     // Route Loop Amounts
-    public static int Route0Amount => RouteAmountCalc(Routes.Route0Table, Math.Min(C.IslefishWorkshop, C.ClamWorkshop), 0, Math.Min(C.SquidWorkshop, C.LaverWorkshop), 0);
-    public static int Route1Amount => RouteAmountCalc(Routes.Route1Table, C.IslewortWorkshop);
-    public static int Route2Amount => RouteAmountCalc(Routes.Route2Table, Math.Min(C.SugarcaneWorkshop, C.VineWorkshop), 0);
-    public static int Route3Amount => RouteAmountCalc(Routes.Route3Table, Math.Min(C.TinsandWorkshop, C.SandWorkshop), 0, Math.Min(Math.Min(C.MarbleWorkshop, C.LimestoneWorkshop), C.StoneWorkshop), 0, 0);
-    public static int Route4Amount => RouteAmountCalc(Routes.Route4Table, Math.Min(Math.Min(C.AppleWorkshop, C.BeehiveWorkshop), C.VineWorkshop), 0, 0, Math.Min(C.SapWorkshop, C.WoodOpalWorkshop), 0, Math.Min(C.BranchWorkshop, C.ResinWorkshop), 0, Math.Min(C.SandWorkshop, C.ClamWorkshop), 0, 0 /* Log*/);
-    public static int Route5Amount => RouteAmountCalc(Routes.Route5Table, Math.Min(Math.Min(C.CoconutWorkshop, C.PalmLeafWorkshop), C.PalmLeafWorkshop), 0, 0, Math.Min(Math.Min(C.LimestoneWorkshop, C.MarbleWorkshop), C.StoneWorkshop), 0, 0);
-    public static int Route6Amount => RouteAmountCalc(Routes.Route6Table, C.CottonWorkshop, C.HempWorkshop, Math.Min(Math.Min(C.CoconutWorkshop, C.PalmLogWorkshop), C.PalmLeafWorkshop), 0, 0, 0);
-    public static int Route7Amount => RouteAmountCalc(Routes.Route7Table, Math.Min(C.ClayWorkshop, C.TinsandWorkshop), 0, Math.Min(Math.Min(C.MarbleWorkshop, C.LimestoneWorkshop), C.StoneWorkshop), 0, 0, Math.Min(Math.Min(C.BranchWorkshop, C.LogWorkshop), C.ResinWorkshop), 0, 0, Math.Min(C.SugarcaneWorkshop, C.VineWorkshop), 0, ShovelCheck());
-    public static int Route8Amount => RouteAmountCalc(Routes.Route8Table, Math.Min(Math.Min(C.MarbleWorkshop, C.LimestoneWorkshop), C.StoneWorkshop), 0, 0, Math.Min(C.SugarcaneWorkshop, C.VineWorkshop), 0, Math.Min(Math.Min(C.CoconutWorkshop, C.PalmLeafWorkshop), C.PalmLogWorkshop), 0, 0, Math.Min(C.TinsandWorkshop, C.SandWorkshop), 0, Math.Min(C.HempWorkshop, C.IslewortWorkshop), 0);
-    public static int Route9Amount => RouteAmountCalc(Routes.Route9Table, Math.Min(C.BranchWorkshop, C.ResinWorkshop), 0, Math.Min(C.SapWorkshop, C.WoodOpalWorkshop), 0, Math.Min(C.ClayWorkshop, C.SandWorkshop), 0, 0);
-    public static int Route10Amount => RouteAmountCalc(Routes.Route10Table, Math.Min(Math.Min(C.CopperWorkshop, C.MythrilOreWorkshop), C.StoneWorkshop), 0, 0, C.HempWorkshop, Math.Min(Math.Min(C.CoconutWorkshop, C.PalmLeafWorkshop), C.PalmLogWorkshop), 0, 0, C.CottonWorkshop, C.IslewortWorkshop);
-    public static int Route11Amount => RouteAmountCalc(Routes.Route11Table, Math.Min(Math.Min(C.SapWorkshop, C.WoodOpalWorkshop), C.LogWorkshop), 0, 0, C.HempWorkshop, C.IslewortWorkshop);
-    public static int Route12Amount => RouteAmountCalc(Routes.Route12Table, Math.Min(C.HempWorkshop, C.IslewortWorkshop), 0, Math.Min(C.SandWorkshop, C.ClayWorkshop), 0, Math.Min(Math.Min(C.CoconutWorkshop, C.PalmLeafWorkshop), C.PalmLogWorkshop), 0, 0);
-    public static int Route13Amount => RouteAmountCalc(Routes.Route13Table, C.MulticoloredIslebloomsWorkshop, C.QuartzWorkshop, Math.Min(C.IronOreWorkshop, C.DuriumSandWorkshop), 0, C.LeucograniteWorkshop, 0);
-    public static int Route14Amount => RouteAmountCalc(Routes.Route14Table, Math.Min(Math.Min(C.IronOreWorkshop, C.StoneWorkshop), C.DuriumSandWorkshop), 0, 0);
-    public static int Route15Amount => RouteAmountCalc(Routes.Route15Table, Math.Min(C.LaverWorkshop, C.SquidWorkshop), 0, Math.Min(C.JellyfishWorkshop, C.CoralWorkshop), 0);
-    public static int Route16Amount => RouteAmountCalc(Routes.Route16Table, Math.Min(C.RockSaltWorkshop, C.StoneWorkshop), 0, Math.Min(C.ClayWorkshop, C.SandWorkshop), 0, Math.Min(C.IslewortWorkshop, C.HempWorkshop), 0);
-    public static int Route17Amount => RouteAmountCalc(Routes.Route17Table, C.LeucograniteWorkshop, Math.Min(C.CopperWorkshop, C.MythrilOreWorkshop), 0, Math.Min(C.IronOreWorkshop, C.DuriumSandWorkshop), 0, 0);
-    public static int Route18Amount => RouteAmountCalc(Routes.Route18Table, C.QuartzWorkshop, Math.Min(C.IronOreWorkshop, C.DuriumSandWorkshop), 0, C.LeucograniteWorkshop, 0);
-    public static int Route19Amount => RouteAmountCalc(Routes.Route19Table, C.GlimshroomWorkshop, Math.Min(Math.Min(C.ShaleWorkshop, C.CoalWorkshop), C.StoneWorkshop), 0, 0);
-    public static int Route20Amount => RouteAmountCalc(Routes.Route20Table, Math.Min(C.EffervescentWaterWorkshop, C.SpectrineWorkshop), 0, Math.Min(C.ShaleWorkshop, C.CoalWorkshop), 0, 0);
-    public static int Route21Amount => RouteAmountCalc(Routes.Route21Table, Math.Min(C.YellowCopperOreWorkshop, C.GoldOreWorkshop), 0, Math.Min(C.CrystalFormationWorkshop, C.HawksEyeSandWorkshop), 0, C.GlimshroomWorkshop, Math.Min(C.EffervescentWaterWorkshop, C.SpectrineWorkshop), 0, Math.Min(C.ShaleWorkshop, C.CoalWorkshop), 0, 0);
+    public static int Route0Amount => RouteAmountCalc(Routes.Route0Table,
+                                                      Math.Min(IslandItemDict[IslefishID].Workshop, IslandItemDict[ClamID].Workshop), 0,
+                                                      Math.Min(IslandItemDict[SquidID].Workshop, IslandItemDict[LaverID].Workshop), 0);
+
+    public static int Route1Amount => RouteAmountCalc(Routes.Route1Table, IslandItemDict[IslewortID].Workshop);
+
+    public static int Route2Amount => RouteAmountCalc(Routes.Route2Table, 
+                                                      Math.Min(IslandItemDict[SugarcaneID].Workshop, IslandItemDict[VineID].Workshop), 0);
+    public static int Route3Amount => RouteAmountCalc(Routes.Route3Table, 
+                                                      Math.Min(IslandItemDict[TinsandID].Workshop, IslandItemDict[SandID].Workshop), 0, 
+                                                      Math.Min(Math.Min(IslandItemDict[MarbleID].Workshop, IslandItemDict[LimestoneID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0 );
+
+    public static int Route4Amount => RouteAmountCalc(Routes.Route4Table, 
+                                                      Math.Min(Math.Min(IslandItemDict[AppleID].Workshop, IslandItemDict[BeehiveID].Workshop), IslandItemDict[VineID].Workshop), 0, 0,
+                                                      Math.Min(IslandItemDict[SapID].Workshop, IslandItemDict[WoodOpalID].Workshop), 0,
+                                                      Math.Min(IslandItemDict[BranchID].Workshop, IslandItemDict[ResinID].Workshop), 0,
+                                                      Math.Min(IslandItemDict[SandID].Workshop, IslandItemDict[ClamID].Workshop), 0, 0 );
+
+    public static int Route5Amount => RouteAmountCalc(Routes.Route5Table,
+                                                      Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLeafID].Workshop), IslandItemDict[PalmLeafID].Workshop), 0, 0,
+                                                      Math.Min(Math.Min(IslandItemDict[LimestoneID].Workshop, IslandItemDict[MarbleID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0 );
+    public static int Route6Amount => RouteAmountCalc(Routes.Route6Table, 
+                                                      IslandItemDict[CottonID].Workshop, 
+                                                      IslandItemDict[HempID].Workshop,
+                                                      Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLogID].Workshop), IslandItemDict[PalmLeafID].Workshop), 0, 0, 0 );
+
+    public static int Route7Amount => RouteAmountCalc(Routes.Route7Table,
+                                                      Math.Min(IslandItemDict[ClayID].Workshop, IslandItemDict[TinsandID].Workshop), 0,
+                                                      Math.Min(Math.Min(IslandItemDict[MarbleID].Workshop, IslandItemDict[LimestoneID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0,
+                                                      Math.Min(Math.Min(IslandItemDict[BranchID].Workshop, IslandItemDict[LogID].Workshop), IslandItemDict[ResinID].Workshop), 0, 0,
+                                                      Math.Min(IslandItemDict[SugarcaneID].Workshop, IslandItemDict[VineID].Workshop), 0, ShovelCheck() );
+
+    public static int Route8Amount => RouteAmountCalc(Routes.Route8Table,
+                                                      Math.Min(Math.Min(IslandItemDict[MarbleID].Workshop, IslandItemDict[LimestoneID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0,
+                                                      Math.Min(IslandItemDict[SugarcaneID].Workshop, IslandItemDict[VineID].Workshop), 0,
+                                                      Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLeafID].Workshop), IslandItemDict[PalmLogID].Workshop), 0, 0,
+                                                      Math.Min(IslandItemDict[TinsandID].Workshop, IslandItemDict[SandID].Workshop), 0,
+                                                      Math.Min(IslandItemDict[HempID].Workshop, IslandItemDict[IslewortID].Workshop), 0
+    );
+
+    public static int Route9Amount => RouteAmountCalc(Routes.Route9Table,
+                                                      Math.Min(IslandItemDict[BranchID].Workshop, IslandItemDict[ResinID].Workshop), 0,
+                                                      Math.Min(IslandItemDict[SapID].Workshop, IslandItemDict[WoodOpalID].Workshop), 0,
+                                                      Math.Min(IslandItemDict[ClayID].Workshop, IslandItemDict[SandID].Workshop), 0, 0 );
+
+    public static int Route10Amount => RouteAmountCalc(Routes.Route10Table,
+                                                       Math.Min(Math.Min(IslandItemDict[CopperID].Workshop, IslandItemDict[MythrilOreID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0,
+                                                       IslandItemDict[HempID].Workshop,
+                                                       Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLeafID].Workshop), IslandItemDict[PalmLogID].Workshop), 0, 0,
+                                                       IslandItemDict[CottonID].Workshop,
+                                                       IslandItemDict[IslewortID].Workshop
+    );
+
+    public static int Route11Amount => RouteAmountCalc(Routes.Route11Table,
+                                                       Math.Min(Math.Min(IslandItemDict[SapID].Workshop, IslandItemDict[WoodOpalID].Workshop), IslandItemDict[LogID].Workshop), 0, 0,
+                                                       IslandItemDict[HempID].Workshop,
+                                                       IslandItemDict[IslewortID].Workshop );
+
+    public static int Route12Amount => RouteAmountCalc(Routes.Route12Table,
+                                                       Math.Min(IslandItemDict[HempID].Workshop, IslandItemDict[IslewortID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[SandID].Workshop, IslandItemDict[ClayID].Workshop), 0,
+                                                       Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLeafID].Workshop), IslandItemDict[PalmLogID].Workshop), 0, 0 );
+
+    public static int Route13Amount => RouteAmountCalc(Routes.Route13Table,
+                                                       IslandItemDict[MulticoloredIslebloomsID].Workshop,
+                                                       IslandItemDict[QuartzID].Workshop,
+                                                       Math.Min(IslandItemDict[IronOreID].Workshop, IslandItemDict[DuriumSandID].Workshop), 0,
+                                                       IslandItemDict[LeucograniteID].Workshop, 0 );
+
+    public static int Route14Amount => RouteAmountCalc(Routes.Route14Table,
+                                                       Math.Min(Math.Min(IslandItemDict[IronOreID].Workshop, IslandItemDict[StoneID].Workshop), IslandItemDict[DuriumSandID].Workshop), 0, 0 );
+
+    public static int Route15Amount => RouteAmountCalc(Routes.Route15Table,
+                                                       Math.Min(IslandItemDict[LaverID].Workshop, IslandItemDict[SquidID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[JellyfishID].Workshop, IslandItemDict[CoralID].Workshop), 0
+    );
+
+    public static int Route16Amount => RouteAmountCalc(Routes.Route16Table,
+                                                       Math.Min(IslandItemDict[RockSaltID].Workshop, IslandItemDict[StoneID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[ClayID].Workshop, IslandItemDict[SandID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[IslewortID].Workshop, IslandItemDict[HempID].Workshop), 0 );
+
+    public static int Route17Amount => RouteAmountCalc(Routes.Route17Table,
+                                                       IslandItemDict[LeucograniteID].Workshop,
+                                                       Math.Min(IslandItemDict[CopperID].Workshop, IslandItemDict[MythrilOreID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[IronOreID].Workshop, IslandItemDict[DuriumSandID].Workshop), 0, 0 );
+
+    public static int Route18Amount => RouteAmountCalc(Routes.Route18Table,
+                                                       IslandItemDict[QuartzID].Workshop,
+                                                       Math.Min(IslandItemDict[IronOreID].Workshop, IslandItemDict[DuriumSandID].Workshop), 0,
+                                                       IslandItemDict[LeucograniteID].Workshop, 0 );
+
+    public static int Route19Amount => RouteAmountCalc(Routes.Route19Table,
+                                                       IslandItemDict[GlimshroomID].Workshop,
+                                                       Math.Min(Math.Min(IslandItemDict[ShaleID].Workshop, IslandItemDict[CoalID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0 );
+
+    public static int Route20Amount => RouteAmountCalc(Routes.Route20Table,
+                                                       Math.Min(IslandItemDict[EffervescentWaterID].Workshop, IslandItemDict[SpectrineID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[ShaleID].Workshop, IslandItemDict[CoalID].Workshop), 0, 0 );
+
+    public static int Route21Amount => RouteAmountCalc(Routes.Route21Table,
+                                                       Math.Min(IslandItemDict[YellowCopperOreID].Workshop, IslandItemDict[GoldOreID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[CrystalFormationID].Workshop, IslandItemDict[HawksEyeSandID].Workshop), 0,
+                                                       IslandItemDict[GlimshroomID].Workshop,
+                                                       Math.Min(IslandItemDict[EffervescentWaterID].Workshop, IslandItemDict[SpectrineID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[ShaleID].Workshop, IslandItemDict[CoalID].Workshop), 0, 0 );
+
 
     public static int ShovelCheck()
     {
@@ -88,7 +173,7 @@ public class IslandMics
         }
         else
         {
-            return C.SandWorkshop;
+            return IslandItemDict[SandID].Workshop;
         }
     }
 
