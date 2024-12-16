@@ -142,7 +142,7 @@ namespace ExplorersIcebox.Windows
             {
                 ImGui.Text("Navmesh is not installed. BOOOOO");
             }
-
+            
         }
 
         private void MiscInfoDebug()
