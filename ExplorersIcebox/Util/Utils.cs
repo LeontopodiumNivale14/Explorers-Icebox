@@ -219,14 +219,20 @@ public static unsafe class Utils
         return !isLocked;
 
         /*
-        0 -> 6
-        8 -> 18
+        0 → 6
+        8 → 18
         23
         slot | Item | ItemID
-        0 -> Stone Hatchet (37679)
-        1 -> Stone Hammer (37680)
-        2 -> Islekeep's Shovel (Need to put ItemID Here
-        8 -> Basic Mammet-Sized Builders Tools (37687) 
+        0 → Stone Hatchet (37679)   | 1 → Stone Hammer (37680)
+        2 → Islekeep's Shovel (ID)  | 3 → 
+        4 → | 5 →
+        6 → | 8 → Basic Mammet-Sized Builders Tools (37687)
+        9 → | 10 → 
+        11 → | 12 → 
+        13 → | 14 →
+        15 → | 16 →
+        17 → | 18 →
+        23 →
         */
     }
 
