@@ -30,7 +30,7 @@ namespace ExplorersIcebox.Windows
         private string testRoute = "";
         private int inputbox = 0;
         private ushort itemID = 0;
-
+        private uint inputValue = 0; // The uint value to be edited
 
         public override void Draw()
         {
@@ -170,6 +170,27 @@ namespace ExplorersIcebox.Windows
             if (ImGui.Button("Calculate sell"))
             {
                 TableSellUpdate(currentTable);
+            }
+
+            // Show instructions
+            ImGui.Text("Enter a positive number (uint):");
+
+            // Using InputScalar with stable memory
+            unsafe
+            {
+                uint tempValue = inputValue; // Temporary value to hold user input
+                if (ImGui.InputScalar("##uintInput", ImGuiDataType.U32, new IntPtr(&tempValue)))
+                {
+                    inputValue = tempValue; // Update the actual value only if modified
+                    Console.WriteLine($"New Value: {inputValue}");
+                }
+            }
+
+            ImGui.Text($"Current Value: {inputValue}");
+
+            if (ImGui.Button("Testing Targeting"))
+            {
+                TaskTarget.Enqueue(inputValue);
             }
         }
     

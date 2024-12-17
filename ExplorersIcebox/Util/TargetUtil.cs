@@ -1,4 +1,5 @@
 using Dalamud.Game.ClientState.Objects.Types;
+using ECommons.DalamudServices.Legacy;
 using FFXIVClientStructs.FFXIV.Client.Game.Control;
 using Lumina.Excel.Sheets;
 
@@ -7,6 +8,8 @@ namespace ExplorersIcebox.Util
     internal class TargetUtil
     {
         internal static bool TryGetObjectByDataId(uint dataId, out IGameObject? gameObject) => (gameObject = Svc.Objects.OrderBy(GetDistanceToPlayer).FirstOrDefault(x => x.DataId == dataId)) != null;
+        internal static bool TryGetObjectByObjectId(uint ObjectID, out IGameObject? gameObject) => (gameObject = Svc.Objects.OrderBy(GetDistanceToPlayer).FirstOrDefault(x => x.GameObjectId == ObjectID)) != null;
+        
         internal static unsafe void InteractWithObject(IGameObject? gameObject)
         {
             try
@@ -20,6 +23,21 @@ namespace ExplorersIcebox.Util
             {
                 Svc.Log.Info($"InteractWithObject: Exception: {ex}");
             }
+        }
+        
+        internal static bool? TargetByID(IGameObject? gameObject)
+        {
+            if (!IsOccupied()) 
+            {
+                var x = gameObject;
+                if (x != null)
+                {
+                    Svc.Targets.SetTarget(x);
+                    PluginLog($"Setting the target to {x.DataId}");
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

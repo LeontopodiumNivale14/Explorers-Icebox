@@ -3,7 +3,7 @@ using ExplorersIcebox.Util;
 
 namespace ExplorersIcebox.Scheduler.Tasks
 {
-    internal static class TaskTargetV2
+    internal static class TaskInteract
     {
         public static void Enqueue(uint dataID)
         {

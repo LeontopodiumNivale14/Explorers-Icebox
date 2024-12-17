@@ -29,7 +29,7 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
                 P.taskManager.EnqueueDelay(1000);
                 TaskMoveTo.Enqueue(mammetExportPos, "Mammet Export", false, 1);
                 // TaskSellTo.Enqueue(); old targeting code, keeping it here for reference
-                TaskTargetV2.Enqueue(ExportMammetID);
+                TaskInteract.Enqueue(ExportMammetID);
                 TaskCallback.Enqueue("SelectString", true, 0);
                 for (var i = 0; i < routeEntries.Count; i++)
                 {
