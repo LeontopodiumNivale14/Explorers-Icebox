@@ -36,6 +36,7 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
                     if (routeEntries[i].Sell > 0)
                     {
                         var itemID = routeEntries[i].ID;
+                        var currentItemCount = GetItemCount(itemID);
                         PluginLog($"{itemID} has enough to sell");
                         PluginLog($"{routeEntries[i].Sell} <-- selling this much");
                         P.taskManager.Enqueue(() => displayCurrentTask = $"Selling item with this ID: {itemID}");
@@ -46,6 +47,7 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
                         P.taskManager.EnqueueDelay(200);
                         P.taskManager.Enqueue(() => !IsAddonActive("MJIDisposeShopShipping"));
                         P.taskManager.EnqueueDelay(500);
+                        P.taskManager.Enqueue(() => DidAmountChange(currentItemCount, GetItemCount(itemID)));
                     }
                 }
                 P.taskManager.Enqueue(() => UpdateDisplayText("Leaving the shop now"));

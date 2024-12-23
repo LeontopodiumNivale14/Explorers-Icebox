@@ -7,8 +7,8 @@ namespace ExplorersIcebox.Util
 {
     internal class TargetUtil
     {
-        internal static bool TryGetObjectByDataId(uint dataId, out IGameObject? gameObject) => (gameObject = Svc.Objects.OrderBy(GetDistanceToPlayer).FirstOrDefault(x => x.DataId == dataId)) != null;
-        internal static bool TryGetObjectByObjectId(uint ObjectID, out IGameObject? gameObject) => (gameObject = Svc.Objects.OrderBy(GetDistanceToPlayer).FirstOrDefault(x => x.GameObjectId == ObjectID)) != null;
+        internal static bool TryGetObjectByDataId(ulong dataId, out IGameObject? gameObject) => (gameObject = Svc.Objects.OrderBy(GetDistanceToPlayer).FirstOrDefault(x => x.DataId == dataId)) != null;
+        internal static bool TryGetObjectByObjectId(ulong ObjectID, out IGameObject? gameObject) => (gameObject = Svc.Objects.OrderBy(GetDistanceToPlayer).FirstOrDefault(x => x.GameObjectId == ObjectID)) != null;
         
         internal static unsafe void InteractWithObject(IGameObject? gameObject)
         {

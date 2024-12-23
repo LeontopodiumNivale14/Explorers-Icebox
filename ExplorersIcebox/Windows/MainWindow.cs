@@ -101,6 +101,15 @@ public class MainWindow : ConfigWindow, IDisposable
                     ImGui.Spacing();
                     if (currentMode == "XP | Cowries Grind")
                     {
+                        if (C.routeSelected != 7 && C.routeSelected != 18)
+                        {
+                            if (int.Parse(GetNodeText("MJIHud", 14)) < 10)
+                                C.routeSelected = 7;
+                            else if (int.Parse(GetNodeText("MJIHud", 14)) >= 10)
+                                C.routeSelected = 18;
+                            else
+                                C.routeSelected = 7;
+                        }
                         GrindXPGui();
                         WorkshopImGui();
                     }
@@ -850,9 +859,9 @@ public class MainWindow : ConfigWindow, IDisposable
         }
     }
 
-    private string[] versions = { "1.0.2", "1.0.1", "1.0.0" };
+    private string[] versions = { "1.0.2.1", "1.0.2", "1.0.1", "1.0.0" };
 
-    public static string currentVersion = "1.0.2"; // Currently selected option
+    public static string currentVersion = "1.0.2.1"; // Currently selected option
 
     private void VersionNotes()
     {
@@ -878,8 +887,14 @@ public class MainWindow : ConfigWindow, IDisposable
         // Render for all the version notes:
         switch (currentVersion)
         {
+            case "1.0.2.1":
+                ImGui.TextWrapped($"V1.0.2.1\n" +
+                                  $"Small update\n" +
+                                  $"→ Fixed it to where if you load switch to XP Grind Mode, it'll properly default to one of those routes\n" +
+                                  $"→ Also added a delay check for making sure the item amount changes (should help w/ lag/bad ping?\n");
+                break;
             case "1.0.2":
-                ImGui.TextWrapped($"V1.0.2" +
+                ImGui.TextWrapped($"V1.0.2\n" +
                                   $"→ A LOT... of backend changed. Cleaned up quite a bit of code in the process. (Thank you Croizat for the tips)\n" +
                                   $"→ increased the time delay on the shop. Had it firing off to quickly and might of caused some un-necessary hanging...\n" +
                                   $"→ Next on the list is to make a shopping list (or moreso \"Gather this much items\" version of gathering.)\n" +

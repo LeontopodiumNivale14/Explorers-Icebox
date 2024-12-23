@@ -1,17 +1,8 @@
 // things I want to do post update (Thanks @Croizat for the actual ideas)
 
-
-public static void ItemImGui(uint itemId)
-{
-  if (!GetRow<Item>(itemId) is { } row) return;
-  ImGui.AlignTextToFramePadding();
-  ImGui.Text($"{row.Name} (Have: {GetItemCount(itemId})");
-  // the rest
-}
-
-// change all the itemImGui's to have this instead. 
-// this would also require me to change the rest of the information into a dictionary too.. but that's fine. Code cleanup is best practice.
-// So probably have the dictionary have 
-// -> ItemID as Key
-// -> General GetItemCount (Not sure if this is necessary but would just be good to have as reference
-// -> Workshop amount/input to be pulled/referenced
+// Add a feature to buy cordials based on amount of cowries earned (moreso top priority)
+// "Shopping List" or moreso setting an amount of items you want to gather from each loop, that way it can calculate how many to do.
+// Improve routing to the sections
+  // By this i mean use navmesh entirely instead of relying on visland for waypoints
+  // to the same degree, add a flying version for each of the routes
+// Need to check to see if you can check if flying is unlocked or not... 

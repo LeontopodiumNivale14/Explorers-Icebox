@@ -267,4 +267,12 @@ public static unsafe class Utils
             IslandItemDict[item].Amount = GetItemCount(item);
         }
     }
+
+    public static bool DidAmountChange(int lastAmount, int newAmount)
+    {
+        if (lastAmount == newAmount)
+            return false;
+        else
+            return true;
+    }
 }

@@ -1,6 +1,7 @@
 using ECommons.Automation.LegacyTaskManager;
 using ExplorersIcebox.Scheduler.Tasks;
 using System.IO;
+using static FFXIVClientStructs.FFXIV.Client.Graphics.Kernel.VertexShader;
 
 namespace ExplorersIcebox.Windows
 {
@@ -30,7 +31,8 @@ namespace ExplorersIcebox.Windows
         private string testRoute = "";
         private int inputbox = 0;
         private ushort itemID = 0;
-        private uint inputValue = 0; // The uint value to be edited
+        private string inputValue = "0"; // The uint value to be edited
+        private static ulong Result;
 
         public override void Draw()
         {
@@ -172,17 +174,19 @@ namespace ExplorersIcebox.Windows
                 TableSellUpdate(currentTable);
             }
 
-            // Show instructions
-            ImGui.Text("Enter a positive number (uint):");
+            // Input box
+            ImGui.InputText("Enter a number", ref inputValue, 20);
 
-            // Using InputScalar with stable memory
-            unsafe
+            if (ImGui.Button("Submit"))
             {
-                uint tempValue = inputValue; // Temporary value to hold user input
-                if (ImGui.InputScalar("##uintInput", ImGuiDataType.U32, new IntPtr(&tempValue)))
+                // Try to parse the input to a ulong
+                if (ulong.TryParse(inputValue, out Result))
                 {
-                    inputValue = tempValue; // Update the actual value only if modified
-                    Console.WriteLine($"New Value: {inputValue}");
+                    ImGui.Text($"Valid input! Parsed ulong: {Result}");
+                }
+                else
+                {
+                    ImGui.Text("Invalid input. Please enter a valid number.");
                 }
             }
 
@@ -190,7 +194,12 @@ namespace ExplorersIcebox.Windows
 
             if (ImGui.Button("Testing Targeting"))
             {
-                TaskTarget.Enqueue(inputValue);
+                TaskTarget.Enqueue(Result);
+            }
+
+            if (ImGui.Button("Testing ObjectID Target"))
+            {
+                TaskTargetObject.Enqueue(Result);
             }
         }
     
