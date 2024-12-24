@@ -1,6 +1,5 @@
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Objects.Types;
-using Dalamud.Plugin.Services;
 using ECommons.Automation.NeoTaskManager;
 using ECommons.GameHelpers;
 using ECommons.Reflection;
@@ -43,6 +42,7 @@ public static unsafe class Utils
     internal static bool GenericThrottle => FrameThrottler.Throttle("AutoRetainerGenericThrottle", 10);
     public static TaskManagerConfiguration DConfig => new(timeLimitMS: 10 * 60 * 3000, abortOnTimeout: false);
     public static bool HasPlugin(string name) => DalamudReflector.TryGetDalamudPlugin(name, out _, false, true);
+    public static bool IsInZone(uint zoneID) => Svc.ClientState.TerritoryType == zoneID;
 
     public static void PluginLog(string message) => ECommons.Logging.PluginLog.Information(message);
 

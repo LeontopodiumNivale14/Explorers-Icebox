@@ -21,12 +21,9 @@ global using static ExplorersIcebox.ExplorersIcebox;
 global using static ExplorersIcebox.Util.Utils;
 
 // tables being used acrossed the plugin
-global using static ExplorersIcebox.Util.IslandData.IslandAmounts;
-global using static ExplorersIcebox.Util.IslandData.IslandIDs;
-global using static ExplorersIcebox.Util.IslandData.IslandMics;
-global using static ExplorersIcebox.Util.IslandData.IslandNavmeshWP;
-global using static ExplorersIcebox.Util.IslandData.VislandRoutes;
-global using static ExplorersIcebox.Util.IslandData.IslandTables;
-global using static ExplorersIcebox.Util.IslandData.IslandUiWindows;
+global using static ExplorersIcebox.Util.IslandData;
+global using static ExplorersIcebox.Util.IslandNavmeshWP;
+global using static ExplorersIcebox.Util.VislandRoutes;
+global using static ExplorersIcebox.Util.IslandUiWindows;
 global using Dalamud.Plugin.Services;
 

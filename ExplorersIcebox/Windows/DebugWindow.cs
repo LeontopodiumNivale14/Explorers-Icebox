@@ -33,6 +33,8 @@ namespace ExplorersIcebox.Windows
         private ushort itemID = 0;
         private string inputValue = "0"; // The uint value to be edited
         private static ulong Result;
+        private uint AetherID = 0;
+        private uint AetherZone = 0;
 
         public override void Draw()
         {
@@ -201,6 +203,12 @@ namespace ExplorersIcebox.Windows
             {
                 TaskTargetObject.Enqueue(Result);
             }
+
+            if (ImGui.Button("Teleport to POTD"))
+            {
+                TaskTeleport.Enqueue(5, 153);
+            }
+
         }
     
         private void TestGuiDebug()

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExplorersIcebox.Util.IslandData;
+namespace ExplorersIcebox.Util;
 
 internal class IslandNavmeshWP
 {

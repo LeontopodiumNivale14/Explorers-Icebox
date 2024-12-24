@@ -1,14 +1,286 @@
 using ECommons.Configuration;
-using FFXIVClientStructs.FFXIV.Client.Game.MJI;
-using Lumina.Excel.Sheets;
 using System.Collections.Generic;
-using System.Xml.Linq;
 
+namespace ExplorersIcebox.Util;
 
-namespace ExplorersIcebox.Util.IslandData;
-
-internal class IslandTables
+internal class IslandData
 {
+    // List of all the Island Sanctuary Items ID's, organized in the order they pop up in the menu
+    public const int PalmLeafID = 37551;
+    public const int BranchID = 37553;
+    public const int StoneID = 37554;
+    public const int ClamID = 37555;
+    public const int LaverID = 37556;
+    public const int CoralID = 37557;
+    public const int IslewortID = 37558;
+    public const int SandID = 37559;
+    public const int VineID = 37562;
+    public const int SapID = 37563;
+    public const int AppleID = 37552;
+    public const int LogID = 37560;
+    public const int PalmLogID = 37561;
+    public const int CopperID = 37564;
+    public const int LimestoneID = 37565;
+    public const int RockSaltID = 37566;
+    public const int ClayID = 37570;
+    public const int TinsandID = 37571;
+    public const int SugarcaneID = 37567;
+    public const int CottonID = 37568;
+    public const int HempID = 37569;
+    public const int IslefishID = 37575;
+    public const int SquidID = 37576;
+    public const int JellyfishID = 37577;
+    public const int IronOreID = 37572;
+    public const int QuartzID = 37573;
+    public const int LeucograniteID = 37574;
+    public const int MulticoloredIslebloomsID = 39228;
+    public const int ResinID = 39224;
+    public const int CoconutID = 39225;
+    public const int BeehiveID = 39226;
+    public const int WoodOpalID = 39227;
+    public const int CoalID = 39887;
+    public const int GlimshroomID = 39889;
+    public const int EffervescentWaterID = 39892;
+    public const int ShaleID = 39888;
+    public const int MarbleID = 39890;
+    public const int MythrilOreID = 39891;
+    public const int SpectrineID = 39893;
+    public const int DuriumSandID = 41630;
+    public const int YellowCopperOreID = 41631;
+    public const int GoldOreID = 41632;
+    public const int HawksEyeSandID = 41633;
+    public const int CrystalFormationID = 41634;
+
+    public static int[] ListitemIDs = new int[]
+    {
+        PalmLeafID, BranchID, StoneID, ClamID, LaverID, CoralID, IslewortID,
+        SandID, VineID, SapID, AppleID, LogID, PalmLogID, CopperID, LimestoneID,
+        RockSaltID, ClayID, TinsandID, SugarcaneID, CottonID, HempID, IslefishID,
+        SquidID, JellyfishID, IronOreID, QuartzID, LeucograniteID,
+        MulticoloredIslebloomsID, ResinID, CoconutID, BeehiveID, WoodOpalID,
+        CoalID, GlimshroomID, EffervescentWaterID, ShaleID, MarbleID,
+        MythrilOreID, SpectrineID, DuriumSandID, YellowCopperOreID,
+        GoldOreID, HawksEyeSandID, CrystalFormationID
+    };
+
+    // Gets the current amount of the island sanctuary item that you have
+    public static int PalmLeafAmount => GetItemCount(PalmLeafID);
+    public static int BranchAmount => GetItemCount(BranchID);
+    public static int StoneAmount => GetItemCount(StoneID);
+    public static int ClamAmount => GetItemCount(ClamID);
+    public static int LaverAmount => GetItemCount(LaverID);
+    public static int CoralAmount => GetItemCount(CoralID);
+    public static int IslewortAmount => GetItemCount(IslewortID);
+    public static int SandAmount => GetItemCount(SandID);
+    public static int VineAmount => GetItemCount(VineID);
+    public static int SapAmount => GetItemCount(SapID);
+    public static int AppleAmount => GetItemCount(AppleID);
+    public static int LogAmount => GetItemCount(LogID);
+    public static int PalmLogAmount => GetItemCount(PalmLogID);
+    public static int CopperAmount => GetItemCount(CopperID);
+    public static int LimestoneAmount => GetItemCount(LimestoneID);
+    public static int RockSaltAmount => GetItemCount(RockSaltID);
+    public static int ClayAmount => GetItemCount(ClayID);
+    public static int TinsandAmount => GetItemCount(TinsandID);
+    public static int SugarcaneAmount => GetItemCount(SugarcaneID);
+    public static int CottonAmount => GetItemCount(CottonID);
+    public static int HempAmount => GetItemCount(HempID);
+    public static int IslefishAmount => GetItemCount(IslefishID);
+    public static int SquidAmount => GetItemCount(SquidID);
+    public static int JellyfishAmount => GetItemCount(JellyfishID);
+    public static int IronOreAmount => GetItemCount(IronOreID);
+    public static int QuartzAmount => GetItemCount(QuartzID);
+    public static int LeucograniteAmount => GetItemCount(LeucograniteID);
+    public static int MulticoloredIslebloomsAmount => GetItemCount(MulticoloredIslebloomsID);
+    public static int ResinAmount => GetItemCount(ResinID);
+    public static int CoconutAmount => GetItemCount(CoconutID);
+    public static int BeehiveAmount => GetItemCount(BeehiveID);
+    public static int WoodOpalAmount => GetItemCount(WoodOpalID);
+    public static int CoalAmount => GetItemCount(CoalID);
+    public static int GlimshroomAmount => GetItemCount(GlimshroomID);
+    public static int EffervescentWaterAmount => GetItemCount(EffervescentWaterID);
+    public static int ShaleAmount => GetItemCount(ShaleID);
+    public static int MarbleAmount => GetItemCount(MarbleID);
+    public static int MythrilOreAmount => GetItemCount(MythrilOreID);
+    public static int SpectrineAmount => GetItemCount(SpectrineID);
+    public static int DuriumSandAmount => GetItemCount(DuriumSandID);
+    public static int YellowCopperOreAmount => GetItemCount(YellowCopperOreID);
+    public static int GoldOreAmount => GetItemCount(GoldOreID);
+    public static int HawksEyeSandAmount => GetItemCount(HawksEyeSandID);
+    public static int CrystalFormationAmount => GetItemCount(CrystalFormationID);
+
+    //NPC ID's
+    public const uint BaldinID = 1043621; // NPC that leads to the IS
+    public const uint ExportMammetID = 1043464; // Exports Mammet, used to trade your items -> Cowries
+    //Test bool 
+    public static bool CanFly = false;
+    public static bool atEntrance => (GetDistanceToPointV(workshopEntrancePos) <= 2);
+    public static string displayCurrentTask = "";
+    public static string displayCurrentRoute = "";
+
+    // Location Info
+    public static uint LowerLimsaAether = 10;
+    public static uint LowerLimsaZoneID = 135;
+    public static uint BaldinNPCID = 1043621;
+
+    public static uint IslandSancZoneID = 1055;
+
+    public static void UpdateDisplayText(string text)
+    {
+        displayCurrentTask = text;
+    }
+
+    public static int RouteAmount(int routeSelected)
+    {
+        return routeSelected switch
+        {
+            0 => Route0Amount,
+            1 => Route1Amount,
+            2 => Route2Amount,
+            3 => Route3Amount,
+            4 => Route4Amount,
+            5 => Route5Amount,
+            6 => Route6Amount,
+            7 => Route7Amount,
+            8 => Route8Amount,
+            9 => Route9Amount,
+            10 => Route10Amount,
+            11 => Route11Amount,
+            12 => Route12Amount,
+            13 => Route13Amount,
+            14 => Route14Amount,
+            15 => Route15Amount,
+            16 => Route16Amount,
+            17 => Route17Amount,
+            18 => Route18Amount,
+            19 => Route19Amount,
+            20 => Route20Amount,
+            21 => Route21Amount,
+            _ => 0
+        };
+    }
+
+    //This is the current cap of items on Island Sanctuary Items, just so I can quickly pull it at all times
+    public const int MaxItems = 999;
+
+    // Route Loop Amounts
+    public static int Route0Amount => RouteAmountCalc(Routes.Route0Table,
+                                                      Math.Min(IslandItemDict[IslefishID].Workshop, IslandItemDict[ClamID].Workshop), 0,
+                                                      Math.Min(IslandItemDict[SquidID].Workshop, IslandItemDict[LaverID].Workshop), 0);
+    public static int Route1Amount => RouteAmountCalc(Routes.Route1Table, IslandItemDict[IslewortID].Workshop);
+    public static int Route2Amount => RouteAmountCalc(Routes.Route2Table,
+                                                      Math.Min(IslandItemDict[SugarcaneID].Workshop, IslandItemDict[VineID].Workshop), 0);
+    public static int Route3Amount => RouteAmountCalc(Routes.Route3Table,
+                                                      Math.Min(IslandItemDict[TinsandID].Workshop, IslandItemDict[SandID].Workshop), 0,
+                                                      Math.Min(Math.Min(IslandItemDict[MarbleID].Workshop, IslandItemDict[LimestoneID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0);
+    public static int Route4Amount => RouteAmountCalc(Routes.Route4Table,
+                                                      Math.Min(Math.Min(IslandItemDict[AppleID].Workshop, IslandItemDict[BeehiveID].Workshop), IslandItemDict[VineID].Workshop), 0, 0,
+                                                      Math.Min(IslandItemDict[SapID].Workshop, IslandItemDict[WoodOpalID].Workshop), 0,
+                                                      Math.Min(IslandItemDict[BranchID].Workshop, IslandItemDict[ResinID].Workshop), 0,
+                                                      Math.Min(IslandItemDict[SandID].Workshop, IslandItemDict[ClamID].Workshop), 0, 0);
+    public static int Route5Amount => RouteAmountCalc(Routes.Route5Table,
+                                                      Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLeafID].Workshop), IslandItemDict[PalmLeafID].Workshop), 0, 0,
+                                                      Math.Min(Math.Min(IslandItemDict[LimestoneID].Workshop, IslandItemDict[MarbleID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0);
+    public static int Route6Amount => RouteAmountCalc(Routes.Route6Table,
+                                                      IslandItemDict[CottonID].Workshop,
+                                                      IslandItemDict[HempID].Workshop,
+                                                      Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLogID].Workshop), IslandItemDict[PalmLeafID].Workshop), 0, 0, 0);
+    public static int Route7Amount => RouteAmountCalc(Routes.Route7Table,
+                                                      Math.Min(IslandItemDict[ClayID].Workshop, IslandItemDict[TinsandID].Workshop), 0,
+                                                      Math.Min(Math.Min(IslandItemDict[MarbleID].Workshop, IslandItemDict[LimestoneID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0,
+                                                      Math.Min(Math.Min(IslandItemDict[BranchID].Workshop, IslandItemDict[LogID].Workshop), IslandItemDict[ResinID].Workshop), 0, 0,
+                                                      Math.Min(IslandItemDict[SugarcaneID].Workshop, IslandItemDict[VineID].Workshop), 0, ShovelCheck());
+    public static int Route8Amount => RouteAmountCalc(Routes.Route8Table,
+                                                      Math.Min(Math.Min(IslandItemDict[MarbleID].Workshop, IslandItemDict[LimestoneID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0,
+                                                      Math.Min(IslandItemDict[SugarcaneID].Workshop, IslandItemDict[VineID].Workshop), 0,
+                                                      Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLeafID].Workshop), IslandItemDict[PalmLogID].Workshop), 0, 0,
+                                                      Math.Min(IslandItemDict[TinsandID].Workshop, IslandItemDict[SandID].Workshop), 0,
+                                                      Math.Min(IslandItemDict[HempID].Workshop, IslandItemDict[IslewortID].Workshop), 0
+    );
+    public static int Route9Amount => RouteAmountCalc(Routes.Route9Table,
+                                                      Math.Min(IslandItemDict[BranchID].Workshop, IslandItemDict[ResinID].Workshop), 0,
+                                                      Math.Min(IslandItemDict[SapID].Workshop, IslandItemDict[WoodOpalID].Workshop), 0,
+                                                      Math.Min(IslandItemDict[ClayID].Workshop, IslandItemDict[SandID].Workshop), 0, 0);
+    public static int Route10Amount => RouteAmountCalc(Routes.Route10Table,
+                                                       Math.Min(Math.Min(IslandItemDict[CopperID].Workshop, IslandItemDict[MythrilOreID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0,
+                                                       IslandItemDict[HempID].Workshop,
+                                                       Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLeafID].Workshop), IslandItemDict[PalmLogID].Workshop), 0, 0,
+                                                       IslandItemDict[CottonID].Workshop,
+                                                       IslandItemDict[IslewortID].Workshop
+    );
+    public static int Route11Amount => RouteAmountCalc(Routes.Route11Table,
+                                                       Math.Min(Math.Min(IslandItemDict[SapID].Workshop, IslandItemDict[WoodOpalID].Workshop), IslandItemDict[LogID].Workshop), 0, 0,
+                                                       IslandItemDict[HempID].Workshop,
+                                                       IslandItemDict[IslewortID].Workshop);
+    public static int Route12Amount => RouteAmountCalc(Routes.Route12Table,
+                                                       Math.Min(IslandItemDict[HempID].Workshop, IslandItemDict[IslewortID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[SandID].Workshop, IslandItemDict[ClayID].Workshop), 0,
+                                                       Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLeafID].Workshop), IslandItemDict[PalmLogID].Workshop), 0, 0);
+    public static int Route13Amount => RouteAmountCalc(Routes.Route13Table,
+                                                       IslandItemDict[MulticoloredIslebloomsID].Workshop,
+                                                       IslandItemDict[QuartzID].Workshop,
+                                                       Math.Min(IslandItemDict[IronOreID].Workshop, IslandItemDict[DuriumSandID].Workshop), 0,
+                                                       IslandItemDict[LeucograniteID].Workshop, 0);
+    public static int Route14Amount => RouteAmountCalc(Routes.Route14Table,
+                                                       Math.Min(Math.Min(IslandItemDict[IronOreID].Workshop, IslandItemDict[StoneID].Workshop), IslandItemDict[DuriumSandID].Workshop), 0, 0);
+    public static int Route15Amount => RouteAmountCalc(Routes.Route15Table,
+                                                       Math.Min(IslandItemDict[LaverID].Workshop, IslandItemDict[SquidID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[JellyfishID].Workshop, IslandItemDict[CoralID].Workshop), 0
+    );
+    public static int Route16Amount => RouteAmountCalc(Routes.Route16Table,
+                                                       Math.Min(IslandItemDict[RockSaltID].Workshop, IslandItemDict[StoneID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[ClayID].Workshop, IslandItemDict[SandID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[IslewortID].Workshop, IslandItemDict[HempID].Workshop), 0);
+    public static int Route17Amount => RouteAmountCalc(Routes.Route17Table,
+                                                       IslandItemDict[LeucograniteID].Workshop,
+                                                       Math.Min(IslandItemDict[CopperID].Workshop, IslandItemDict[MythrilOreID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[IronOreID].Workshop, IslandItemDict[DuriumSandID].Workshop), 0, 0);
+    public static int Route18Amount => RouteAmountCalc(Routes.Route18Table,
+                                                       IslandItemDict[QuartzID].Workshop,
+                                                       Math.Min(IslandItemDict[IronOreID].Workshop, IslandItemDict[DuriumSandID].Workshop), 0,
+                                                       IslandItemDict[LeucograniteID].Workshop, 0);
+    public static int Route19Amount => RouteAmountCalc(Routes.Route19Table,
+                                                       IslandItemDict[GlimshroomID].Workshop,
+                                                       Math.Min(Math.Min(IslandItemDict[ShaleID].Workshop, IslandItemDict[CoalID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0);
+    public static int Route20Amount => RouteAmountCalc(Routes.Route20Table,
+                                                       Math.Min(IslandItemDict[EffervescentWaterID].Workshop, IslandItemDict[SpectrineID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[ShaleID].Workshop, IslandItemDict[CoalID].Workshop), 0, 0);
+    public static int Route21Amount => RouteAmountCalc(Routes.Route21Table,
+                                                       Math.Min(IslandItemDict[YellowCopperOreID].Workshop, IslandItemDict[GoldOreID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[CrystalFormationID].Workshop, IslandItemDict[HawksEyeSandID].Workshop), 0,
+                                                       IslandItemDict[GlimshroomID].Workshop,
+                                                       Math.Min(IslandItemDict[EffervescentWaterID].Workshop, IslandItemDict[SpectrineID].Workshop), 0,
+                                                       Math.Min(IslandItemDict[ShaleID].Workshop, IslandItemDict[CoalID].Workshop), 0, 0);
+
+
+    public static int ShovelCheck()
+    {
+        if (!CheckIfItemLocked(2))
+        {
+            return 0;
+        }
+        else
+        {
+            return IslandItemDict[SandID].Workshop;
+        }
+    }
+
+    public static void UpdateXPTable()
+    {
+        if (!CheckIfItemLocked(2))
+        {
+            Routes.Route7Table[10].CanSellFullAmount = true;
+        }
+        else
+        {
+            Routes.Route7Table[10].CanSellFullAmount = false;
+        }
+    }
+
+    public class GatheringPointPos
+    {
+        public int Pos { get; set; }
+    }
 
     // Values for the Tables below. 
     public class RouteEntry
@@ -446,7 +718,7 @@ internal class IslandTables
         }
         return totalSellItems;
     }
-    
+
     public static List<RouteEntry> currentTable => C.routeSelected switch
     {
         0 => Routes.Route0Table,

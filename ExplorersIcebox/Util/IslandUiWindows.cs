@@ -1,12 +1,6 @@
 using ECommons.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ExplorersIcebox.Util.IslandData;
+namespace ExplorersIcebox.Util;
 
 internal class IslandUiWindows
 {
@@ -22,9 +16,9 @@ internal class IslandUiWindows
 
     public static float offSet(float value)
     {
-        float windowWidth = ImGui.GetWindowContentRegionMax().X; // Get the usable width of the window
-        float inputWidth = value; // Desired width of the input field
-        float offset = windowWidth - inputWidth; // Calculate position to hug the right wall
+        var windowWidth = ImGui.GetWindowContentRegionMax().X; // Get the usable width of the window
+        var inputWidth = value; // Desired width of the input field
+        var offset = windowWidth - inputWidth; // Calculate position to hug the right wall
         return offset;
     }
 
@@ -106,7 +100,7 @@ internal class IslandUiWindows
     public static void Route6WorkshopGui()
     {
         ImGui.TextWrapped($"Route 6 is set to run -> {Route6Amount} loops");
-        ItemImGui(CottonID); 
+        ItemImGui(CottonID);
         ItemImGui(HempID);
         ItemImGui(CoconutID);
         ItemImGui(PalmLogID);
@@ -131,7 +125,7 @@ internal class IslandUiWindows
     public static void Route8WorkshopGui()
     {
         ImGui.Text($"Route 8 is set to run -> {Route8Amount} loops");
-        ItemImGui(MarbleID); 
+        ItemImGui(MarbleID);
         ItemImGui(LimestoneID);
         ItemImGui(StoneID);
         ItemImGui(SugarcaneID);

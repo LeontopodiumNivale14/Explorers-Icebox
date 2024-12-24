@@ -1,15 +1,10 @@
 using Dalamud.Interface.Components;
+using Dalamud.Interface.Utility.Raii;
 using ECommons.Configuration;
 using ECommons.SimpleGui;
 using ExplorersIcebox.Scheduler;
 using ExplorersIcebox.Scheduler.Tasks;
-using ExplorersIcebox.Util.IslandData;
-using ImGuiScene;
-using Lumina.Excel.Sheets;
-using System.Collections;
-using System.ComponentModel.Design;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 namespace ExplorersIcebox.Windows;
 
@@ -48,6 +43,8 @@ public class MainWindow : ConfigWindow, IDisposable
     public static string currentlyDoing = SchedulerMain.CurrentProcess;
     private bool copyButton = false;
     private int updateAllWS = 0;
+    private bool useTickets = C.UseTickets;
+    private string TicketTooltip = "Check this if you want to use an Aetheryte ticket to teleport to the Island Sanctuary Entrance";
 
     public override void Draw()
     {
@@ -59,25 +56,66 @@ public class MainWindow : ConfigWindow, IDisposable
                 {
                     UpdateXPTable();
                     ImGui.Text($"Current task → {displayCurrentTask}");
-                    ImGui.Text($"Route → {displayCurrentRoute}");
-                    if (CurrentTerritory() == 1055)
-                        ImGui.Text($"Current level is: {GetNodeText("MJIHud", 14)}");
-                    bool isXPRunning = SchedulerMain.AreWeTicking;
-                    if (ImGui.Checkbox(" Enable Farm", ref isXPRunning))
+                    ImGui.SameLine();
+                    if (P.taskManager.IsBusy)
+                        ImGui.SetCursorPosX(offSet(42.0f));
+                    else if (!P.taskManager.IsBusy)
+                        ImGui.SetCursorPosX(offSet(117.0f));
+                    if (ImGui.Button(P.taskManager.IsBusy ? "Stop" : "Teleport to Island"))
                     {
-                        if (isXPRunning)
+                        if (P.taskManager.IsBusy)
                         {
-                            PluginLog("Enabling the route Gathering");
-                            if (currentMode == "Island Gathering Mode") C.XPGrind = false;
-                            if (currentMode == "XP | Cowries Grind") C.XPGrind = true;
-                            SchedulerMain.EnablePlugin();
-                            displayCurrentTask = "Currently Running";
+                            SchedulerMain.DisablePlugin();
                         }
                         else
                         {
-                            PluginLog("Disabling the Route gathering");
-                            displayCurrentTask = "";
-                            SchedulerMain.DisablePlugin();
+                            TaskReturnToIsland.Enqueue();
+                        }
+                    }
+                    ImGui.Text($"Route → {displayCurrentRoute}");
+                    ImGui.SameLine();
+                    ImGui.SetCursorPosX(offSet(217.0f));
+                    ImGui.Text("Use Aetheryte Ticket to return");
+                    ImGui.SameLine();
+                    ImGui.SetCursorPosX(offSet(17.0f));
+                    if (ImGui.Checkbox("##IS Use Teleport Tickets", ref useTickets))
+                    {
+                        if (useTickets)
+                        {
+                            C.UseTickets = true;
+                        }
+                        else
+                        {
+                            C.UseTickets = false;
+                        }
+                    }
+                    if (ImGui.IsItemHovered())
+                    {
+                        ImGui.BeginTooltip();
+                        ImGui.Text(TicketTooltip);
+                        ImGui.EndTooltip();
+                    }
+                    if (CurrentTerritory() == 1055 && IsAddonActive("MJIHud"))
+                        ImGui.Text($"Current level is: {GetNodeText("MJIHud", 14)}");
+                    bool isXPRunning = SchedulerMain.AreWeTicking;
+                    using (ImRaii.Disabled(!IsInZone(IslandSancZoneID)))
+                    {
+                        if (ImGui.Checkbox(" Enable Farm", ref isXPRunning))
+                        {
+                            if (isXPRunning)
+                            {
+                                PluginLog("Enabling the route Gathering");
+                                if (currentMode == "Island Gathering Mode") C.XPGrind = false;
+                                if (currentMode == "XP | Cowries Grind") C.XPGrind = true;
+                                SchedulerMain.EnablePlugin();
+                                displayCurrentTask = "Currently Running";
+                            }
+                            else
+                            {
+                                PluginLog("Disabling the Route gathering");
+                                displayCurrentTask = "";
+                                SchedulerMain.DisablePlugin();
+                            }
                         }
                     }
                     ImGui.SetNextItemWidth(175);

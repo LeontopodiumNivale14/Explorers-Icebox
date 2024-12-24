@@ -13,6 +13,7 @@ public class Config : IEzConfig
     public int runAmount = 0;
     public bool everythingUnlocked = true;
     public bool XPGrind = true;
+    public bool UseTickets = false;
 
     public bool Route0 = true;
     public bool Route1 = true;
