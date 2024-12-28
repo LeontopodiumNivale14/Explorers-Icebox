@@ -1,7 +1,6 @@
 using Dalamud.Game.ClientState.Conditions;
 using ECommons.Throttlers;
 using ExplorersIcebox.Scheduler.Handers;
-using FFXIVClientStructs.FFXIV.Client.Game;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 
 namespace ExplorersIcebox.Scheduler.Tasks
