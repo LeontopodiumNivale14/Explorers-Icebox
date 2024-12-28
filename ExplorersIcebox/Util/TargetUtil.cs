@@ -1,7 +1,6 @@
 using Dalamud.Game.ClientState.Objects.Types;
 using ECommons.DalamudServices.Legacy;
 using FFXIVClientStructs.FFXIV.Client.Game.Control;
-using Lumina.Excel.Sheets;
 
 namespace ExplorersIcebox.Util
 {

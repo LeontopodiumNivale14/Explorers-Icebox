@@ -1,8 +1,3 @@
-using FFXIVClientStructs.FFXIV.Client.Game.Object;
-using FFXIVClientStructs.FFXIV.Client.Game.Control;
-using Dalamud.Plugin.Services;
-using Lumina.Excel.Sheets;
-using ECommons.Throttlers;
 using Dalamud.Game.ClientState.Objects.Types;
 using ExplorersIcebox.Util;
 

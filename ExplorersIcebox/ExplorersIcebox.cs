@@ -1,9 +1,5 @@
-using System.ComponentModel.Design;
-using System.IO;
 using ECommons.Automation.NeoTaskManager;
 using ECommons.Configuration;
-using ECommons.Reflection;
-using ECommons.SimpleGui;
 using ExplorersIcebox.IPC;
 using ExplorersIcebox.Scheduler;
 using ExplorersIcebox.Windows;
@@ -12,38 +8,67 @@ namespace ExplorersIcebox;
 
 public sealed class ExplorersIcebox : IDalamudPlugin
 {
-    private const string Command = "/explorersicebox";
-    private static string[] Aliases => ["/picebox", "/icebox"];
-
+    public string Name => "ExplorersIcebox";
     internal static ExplorersIcebox P = null!;
-    private readonly Config config;
-
     public static Config C => P.config;
+    private Config config;
+
+    internal WindowSystem windowSystem;
+    internal MainWindow mainWindow;
+    internal DebugWindow debugWindow;
+    internal SettingWindow settingWindow;
 
     internal TaskManager taskManager;
+
+
     internal LifestreamIPC lifestream;
     internal NavmeshIPC navmesh;
     internal VislandIPC visland;
 
-    public ExplorersIcebox(IDalamudPluginInterface pluginInterface)
+    public ExplorersIcebox(IDalamudPluginInterface pi)
     {
+        //Test.(
         P = this;
-        ECommonsMain.Init(pluginInterface, P, ECommons.Module.DalamudReflector, ECommons.Module.ObjectFunctions);
+        ECommonsMain.Init(pi, P, ECommons.Module.DalamudReflector, ECommons.Module.ObjectFunctions);
+        new ECommons.Schedulers.TickScheduler(Load);
+    }
+
+    public void Load()
+    {
+        EzConfig.Migrate<Config>();
         config = EzConfig.Init<Config>();
 
-        EzConfigGui.Init(new MainWindow().Draw);
-        MainWindow.SetWindowProperties();
-        EzConfigGui.WindowSystem.AddWindow(new SettingMenu());
-        EzConfigGui.WindowSystem.AddWindow(new DebugWindow());
-        EzCmd.Add(Command, OnCommand, "Open Interface");
-        Aliases.ToList().ForEach(a => EzCmd.Add(a, OnCommand, $"{Command} Alias"));
-
+        //IPC's that are used
         taskManager = new();
         lifestream = new();
         navmesh = new();
         visland = new();
+
+        // all the windows
+        windowSystem = new();
+        mainWindow = new();
+        settingWindow = new();
+        debugWindow = new();
+
+        taskManager = new(new(abortOnTimeout: true, timeLimitMS: 20000, showDebug: true));
+        Svc.PluginInterface.UiBuilder.Draw += windowSystem.Draw;
+        Svc.PluginInterface.UiBuilder.OpenMainUi += () =>
+        {
+            mainWindow.IsOpen = true;
+        };
+        Svc.PluginInterface.UiBuilder.OpenConfigUi += () =>
+        {
+            settingWindow.IsOpen = true;
+        };
+        EzCmd.Add("/explorersicebox", OnCommand, """
+            Open plugin interface
+            /icebox - alias for /explorersicebox
+            /explorersicebox s|settings - Opens the workshop menu
+            """);
+        EzCmd.Add("/icebox", OnCommand);
         Svc.Framework.Update += Tick;
     }
+
     private void Tick(object _)
     {
         if (SchedulerMain.AreWeTicking && Svc.ClientState.LocalPlayer != null)
@@ -51,20 +76,27 @@ public sealed class ExplorersIcebox : IDalamudPlugin
             SchedulerMain.Tick();
         }
     }
+
     public void Dispose()
     {
         Safe(() => Svc.Framework.Update -= Tick);
+        Safe(() => Svc.PluginInterface.UiBuilder.Draw -= windowSystem.Draw);
         ECommonsMain.Dispose();
     }
+
     private void OnCommand(string command, string args)
     {
-        if (args == "debug")
+        if (args.EqualsIgnoreCaseAny("d", "debug"))
         {
-            EzConfigGui.WindowSystem.Windows.FirstOrDefault(w => w.WindowName == DebugWindow.WindowName)!.IsOpen ^= true;
+            debugWindow.IsOpen = !debugWindow.IsOpen;
         }
-        else if (args.StartsWith("s"))
-            EzConfigGui.WindowSystem.Windows.First(w => w is SettingMenu).IsOpen ^= true;
+        else if (args.EqualsIgnoreCaseAny("s", "settings"))
+        {
+            settingWindow.IsOpen = !settingWindow.IsOpen;
+        }
         else
-            EzConfigGui.Window.IsOpen = !EzConfigGui.Window.IsOpen;
+        {
+            mainWindow.IsOpen = !mainWindow.IsOpen;
+        }
     }
 }

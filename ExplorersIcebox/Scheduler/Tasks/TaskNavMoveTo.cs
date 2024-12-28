@@ -1,6 +1,5 @@
 using ECommons.Automation.NeoTaskManager;
 using ECommons.GameHelpers;
-using FFXIVClientStructs.FFXIV.Client.UI.Agent;
 using ExplorersIcebox.Scheduler.Handers;
 
 namespace ExplorersIcebox.Scheduler.Tasks

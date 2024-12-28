@@ -1,40 +1,29 @@
 using Dalamud.Interface.Components;
 using Dalamud.Interface.Utility.Raii;
 using ECommons.Configuration;
-using ECommons.SimpleGui;
 using ExplorersIcebox.Scheduler;
 using ExplorersIcebox.Scheduler.Tasks;
 using System.Diagnostics;
 
 namespace ExplorersIcebox.Windows;
 
-public class MainWindow : ConfigWindow, IDisposable
+internal class MainWindow : Window
 {
-    // need to figure out how to change this name for the main window...
-    public static new readonly string WindowName = "Explorer's Icebox";
+    public MainWindow() : 
+        base($"Explorer's Icebox {P.GetType().Assembly.GetName().Version}")
+    {
+        Flags = ImGuiWindowFlags.None;
+        SizeConstraints = new()
+        {
+            MinimumSize = new Vector2(300, 600),
+            MaximumSize = new Vector2(800, 1200)
+        };
+        P.windowSystem.AddWindow(this);
+        AllowPinning = false;
+    }
 
     private const uint SidebarWidth = 275;
-    public MainWindow() { }
     public void Dispose() { }
-    public static void SetWindowProperties()
-    {
-        var width = SidebarWidth;
-
-        EzConfigGui.Window.Size = new Vector2(width, 600);
-        EzConfigGui.Window.SizeConstraints = new()
-        {
-            MinimumSize = new Vector2(500, 400),
-            MaximumSize = new Vector2(800, 800)
-        };
-
-        EzConfigGui.Window.SizeCondition = ImGuiCond.Always;
-
-        EzConfigGui.Window.Flags |= ImGuiWindowFlags.AlwaysAutoResize;
-        EzConfigGui.Window.Flags |= ImGuiWindowFlags.NoSavedSettings;
-
-        EzConfigGui.Window.AllowClickthrough = false;
-        EzConfigGui.Window.AllowPinning = false;
-    }
 
     private string[] options = { "Infinite", "x Times"}; // Dropdown options
     public static string runOptions = "Infinite";
@@ -44,7 +33,7 @@ public class MainWindow : ConfigWindow, IDisposable
     private bool copyButton = false;
     private int updateAllWS = 0;
     private bool useTickets = C.UseTickets;
-    private string TicketTooltip = "Check this if you want to use an Aetheryte ticket to teleport to the Island Sanctuary Entrance";
+    private string ticketTooltip = "Check this if you want to use an Aetheryte ticket to teleport to the Island Sanctuary Entrance";
 
     public override void Draw()
     {
@@ -92,7 +81,7 @@ public class MainWindow : ConfigWindow, IDisposable
                     if (ImGui.IsItemHovered())
                     {
                         ImGui.BeginTooltip();
-                        ImGui.Text(TicketTooltip);
+                        ImGui.Text(ticketTooltip);
                         ImGui.EndTooltip();
                     }
                     if (CurrentTerritory() == 1055 && IsAddonActive("MJIHud"))
@@ -872,13 +861,6 @@ public class MainWindow : ConfigWindow, IDisposable
         ImGuiComponents.HelpMarker("Quick way to update all workshops to the same value.");
 
 
-    }
-
-    private void SettingImgui()
-    {
-        //Unused Settings, DON'T DELETE THIS... Need to figure where to place
-        if (ImGuiEx.IconButton(FontAwesomeIcon.Wrench, "Workshop"))
-            EzConfigGui.WindowSystem.Windows.FirstOrDefault(w => w.WindowName == SettingMenu.WindowName)!.IsOpen ^= true;
     }
 
     private static void OpenUrl(string url)
