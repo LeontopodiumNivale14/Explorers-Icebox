@@ -1,5 +1,6 @@
 using ECommons.Automation.LegacyTaskManager;
 using ExplorersIcebox.Scheduler.Tasks;
+using System.Collections.Generic;
 using System.IO;
 using static FFXIVClientStructs.FFXIV.Client.Graphics.Kernel.VertexShader;
 
@@ -89,6 +90,7 @@ internal class DebugWindow : Window
 
     private void NavmeshInfoDebug()
     {
+        ImGui.Text($"PlayerPos: " + PlayerPosition());
         ImGui.Text("X:");
         ImGui.SameLine();
         ImGui.SetNextItemWidth(75);
@@ -129,10 +131,30 @@ internal class DebugWindow : Window
             string clipboardText = $"{xPos}f, {yPos}f, {zPos}f";
             ImGui.SetClipboardText(clipboardText);
         }
+        if (ImGui.Button("Copy Current POS to Clipboard"))
+        {
+            float currentXPos = (float)Math.Round(GetPlayerRawXPos(), 2);
+            float currentYPos = (float)Math.Round(GetPlayerRawYPos(), 2);
+            float currentZPos = (float)Math.Round(GetPlayerRawZPos(), 2);
+            string clipboardText = $"new Vector3({currentXPos}f, {currentYPos}f, {currentZPos}f),";
+            ImGui.SetClipboardText(clipboardText);
+        }
         if (ImGui.Button("Vnav Moveto!"))
         {
             P.taskManager.Enqueue(() => TaskMoveTo.Enqueue(new Vector3(xPos, yPos, zPos), "Interact string", false, tolerance));
             ECommons.Logging.InternalLog.Information("Firing off Vnav Moveto");
+        }
+        if (ImGui.Button("Test Points"))
+        {
+            P.navmesh.MoveTo(new List<Vector3>(testPoints), false);
+        }
+        if (ImGui.Button("Test Points 2"))
+        {
+            TaskListMove.Enqueue(testPoints2, false);
+        }
+        if (ImGui.Button("Fly to Quartz Mountain"))
+        {
+            TaskListMove.Enqueue(Base2IslewortVnav, false);
         }
     }
 
