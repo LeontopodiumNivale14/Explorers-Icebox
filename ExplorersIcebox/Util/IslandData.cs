@@ -5,6 +5,7 @@ namespace ExplorersIcebox.Util;
 
 internal class IslandData
 {
+    #region Island Item ID's + Counts
     // List of all the Island Sanctuary Items ID's, organized in the order they pop up in the menu
     public const int PalmLeafID = 37551;
     public const int BranchID = 37553;
@@ -108,6 +109,7 @@ internal class IslandData
     public static int GoldOreAmount => GetItemCount(GoldOreID);
     public static int HawksEyeSandAmount => GetItemCount(HawksEyeSandID);
     public static int CrystalFormationAmount => GetItemCount(CrystalFormationID);
+    #endregion
 
     //NPC ID's
     public const uint BaldinID = 1043621; // NPC that leads to the IS
@@ -163,95 +165,95 @@ internal class IslandData
     //This is the current cap of items on Island Sanctuary Items, just so I can quickly pull it at all times
     public const int MaxItems = 999;
 
-    // Route Loop Amounts
-    public static int Route0Amount => RouteAmountCalc(Routes.Route0Table,
+    #region Route Min Amounts
+    public static int Route0Amount => RouteMaxCalc(Routes.Route0Table,
                                                       Math.Min(IslandItemDict[IslefishID].Workshop, IslandItemDict[ClamID].Workshop), 0,
                                                       Math.Min(IslandItemDict[SquidID].Workshop, IslandItemDict[LaverID].Workshop), 0);
-    public static int Route1Amount => RouteAmountCalc(Routes.Route1Table, IslandItemDict[IslewortID].Workshop);
-    public static int Route2Amount => RouteAmountCalc(Routes.Route2Table,
+    public static int Route1Amount => RouteMaxCalc(Routes.Route1Table, IslandItemDict[IslewortID].Workshop);
+    public static int Route2Amount => RouteMaxCalc(Routes.Route2Table,
                                                       Math.Min(IslandItemDict[SugarcaneID].Workshop, IslandItemDict[VineID].Workshop), 0);
-    public static int Route3Amount => RouteAmountCalc(Routes.Route3Table,
+    public static int Route3Amount => RouteMaxCalc(Routes.Route3Table,
                                                       Math.Min(IslandItemDict[TinsandID].Workshop, IslandItemDict[SandID].Workshop), 0,
                                                       Math.Min(Math.Min(IslandItemDict[MarbleID].Workshop, IslandItemDict[LimestoneID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0);
-    public static int Route4Amount => RouteAmountCalc(Routes.Route4Table,
+    public static int Route4Amount => RouteMaxCalc(Routes.Route4Table,
                                                       Math.Min(Math.Min(IslandItemDict[AppleID].Workshop, IslandItemDict[BeehiveID].Workshop), IslandItemDict[VineID].Workshop), 0, 0,
                                                       Math.Min(IslandItemDict[SapID].Workshop, IslandItemDict[WoodOpalID].Workshop), 0,
                                                       Math.Min(IslandItemDict[BranchID].Workshop, IslandItemDict[ResinID].Workshop), 0,
                                                       Math.Min(IslandItemDict[SandID].Workshop, IslandItemDict[ClamID].Workshop), 0, 0);
-    public static int Route5Amount => RouteAmountCalc(Routes.Route5Table,
+    public static int Route5Amount => RouteMaxCalc(Routes.Route5Table,
                                                       Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLeafID].Workshop), IslandItemDict[PalmLeafID].Workshop), 0, 0,
                                                       Math.Min(Math.Min(IslandItemDict[LimestoneID].Workshop, IslandItemDict[MarbleID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0);
-    public static int Route6Amount => RouteAmountCalc(Routes.Route6Table,
+    public static int Route6Amount => RouteMaxCalc(Routes.Route6Table,
                                                       IslandItemDict[CottonID].Workshop,
                                                       IslandItemDict[HempID].Workshop,
                                                       Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLogID].Workshop), IslandItemDict[PalmLeafID].Workshop), 0, 0, 0);
-    public static int Route7Amount => RouteAmountCalc(Routes.Route7Table,
+    public static int Route7Amount => RouteMaxCalc(Routes.Route7Table,
                                                       Math.Min(IslandItemDict[ClayID].Workshop, IslandItemDict[TinsandID].Workshop), 0,
                                                       Math.Min(Math.Min(IslandItemDict[MarbleID].Workshop, IslandItemDict[LimestoneID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0,
                                                       Math.Min(Math.Min(IslandItemDict[BranchID].Workshop, IslandItemDict[LogID].Workshop), IslandItemDict[ResinID].Workshop), 0, 0,
                                                       Math.Min(IslandItemDict[SugarcaneID].Workshop, IslandItemDict[VineID].Workshop), 0, ShovelCheck());
-    public static int Route8Amount => RouteAmountCalc(Routes.Route8Table,
+    public static int Route8Amount => RouteMaxCalc(Routes.Route8Table,
                                                       Math.Min(Math.Min(IslandItemDict[MarbleID].Workshop, IslandItemDict[LimestoneID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0,
                                                       Math.Min(IslandItemDict[SugarcaneID].Workshop, IslandItemDict[VineID].Workshop), 0,
                                                       Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLeafID].Workshop), IslandItemDict[PalmLogID].Workshop), 0, 0,
                                                       Math.Min(IslandItemDict[TinsandID].Workshop, IslandItemDict[SandID].Workshop), 0,
                                                       Math.Min(IslandItemDict[HempID].Workshop, IslandItemDict[IslewortID].Workshop), 0
     );
-    public static int Route9Amount => RouteAmountCalc(Routes.Route9Table,
+    public static int Route9Amount => RouteMaxCalc(Routes.Route9Table,
                                                       Math.Min(IslandItemDict[BranchID].Workshop, IslandItemDict[ResinID].Workshop), 0,
                                                       Math.Min(IslandItemDict[SapID].Workshop, IslandItemDict[WoodOpalID].Workshop), 0,
                                                       Math.Min(IslandItemDict[ClayID].Workshop, IslandItemDict[SandID].Workshop), 0, 0);
-    public static int Route10Amount => RouteAmountCalc(Routes.Route10Table,
+    public static int Route10Amount => RouteMaxCalc(Routes.Route10Table,
                                                        Math.Min(Math.Min(IslandItemDict[CopperID].Workshop, IslandItemDict[MythrilOreID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0,
                                                        IslandItemDict[HempID].Workshop,
                                                        Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLeafID].Workshop), IslandItemDict[PalmLogID].Workshop), 0, 0,
                                                        IslandItemDict[CottonID].Workshop,
                                                        IslandItemDict[IslewortID].Workshop
     );
-    public static int Route11Amount => RouteAmountCalc(Routes.Route11Table,
+    public static int Route11Amount => RouteMaxCalc(Routes.Route11Table,
                                                        Math.Min(Math.Min(IslandItemDict[SapID].Workshop, IslandItemDict[WoodOpalID].Workshop), IslandItemDict[LogID].Workshop), 0, 0,
                                                        IslandItemDict[HempID].Workshop,
                                                        IslandItemDict[IslewortID].Workshop);
-    public static int Route12Amount => RouteAmountCalc(Routes.Route12Table,
+    public static int Route12Amount => RouteMaxCalc(Routes.Route12Table,
                                                        Math.Min(IslandItemDict[HempID].Workshop, IslandItemDict[IslewortID].Workshop), 0,
                                                        Math.Min(IslandItemDict[SandID].Workshop, IslandItemDict[ClayID].Workshop), 0,
                                                        Math.Min(Math.Min(IslandItemDict[CoconutID].Workshop, IslandItemDict[PalmLeafID].Workshop), IslandItemDict[PalmLogID].Workshop), 0, 0);
-    public static int Route13Amount => RouteAmountCalc(Routes.Route13Table,
+    public static int Route13Amount => RouteMaxCalc(Routes.Route13Table,
                                                        IslandItemDict[MulticoloredIslebloomsID].Workshop,
                                                        IslandItemDict[QuartzID].Workshop,
                                                        Math.Min(IslandItemDict[IronOreID].Workshop, IslandItemDict[DuriumSandID].Workshop), 0,
                                                        IslandItemDict[LeucograniteID].Workshop, 0);
-    public static int Route14Amount => RouteAmountCalc(Routes.Route14Table,
+    public static int Route14Amount => RouteMaxCalc(Routes.Route14Table,
                                                        Math.Min(Math.Min(IslandItemDict[IronOreID].Workshop, IslandItemDict[StoneID].Workshop), IslandItemDict[DuriumSandID].Workshop), 0, 0);
-    public static int Route15Amount => RouteAmountCalc(Routes.Route15Table,
+    public static int Route15Amount => RouteMaxCalc(Routes.Route15Table,
                                                        Math.Min(IslandItemDict[LaverID].Workshop, IslandItemDict[SquidID].Workshop), 0,
                                                        Math.Min(IslandItemDict[JellyfishID].Workshop, IslandItemDict[CoralID].Workshop), 0
     );
-    public static int Route16Amount => RouteAmountCalc(Routes.Route16Table,
+    public static int Route16Amount => RouteMaxCalc(Routes.Route16Table,
                                                        Math.Min(IslandItemDict[RockSaltID].Workshop, IslandItemDict[StoneID].Workshop), 0,
                                                        Math.Min(IslandItemDict[ClayID].Workshop, IslandItemDict[SandID].Workshop), 0,
                                                        Math.Min(IslandItemDict[IslewortID].Workshop, IslandItemDict[HempID].Workshop), 0);
-    public static int Route17Amount => RouteAmountCalc(Routes.Route17Table,
+    public static int Route17Amount => RouteMaxCalc(Routes.Route17Table,
                                                        IslandItemDict[LeucograniteID].Workshop,
                                                        Math.Min(IslandItemDict[CopperID].Workshop, IslandItemDict[MythrilOreID].Workshop), 0,
                                                        Math.Min(IslandItemDict[IronOreID].Workshop, IslandItemDict[DuriumSandID].Workshop), 0, 0);
-    public static int Route18Amount => RouteAmountCalc(Routes.Route18Table,
+    public static int Route18Amount => RouteMaxCalc(Routes.Route18Table,
                                                        IslandItemDict[QuartzID].Workshop,
                                                        Math.Min(IslandItemDict[IronOreID].Workshop, IslandItemDict[DuriumSandID].Workshop), 0,
                                                        IslandItemDict[LeucograniteID].Workshop, 0);
-    public static int Route19Amount => RouteAmountCalc(Routes.Route19Table,
+    public static int Route19Amount => RouteMaxCalc(Routes.Route19Table,
                                                        IslandItemDict[GlimshroomID].Workshop,
                                                        Math.Min(Math.Min(IslandItemDict[ShaleID].Workshop, IslandItemDict[CoalID].Workshop), IslandItemDict[StoneID].Workshop), 0, 0);
-    public static int Route20Amount => RouteAmountCalc(Routes.Route20Table,
+    public static int Route20Amount => RouteMaxCalc(Routes.Route20Table,
                                                        Math.Min(IslandItemDict[EffervescentWaterID].Workshop, IslandItemDict[SpectrineID].Workshop), 0,
                                                        Math.Min(IslandItemDict[ShaleID].Workshop, IslandItemDict[CoalID].Workshop), 0, 0);
-    public static int Route21Amount => RouteAmountCalc(Routes.Route21Table,
+    public static int Route21Amount => RouteMaxCalc(Routes.Route21Table,
                                                        Math.Min(IslandItemDict[YellowCopperOreID].Workshop, IslandItemDict[GoldOreID].Workshop), 0,
                                                        Math.Min(IslandItemDict[CrystalFormationID].Workshop, IslandItemDict[HawksEyeSandID].Workshop), 0,
                                                        IslandItemDict[GlimshroomID].Workshop,
                                                        Math.Min(IslandItemDict[EffervescentWaterID].Workshop, IslandItemDict[SpectrineID].Workshop), 0,
                                                        Math.Min(IslandItemDict[ShaleID].Workshop, IslandItemDict[CoalID].Workshop), 0, 0);
-
+    #endregion
 
     public static int ShovelCheck()
     {
@@ -282,7 +284,7 @@ internal class IslandData
         public int Pos { get; set; }
     }
 
-    // Values for the Tables below. 
+    #region Route Tables
     public class RouteEntry
     {
         public int AmountGatherable { get; set; }
@@ -547,6 +549,8 @@ internal class IslandData
         ];
     }
 
+    #endregion
+
     // Dictionary for items, contains the Workshop amount + ItemID
     public class ItemData
     {
@@ -605,43 +609,45 @@ internal class IslandData
         { CrystalFormationID, new ItemData {Name = "Crystal Formation", Workshop = 0, Amount = GetItemCount(CrystalFormationID), Callback = 43, NodeID = 100043 } },
     };
 
-    // quick way to access everything for routes
+    #region Gathering Point Data
     public class GatheringPointData
     {
         public required string Name { get; set; }
         public required string Location { get; set; }
         public required string Base64Export { get; set; }
         public bool GatherRoute { get; set; }
+        public int MaxLoops { get; set; }
     }
 
     // Routes 1-7, 9-18, 20-22 still need to be properly updated, This is just setting up the basework so i can go back and edit this after...
     public static Dictionary<int, GatheringPointData> RouteDataPoint = new Dictionary<int, GatheringPointData>
     {
-        { 0, new GatheringPointData {Name = "Clam | Islefish", Location = Base2Clam, Base64Export = ClamVisland, GatherRoute = C.Route0} },
-        { 1, new GatheringPointData {Name = "Islewort", Location = Base2Islewort, Base64Export = IslewortVisland, GatherRoute = C.Route1} },
-        { 2, new GatheringPointData {Name = "Sugarcane | Vine", Location = Base2Sugarcane, Base64Export = SugarcaneVisland, GatherRoute = C.Route2} },
-        { 3, new GatheringPointData {Name = "Tinsand | Sand", Location = Base2Ttinsand, Base64Export = TinsandVisland, GatherRoute = C.Route3} },
-        { 4, new GatheringPointData {Name = "Apple| Beehive | Vine", Location = Base2Apple, Base64Export = AppleVisland, GatherRoute = C.Route4} },
-        { 5, new GatheringPointData {Name = "Coconut | Palm Log | Palm Leaf", Location = Base2Coconut, Base64Export = CoconutVisland, GatherRoute = C.Route5} },
-        { 6, new GatheringPointData {Name = "Cotton", Location = Base2Cotton, Base64Export = CottonVisland, GatherRoute = C.Route6} },
-        { 7, new GatheringPointData {Name = "Clay | Sand [Ground XP Loop]", Location = Base2Clay, Base64Export = ClayVisland, GatherRoute = C.Route7} }, // done
-        { 8, new GatheringPointData {Name = "Marble | Limestone | (Stone)", Location = Base2Marble, Base64Export = MarbleVisland, GatherRoute = C.Route8} },
-        { 9, new GatheringPointData {Name = "Branch | Resin | (Log)", Location = Base2Branch, Base64Export = BranchVisland, GatherRoute = C.Route9} },
-        { 10, new GatheringPointData {Name = "Copper / Mythril", Location = Base2Copper, Base64Export = CopperVisland, GatherRoute = C.Route10} },
-        { 11, new GatheringPointData {Name = "Opal / Log / Sap", Location = Base2Opal, Base64Export = OpalVisland, GatherRoute = C.Route11} },
-        { 12, new GatheringPointData {Name = "Hemp", Location = Base2Hemp, Base64Export = HempVisland, GatherRoute = C.Route12} },
-        { 13, new GatheringPointData {Name = "Multicolored Isleblooms", Location = Base2MultiColor, Base64Export = MulticoloredVisland, GatherRoute = C.Route13} },
-        { 14, new GatheringPointData {Name = "Iron Ore", Location = Base2Iron, Base64Export = IronVisland, GatherRoute = C.Route14} },
-        { 15, new GatheringPointData {Name = "Laver / Squid | Jellyfish / Coral", Location = Base2Laver, Base64Export = LaverJellyfishVisland, GatherRoute = C.Route15} },
-        { 16, new GatheringPointData {Name = "Rocksalt", Location = Base2RockSalt, Base64Export = RocksaltVisland, GatherRoute = C.Route16} },
-        { 17, new GatheringPointData {Name = "Leucogranite", Location = Base2Leucogranite, Base64Export = LeucograniteVisland, GatherRoute = C.Route17} },
-        { 18, new GatheringPointData {Name = "Quartz [Mountain XP Loop]", Location = Base2Quartz, Base64Export = QuartzVisland, GatherRoute = C.Route18} }, // done
-        { 19, new GatheringPointData {Name = "Coal / Shale | Glimshroom", Location = Base2Glimshroom, Base64Export = CoalVisland, GatherRoute = C.Route19} },
-        { 20, new GatheringPointData {Name = "Effervescent Water", Location = Base2Water, Base64Export = WaterVisland, GatherRoute = C.Route20} },
-        { 21, new GatheringPointData {Name = "Crystal / Hawk Sand | Yelow Copper / Gold Ore", Location = Base2Crystal, Base64Export = CrystalVisland, GatherRoute = C.Route21} },
+        { 0, new GatheringPointData {Name = "Clam | Islefish", Location = Base2Clam, Base64Export = ClamVisland, GatherRoute = C.Route0, MaxLoops = 124} },
+        { 1, new GatheringPointData {Name = "Islewort", Location = Base2Islewort, Base64Export = IslewortVisland, GatherRoute = C.Route1, MaxLoops = 71} },
+        { 2, new GatheringPointData {Name = "Sugarcane | Vine", Location = Base2Sugarcane, Base64Export = SugarcaneVisland, GatherRoute = C.Route2, MaxLoops = 90} },
+        { 3, new GatheringPointData {Name = "Tinsand | Sand", Location = Base2Ttinsand, Base64Export = TinsandVisland, GatherRoute = C.Route3, MaxLoops = 142} },
+        { 4, new GatheringPointData {Name = "Apple| Beehive | Vine", Location = Base2Apple, Base64Export = AppleVisland, GatherRoute = C.Route4, MaxLoops = 199} },
+        { 5, new GatheringPointData {Name = "Coconut | Palm Log | Palm Leaf", Location = Base2Coconut, Base64Export = CoconutVisland, GatherRoute = C.Route5, MaxLoops = 142} },
+        { 6, new GatheringPointData {Name = "Cotton", Location = Base2Cotton, Base64Export = CottonVisland, GatherRoute = C.Route6, MaxLoops = 142} },
+        { 7, new GatheringPointData {Name = "Clay | Sand [Ground XP Loop]", Location = Base2Clay, Base64Export = ClayVisland, GatherRoute = C.Route7, MaxLoops = 142} }, // done
+        { 8, new GatheringPointData {Name = "Marble | Limestone | (Stone)", Location = Base2Marble, Base64Export = MarbleVisland, GatherRoute = C.Route8, MaxLoops = 142} },
+        { 9, new GatheringPointData {Name = "Branch | Resin | (Log)", Location = Base2Branch, Base64Export = BranchVisland, GatherRoute = C.Route9, MaxLoops = 124} },
+        { 10, new GatheringPointData {Name = "Copper / Mythril", Location = Base2Copper, Base64Export = CopperVisland, GatherRoute = C.Route10, MaxLoops = 142} },
+        { 11, new GatheringPointData {Name = "Opal / Log / Sap", Location = Base2Opal, Base64Export = OpalVisland, GatherRoute = C.Route11, MaxLoops = 124} },
+        { 12, new GatheringPointData {Name = "Hemp", Location = Base2Hemp, Base64Export = HempVisland, GatherRoute = C.Route12, MaxLoops = 111} },
+        { 13, new GatheringPointData {Name = "Multicolored Isleblooms", Location = Base2MultiColor, Base64Export = MulticoloredVisland, GatherRoute = C.Route13, MaxLoops = 249} },
+        { 14, new GatheringPointData {Name = "Iron Ore", Location = Base2Iron, Base64Export = IronVisland, GatherRoute = C.Route14, MaxLoops = 90} },
+        { 15, new GatheringPointData {Name = "Laver / Squid | Jellyfish / Coral", Location = Base2Laver, Base64Export = LaverJellyfishVisland, GatherRoute = C.Route15, MaxLoops = 166} },
+        { 16, new GatheringPointData {Name = "Rocksalt", Location = Base2RockSalt, Base64Export = RocksaltVisland, GatherRoute = C.Route16, MaxLoops = 166} },
+        { 17, new GatheringPointData {Name = "Leucogranite", Location = Base2Leucogranite, Base64Export = LeucograniteVisland, GatherRoute = C.Route17, MaxLoops = 142} },
+        { 18, new GatheringPointData {Name = "Quartz [Mountain XP Loop]", Location = Base2Quartz, Base64Export = QuartzVisland, GatherRoute = C.Route18, MaxLoops = 166} }, // done
+        { 19, new GatheringPointData {Name = "Coal / Shale | Glimshroom", Location = Base2Glimshroom, Base64Export = CoalVisland, GatherRoute = C.Route19, MaxLoops = 124} },
+        { 20, new GatheringPointData {Name = "Effervescent Water", Location = Base2Water, Base64Export = WaterVisland, GatherRoute = C.Route20, MaxLoops = 99} },
+        { 21, new GatheringPointData {Name = "Crystal / Hawk Sand | Yelow Copper / Gold Ore", Location = Base2Crystal, Base64Export = CrystalVisland, GatherRoute = C.Route21, MaxLoops = 249} },
     };
+    #endregion
 
-    public static int RouteAmountCalc(List<RouteEntry> routeEntries, params int[] workshops)
+    public static int RouteMaxCalc(List<RouteEntry> routeEntries, params int[] workshops)
     {
         var CurrentMax = 999; // Ceiling to always start at
 
