@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using static FFXIVClientStructs.FFXIV.Client.Graphics.Kernel.VertexShader;
 
-namespace ExplorersIcebox.Windows;
+namespace ExplorersIcebox.Ui;
 
 internal class DebugWindow : Window
 {
-    public DebugWindow() : 
+    public DebugWindow() :
         base($"Explorer's Icebox Debug {P.GetType().Assembly.GetName().Version}")
     {
         Flags = ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoCollapse;
@@ -64,8 +64,8 @@ internal class DebugWindow : Window
             }
             if (ImGui.BeginTabItem("Imgui Test"))
             {
-                TestGuiDebug();
-                DisplayItemData();
+                SharedWorkshopUI.RouteUi(18, Route18MinAmount, false, true, RouteDataPoint[18].GatherRoute);
+                ImGui.Text($"Route 13 is set to {RouteDataPoint[13].GatherRoute}");
                 ImGui.EndTabItem();
             }
             ImGui.EndTabBar();
@@ -128,15 +128,15 @@ internal class DebugWindow : Window
         ImGui.SameLine();
         if (ImGui.Button("Copy to clipboard"))
         {
-            string clipboardText = $"{xPos}f, {yPos}f, {zPos}f";
+            var clipboardText = $"{xPos}f, {yPos}f, {zPos}f";
             ImGui.SetClipboardText(clipboardText);
         }
         if (ImGui.Button("Copy Current POS to Clipboard"))
         {
-            float currentXPos = (float)Math.Round(GetPlayerRawXPos(), 2);
-            float currentYPos = (float)Math.Round(GetPlayerRawYPos(), 2);
-            float currentZPos = (float)Math.Round(GetPlayerRawZPos(), 2);
-            string clipboardText = $"new Vector3({currentXPos}f, {currentYPos}f, {currentZPos}f),";
+            var currentXPos = (float)Math.Round(GetPlayerRawXPos(), 2);
+            var currentYPos = (float)Math.Round(GetPlayerRawYPos(), 2);
+            var currentZPos = (float)Math.Round(GetPlayerRawZPos(), 2);
+            var clipboardText = $"new Vector3({currentXPos}f, {currentYPos}f, {currentZPos}f),";
             ImGui.SetClipboardText(clipboardText);
         }
         if (ImGui.Button("Vnav Moveto!"))
@@ -169,7 +169,7 @@ internal class DebugWindow : Window
         {
             ImGui.Text("Navmesh is not installed. BOOOOO");
         }
-        
+
     }
 
     private void MiscInfoDebug()
@@ -193,10 +193,10 @@ internal class DebugWindow : Window
         {
             TaskVislandTemp.Enqueue(testRoute, "Test Base64 Route");
         }
-        ImGui.Text($"Quartz sell = {currentTable[0].Sell}");
+        ImGui.Text($"Quartz sell = {GetTable(C.routeSelected)[0].Sell}");
         if (ImGui.Button("Calculate sell"))
         {
-            TableSellUpdate(currentTable);
+            TableSellUpdate(GetTable(C.routeSelected));
         }
 
         // Input box
@@ -236,7 +236,7 @@ internal class DebugWindow : Window
 
     private void TestGuiDebug()
     {
-        bool unlocked = CheckIfItemLocked(itemID);
+        var unlocked = CheckIfItemLocked(itemID);
         ImGui.Text("Kinda where I just test all the gui things to see what they look like");
         ImGui.Text("Tree Nodes");
         if (ImGui.TreeNode("Settings")) // Example of treenode, note that these must end in TreePop();
@@ -269,10 +269,10 @@ internal class DebugWindow : Window
         {
             // Extract the key (Item ID) and value (ItemData)
             var itemId = entry.Key;
-            ItemData itemData = entry.Value;
+            var itemData = entry.Value;
 
             // Format the display text
-            string displayText = $"Item ID: {itemId}, Callback: {itemData.Callback}";
+            var displayText = $"Item ID: {itemId}, Callback: {itemData.Callback}";
 
             // Display the text using ImGui
             ImGui.Text(displayText);

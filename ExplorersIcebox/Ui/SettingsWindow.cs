@@ -1,22 +1,22 @@
-namespace ExplorersIcebox.Windows;
+namespace ExplorersIcebox.Ui;
 
 internal class SettingWindow : Window
 {
     public new static readonly string WindowName = "Islanc Sanc Workshop Amounts";
-    public SettingWindow() : 
+    public SettingWindow() :
         base(WindowName)
     {
         Flags = ImGuiWindowFlags.NoCollapse;
         ImGui.SetNextWindowSize(new Vector2(450, 0), ImGuiCond.Always);
         P.windowSystem.AddWindow(this);
     }
-    
+
     public void Dispose() { }
-    
+
     // dropdown options
     private string[] options = { "All Items [By Slot]", "Route 1: Islefish | Clam", "Route 2: Islewort", "Route 3: Sugarcane | Vine", "Route 4: Tinsand | Sand",
     "Route 5: Apple | Beehive | Vine", "Route 6: Coconut | Palm Log | Palm leaf", "Route 7: Cotton", "Route 8: Clay | Sand [Ground XP Loop]",
-    "Route 19: Quartz | Stone [Flying XP Loop]"}; 
+    "Route 19: Quartz | Stone [Flying XP Loop]"};
 
 
     public static string currentOption = "All Items"; // Currently selected option

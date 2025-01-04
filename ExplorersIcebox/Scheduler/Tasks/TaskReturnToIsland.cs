@@ -9,9 +9,11 @@ namespace ExplorersIcebox.Scheduler.Tasks
         public static void Enqueue()
         {
             TaskTeleport.Enqueue(LowerLimsaAether, LowerLimsaZoneID);
+            /*
             TaskMoveTo.Enqueue(new Vector3(173.11f, 14.1f, 668.94f), "In front of Baldin", false, 1);
             TaskInteract.Enqueue(BaldinNPCID);
             P.taskManager.Enqueue(() => EnterIsland());
+            */
         }
 
         internal unsafe static bool? EnterIsland()

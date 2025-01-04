@@ -2,7 +2,8 @@ using ECommons.Automation.NeoTaskManager;
 using ECommons.Configuration;
 using ExplorersIcebox.IPC;
 using ExplorersIcebox.Scheduler;
-using ExplorersIcebox.Windows;
+using ExplorersIcebox.Ui;
+using ExplorersIcebox.Ui.MainWindow;
 
 namespace ExplorersIcebox;
 
