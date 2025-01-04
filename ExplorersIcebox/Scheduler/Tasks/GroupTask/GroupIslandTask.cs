@@ -15,8 +15,8 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
             LoopCount = 0;
             TaskReturn.Enqueue();
             UpdateTableDict();
-            TableSellUpdate(currentTable);
-            if (TotalSellItems(currentTable) > 0)
+            TableSellUpdate(GetTable(C.routeSelected));
+            if (TotalSellItems(GetTable(C.routeSelected)) > 0)
             {
                 P.taskManager.Enqueue(() => UpdateDisplayText("Selling to the shop"));
                 if (Svc.Condition[ConditionFlag.Mounted])
@@ -55,13 +55,13 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
             }
             P.taskManager.Enqueue(() => UpdateDisplayText("Heading to the route destination"));
             TaskVislandTemp.Enqueue(RouteDataPoint[C.routeSelected].Location, RouteDataPoint[C.routeSelected].Name);
-            while (LoopAmount < RouteAmount(C.routeSelected))
+            while (LoopAmount < RouteAmount(C.routeSelected, SchedulerMain.WorkshopSelected))
             {
                 TaskVislandTemp.Enqueue(RouteDataPoint[C.routeSelected].Base64Export, $"Enabling the following Route: {RouteDataPoint[C.routeSelected].Name}");
                 P.taskManager.EnqueueDelay(100);
                 P.taskManager.Enqueue(() => LoopCount = LoopCount + 1);
                 P.taskManager.Enqueue(() => PluginLog($"Loop amount is currently: {LoopAmount}"));
-                P.taskManager.Enqueue(() => UpdateDisplayText($"Loop {LoopCount} / {RouteAmount(C.routeSelected)}"));
+                P.taskManager.Enqueue(() => UpdateDisplayText($"Loop {LoopCount} / {RouteAmount(C.routeSelected, SchedulerMain.WorkshopSelected)}"));
                 P.taskManager.Enqueue(() => P.visland.IsRouteRunning() == false, $"{RouteDataPoint[C.routeSelected].Name} is currently running", configuration: DConfig);
                 LoopAmount++;
             }

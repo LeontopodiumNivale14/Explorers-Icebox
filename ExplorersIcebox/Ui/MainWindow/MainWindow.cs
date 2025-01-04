@@ -10,8 +10,8 @@ internal class MainWindow : Window
         Flags = ImGuiWindowFlags.None;
         SizeConstraints = new()
         {
-            MinimumSize = new Vector2(300, 600),
-            MaximumSize = new Vector2(800, 1200)
+            MinimumSize = new Vector2(300, 300),
+            MaximumSize = new Vector2(2000, 2000)
         };
         P.windowSystem.AddWindow(this);
         AllowPinning = false;

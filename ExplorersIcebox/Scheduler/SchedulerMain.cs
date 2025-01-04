@@ -28,6 +28,7 @@ namespace ExplorersIcebox.Scheduler
         private static int CurrentLoop = 0;
         internal static string CurrentProcess = "";
         internal static bool UpdatedShop = false;
+        internal static bool WorkshopSelected = true;
 
         internal static void Tick()
         {
@@ -41,7 +42,7 @@ namespace ExplorersIcebox.Scheduler
                         {
                             if (C.runInfinite || (!C.runInfinite && C.runAmount > CurrentLoop))
                             {
-                                GroupIslandTask.Enqueue(currentTable);
+                                GroupIslandTask.Enqueue(GetTable(C.routeSelected));
                                 P.taskManager.Enqueue(() => CurrentLoop = CurrentLoop + 1);
                             }
                             else
@@ -66,7 +67,14 @@ namespace ExplorersIcebox.Scheduler
                             }
                             if (!isAllFalse)
                             {
-                                GroupIslandTask.Enqueue(currentTable);
+                                if (RouteAmount(C.routeSelected, WorkshopSelected) != 0)
+                                {
+                                    GroupIslandTask.Enqueue(GetTable(C.routeSelected));
+                                }
+                                else if ((RouteAmount(C.routeSelected, WorkshopSelected) == 0))
+                                {
+                                    PluginLog($"The following route: {C.routeSelected}, was set to 0. Skipping over this route");
+                                }
                                 RouteDataPoint[C.routeSelected].GatherRoute = false;
                             }
                             if (isAllFalse)

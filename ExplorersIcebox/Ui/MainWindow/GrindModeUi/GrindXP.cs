@@ -69,11 +69,11 @@ internal class GrindXP
 
         if (C.routeSelected == 7)
         {
-            Route7WorkshopGui();
+            SharedWorkshopUI.RouteUi(7, Route7MaxAmount, true, false, RouteDataPoint[7].GatherRoute);
         }
         else if (C.routeSelected == 18)
         {
-            Route18WorkshopGui();
+            SharedWorkshopUI.RouteUi(18, Route18MaxAmount, true, false, RouteDataPoint[18].GatherRoute);
         }
     }
 }

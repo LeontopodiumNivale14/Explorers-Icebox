@@ -12,7 +12,7 @@ namespace ExplorersIcebox.Ui.MainWindow.GrindModeUi;
 
 internal static unsafe class GrindModeUi
 {
-    private static string[] ModeSelect = { "XP | Cowries Grind", "Island Gathering Mode" };
+    private static string[] ModeSelect = { "XP | Cowries Grind", "Island Shopping Mode", "Max Island Inventory" };
     private static string CurrentMode = "XP | Cowries Grind";
     private static bool UseTickets = C.UseTickets;
     private static string TicketTooltip = "Check this if you want to use an Aetheryte ticket to teleport to the Island Sanctuary Entrance";
@@ -22,11 +22,22 @@ internal static unsafe class GrindModeUi
         UpdateXPTable();
         ImGui.Text($"Current task → {displayCurrentTask}");
         ImGui.SameLine();
-        if (P.taskManager.IsBusy)
-            ImGui.SetCursorPosX(offSet(42.0f));
-        else if (!P.taskManager.IsBusy)
-            ImGui.SetCursorPosX(offSet(117.0f));
-        if (ImGui.Button(P.taskManager.IsBusy ? "Stop" : "Teleport to Island"))
+        string buttonText = P.taskManager.IsBusy ? "Stop" : "Teleport to Island Entrance";
+
+        // Calculate text size and button size
+        Vector2 textSize = ImGui.CalcTextSize(buttonText);
+        Vector2 buttonSize = new Vector2(textSize.X + ImGui.GetStyle().FramePadding.X * 2, textSize.Y + ImGui.GetStyle().FramePadding.Y * 2);
+
+        // Get available content width
+        float windowWidth = ImGui.GetContentRegionAvail().X;
+
+        // Calculate button position for right alignment
+        float buttonPosX = windowWidth - buttonSize.X + 105;
+
+        // Set cursor position to align the button
+        ImGui.SetCursorPosX(buttonPosX);
+
+        if (ImGui.Button(buttonText))
         {
             if (P.taskManager.IsBusy)
             {
@@ -39,10 +50,10 @@ internal static unsafe class GrindModeUi
         }
         ImGui.Text($"Route → {displayCurrentRoute}");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet(217.0f));
+        ImGui.SetCursorPosX(offSet(215.0f));
         ImGui.Text("Use Aetheryte Ticket to return");
         ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet(17.0f));
+        ImGui.SetCursorPosX(offSet(20.0f));
         if (ImGui.Checkbox("##IS Use Teleport Tickets", ref UseTickets))
         {
             if (UseTickets)
@@ -70,7 +81,7 @@ internal static unsafe class GrindModeUi
                 if (isXPRunning)
                 {
                     PluginLog("Enabling the route Gathering");
-                    if (CurrentMode == "Island Gathering Mode") C.XPGrind = false;
+                    if (CurrentMode == "Max Island Inventory" || CurrentMode == "Island Shopping Mode") C.XPGrind = false;
                     if (CurrentMode == "XP | Cowries Grind") C.XPGrind = true;
                     SchedulerMain.EnablePlugin();
                     displayCurrentTask = "Currently Running";
@@ -115,8 +126,14 @@ internal static unsafe class GrindModeUi
             }
             GrindXP.Draw();
         }
-        else if (CurrentMode == "Island Gathering Mode")
+        else if (CurrentMode == "Island Shopping Mode")
         {
+            SchedulerMain.WorkshopSelected = false;
+            MaximizeStock.Draw();
+        }
+        else if (CurrentMode == "Max Island Inventory")
+        {
+            SchedulerMain.WorkshopSelected = true;
             MaximizeStock.Draw();
         }
     }

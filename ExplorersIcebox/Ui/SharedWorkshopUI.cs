@@ -1,3 +1,4 @@
+using Dalamud.Interface.Components;
 using ECommons.Configuration;
 using System;
 using System.Collections.Generic;
@@ -27,19 +28,31 @@ internal static class SharedWorkshopUI
         return offset;
     }
 
-    internal static void BaseRouteTable(string routeTableName, int RouteAmount, List<RouteEntry> RouteTable)
+    private static void BaseRouteTable(string routeTableName, int RouteAmount, bool Workshop, List<RouteEntry> RouteTable, int RouteNumber)
     {
+        string column4th = "";
+        string amountGathered = string.Empty;
+        string itemName = string.Empty;
         if (ImGui.BeginTable(routeTableName, 5, ImGuiTableFlags.Borders | ImGuiTableFlags.RowBg))
         {
             ImGui.TableSetupColumn("Item", ImGuiTableColumnFlags.WidthFixed, 200);
             ImGui.TableSetupColumn("Currently Have", ImGuiTableColumnFlags.WidthFixed, 100);
             ImGui.TableSetupColumn("Items Per Loop", ImGuiTableColumnFlags.WidthFixed, 110);
-            ImGui.TableSetupColumn("Amount Gathered per loop");
-            ImGui.TableSetupColumn("Amount Want to gather");
+            if (Workshop)
+            {
+                column4th = "Amount to Keep";
+                ImGui.TableSetupColumn(column4th);
+            }
+            else if (!Workshop)
+            {
+                column4th = "Amount to Gather";
+                ImGui.TableSetupColumn(column4th);
+            }
+            ImGui.TableSetupColumn("Total Gather Amount");
 
             ImGui.TableNextRow(ImGuiTableRowFlags.Headers);
 
-            string[] headers = { "Item", "Currently Have", "Amount Per Loop", "Total Gathered Amount", "Amount to Gather" };
+            string[] headers = { "Item", "Currently Have", "Amount Per Loop", column4th, "Total Gather Amount" };
             for (int col = 0; col < headers.Length; col++)
             {
                 ImGui.TableSetColumnIndex(col);
@@ -59,14 +72,28 @@ internal static class SharedWorkshopUI
             {
                 int itemID = RouteTable[i].ID;
                 int amountPerLoop = RouteTable[i].AmountGatherable;
-                int amountGathered = (RouteAmount * amountPerLoop);
+                int AmountGatheredTotal = (RouteAmount * amountPerLoop);
+                if (AmountGatheredTotal > 999)
+                {
+                    amountGathered = "999+";
+                }
+                else
+                {
+                    amountGathered = $"{AmountGatheredTotal}";
+                }
+                int MaxGatherAmount = (RouteDataPoint[RouteNumber].MaxLoops * amountPerLoop);
+                if (MaxGatherAmount > 999)
+                    MaxGatherAmount = 999;
                 int WorkshopInput = IslandItemDict[itemID].Workshop;
+                int GatherInput = IslandItemDict[itemID].GatherAmount;
+                bool CanIgnore = RouteTable[i].CanSellFullAmount;
 
                 string[] rowValues =
                 [
                 $"{IslandItemDict[itemID].Name}",
                 $"{GetItemCount(itemID)}",
                 $"{RouteTable[i].AmountGatherable}",
+                "Dummy",
                 $"{amountGathered}"
                 ];
 
@@ -75,7 +102,7 @@ internal static class SharedWorkshopUI
                 {
                     ImGui.TableSetColumnIndex(col);
 
-                    if (col < 4) // For the first four columns
+                    if (col < 3 || col == 4) // For the first four columns
                     {
                         var text = rowValues[col];
                         var textSize = ImGui.CalcTextSize(text);
@@ -84,14 +111,39 @@ internal static class SharedWorkshopUI
 
                         ImGui.SetCursorPosX(cursorPosX + (columnWidth - textSize.X) / 2.0f);
                         ImGui.Text(text);
+                        if (col == 0)
+                        {
+                            if (CanIgnore == true)
+                            {
+                                ImGui.SetCursorPosX(cursorPosX + (columnWidth - textSize.X) / 2.0f + 5);
+                                ImGuiComponents.HelpMarker("Item not factored into how many loops it can do.");
+                            }
+                        }
                     }
-                    else if (col == 4) // For the 5th column with ImGui.InputInt
+                    else if (col == 3) // For the 5th column with ImGui.InputInt
                     {
                         var inputLabel = $"##ItemImGui_{IslandItemDict[itemID].Name}";
-                        if (ImGui.InputInt(inputLabel, ref WorkshopInput))
+                        ImGui.SetNextItemWidth(ImGui.GetColumnWidth());
+                        if (Workshop)
                         {
-                            WorkshopInput = AmountSet(WorkshopInput);
-                            IslandItemDict[itemID].Workshop = WorkshopInput;
+                            if (ImGui.SliderInt(inputLabel, ref WorkshopInput, 0, 999))
+                            {
+                                WorkshopInput = AmountSet(WorkshopInput);
+                                IslandItemDict[itemID].Workshop = WorkshopInput;
+                            }
+                        }
+                        else if (!Workshop)
+                        {
+
+                            if (ImGui.SliderInt(inputLabel, ref GatherInput, 0, MaxGatherAmount))
+                            {
+                                GatherInput = AmountSet(GatherInput);
+                                if (GatherInput > MaxGatherAmount)
+                                    GatherInput = MaxGatherAmount;
+                                if (GatherInput < 0)
+                                    GatherInput = 0;
+                                IslandItemDict[itemID].GatherAmount = GatherInput;
+                            }
                         }
                     }
                 }
@@ -100,20 +152,39 @@ internal static class SharedWorkshopUI
         ImGui.EndTable();
     }
 
-    internal static void RouteUi(int RouteNumber, int RouteAmount, List<RouteEntry> RouteList)
+    internal static void RouteUi(int RouteNumber, int RouteAmount, bool Workshop, bool ShowEnable, bool ConfigRoute)
     {
         string tableName = $"Route {RouteNumber}";
         if (ImGui.BeginTable($"{tableName}_Ui", 2))
         {
+            ImGui.TableSetupColumn("Route Info", ImGuiTableColumnFlags.WidthFixed, 200);
+            ImGui.TableSetupColumn("Checkbox");
             ImGui.TableNextRow();
             ImGui.TableSetColumnIndex(0);
             ImGui.Text($"Route {RouteNumber} is set to run → {RouteAmount}");
             ImGui.TableSetColumnIndex(1);
-            ImGui.Text("Dummy Text for now");
+            if (ShowEnable)
+            {
+                ImGui.Text("Enable Route");
+                ImGui.SameLine();
+                if (ImGui.Checkbox($"##EnableRoute{RouteNumber}", ref ConfigRoute))
+                {
+                    if (ConfigRoute)
+                    {
+                        ConfigRoute = true;
+                        RouteDataPoint[RouteNumber].GatherRoute = true;
+                    }
+                    else
+                    {
+                        ConfigRoute = false;
+                        RouteDataPoint[RouteNumber].GatherRoute = false;
+                    }
+                }
+            }
         }
 
         ImGui.EndTable();
 
-        BaseRouteTable(tableName, RouteAmount, RouteList);
+        BaseRouteTable(tableName, RouteAmount, Workshop, GetTable(RouteNumber), RouteNumber);
     }
 }

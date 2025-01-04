@@ -64,8 +64,8 @@ internal class DebugWindow : Window
             }
             if (ImGui.BeginTabItem("Imgui Test"))
             {
-                SharedWorkshopUI.RouteUi(0, Route0Amount, Routes.Route0Table);
-                SharedWorkshopUI.RouteUi(13, Route13Amount, Routes.Route13Table);
+                SharedWorkshopUI.RouteUi(18, Route18MinAmount, false, true, RouteDataPoint[18].GatherRoute);
+                ImGui.Text($"Route 13 is set to {RouteDataPoint[13].GatherRoute}");
                 ImGui.EndTabItem();
             }
             ImGui.EndTabBar();
@@ -193,10 +193,10 @@ internal class DebugWindow : Window
         {
             TaskVislandTemp.Enqueue(testRoute, "Test Base64 Route");
         }
-        ImGui.Text($"Quartz sell = {currentTable[0].Sell}");
+        ImGui.Text($"Quartz sell = {GetTable(C.routeSelected)[0].Sell}");
         if (ImGui.Button("Calculate sell"))
         {
-            TableSellUpdate(currentTable);
+            TableSellUpdate(GetTable(C.routeSelected));
         }
 
         // Input box

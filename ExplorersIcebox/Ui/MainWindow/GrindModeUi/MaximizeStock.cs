@@ -1,4 +1,5 @@
 using Dalamud.Interface.Components;
+using ExplorersIcebox.Scheduler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,154 +13,112 @@ internal static class MaximizeStock
     private static string SearchQuery = ""; // private static variable to store the search query
     private static int UpdateAllWS = 0;
 
-    private static bool Route0 = C.Route0;
-    private static bool Route1 = C.Route1;
-    private static bool Route2 = C.Route2;
-    private static bool Route3 = C.Route3;
-    private static bool Route4 = C.Route4;
-    private static bool Route5 = C.Route5;
-    private static bool Route6 = C.Route6;
-    private static bool Route7 = C.Route7;
-    private static bool Route8 = C.Route8;
-    private static bool Route9 = C.Route9;
-    private static bool Route10 = C.Route10;
-    private static bool Route11 = C.Route11;
-    private static bool Route12 = C.Route12;
-    private static bool Route13 = C.Route13;
-    private static bool Route14 = C.Route14;
-    private static bool Route15 = C.Route15;
-    private static bool Route16 = C.Route16;
-    private static bool Route17 = C.Route17;
-    private static bool Route18 = C.Route18;
-    private static bool Route19 = C.Route19;
-    private static bool Route20 = C.Route20;
-    private static bool Route21 = C.Route21;
-
     private static void UpdateWSImGui()
     {
-        var updateAll = UpdateAllWS;
-        ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet(106f));
-        ImGui.SetNextItemWidth(85);
-        if (ImGui.InputInt("##Update All Workshops", ref updateAll))
-        {
-            UpdateAllWS = AmountSet(updateAll);
-            {
-                foreach (var item in IslandItemDict.Keys.ToList())
-                {
-                    IslandItemDict[item].Workshop = AmountSet(updateAll);
-                }
-            }
-        }
-        ImGuiComponents.HelpMarker("Quick way to update all workshops to the same value.");
     }
 
     internal static void Draw()
     {
+        ImGui.SetNextItemWidth(300);
         ImGui.InputText("Search", ref SearchQuery, 100);
-        ImGui.TextWrapped("Select which routes you would like to cap items from:");
+        if (SchedulerMain.WorkshopSelected == false)
+            ImGui.TextWrapped("Select how much you would like to gather from the routes");
+        else if (SchedulerMain.WorkshopSelected == true)
+            ImGui.TextWrapped("Select which routes you would like to cap items from:");
         ImGui.Spacing();
 
         if (ImGui.Button("Enable All Routes"))
         {
-            C.Route0 = true;
-            C.Route1 = true;
-            C.Route2 = true;
-            C.Route3 = true;
-            C.Route4 = true;
-            C.Route5 = true;
-            C.Route6 = true;
-            C.Route7 = true;
-            C.Route8 = true;
-            C.Route9 = true;
-            C.Route10 = true;
-            C.Route11 = true;
-            C.Route12 = true;
-            C.Route13 = true;
-            C.Route14 = true;
-            C.Route15 = true;
-            C.Route16 = true;
-            C.Route17 = true;
-            C.Route18 = true;
-            C.Route19 = true;
-            C.Route20 = true;
-            C.Route21 = true;
-            GatherAllUpdate();
+            RouteDataPoint[0].GatherRoute = true;
+            RouteDataPoint[1].GatherRoute = true;
+            RouteDataPoint[2].GatherRoute = true;
+            RouteDataPoint[3].GatherRoute = true;
+            RouteDataPoint[4].GatherRoute = true;
+            RouteDataPoint[5].GatherRoute = true;
+            RouteDataPoint[6].GatherRoute = true;
+            RouteDataPoint[7].GatherRoute = true;
+            RouteDataPoint[8].GatherRoute = true;
+            RouteDataPoint[9].GatherRoute = true;
+            RouteDataPoint[10].GatherRoute = true;
+            RouteDataPoint[11].GatherRoute = true;
+            RouteDataPoint[12].GatherRoute = true;
+            RouteDataPoint[13].GatherRoute = true;
+            RouteDataPoint[14].GatherRoute = true;
+            RouteDataPoint[15].GatherRoute = true;
+            RouteDataPoint[16].GatherRoute = true;
+            RouteDataPoint[17].GatherRoute = true;
+            RouteDataPoint[18].GatherRoute = true;
+            RouteDataPoint[19].GatherRoute = true;
+            RouteDataPoint[20].GatherRoute = true;
+            RouteDataPoint[21].GatherRoute = true;
             PluginLog("Enabled all routes");
         }
         ImGui.SameLine();
         if (ImGui.Button("Disable All Routes"))
         {
-            C.Route0 = false;
-            C.Route1 = false;
-            C.Route2 = false;
-            C.Route3 = false;
-            C.Route4 = false;
-            C.Route5 = false;
-            C.Route6 = false;
-            C.Route7 = false;
-            C.Route8 = false;
-            C.Route9 = false;
-            C.Route10 = false;
-            C.Route11 = false;
-            C.Route12 = false;
-            C.Route13 = false;
-            C.Route14 = false;
-            C.Route15 = false;
-            C.Route16 = false;
-            C.Route17 = false;
-            C.Route18 = false;
-            C.Route19 = false;
-            C.Route20 = false;
-            C.Route21 = false;
-            GatherAllUpdate();
+            RouteDataPoint[0].GatherRoute = false;
+            RouteDataPoint[1].GatherRoute = false;
+            RouteDataPoint[2].GatherRoute = false;
+            RouteDataPoint[3].GatherRoute = false;
+            RouteDataPoint[4].GatherRoute = false;
+            RouteDataPoint[5].GatherRoute = false;
+            RouteDataPoint[6].GatherRoute = false;
+            RouteDataPoint[7].GatherRoute = false;
+            RouteDataPoint[8].GatherRoute = false;
+            RouteDataPoint[9].GatherRoute = false;
+            RouteDataPoint[10].GatherRoute = false;
+            RouteDataPoint[11].GatherRoute = false;
+            RouteDataPoint[12].GatherRoute = false;
+            RouteDataPoint[13].GatherRoute = false;
+            RouteDataPoint[14].GatherRoute = false;
+            RouteDataPoint[15].GatherRoute = false;
+            RouteDataPoint[16].GatherRoute = false;
+            RouteDataPoint[17].GatherRoute = false;
+            RouteDataPoint[18].GatherRoute = false;
+            RouteDataPoint[19].GatherRoute = false;
+            RouteDataPoint[20].GatherRoute = false;
+            RouteDataPoint[21].GatherRoute = false;
             PluginLog("Disabled all routes");
 
         }
         UpdateWSImGui();
+        if (SchedulerMain.WorkshopSelected == true)
+        {
+            var updateAll = UpdateAllWS;
+            ImGui.SameLine();
+            ImGui.SetCursorPosX(offSet(120f));
+            ImGui.SetNextItemWidth(85);
+            if (ImGui.InputInt("##Update All Workshops", ref updateAll))
+            {
+                UpdateAllWS = AmountSet(updateAll);
+                {
+                    foreach (var item in IslandItemDict.Keys.ToList())
+                    {
+                        IslandItemDict[item].Workshop = AmountSet(updateAll);
+                    }
+                }
+            }
+            ImGuiComponents.HelpMarker("Quick way to update all workshops to the same value.");
+        }
 
         #region SearchQuery
+        bool ViewWorkshop = SchedulerMain.WorkshopSelected;
+
         if (string.IsNullOrEmpty(SearchQuery) || "Islefish | Clam [Route 0]".Contains(SearchQuery, StringComparison.OrdinalIgnoreCase))
         {
             if (ImGui.TreeNode("Islefish | Clam [Route 0]"))
             {
-                if (ImGui.Checkbox("Enable Route 0", ref Route0))
-                {
-                    if (Route0)
-                    {
-                        C.Route0 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route0 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route0WorkshopGui();
+                ImGuiComponents.HelpMarker("Flying is required, due to how going under water works...");
+                SharedWorkshopUI.RouteUi(0, RouteAmount(0, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[0].GatherRoute);
                 ImGui.TreePop();
             }
+            ImGuiComponents.HelpMarker("Flying is required, due to how going under water works...");
         }
         if (string.IsNullOrEmpty(SearchQuery) || "Islewort [Route 1]".Contains(SearchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            ImGui.SameLine();
-            ImGuiComponents.HelpMarker("Flying is required, due to how going under water works...");
             if (ImGui.TreeNode("Islewort [Route 1]"))
             {
-                if (ImGui.Checkbox("Enable Route 1", ref Route1))
-                {
-                    if (Route1)
-                    {
-                        C.Route1 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route1 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route1WorkshopGui();
+                SharedWorkshopUI.RouteUi(1, RouteAmount(1, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[1].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -167,20 +126,7 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Sugarcane | Vine [Route 2]"))
             {
-                if (ImGui.Checkbox("Enable Route 2", ref Route2))
-                {
-                    if (Route2)
-                    {
-                        C.Route2 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route2 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route2WorkshopGui();
+                SharedWorkshopUI.RouteUi(2, RouteAmount(2, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[2].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -188,20 +134,7 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Tinsand | Sand [Route 3]"))
             {
-                if (ImGui.Checkbox("Enable Route 3", ref Route3))
-                {
-                    if (Route3)
-                    {
-                        C.Route3 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route3 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route3WorkshopGui();
+                SharedWorkshopUI.RouteUi(3, RouteAmount(3, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[3].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -209,20 +142,7 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Apple | Beehive | Vine [Route 4]"))
             {
-                if (ImGui.Checkbox("Enable Route 4", ref Route4))
-                {
-                    if (Route4)
-                    {
-                        C.Route4 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route4 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route4WorkshopGui();
+                SharedWorkshopUI.RouteUi(4, RouteAmount(4, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[4].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -230,20 +150,7 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Coconut | Palm Log | Palm leaf [Route 5]"))
             {
-                if (ImGui.Checkbox("Enable Route 5", ref Route5))
-                {
-                    if (Route5)
-                    {
-                        C.Route5 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route5 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route5WorkshopGui();
+                SharedWorkshopUI.RouteUi(5, RouteAmount(5, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[5].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -251,20 +158,7 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Cotton [Route 6]"))
             {
-                if (ImGui.Checkbox("Enable Route 6", ref Route6))
-                {
-                    if (Route6)
-                    {
-                        C.Route6 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route6 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route6WorkshopGui();
+                SharedWorkshopUI.RouteUi(6, RouteAmount(6, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[6].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -272,20 +166,7 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Clay | Sand [Route 7]"))
             {
-                if (ImGui.Checkbox("Enable Route 7", ref Route7))
-                {
-                    if (Route7)
-                    {
-                        C.Route7 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route7 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route7WorkshopGui();
+                SharedWorkshopUI.RouteUi(7, RouteAmount(7, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[7].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -293,20 +174,7 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Marble | Limestone | Stone [Route 8]"))
             {
-                if (ImGui.Checkbox("Enable Route 8", ref Route8))
-                {
-                    if (Route8)
-                    {
-                        C.Route8 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route8 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route8WorkshopGui();
+                SharedWorkshopUI.RouteUi(8, RouteAmount(8, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[8].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -314,20 +182,7 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Branch | Resin | Log [Route 9]"))
             {
-                if (ImGui.Checkbox("Enable Route 9", ref Route9))
-                {
-                    if (Route9)
-                    {
-                        C.Route9 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route9 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route9WorkshopGui();
+                SharedWorkshopUI.RouteUi(9, RouteAmount(9, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[9].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -335,20 +190,7 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Copper | Mythril [Route 10]"))
             {
-                if (ImGui.Checkbox("Enable Route 10", ref Route10))
-                {
-                    if (Route10)
-                    {
-                        C.Route10 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route10 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route10WorkshopGui();
+                SharedWorkshopUI.RouteUi(10, RouteAmount(10, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[10].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -356,20 +198,7 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Opal | Sap | (Log) [Route 11]"))
             {
-                if (ImGui.Checkbox("Enable Route 11", ref Route11))
-                {
-                    if (Route11)
-                    {
-                        C.Route11 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route11 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route11WorkshopGui();
+                SharedWorkshopUI.RouteUi(11, RouteAmount(11, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[11].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -377,20 +206,7 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Hemp | (Islewort) [Route 12]"))
             {
-                if (ImGui.Checkbox("Enable Route 12", ref Route12))
-                {
-                    if (Route12)
-                    {
-                        C.Route12 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route12 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route12WorkshopGui();
+                SharedWorkshopUI.RouteUi(12, RouteAmount(12, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[12].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -398,43 +214,17 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Multicolorblooms [Route 13]"))
             {
-                if (ImGui.Checkbox("Enable Route 13", ref Route13))
-                {
-                    if (Route13)
-                    {
-                        C.Route13 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route13 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route13WorkshopGui();
+                ImGuiComponents.HelpMarker("Flying required");
+                SharedWorkshopUI.RouteUi(13, RouteAmount(13, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[13].GatherRoute);
                 ImGui.TreePop();
             }
+            ImGuiComponents.HelpMarker("Flying required");
         }
         if (string.IsNullOrEmpty(SearchQuery) || "Iron Ore [Route 14]".Contains(SearchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            ImGui.SameLine();
-            ImGuiComponents.HelpMarker("Flying required");
             if (ImGui.TreeNode("Iron Ore [Route 14]"))
             {
-                if (ImGui.Checkbox("Enable Route 14", ref Route14))
-                {
-                    if (Route14)
-                    {
-                        C.Route14 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route14 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route14WorkshopGui();
+                SharedWorkshopUI.RouteUi(14, RouteAmount(14, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[14].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -442,43 +232,17 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Laver | Squid / Jellyfish | Coral [Route 15]"))
             {
-                if (ImGui.Checkbox("Enable Route 15", ref Route15))
-                {
-                    if (Route15)
-                    {
-                        C.Route15 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route15 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route15WorkshopGui();
+                ImGuiComponents.HelpMarker("Flying is required, due to how going under water works...");
+                SharedWorkshopUI.RouteUi(15, RouteAmount(15, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[15].GatherRoute);
                 ImGui.TreePop();
             }
+            ImGuiComponents.HelpMarker("Flying is required, due to how going under water works...");
         }
         if (string.IsNullOrEmpty(SearchQuery) || "Rocksalt [Route 16]".Contains(SearchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            ImGui.SameLine();
-            ImGuiComponents.HelpMarker("Flying is required, due to how going under water works...");
             if (ImGui.TreeNode("Rocksalt [Route 16]"))
             {
-                if (ImGui.Checkbox("Enable Route 16", ref Route16))
-                {
-                    if (Route16)
-                    {
-                        C.Route16 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route16 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route16WorkshopGui();
+                SharedWorkshopUI.RouteUi(16, RouteAmount(16, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[16].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -486,20 +250,7 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Leucogranite [Route 17}"))
             {
-                if (ImGui.Checkbox("Enable Route 17", ref Route17))
-                {
-                    if (Route17)
-                    {
-                        C.Route17 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route17 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route17WorkshopGui();
+                SharedWorkshopUI.RouteUi(17, RouteAmount(17, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[17].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -507,43 +258,17 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Quartz | Stone [Route 18]"))
             {
-                if (ImGui.Checkbox("Enable Route 18", ref Route18))
-                {
-                    if (Route18)
-                    {
-                        C.Route18 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route18 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route18WorkshopGui();
+                ImGuiComponents.HelpMarker("Flying is required");
+                SharedWorkshopUI.RouteUi(18, RouteAmount(18, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[18].GatherRoute);
                 ImGui.TreePop();
             }
+            ImGuiComponents.HelpMarker("Flying is required");
         }
         if (string.IsNullOrEmpty(SearchQuery) || "Glimshroom | Shale / Coal [Route 19]".Contains(SearchQuery, StringComparison.OrdinalIgnoreCase))
         {
-            ImGui.SameLine();
-            ImGuiComponents.HelpMarker("Flying is required");
             if (ImGui.TreeNode("Glimshroom | Shale / Coal [Route 19]"))
             {
-                if (ImGui.Checkbox("Enable Route 19", ref Route19))
-                {
-                    if (Route19)
-                    {
-                        C.Route19 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route19 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route19WorkshopGui();
+                SharedWorkshopUI.RouteUi(19, RouteAmount(19, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[19].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -552,20 +277,7 @@ internal static class MaximizeStock
 
             if (ImGui.TreeNode("Effervescent Water / Spectrine [Route 20]"))
             {
-                if (ImGui.Checkbox("Enable Route 20", ref Route20))
-                {
-                    if (Route20)
-                    {
-                        C.Route20 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route20 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route20WorkshopGui();
+                SharedWorkshopUI.RouteUi(20, RouteAmount(20, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[20].GatherRoute);
                 ImGui.TreePop();
             }
         }
@@ -573,20 +285,7 @@ internal static class MaximizeStock
         {
             if (ImGui.TreeNode("Yellow Copper | Gold | Crystal Formation | HawksEyeSand [Route 21]"))
             {
-                if (ImGui.Checkbox("Enable Route 21", ref Route21))
-                {
-                    if (Route21)
-                    {
-                        C.Route21 = true;
-                        GatherAllUpdate();
-                    }
-                    else
-                    {
-                        C.Route21 = false;
-                        GatherAllUpdate();
-                    }
-                }
-                Route21WorkshopGui();
+                SharedWorkshopUI.RouteUi(21, RouteAmount(21, ViewWorkshop), ViewWorkshop, true, RouteDataPoint[21].GatherRoute);
                 ImGui.TreePop();
             }
         }
