@@ -85,7 +85,7 @@ internal static class SharedWorkshopUI
                 if (MaxGatherAmount > 999)
                     MaxGatherAmount = 999;
                 int WorkshopInput = IslandItemDict[itemID].Workshop;
-                int GatherInput = IslandItemDict[itemID].GatherAmount;
+                int GatherInput = RouteTable[i].GatherAmount;
                 bool CanIgnore = RouteTable[i].CanSellFullAmount;
 
                 string[] rowValues =
@@ -142,7 +142,7 @@ internal static class SharedWorkshopUI
                                     GatherInput = MaxGatherAmount;
                                 if (GatherInput < 0)
                                     GatherInput = 0;
-                                IslandItemDict[itemID].GatherAmount = GatherInput;
+                                RouteTable[i].GatherAmount = GatherInput;
                             }
                         }
                     }

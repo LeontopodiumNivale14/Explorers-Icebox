@@ -9,24 +9,8 @@ namespace ExplorersIcebox.Ui.MainWindow;
 
 internal static class VersionNotesUi
 {
-    private static string[] VersionOptions = { "1.0.3.1", "1.0.2.1", "1.0.2", "1.0.1", "1.0.0" };
-    public static string VersionSelected = "1.0.3.0"; // Currently selected option
-
-    private static void OpenUrl(string url)
-    {
-        try
-        {
-            Process.Start(new ProcessStartInfo
-            {
-                FileName = url,
-                UseShellExecute = true // Ensures it works cross-platform
-            });
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine($"Failed to open URL: {ex.Message}");
-        }
-    }
+    private static string[] VersionOptions = { "1.0.3.2", "1.0.3.1", "1.0.2.1", "1.0.2", "1.0.1", "1.0.0" };
+    public static string VersionSelected = "1.0.3.2"; // Currently selected option
 
     internal static void Draw()
     {
@@ -54,6 +38,13 @@ internal static class VersionNotesUi
         // Render for all the version notes:
         switch (VersionSelected)
         {
+            case "1.0.3.2":
+                ImGui.TextWrapped($"V1.0.3.2\r\n" +
+                                  $"→ Updated the Copper Route, got stuck flying trying to do down to one spot\r\n" +
+                                  $"→ Fixed the Gathering Mode Ui, it now all has independant sliders that are checked instead of all using the same one (oversight on my part initally)\r\n" +
+                                  $"→ Also fixed the \"About\" page. Try to add one link and accidentally copied a push style");
+                break;
+
             case "1.0.3.1":
                 ImGui.TextWrapped($"V1.0.3.1\n" +
                                   $"I forgot to include the cotton route update. WOOPS. Fixed now.\n" +

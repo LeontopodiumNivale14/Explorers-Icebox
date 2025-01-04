@@ -32,6 +32,7 @@ internal class About
         ImGuiHelpers.ScaledDummy(10f);
         
         ImGui.TextWrapped("Join the Puni.sh Discord for support, questions, announcements.");
+        ImGui.TextWrapped("If you need help, just ping me in #ffxiv-visland");
         if (ImGui.Button("Discord Link"))
         {
             Process.Start(new ProcessStartInfo()
@@ -52,6 +53,15 @@ internal class About
             Process.Start(new ProcessStartInfo()
             {
                 FileName = Svc.PluginInterface.Manifest.RepoUrl,
+                UseShellExecute = true
+            });
+        }
+        ImGui.Text("Have a bug? Maybe a request? You can make a report here!");
+        if (ImGui.Button("Source Code"))
+        {
+            Process.Start(new ProcessStartInfo()
+            {
+                FileName = "https://github.com/LeontopodiumNivale14/Explorers-Icebox/issues",
                 UseShellExecute = true
             });
         }

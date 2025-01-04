@@ -3,7 +3,7 @@
   <Import Project="Dalamud.Plugin.Bootstrap.targets" />
 
   <PropertyGroup>
-    <Version>1.0.3.1</Version>
+    <Version>1.0.3.2</Version>
     <Description>Pop open a cold one while the tedious parts of exploration is handled by your good friend cousin robby.</Description>
     <PackageProjectUrl>https://github.com/goatcorp/ExplorersIcebox</PackageProjectUrl>
     <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
