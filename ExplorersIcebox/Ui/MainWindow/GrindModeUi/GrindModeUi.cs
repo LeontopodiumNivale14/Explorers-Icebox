@@ -118,9 +118,9 @@ internal static unsafe class GrindModeUi
         {
             if (C.routeSelected != 7 && C.routeSelected != 18)
             {
-                if (int.Parse(GetNodeText("MJIHud", 14)) < 10)
+                if (IslandLevel < 10)
                     C.routeSelected = 7;
-                else if (int.Parse(GetNodeText("MJIHud", 14)) >= 10)
+                else if (IslandLevel >= 10)
                     C.routeSelected = 18;
                 else
                     C.routeSelected = 7;
