@@ -75,7 +75,7 @@ namespace ExplorersIcebox.Scheduler
                                 {
                                     PluginLog($"The following route: {C.routeSelected}, was set to 0. Skipping over this route");
                                 }
-                                RouteDataPoint[C.routeSelected].GatherRoute = false;
+                                P.taskManager.Enqueue(() => RouteDataPoint[C.routeSelected].GatherRoute = false);
                             }
                             if (isAllFalse)
                             {

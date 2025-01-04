@@ -9,7 +9,7 @@ namespace ExplorersIcebox.Ui.MainWindow;
 
 internal static class VersionNotesUi
 {
-    private static string[] VersionOptions = { "1.0.3.0", "1.0.2.1", "1.0.2", "1.0.1", "1.0.0" };
+    private static string[] VersionOptions = { "1.0.3.1", "1.0.2.1", "1.0.2", "1.0.1", "1.0.0" };
     public static string VersionSelected = "1.0.3.0"; // Currently selected option
 
     private static void OpenUrl(string url)
@@ -54,14 +54,18 @@ internal static class VersionNotesUi
         // Render for all the version notes:
         switch (VersionSelected)
         {
-            case "1.0.3.0":
+            case "1.0.3.1":
+                ImGui.TextWrapped($"V1.0.3.1\n" +
+                                  $"I forgot to include the cotton route update. WOOPS. Fixed now.\n" +
+                                  $"Also made a link to the wiki page where I use all my routes/update the ones that I use.");
+
                 ImGui.TextWrapped($"V1.0.3.0\n" +
                                   $"Shopping Update\n" +
                                   $"→ Now you can select select how many items that you want to gather from a route!\n" +
                                   $"→ Slider now only go to the amount that is possible in this mode (so you can't say you want to gather more than you can)\n" +
                                   $"→ Complete Ui Overhaul (Made them all into tables to easily line up all the information\n" +
                                   $"→ Fixed some mount issue routes (Route 4, 6, and 9 in particular)\n");
-                                  break;
+                break;
             case "1.0.2.1":
                 ImGui.TextWrapped($"V1.0.2.1\n" +
                                   $"Small update\n" +

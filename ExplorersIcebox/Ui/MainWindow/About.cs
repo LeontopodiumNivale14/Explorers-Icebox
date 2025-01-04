@@ -17,15 +17,8 @@ internal class About
 
     public static void Draw()
     {
-        ImGuiEx.LineCentered("ExpIceboxAbout0", delegate
-        {
-            ImGuiEx.Text($"Explorer's Icebox - {Svc.PluginInterface.Manifest.AssemblyVersion}");
-        });
-
-        ImGuiEx.LineCentered("ExpIceboxAbout1", () =>
-        {
-            ImGuiEx.Text($"Published and developed by Ice");
-        });
+        ImGuiEx.Text($"Explorer's Icebox - {Svc.PluginInterface.Manifest.AssemblyVersion}");
+        ImGuiEx.Text($"Published and developed by Ice");
 
         ImGuiHelpers.ScaledDummy(10f);
 
@@ -33,58 +26,60 @@ internal class About
         {
             if (ThreadLoadImageHandler.TryGetTextureWrap(GetImageURL(), out var texture))
             {
-                ImGui.Image(texture.ImGuiHandle, new(200f, 200f));
+                ImGui.Image(texture.ImGuiHandle, new(150f, 150f));
             }
         });
         ImGuiHelpers.ScaledDummy(10f);
-        ImGuiEx.LineCentered("ExpIceboxAbout3", delegate
+        
+        ImGui.TextWrapped("Join the Puni.sh Discord for support, questions, announcements.");
+        if (ImGui.Button("Discord Link"))
         {
-            ImGui.TextWrapped("Join the Puni.sh Discord for support, questions, announcements.");
-        });
-        ImGuiEx.LineCentered("ExpIceboxAbout4", delegate
-        {
-            if (ImGui.Button("Discord Link"))
+            Process.Start(new ProcessStartInfo()
             {
-                Process.Start(new ProcessStartInfo()
-                {
-                    FileName = "https://discord.gg/Zzrcc8kmvy",
-                    UseShellExecute = true
-                });
-            }
-            ImGui.SameLine();
-            if (ImGui.Button("Repository"))
-            {
-                ImGui.SetClipboardText("https://puni.sh/api/repository/ice");
-                Notify.Success("Link copied to clipboard");
-            }
-            ImGui.SameLine();
-            if (ImGui.Button("Source Code"))
-            {
-                Process.Start(new ProcessStartInfo()
-                {
-                    FileName = Svc.PluginInterface.Manifest.RepoUrl,
-                    UseShellExecute = true
-                });
-            }
-            ImGui.Dummy(new(0, 10));
-            ImGuiEx.LineCentered("ExpIceboxDonations", () =>
-            {
-                ImGui.Text("Want to donate?");
-                ImGui.SameLine();
-                ImGui.PushStyleColor(ImGuiCol.Button, new Vector4(1.0f, 0.0f, 0.0f, 1.0f)); // Red color
-                ImGui.PushStyleColor(ImGuiCol.ButtonHovered, new Vector4(0.8f, 0.0f, 0.0f, 1.0f)); // Darker red when hovered
-                ImGui.PushStyleColor(ImGuiCol.ButtonActive, new Vector4(0.6f, 0.0f, 0.0f, 1.0f)); // Even darker red when clicked
-                if (ImGui.Button("Ice's Kofi"))
-                {
-                    Process.Start(new ProcessStartInfo()
-                    {
-                        FileName = "https://ko-fi.com/ice643269",
-                        UseShellExecute = true
-                    });
-                }
-                ImGui.PopStyleColor(3);
-
+                FileName = "https://discord.gg/Zzrcc8kmvy",
+                UseShellExecute = true
             });
-        });
+        }
+        ImGui.SameLine();
+        if (ImGui.Button("Repository"))
+        {
+            ImGui.SetClipboardText("https://puni.sh/api/repository/ice");
+            Notify.Success("Link copied to clipboard");
+        }
+        ImGui.SameLine();
+        if (ImGui.Button("Source Code"))
+        {
+            Process.Start(new ProcessStartInfo()
+            {
+                FileName = Svc.PluginInterface.Manifest.RepoUrl,
+                UseShellExecute = true
+            });
+        }
+        ImGui.Dummy(new(0, 10));
+        ImGui.Text("Want to donate?");
+        ImGui.SameLine();
+        ImGui.PushStyleColor(ImGuiCol.Button, new Vector4(1.0f, 0.0f, 0.0f, 1.0f)); // Red color
+        ImGui.PushStyleColor(ImGuiCol.ButtonHovered, new Vector4(0.8f, 0.0f, 0.0f, 1.0f)); // Darker red when hovered
+        ImGui.PushStyleColor(ImGuiCol.ButtonActive, new Vector4(0.6f, 0.0f, 0.0f, 1.0f)); // Even darker red when clicked
+        if (ImGui.Button("Ice's Kofi"))
+        {
+            Process.Start(new ProcessStartInfo()
+            {
+                FileName = "https://ko-fi.com/ice643269",
+                UseShellExecute = true
+            });
+        }
+        ImGui.PopStyleColor(3);
+
+        ImGui.Text("Visland Routes that I use");
+        ImGui.SameLine();
+        if (ImGui.Button("Link to wiki page"))
+        {
+            Process.Start(new ProcessStartInfo()
+            {
+                FileName = "https://github.com/LeontopodiumNivale14/Explorers-Icebox/wiki/Visland-Routes:",
+                UseShellExecute = true
+            });
+        }
     }
 }
