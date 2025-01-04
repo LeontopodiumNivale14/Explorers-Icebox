@@ -12,10 +12,14 @@ namespace ExplorersIcebox.Ui.MainWindow.GrindModeUi;
 
 internal static unsafe class GrindModeUi
 {
-    private static string[] ModeSelect = { "XP | Cowries Grind", "Island Shopping Mode", "Max Island Inventory" };
+    private static string[] ModeSelect = { "XP | Cowries Grind", "Island Gathering Mode", "Max Island Inventory" };
+    private static string[] ModeTooltips =
+    {
+        "Focus on grinding XP and collecting Cowries.",
+        "Select how many items you want to gather per route.",
+        "Maximize your island inventory space for optimal use."
+    };
     private static string CurrentMode = "XP | Cowries Grind";
-    private static bool UseTickets = C.UseTickets;
-    private static string TicketTooltip = "Check this if you want to use an Aetheryte ticket to teleport to the Island Sanctuary Entrance";
 
     internal static void Draw()
     {
@@ -49,30 +53,16 @@ internal static unsafe class GrindModeUi
             }
         }
         ImGui.Text($"Route → {displayCurrentRoute}");
-        ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet(215.0f));
-        ImGui.Text("Use Aetheryte Ticket to return");
-        ImGui.SameLine();
-        ImGui.SetCursorPosX(offSet(20.0f));
-        if (ImGui.Checkbox("##IS Use Teleport Tickets", ref UseTickets))
-        {
-            if (UseTickets)
-            {
-                C.UseTickets = true;
-            }
-            else
-            {
-                C.UseTickets = false;
-            }
-        }
-        if (ImGui.IsItemHovered())
-        {
-            ImGui.BeginTooltip();
-            ImGui.Text(TicketTooltip);
-            ImGui.EndTooltip();
-        }
         if (CurrentTerritory() == 1055 && IsAddonActive("MJIHud"))
-            ImGui.Text($"Current level is: {GetNodeText("MJIHud", 14)}");
+        {
+            string nodeText = GetNodeText("MJIHud", 14);
+            int nodeValue = int.Parse(nodeText);
+            if (nodeValue != IslandLevel)
+            {
+                IslandLevel = nodeValue;
+            }
+        }
+        ImGui.Text($"Current level is: {IslandLevel}");
         var isXPRunning = SchedulerMain.AreWeTicking;
         using (ImRaii.Disabled(!IsInZone(IslandSancZoneID)))
         {
@@ -81,7 +71,7 @@ internal static unsafe class GrindModeUi
                 if (isXPRunning)
                 {
                     PluginLog("Enabling the route Gathering");
-                    if (CurrentMode == "Max Island Inventory" || CurrentMode == "Island Shopping Mode") C.XPGrind = false;
+                    if (CurrentMode == "Max Island Inventory" || CurrentMode == "Island Gathering Mode") C.XPGrind = false;
                     if (CurrentMode == "XP | Cowries Grind") C.XPGrind = true;
                     SchedulerMain.EnablePlugin();
                     displayCurrentTask = "Currently Running";
@@ -97,17 +87,28 @@ internal static unsafe class GrindModeUi
         ImGui.SetNextItemWidth(175);
         if (ImGui.BeginCombo("##Mode Select Combo", CurrentMode))
         {
-            foreach (var option in ModeSelect)
+            for (int i = 0; i < ModeSelect.Length; i++)
             {
-                // If this option is selected
+                var option = ModeSelect[i];
+
+                // Render the selectable option
                 if (ImGui.Selectable(option, option == CurrentMode))
                 {
                     CurrentMode = option;
                 }
+
                 // Set focus to the selected item for better UX
                 if (option == CurrentMode)
                 {
                     ImGui.SetItemDefaultFocus();
+                }
+
+                // Display tooltip if this option is hovered
+                if (ImGui.IsItemHovered() && i < ModeTooltips.Length)
+                {
+                    ImGui.BeginTooltip();
+                    ImGui.Text(ModeTooltips[i]);
+                    ImGui.EndTooltip();
                 }
             }
             ImGui.EndCombo();
@@ -126,7 +127,7 @@ internal static unsafe class GrindModeUi
             }
             GrindXP.Draw();
         }
-        else if (CurrentMode == "Island Shopping Mode")
+        else if (CurrentMode == "Island Gathering Mode")
         {
             SchedulerMain.WorkshopSelected = false;
             MaximizeStock.Draw();

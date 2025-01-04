@@ -120,6 +120,7 @@ internal class IslandData
     public static bool atEntrance => (GetDistanceToPointV(workshopEntrancePos) <= 2);
     public static string displayCurrentTask = "";
     public static string displayCurrentRoute = "";
+    public static int IslandLevel = 0;
 
     // Location Info
     public static uint LowerLimsaAether = 10;

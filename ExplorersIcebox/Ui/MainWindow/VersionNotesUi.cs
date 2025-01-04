@@ -9,8 +9,8 @@ namespace ExplorersIcebox.Ui.MainWindow;
 
 internal static class VersionNotesUi
 {
-    private static string[] VersionOptions = { "1.0.2.1", "1.0.2", "1.0.1", "1.0.0" };
-    public static string VersionSelected = "1.0.2.1"; // Currently selected option
+    private static string[] VersionOptions = { "1.0.3.0", "1.0.2.1", "1.0.2", "1.0.1", "1.0.0" };
+    public static string VersionSelected = "1.0.3.0"; // Currently selected option
 
     private static void OpenUrl(string url)
     {
@@ -30,18 +30,6 @@ internal static class VersionNotesUi
 
     internal static void Draw()
     {
-        ImGui.PushStyleColor(ImGuiCol.Button, new Vector4(1.0f, 0.0f, 0.0f, 1.0f)); // Red color
-        ImGui.PushStyleColor(ImGuiCol.ButtonHovered, new Vector4(0.8f, 0.0f, 0.0f, 1.0f)); // Darker red when hovered
-        ImGui.PushStyleColor(ImGuiCol.ButtonActive, new Vector4(0.6f, 0.0f, 0.0f, 1.0f)); // Even darker red when clicked
-
-        ImGui.SetCursorPosX(offSet(70f));
-        if (ImGui.Button("Ko-fi Link"))
-        {
-            OpenUrl("https://ko-fi.com/ice643269");
-        }
-
-        ImGui.PopStyleColor(3);
-
         ImGui.NewLine();
 
         if (ImGui.BeginCombo("Version Notes", VersionSelected))
@@ -66,12 +54,20 @@ internal static class VersionNotesUi
         // Render for all the version notes:
         switch (VersionSelected)
         {
+            case "1.0.3.0":
+                ImGui.TextWrapped($"V1.0.3.0\n" +
+                                  $"Shopping Update\n" +
+                                  $"→ Now you can select select how many items that you want to gather from a route!\n" +
+                                  $"→ Slider now only go to the amount that is possible in this mode (so you can't say you want to gather more than you can)\n" +
+                                  $"→ Complete Ui Overhaul (Made them all into tables to easily line up all the information\n" +
+                                  $"→ Fixed some mount issue routes (Route 4, 6, and 9 in particular)\n");
+                                  break;
             case "1.0.2.1":
                 ImGui.TextWrapped($"V1.0.2.1\n" +
                                   $"Small update\n" +
                                   $"→ Fixed it to where if you load switch to XP Grind Mode, it'll properly default to one of those routes\n" +
                                   $"→ Also added a delay check for making sure the item amount changes (should help w/ lag/bad ping?\n");
-                break;
+                                  break;
             case "1.0.2":
                 ImGui.TextWrapped($"V1.0.2\n" +
                                   $"→ A LOT... of backend changed. Cleaned up quite a bit of code in the process. (Thank you Croizat for the tips)\n" +
@@ -80,7 +76,7 @@ internal static class VersionNotesUi
                                   $"→ Also add some more checks to routes so you can't accidentally activate certain ones before you unlock the pathways to them\n" +
                                   $"  → This is moreso in reference to the mountain pass underneath with the coal+ items, since that's locked behind atleast lv. 15?/questline\n" +
                                   $"→ cleaned up the version menu to something I'm finally happy with. Think this will be the formatting going foward\n");
-                break;
+                                  break;
             case "1.0.1":
                 ImGui.TextWrapped($"V1.0.1\n" +
                                   $"First update within 24 hours? Still so much to do... \n" +
@@ -88,7 +84,7 @@ internal static class VersionNotesUi
                                   $"→ Made the routes more modular in accepting workshop amount from multiple item types (So Iron + Durium sand now dynamically updates properly\n" +
                                   $"→ Fixed the cabin 4 not pathing properly (Hopefully)... tested it against the rest of the cabins as well and didn't seem to have problems anymore\n" +
                                   $"→ Removed the \"All Item's Unlocked\" checkbox, partially due to it being redundant. But also it being true when you first enable the plugin probably wasn't the best idea...");
-                break;
+                                  break;
             case "1.0.0":
                 ImGui.TextWrapped($"V1.0.0\n" +
                                   $"First actual... release. Holy fuck\n" +
@@ -102,7 +98,7 @@ internal static class VersionNotesUi
                 ImGui.NewLine();
                 ImGui.TextWrapped("Safety check to make sure you have the shovel unlocked. Will remove this whenever I update routes to be more dynamic\n" +
                                   "This has been completed in V1.0.1. WOO!");
-                break;
+                                  break;
         }
     }
 }

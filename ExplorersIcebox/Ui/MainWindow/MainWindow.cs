@@ -30,7 +30,8 @@ internal class MainWindow : Window
             ImGuiEx.EzTabBar("EIB tabbar",
                             ("XPGrind/Item Gathering", GrindModeUi.GrindModeUi.Draw, null, true),
                             ("Help", HelpUi.Draw, null, true),
-                            ("Version Notes", VersionNotesUi.Draw, null, true)
+                            ("Version Notes", VersionNotesUi.Draw, null, true),
+                            ("About", About.Draw, null, true)
                             );
         }
         else if (IPC.NavmeshIPC.Installed && !IPC.VislandIPC.Installed)
