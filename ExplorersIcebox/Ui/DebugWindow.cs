@@ -1,3 +1,6 @@
+using Dalamud.Interface.Colors;
+using Dalamud.Interface.Components;
+using Dalamud.Interface.Utility.Raii;
 using ECommons.Automation.LegacyTaskManager;
 using ExplorersIcebox.Scheduler.Tasks;
 using System.Collections.Generic;
@@ -64,8 +67,6 @@ internal class DebugWindow : Window
             }
             if (ImGui.BeginTabItem("Imgui Test"))
             {
-                SharedWorkshopUI.RouteUi(18, Route18MinAmount, false, true, RouteDataPoint[18].GatherRoute);
-                ImGui.Text($"Route 13 is set to {RouteDataPoint[13].GatherRoute}");
                 ImGui.EndTabItem();
             }
             ImGui.EndTabBar();
@@ -79,7 +80,16 @@ internal class DebugWindow : Window
         ImGui.Text($"Target: " + Svc.Targets.Target);
         ImGui.InputText("##Addon Visible", ref addonName, 100);
         ImGui.SameLine();
-        ImGui.Text($"Addon Visible: " + IsAddonActive(addonName));
+        ImGui.Text($"Addon Visible: ");
+        ImGui.SameLine();
+        if (IsAddonActive(addonName))
+        {
+            FontAwesome.Print(ImGuiColors.HealerGreen, FontAwesome.Check);
+        }
+        else if (!IsAddonActive(addonName))
+        {
+            FontAwesome.Print(ImGuiColors.DalamudRed, FontAwesome.Cross);
+        }
         ImGui.Text($"Navmesh information");
         ImGui.Text($"PlayerPos: " + PlayerPosition());
         ImGui.Text($"Navmesh BuildProgress :" + P.navmesh.BuildProgress());//working ipc
@@ -260,6 +270,40 @@ internal class DebugWindow : Window
         {
             TaskUpdateShopID.Enqueue();
         }
+    }
+
+    private void CheckMark()
+    {
+        var buttonColor = ImGui.GetStyle().Colors[(int)ImGuiCol.Button];
+        var buttonHovered = ImGui.GetStyle().Colors[(int)ImGuiCol.ButtonHovered];
+        var buttonActive = ImGui.GetStyle().Colors[(int)ImGuiCol.ButtonActive];
+        var windowBgColor = ImGui.GetStyle().Colors[(int)ImGuiCol.WindowBg];
+
+        // Override the button colors to match the window background
+        ImGui.PushStyleColor(ImGuiCol.Button, windowBgColor);
+        ImGui.PushStyleColor(ImGuiCol.ButtonHovered, windowBgColor);
+        ImGui.PushStyleColor(ImGuiCol.ButtonActive, windowBgColor);
+
+        using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.HealerGreen))
+            ImGuiEx.IconButton(FontAwesomeIcon.Check);
+        ImGui.PopStyleColor(3);
+    }
+
+    private void DisabledMark()
+    {
+        var buttonColor = ImGui.GetStyle().Colors[(int)ImGuiCol.Button];
+        var buttonHovered = ImGui.GetStyle().Colors[(int)ImGuiCol.ButtonHovered];
+        var buttonActive = ImGui.GetStyle().Colors[(int)ImGuiCol.ButtonActive];
+        var windowBgColor = ImGui.GetStyle().Colors[(int)ImGuiCol.WindowBg];
+
+        // Override the button colors to match the window background
+        ImGui.PushStyleColor(ImGuiCol.Button, windowBgColor);
+        ImGui.PushStyleColor(ImGuiCol.ButtonHovered, windowBgColor);
+        ImGui.PushStyleColor(ImGuiCol.ButtonActive, windowBgColor);
+
+        using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.DPSRed))
+            ImGuiEx.IconButton(FontAwesomeIcon.FileCircleXmark);
+        ImGui.PopStyleColor(3);
     }
 
     public static void DisplayItemData()

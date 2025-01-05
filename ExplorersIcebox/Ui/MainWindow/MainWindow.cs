@@ -34,32 +34,27 @@ internal class MainWindow : Window
                             ("About", About.Draw, null, true)
                             );
         }
-        else if (IPC.NavmeshIPC.Installed && !IPC.VislandIPC.Installed)
+        else if (!IPC.NavmeshIPC.Installed
+                || !IPC.VislandIPC.Installed)
         {
-            ImGui.TextWrapped("You seem to be missing Visland. This is required to be installed");
-            ImGui.Text("You can grab it by pressing the button here to copy the clipboard");
-            if (ImGui.Button(copyButton ? "Copied Successfully" : "Copy Visland Link"))
-            {
-                ImGui.SetClipboardText("https://puni.sh/api/repository/veyn");
-                copyButton = true;
-            }
+            string plugins = "";
+            if (!IPC.NavmeshIPC.Installed && !IPC.VislandIPC.Installed)
+                plugins = "Navmesh & Visland";
+            else if (!IPC.VislandIPC.Installed)
+                plugins = "Visland";
+            else if (!IPC.NavmeshIPC.Installed)
+                plugins = "Vnavmesh";
 
-        }
-        else if (!IPC.NavmeshIPC.Installed && IPC.VislandIPC.Installed)
-        {
-            ImGui.TextWrapped("You seem to be missing VNavmesh. This is required to be installed");
-            ImGui.Text("You can grab it by pressing the button here to copy the clipboard");
-            if (ImGui.Button(copyButton ? "Copied Successfully" : "Copy Navmesh Link"))
-            {
-                ImGui.SetClipboardText("https://puni.sh/api/repository/veyn");
-                copyButton = true;
-            }
-        }
-        else
-        {
-            ImGui.TextWrapped("You seem to be missing VNavmesh AND Visland. This is required to be installed");
-            ImGui.Text("You can grab it by pressing the button here to copy the clipboard");
-            if (ImGui.Button(copyButton ? "Copied Successfully" : "Copy Visland AND Navmesh Link"))
+            FancyCheckmark(IPC.NavmeshIPC.Installed);
+            ImGui.SameLine();
+            ImGui.Text("Navmesh Installed");
+
+            FancyCheckmark(IPC.VislandIPC.Installed);
+            ImGui.SameLine();
+            ImGui.Text("Visland Installed");
+
+            ImGui.Text($"You seem to be missing {plugins}, if you need the repo, you can press the button and it'll copy to the clipboard");
+            if (ImGui.Button(copyButton ? "Copied Successfully" : "Copy Repo Link"))
             {
                 ImGui.SetClipboardText("https://puni.sh/api/repository/veyn");
                 copyButton = true;

@@ -1,5 +1,6 @@
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Objects.Types;
+using Dalamud.Interface.Colors;
 using ECommons.Automation.NeoTaskManager;
 using ECommons.GameHelpers;
 using ECommons.Reflection;
@@ -274,5 +275,17 @@ public static unsafe class Utils
             return false;
         else
             return true;
+    }
+
+    public static void FancyCheckmark(bool enabled)
+    {
+        if (!enabled)
+        {
+            FontAwesome.Print(ImGuiColors.DalamudRed, FontAwesome.Cross);
+        }
+        else if (enabled)
+        {
+            FontAwesome.Print(ImGuiColors.HealerGreen, FontAwesome.Check);
+        }
     }
 }
