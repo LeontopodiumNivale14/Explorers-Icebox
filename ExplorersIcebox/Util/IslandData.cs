@@ -115,6 +115,7 @@ internal class IslandData
 
     public const uint BaldinID = 1043621; // NPC that leads to the IS
     public const uint ExportMammetID = 1043464; // Exports Mammet, used to trade your items -> Cowries
+
     //Test bool 
     public static bool CanFly = false;
     public static bool atEntrance => (GetDistanceToPointV(workshopEntrancePos) <= 2);
@@ -688,18 +689,89 @@ internal class IslandData
 
     public static Dictionary<int, ItemData> IslandItemDict = new()
     {
-        { PalmLeafID, new ItemData { Name = "Palm Leaf", Workshop = 0, Amount = GetItemCount(PalmLeafID), Callback = 0, NodeID = 10} },
-        { BranchID, new ItemData { Name = "Branch", Workshop = 0, Amount = GetItemCount(BranchID), Callback = 1, NodeID = 100001} },
-        { StoneID, new ItemData { Name = "Stone", Workshop = 0, Amount = GetItemCount(StoneID), Callback = 2, NodeID = 100002} },
-        { ClamID, new ItemData { Name = "Clam", Workshop = 0, Amount = GetItemCount(ClamID), Callback = 3, NodeID = 100003} },
-        { LaverID, new ItemData { Name = "Laver", Workshop = 0, Amount = GetItemCount(LaverID), Callback = 4, NodeID = 100004} },
-        { CoralID, new ItemData { Name = "Coral", Workshop = 0, Amount = GetItemCount(CoralID), Callback = 5, NodeID = 100005} },
-        { IslewortID, new ItemData { Name = "Islewort", Workshop = 0, Amount = GetItemCount(IslewortID), Callback = 6, NodeID = 100006} },
-        { SandID, new ItemData { Name = "Sand", Workshop = 0, Amount = GetItemCount(SandID), Callback = 7, NodeID = 100007} },
-        { VineID, new ItemData { Name = "Vine", Workshop = 0, Amount = GetItemCount(VineID), Callback = 8, NodeID = 100008} },
-        { SapID, new ItemData { Name = "Sap", Workshop = 0, Amount = GetItemCount(SapID), Callback = 9, NodeID = 100009} },
-        { AppleID, new ItemData { Name = "Apple", Workshop = 0, Amount = GetItemCount(AppleID), Callback = 10, NodeID = 100010} },
-        { LogID, new ItemData {Name = "Log", Workshop = 0, Amount = GetItemCount(LogID), Callback = 11, NodeID = 100011} },
+        { PalmLeafID, new ItemData { 
+            Name = "Palm Leaf", 
+            Workshop = 0,
+            Amount = GetItemCount(PalmLeafID), 
+            Callback = 0, 
+            NodeID = 10
+        } },
+        { BranchID, new ItemData { 
+            Name = "Branch", 
+            Workshop = 0, 
+            Amount = GetItemCount(BranchID), 
+            Callback = 1, 
+            NodeID = 100001
+        } },
+        { StoneID, new ItemData { 
+            Name = "Stone", 
+            Workshop = 0, 
+            Amount = GetItemCount(StoneID), 
+            Callback = 2, 
+            NodeID = 100002
+        } },
+        { ClamID, new ItemData { 
+            Name = "Clam", 
+            Workshop = 0, 
+            Amount = GetItemCount(ClamID), 
+            Callback = 3, 
+            NodeID = 100003} },
+        { LaverID, new ItemData { 
+            Name = "Laver", 
+            Workshop = 0, 
+            Amount = GetItemCount(LaverID), 
+            Callback = 4, 
+            NodeID = 100004
+        } },
+        { CoralID, new ItemData { 
+            Name = "Coral", 
+            Workshop = 0, 
+            Amount = GetItemCount(CoralID), 
+            Callback = 5, 
+            NodeID = 100005
+        } },
+        { IslewortID, new ItemData { 
+            Name = "Islewort", 
+            Workshop = 0, 
+            Amount = GetItemCount(IslewortID), 
+            Callback = 6, 
+            NodeID = 100006
+        } },
+        { SandID, new ItemData { 
+            Name = "Sand", 
+            Workshop = 0, 
+            Amount = GetItemCount(SandID), 
+            Callback = 7, 
+            NodeID = 100007
+        } },
+        { VineID, new ItemData { 
+            Name = "Vine", 
+            Workshop = 0, 
+            Amount = GetItemCount(VineID), 
+            Callback = 8, 
+            NodeID = 100008
+        } },
+        { SapID, new ItemData { 
+            Name = "Sap", 
+            Workshop = 0, 
+            Amount = GetItemCount(SapID), 
+            Callback = 9, 
+            NodeID = 100009
+        } },
+        { AppleID, new ItemData {
+            Name = "Apple", 
+            Workshop = 0, 
+            Amount = GetItemCount(AppleID), 
+            Callback = 10, 
+            NodeID = 100010
+        } },
+        { LogID, new ItemData {
+            Name = "Log",
+            Workshop = 0,
+            Amount = GetItemCount(LogID), 
+            Callback = 11, 
+            NodeID = 100011
+        } },
         { PalmLogID, new ItemData {Name = "Palm Log", Workshop = 0, Amount = GetItemCount(PalmLogID), Callback = 12, NodeID = 100012} },
         { CopperID, new ItemData {Name = "Copper", Workshop = 0, Amount = GetItemCount(CopperID), Callback = 13, NodeID = 100013} },
         { LimestoneID, new ItemData {Name = "Limestone", Workshop = 0, Amount = GetItemCount(LimestoneID), Callback = 14, NodeID = 10001} },
