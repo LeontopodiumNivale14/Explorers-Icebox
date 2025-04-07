@@ -9,8 +9,8 @@ namespace ExplorersIcebox.Ui.MainWindow;
 
 internal static class VersionNotesUi
 {
-    private static string[] VersionOptions = { "1.0.3.2", "1.0.3.1", "1.0.2.1", "1.0.2", "1.0.1", "1.0.0" };
-    public static string VersionSelected = "1.0.3.2"; // Currently selected option
+    private static string[] VersionOptions = { "1.0.3.4", "1.0.3.2", "1.0.3.1", "1.0.2.1", "1.0.2", "1.0.1", "1.0.0" };
+    public static string VersionSelected = "1.0.3.4"; // Currently selected option
 
     internal static void Draw()
     {
@@ -38,6 +38,13 @@ internal static class VersionNotesUi
         // Render for all the version notes:
         switch (VersionSelected)
         {
+            case "1.0.3.3":
+                ImGui.TextWrapped($"V1.0.3.4\n" +
+                                  $"Updated to 7.2. I was planning on doing a code refactoring with this but..." +
+                                  $"ended up deciding against it. The whole thing is going to be a lot larger than " +
+                                  $"I initially thought, and might have to start from the ground up again... *-sighs-*");
+                break;
+
             case "1.0.3.2":
                 ImGui.TextWrapped($"V1.0.3.2\r\n" +
                                   $"→ Updated the Copper Route, got stuck flying trying to do down to one spot\r\n" +
