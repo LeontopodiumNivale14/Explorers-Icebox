@@ -84,6 +84,9 @@ internal static unsafe class GrindModeUi
                 }
             }
         }
+        ImGui.Checkbox("###Skip Selling Items", ref C.SkipSell);
+        ImGui.SameLine();
+        ImGui.Text("Skip Selling Items");
         ImGui.SetNextItemWidth(175);
         if (ImGui.BeginCombo("##Mode Select Combo", CurrentMode))
         {

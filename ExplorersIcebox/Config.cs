@@ -14,6 +14,7 @@ public class Config : IEzConfig
     public bool everythingUnlocked = true;
     public bool XPGrind = true;
     public bool UseTickets = false;
+    public bool SkipSell = false;
     //
 
     public void Save()

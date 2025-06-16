@@ -16,7 +16,7 @@ namespace ExplorersIcebox.Scheduler.Tasks.GroupTask
             TaskReturn.Enqueue();
             UpdateTableDict();
             TableSellUpdate(GetTable(C.routeSelected));
-            if (TotalSellItems(GetTable(C.routeSelected)) > 0)
+            if (TotalSellItems(GetTable(C.routeSelected)) > 0 && !C.SkipSell)
             {
                 P.taskManager.Enqueue(() => UpdateDisplayText("Selling to the shop"));
                 if (Svc.Condition[ConditionFlag.Mounted])

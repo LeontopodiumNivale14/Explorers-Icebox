@@ -5,7 +5,7 @@ namespace ExplorersIcebox.Ui.MainWindow;
 internal class MainWindow : Window
 {
     public MainWindow() :
-        base($"Explorer's Icebox {P.GetType().Assembly.GetName().Version}")
+        base($"Explorer's Icebox {P.GetType().Assembly.GetName().Version} ###Explorer'sIceboxMainWindow")
     {
         Flags = ImGuiWindowFlags.None;
         SizeConstraints = new()
