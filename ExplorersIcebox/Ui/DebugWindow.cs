@@ -12,13 +12,13 @@ namespace ExplorersIcebox.Ui;
 internal class DebugWindow : Window
 {
     public DebugWindow() :
-        base($"Explorer's Icebox Debug {P.GetType().Assembly.GetName().Version}")
+        base($"Explorer's Icebox Debug {P.GetType().Assembly.GetName().Version}###Explorer's Icebox Debug")
     {
         Flags = ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoCollapse;
         SizeConstraints = new WindowSizeConstraints
         {
             MinimumSize = new Vector2(100, 100),
-            MaximumSize = new Vector2(800, 1200)
+            MaximumSize = new Vector2(2000, 2000)
         };
         P.windowSystem.AddWindow(this);
     }
@@ -41,35 +41,48 @@ internal class DebugWindow : Window
     private uint aetherID = 0;
     private uint aetherZone = 0;
 
+    private string[] debugTypes = ["Player Info", "Navmesh Debug", "Misc Info", "Route Sell", "Target Info", "Imgui Testing", "Island Node Finder"];
+    int selectedDebugIndex = 0; // This should be stored somewhere persistent
+
     public override void Draw()
     {
-        if (ImGui.BeginTabBar("Test Tab Bar"))
+        float spacing = 10f;
+        float leftPanelWidth = 200f;
+        float rightPanelWidth = ImGui.GetContentRegionAvail().X - leftPanelWidth - spacing;
+        float childHeight = ImGui.GetContentRegionAvail().Y;
+
+        if (ImGui.BeginChild("DebugSelector", new System.Numerics.Vector2(leftPanelWidth, childHeight), true))
         {
-            if (ImGui.BeginTabItem("Player Info"))
+            for (int i = 0; i < debugTypes.Length; i++)
             {
-                PlayerInfoDubug();
-                ImGui.EndTabItem();
+                bool isSelected = (selectedDebugIndex == i);
+                string label = isSelected ? $"→ {debugTypes[i]}" : $"   {debugTypes[i]}"; // Add space for alignment
+
+                if (ImGui.Selectable(label, isSelected))
+                {
+                    selectedDebugIndex = i;
+                }
             }
-            if (ImGui.BeginTabItem("Test Tab"))
+            ImGui.EndChild();
+        }
+
+        ImGui.SameLine(0, spacing);
+
+        if (ImGui.BeginChild("DebugContent", new System.Numerics.Vector2(rightPanelWidth, childHeight), true))
+        {
+            switch (selectedDebugIndex)
             {
-                NavmeshInfoDebug();
-                ImGui.EndTabItem();
+                case 0: PlayerInfoDubug(); break;
+                case 1: NavmeshInfoDebug(); break;
+                case 2: MiscInfoDebug(); break;
+                case 3: RouteSellDebug(); break;
+                case 4: TargetInfo(); break;
+                case 5: TestGuiDebug(); break;
+                case 6: GatherPointID(); break;
+                default: ImGui.Text("Unknown Debug View"); break;
             }
-            if (ImGui.BeginTabItem("Misc Info"))
-            {
-                MiscInfoDebug();
-                ImGui.EndTabItem();
-            }
-            if (ImGui.BeginTabItem("Route Sell"))
-            {
-                RouteSellDebug();
-                ImGui.EndTabItem();
-            }
-            if (ImGui.BeginTabItem("Imgui Test"))
-            {
-                ImGui.EndTabItem();
-            }
-            ImGui.EndTabBar();
+
+            ImGui.EndChild();
         }
     }
 
@@ -306,6 +319,27 @@ internal class DebugWindow : Window
         ImGui.PopStyleColor(3);
     }
 
+    private void TargetInfo()
+    {
+        var target = Svc.Targets?.Target;
+
+        if (target != null)
+        {
+            if (ImGui.Button($"Name: {target.Name}"))
+            {
+                ImGui.SetClipboardText($"GatherName = \"{target.Name}\",");
+            }
+            if (ImGui.Button($"Object ID: {target.GameObjectId}"))
+            {
+                ImGui.SetClipboardText($"{target.GameObjectId}");
+            }
+            if (ImGui.Button($"Data ID: {target.DataId}"))
+            {
+                ImGui.SetClipboardText($"{target.DataId}");
+            }
+        }
+    }
+
     public static void DisplayItemData()
     {
         // Iterate over the dictionary
@@ -320,6 +354,128 @@ internal class DebugWindow : Window
 
             // Display the text using ImGui
             ImGui.Text(displayText);
+        }
+    }
+
+    private readonly Dictionary<string, HashSet<ulong>> gatherNodeIds = new()
+    {
+        ["Agave Plant"] = new(),
+        ["Bluish Rock"] = new(),
+        ["Composite Rock"] = new(),
+        ["Coral Formation"] = new(),
+        ["Cotton Plant"] = new(),
+        ["Crystal-banded Rock"] = new(),
+        ["Glowing Fungus"] = new(),
+        ["Island Apple Tree"] = new(),
+        ["Island Crystal Cluster"] = new(),
+        ["Large Shell"] = new(),
+        ["Lightly Gnawed Pumpkin"] = new(),
+        ["Mahogany Tree"] = new(),
+        ["Mound of Dirt"] = new(),
+        ["Multicolored Isleblooms"] = new(),
+        ["Palm Tree"] = new(),
+        ["Partially Consumed Cabbage"] = new(),
+        ["Quartz Formation"] = new(),
+        ["Rough Black Rock"] = new(),
+        ["Seaweed Tangle"] = new(),
+        ["Smooth White Rock"] = new(),
+        ["Speckled Rock"] = new(),
+        ["Stalagmite"] = new(),
+        ["Submerged Sand"] = new(),
+        ["Sugarcane"] = new(),
+        ["Tualong Tree"] = new(),
+        ["Wild Parsnip"] = new(),
+        ["Wild Popoto"] = new(),
+        ["Yellowish Rock"] = new(),
+    };
+
+    private float distance = 50f;
+    private int nodeCount = 0;
+
+    private void GatherPointID()
+    {
+        var objects = Svc.Objects.Where(e => e.ObjectKind == Dalamud.Game.ClientState.Objects.Enums.ObjectKind.CardStand);
+        ImGui.DragFloat("Distance to object", ref distance);
+
+        foreach (var obj in objects)
+        {
+            if (GetDistanceToPlayer(obj.Position) > distance)
+            {
+                continue;
+            }
+
+            if (gatherNodeIds.TryGetValue(obj.Name.ToString(), out var idSet))
+            {
+                idSet.Add(obj.GameObjectId);
+            }
+        }
+
+        ImGui.Text($"Total Nodes Found: {nodeCount}");
+        if (ImGui.Button("Reset"))
+        {
+            nodeCount = gatherNodeIds.Sum(pair => pair.Value.Count);
+        }
+
+        if (ImGuiEx.TreeNode("List of Nodes"))
+        {
+            if (ImGui.BeginTable("###ListofNodes", 4, ImGuiTableFlags.RowBg))
+            {
+                ImGui.TableSetupColumn("Item");
+                ImGui.TableSetupColumn("ID");
+                ImGui.TableSetupColumn("Distance");
+
+                ImGui.TableHeadersRow();
+
+                foreach (var obj in objects)
+                {
+                    if (GetDistanceToPlayer(obj.Position) > distance)
+                    {
+                        continue;
+                    }
+
+                    ImGui.TableNextRow();
+
+                    ImGui.TableSetColumnIndex(0);
+                    ImGui.Text($"{obj.Name.ToString()}");
+
+                    ImGui.TableNextColumn();
+                    if (ImGui.Selectable($"{obj.DataId}###{obj.Name.ToString()}"))
+                    {
+                        ImGui.SetClipboardText($"{obj.DataId}");
+                    }
+
+                    ImGui.TableNextColumn();
+                    ImGui.Text($"{GetDistanceToPlayer(obj.Position)}");
+
+                    ImGui.TableNextColumn();
+            }
+
+                ImGui.EndTable();
+            }
+        }
+
+        if (ImGui.Button("Clear Listing"))
+        {
+            foreach (var entry in gatherNodeIds)
+            {
+                entry.Value.Clear();
+            }
+        }
+
+        foreach (var entry in gatherNodeIds)
+        {
+            ImGui.AlignTextToFramePadding();
+            ImGui.Text($"Item: {entry.Key} | Amount Found: {entry.Value.Count}");
+            ImGui.SameLine();
+            if (ImGui.Button($"Copy List ###List_{entry.Key}"))
+            {
+                string nodeIds = string.Empty;
+                foreach (var id in entry.Value)
+                {
+                    nodeIds += id + ", ";
+                }
+                ImGui.SetClipboardText(nodeIds);
+            }
         }
     }
 }
