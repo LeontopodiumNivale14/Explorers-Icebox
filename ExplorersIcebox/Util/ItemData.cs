@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExplorersIcebox.Util;
 
-internal class ItemData
+public static class ItemData
 {
     public const int PalmLeaf_ID = 37551;
     public const int Branch_ID = 37553;
@@ -53,7 +53,7 @@ internal class ItemData
     public const int HawksEyeSand_ID = 41633;
     public const int CrystalFormation_ID = 41634;
 
-    public Dictionary<int, string> IslandItems = new()
+    public static Dictionary<int, string> IslandItems = new()
     {
         { 37551, "Palm Leaf" },
         { 37552, "Apple" },
@@ -108,11 +108,7 @@ internal class ItemData
         public List<int> ItemIds { get; set; } = new();
     }
 
-    public Dictionary<string, HashSet<ulong>> gatherNodeIds = new()
-    {
-    };
-
-    public List<GatheringNode> IslandNodeInfo = new()
+    public static List<GatheringNode> IslandNodeInfo = new()
     {
         {
             new GatheringNode

@@ -3,7 +3,7 @@ using ECommons.Configuration;
 
 namespace ExplorersIcebox;
 
-public class Config : IEzConfig
+public class OldConfig : IEzConfig
 {
     [JsonIgnore]
     public const int CurrentConfigVersion = 1;

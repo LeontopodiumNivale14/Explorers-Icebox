@@ -1,5 +1,7 @@
 using ECommons.Automation.NeoTaskManager;
 using ECommons.Configuration;
+using ECommons.Logging;
+using ExplorersIcebox.Config;
 using ExplorersIcebox.IPC;
 using ExplorersIcebox.Scheduler;
 using ExplorersIcebox.Ui;
@@ -10,48 +12,60 @@ namespace ExplorersIcebox;
 public sealed class ExplorersIcebox : IDalamudPlugin
 {
     public string Name => "ExplorersIcebox";
-    internal static ExplorersIcebox P = null!;
-    public static Config C => P.config;
-    private Config config;
 
+    private static GeneralConfig? Config;
+    private static GatherRoutes? GatherRoutesConfig;
+
+    // Lazy-loaded static config accessor
+    public static GeneralConfig C => Config ??= LoadConfig<GeneralConfig>();
+    public static GatherRoutes G => GatherRoutesConfig ??= LoadConfig<GatherRoutes>();
+
+    private static T LoadConfig<T>() where T : IYamlConfig, new()
+    {
+        var path = typeof(T).GetProperty("ConfigPath")!.GetValue(null)!.ToString()!;
+        var config = YamlConfig.Load<T>(path);
+
+        if (config == null)
+        {
+            PluginLog.Warning($"[{typeof(T).Name}] Config was null. Creating new default.");
+            config = new T();
+            YamlConfig.Save(config, path);
+        }
+
+        PluginLog.Information($"[{typeof(T).Name}] Loaded from {path}");
+        return config;
+    }
+
+
+    internal static ExplorersIcebox P = null!;
+
+    // Window Systems for the plugin (nice and neatly)
     internal WindowSystem windowSystem;
     internal MainWindow mainWindow;
     internal DebugWindow debugWindow;
-    internal SettingWindow settingWindow;
 
+    // Taskmanager from Ecommons (bless)
     internal TaskManager taskManager;
 
-
+    // Internal IPC's from other plugins
     internal LifestreamIPC lifestream;
     internal NavmeshIPC navmesh;
-    internal VislandIPC visland;
 
     public ExplorersIcebox(IDalamudPluginInterface pi)
     {
-        //Test.(
         P = this;
-        ECommonsMain.Init(pi, P, ECommons.Module.DalamudReflector, ECommons.Module.ObjectFunctions);
-        new ECommons.Schedulers.TickScheduler(Load);
-    }
-
-    public void Load()
-    {
-        EzConfig.Migrate<Config>();
-        config = EzConfig.Init<Config>();
+        ECommonsMain.Init(pi, P, ECommons.Module.DalamudReflector, ECommons.Module.ObjectFunctions, Module.SplatoonAPI);
 
         //IPC's that are used
         taskManager = new();
         lifestream = new();
         navmesh = new();
-        visland = new();
 
         // all the windows
         windowSystem = new();
         mainWindow = new();
-        settingWindow = new();
         debugWindow = new();
 
-        taskManager = new(new(abortOnTimeout: true, timeLimitMS: 20000, showDebug: true));
         Svc.PluginInterface.UiBuilder.Draw += windowSystem.Draw;
         Svc.PluginInterface.UiBuilder.OpenMainUi += () =>
         {
@@ -59,7 +73,7 @@ public sealed class ExplorersIcebox : IDalamudPlugin
         };
         Svc.PluginInterface.UiBuilder.OpenConfigUi += () =>
         {
-            settingWindow.IsOpen = true;
+            
         };
         EzCmd.Add("/explorersicebox", OnCommand, """
             Open plugin interface
@@ -67,7 +81,15 @@ public sealed class ExplorersIcebox : IDalamudPlugin
             /explorersicebox s|settings - Opens the workshop menu
             """);
         EzCmd.Add("/icebox", OnCommand);
-        Svc.Framework.Update += Tick;
+
+        taskManager = new(new(abortOnTimeout: true, timeLimitMS: 20000, showDebug: true));
+
+        Init();
+    }
+
+    public void Init()
+    {
+        
     }
 
     private void Tick(object _)
@@ -93,7 +115,7 @@ public sealed class ExplorersIcebox : IDalamudPlugin
         }
         else if (args.EqualsIgnoreCaseAny("s", "settings"))
         {
-            settingWindow.IsOpen = !settingWindow.IsOpen;
+            
         }
         else
         {

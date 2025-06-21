@@ -17,49 +17,19 @@ internal class MainWindow : Window
         AllowPinning = false;
     }
 
-    private const uint SidebarWidth = 275;
     public void Dispose() { }
 
-    public static string currentlyDoing = SchedulerMain.CurrentProcess;
-    private bool copyButton = false;
+    public int selectedRoute = C.routeSelected;
 
     public override void Draw()
     {
-        if (IPC.NavmeshIPC.Installed && IPC.VislandIPC.Installed)
+        if (ImGui.DragInt("Selected Route", ref selectedRoute, 1))
         {
-            ImGuiEx.EzTabBar("EIB tabbar",
-                            ("XPGrind/Item Gathering", GrindModeUi.GrindModeUi.Draw, null, true),
-                            ("Help", HelpUi.Draw, null, true),
-                            ("Version Notes", VersionNotesUi.Draw, null, true),
-                            ("About", About.Draw, null, true)
-                            );
-        }
-        else if (!IPC.NavmeshIPC.Installed
-                || !IPC.VislandIPC.Installed)
-        {
-            string plugins = "";
-            if (!IPC.NavmeshIPC.Installed && !IPC.VislandIPC.Installed)
-                plugins = "Navmesh & Visland";
-            else if (!IPC.VislandIPC.Installed)
-                plugins = "Visland";
-            else if (!IPC.NavmeshIPC.Installed)
-                plugins = "Vnavmesh";
-
-            FancyCheckmark(IPC.NavmeshIPC.Installed);
-            ImGui.SameLine();
-            ImGui.Text("Navmesh Installed");
-
-            FancyCheckmark(IPC.VislandIPC.Installed);
-            ImGui.SameLine();
-            ImGui.Text("Visland Installed");
-
-            ImGui.Text($"You seem to be missing {plugins}, if you need the repo, you can press the button and it'll copy to the clipboard");
-            if (ImGui.Button(copyButton ? "Copied Successfully" : "Copy Repo Link"))
+            if (C.routeSelected != selectedRoute)
             {
-                ImGui.SetClipboardText("https://puni.sh/api/repository/veyn");
-                copyButton = true;
+                C.routeSelected = selectedRoute;
+                C.Save();
             }
         }
-
     }
 }

@@ -1,5 +1,6 @@
 using FFXIVClientStructs.FFXIV.Client.Game.Control;
 using ECommons.GameFunctions;
+using ExplorersIcebox.Util;
 
 namespace ExplorersIcebox.Scheduler.Handers
 {
@@ -11,23 +12,9 @@ namespace ExplorersIcebox.Scheduler.Handers
             var target = Svc.Targets.Target;
             if (target != default)
             {
-                if (IsAddonActive("SelectString") || IsAddonActive("SelectIconString") || IsAddonActive(OpenedShopAddonName))
+                if (AddonHelper.IsAddonActive("SelectString") || AddonHelper.IsAddonActive("SelectIconString") || AddonHelper.IsAddonActive(OpenedShopAddonName))
                     return true;
                 unsafe { TargetSystem.Instance()->InteractWithObject(target.Struct(), false); }
-            }
-            return false;
-        }
-        internal static bool? TargetShopNpc()
-        {
-            string NpcName = string.Empty;
-            if (Svc.ClientState.TerritoryType == 1055) //Island Sanc
-                NpcName = "Enterprising Exporter";
-
-            var target = GetObjectByName(NpcName);
-            if (target != null)
-            {
-                Svc.Targets.Target = target;
-                return true;
             }
             return false;
         }

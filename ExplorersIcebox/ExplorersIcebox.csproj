@@ -12,22 +12,16 @@
     <TargetFramework>net9.0-windows7.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Include="..\Data\icon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Visible>false</Visible>
-    </Content>
-  </ItemGroup>
+    <ItemGroup>
+        <Content Include="ExplorersIcebox.json" />
+    </ItemGroup>
 
-  <ItemGroup>
-      <ProjectReference Include="..\ECommons\ECommons\ECommons.csproj" />
-      <ProjectReference Include="InteropGenerator.Runtime">
-          <HintPath>$(DalamudLibPath)InteropGenerator.Runtime.dll</HintPath>
-          <Private>False</Private>
-      </ProjectReference>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="YamlDotNet" Version="16.3.0" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Update="DalamudPackager" Version="12.0.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\ECommons\ECommons\ECommons.csproj" />
+    </ItemGroup>
+    
 </Project>
