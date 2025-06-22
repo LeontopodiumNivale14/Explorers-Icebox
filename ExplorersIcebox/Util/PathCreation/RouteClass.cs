@@ -30,6 +30,8 @@ public static class RouteClass
     {
         public string Name { get; set; } = "New Group";
         public WaypointAction Action { get; set; } = WaypointAction.None;
+        public ulong Target { get; set; } = 0;
+        public bool Mount { get; set; } = false;
         public List<WaypointUtil> Waypoints { get; set; } = new();
     }
 }

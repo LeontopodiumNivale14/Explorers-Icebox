@@ -1,6 +1,7 @@
 using Dalamud.Interface.Colors;
 using Dalamud.Interface.Utility.Raii;
 using ECommons.SplatoonAPI;
+using ECommons.Throttlers;
 using ExplorersIcebox.Config;
 using ExplorersIcebox.IPC;
 using ExplorersIcebox.Util;
@@ -399,6 +400,14 @@ internal class DebugWindow : Window
     private string newRouteName = "";
     private Vector3 newWaypoint = Vector3.Zero;
     private List<Vector3> waypointList = new();
+    private bool isEditing = false;
+    private string tempName = "";
+    private string currentName = "";
+    private bool RefreshList = true;
+
+    private Dictionary<string, bool> editingRoutes = new();
+    private Dictionary<string, string> tempNames = new();
+
 
     public void DrawRouteEditor()
     {
@@ -417,7 +426,7 @@ internal class DebugWindow : Window
         }
 
         // Show's each of the route entries
-        foreach (var kvp in G.Routes)
+        foreach (var kvp in G.Routes.ToList())
         {
             var routeName = kvp.Key;
             var groups = kvp.Value.FirstOrDefault(); // just using first group
@@ -425,8 +434,69 @@ internal class DebugWindow : Window
             if (groups == null)
                 continue;
 
-            if (ImGui.CollapsingHeader($"{routeName}##Header"))
+            // Setup state
+            if (!editingRoutes.ContainsKey(routeName))
+                editingRoutes[routeName] = false;
+            if (!tempNames.ContainsKey(routeName))
+                tempNames[routeName] = routeName;
+
+
+            if (ImGui.CollapsingHeader($"{routeName}##{routeName}_Header"))
             {
+                if (editingRoutes[routeName])
+                {
+                    ImGui.SetNextItemWidth(200);
+
+                    string nameBuffer = tempNames[routeName];
+
+                    if (ImGui.InputText($"##edit_{routeName}", ref nameBuffer, 100, ImGuiInputTextFlags.EnterReturnsTrue))
+                    {
+                        var newName = nameBuffer;
+                        if (!string.IsNullOrWhiteSpace(newName) && !G.Routes.ContainsKey(newName))
+                        {
+                            G.Routes[newName] = G.Routes[routeName];
+                            G.Routes.Remove(routeName);
+                            G.Save();
+
+                            editingRoutes[newName] = false;
+                            tempNames[newName] = newName;
+                            editingRoutes.Remove(routeName);
+                            tempNames.Remove(routeName);
+
+                            continue;
+                        }
+                        else
+                        {
+                            editingRoutes[routeName] = false;
+                        }
+                    }
+                    else
+                    {
+                        tempNames[routeName] = nameBuffer;
+                    }
+
+                    if (!ImGui.IsItemActive() && !ImGui.IsItemHovered())
+                        editingRoutes[routeName] = false;
+                }
+                else
+                {
+                    ImGui.AlignTextToFramePadding();
+                    ImGui.Text($"Route: [{routeName}]");
+                    if (ImGui.IsItemClicked())
+                    {
+                        editingRoutes[routeName] = true;
+                        tempNames[routeName] = routeName;
+                    }
+
+                    ImGui.SameLine();
+                    if (ImGui.Button($"Remove##Remove_{routeName}"))
+                    {
+                        G.Routes.Remove(routeName);
+                        G.Save();
+                        break;
+                    }
+                }
+
 
                 if (ImGui.Button($"Add Group##{routeName}"))
                 {
@@ -446,7 +516,14 @@ internal class DebugWindow : Window
 
                     if (ImGui.CollapsingHeader($"Group {groupIndex + 1}"))
                     {
+                        ImGui.AlignTextToFramePadding();
                         ImGui.Text($"Group {groupIndex + 1}");
+                        ImGui.SameLine();
+                        if (ImGui.Button("Remove Group"))
+                        {
+                            kvp.Value.Remove(group);
+                            G.Save();
+                        }
 
                         if (ImGui.BeginCombo("Action", group.Action.ToString()))
                         {
@@ -459,6 +536,35 @@ internal class DebugWindow : Window
                                 }
                             }
                             ImGui.EndCombo();
+                        }
+
+                        if (group.Action == WaypointAction.IslandInteract)
+                        {
+                            if (group.Target == 0)
+                            {
+                                ImGui.AlignTextToFramePadding();
+                                ImGui.Text("No Target Selected");
+                                if (Svc.Targets?.Target != null)
+                                {
+                                    ImGui.SameLine();
+                                    if (ImGui.Button($"Add Target: {Svc.Targets.Target.Name.ToString()}"))
+                                    {
+                                        group.Target = Svc.Targets.Target.GameObjectId;
+                                        G.Save();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ImGui.AlignTextToFramePadding();
+                                ImGui.Text($"TargetId: {group.Target}");
+                                ImGui.SameLine();
+                                if (ImGui.Button("Clear Target"))
+                                {
+                                    group.Target = 0;
+                                    G.Save();
+                                }    
+                            }
                         }
 
                         Vector3 playerPos = Svc.ClientState.LocalPlayer?.Position ?? Vector3.Zero;
@@ -510,19 +616,39 @@ internal class DebugWindow : Window
 
                 if (ImGui.CollapsingHeader($"All WP's###WPViewer_{routeName}"))
                 {
-                    foreach (var entry in kvp.Value)
-                    {
-                        foreach (var wp in entry.Waypoints)
-                        {
-                            if (!waypointList.Contains(wp.ToVector3()))
-                                waypointList.Add(wp.ToVector3());
-                        }
-                    }
-
                     if (ImGui.Button("Remove WP's"))
                     {
                         waypointList.Clear();
                         break;
+                    }
+
+                    ImGui.SameLine();
+
+                    if (ImGui.Button("Test Route"))
+                    {
+                        P.navmesh.MoveTo(new List<Vector3>(waypointList), false);
+                    }
+
+                    ImGui.Checkbox("Refresh List", ref RefreshList);
+                    if (RefreshList)
+                    {
+                        if (EzThrottler.Throttle("List Refresh_Debug", 1000))
+                        {
+                            List<Vector3> tempList = new List<Vector3>();
+                            foreach (var entry in kvp.Value)
+                            {
+                                foreach (var wp in entry.Waypoints)
+                                {
+                                    if (!tempList.Contains(wp.ToVector3()))
+                                        tempList.Add(wp.ToVector3());
+                                }
+                            }
+
+                            if (waypointList != tempList)
+                            {
+                                waypointList = tempList;
+                            }
+                        }
                     }
 
                     foreach (var wp in waypointList)
@@ -533,16 +659,6 @@ internal class DebugWindow : Window
 
                     SplatoonManager.RenderPath(waypointList, addNumbers: true);
                 }
-            }
-
-            // Remove entire route
-            ImGui.Text($"Route: [{routeName}]");
-            ImGui.SameLine();
-            if (ImGui.Button($"Remove##Remove_{routeName}"))
-            {
-                G.Routes.Remove(routeName);
-                G.Save();
-                break; // To avoid modifying collection during foreach
             }
 
             ImGui.Separator();
