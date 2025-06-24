@@ -1,11 +1,14 @@
+using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Interface.Colors;
 using Dalamud.Interface.Utility.Raii;
 using ECommons.SplatoonAPI;
 using ECommons.Throttlers;
 using ExplorersIcebox.Config;
 using ExplorersIcebox.IPC;
+using ExplorersIcebox.Scheduler.Tasks;
 using ExplorersIcebox.Util;
 using ExplorersIcebox.Util.PathCreation;
+using System;
 using System.Collections.Generic;
 using static ExplorersIcebox.Util.PathCreation.RouteClass;
 
@@ -43,7 +46,7 @@ internal class DebugWindow : Window
     private uint aetherID = 0;
     private uint aetherZone = 0;
 
-    private string[] debugTypes = ["Player Info", "Navmesh Debug", "Misc Info", "Route Sell", "Target Info", "Imgui Testing", "Island Node Finder", "Island Item Info", "Route Creator"];
+    private string[] debugTypes = ["Player Info", "Navmesh Debug", "Misc Info", "Route Sell", "Target Info", "Imgui Testing", "Island Node Finder", "Island Item Info", "Route Creator", "Route Creator V2"];
     int selectedDebugIndex = 0; // This should be stored somewhere persistent
 
     public override void Draw()
@@ -83,6 +86,7 @@ internal class DebugWindow : Window
                 case 6: GatherPointID(); break;
                 case 7: IslandItemInfo(); break;
                 case 8: DrawRouteEditor(); break;
+                case 9: DrawRouteEditorV2(); break;
                 default: ImGui.Text("Unknown Debug View"); break;
             }
 
@@ -408,6 +412,11 @@ internal class DebugWindow : Window
     private Dictionary<string, bool> editingRoutes = new();
     private Dictionary<string, string> tempNames = new();
 
+    private int selectedRouteIndex = 0;
+    private List<string> routeNames => G.Routes.Keys.ToList();
+    private int currentGroup = 0;
+    private bool allWaypoints = true;
+
 
     public void DrawRouteEditor()
     {
@@ -563,7 +572,18 @@ internal class DebugWindow : Window
                                 {
                                     group.Target = 0;
                                     G.Save();
-                                }    
+                                }
+                                ImGui.SameLine();
+                                if (ImGui.Button("Target Object"))
+                                {
+                                    Task_Target.Enqueue(group.Target);
+                                }
+                                if (ImGui.Button("Interact"))
+                                {
+                                    IGameObject? gameObject = null;
+                                    Utils.TryGetObjectByGameObjectId(group.Target, out gameObject);
+                                    Utils.InteractWithObject(gameObject);
+                                }
                             }
                         }
 
@@ -629,6 +649,21 @@ internal class DebugWindow : Window
                         P.navmesh.MoveTo(new List<Vector3>(waypointList), false);
                     }
 
+                    if (ImGui.Button("Test Interact Route"))
+                    {
+                        foreach (var entry in kvp.Value)
+                        {
+                            ulong objectId = entry.Target;
+                            List<Vector3> wpList = new List<Vector3>();
+                            foreach (var wp in entry.Waypoints)
+                            {
+                                wpList.Add(wp.ToVector3());
+                            }
+
+                            Task_IslandInteract.Enqueue(wpList, objectId);
+                        }
+                    }
+
                     ImGui.Checkbox("Refresh List", ref RefreshList);
                     if (RefreshList)
                     {
@@ -651,10 +686,60 @@ internal class DebugWindow : Window
                         }
                     }
 
-                    foreach (var wp in waypointList)
+                    if (ImGui.CollapsingHeader($"Waypoints###Waypoints_{routeName}"))
                     {
-                        index++;
-                        ImGui.Text($"[{index}] X: {wp.X} | Y: {wp.Y} | Z: {wp.Z}");
+                        foreach (var wp in waypointList)
+                        {
+                            index++;
+                            ImGui.Text($"[{index}] X: {wp.X} | Y: {wp.Y} | Z: {wp.Z}");
+                        }
+                    }
+
+                    if (ImGui.CollapsingHeader($"Items Gathered###Items_Gathered_{routeName}"))
+                    {
+                        Dictionary<string, int> Items = new Dictionary<string, int>();
+                        foreach (var entry in kvp.Value)
+                        {
+                            if (entry.Target != 0)
+                            {
+                                var node = ItemData.IslandNodeInfo.Where(x => x.Nodes.Contains(entry.Target)).FirstOrDefault();
+
+                                if (node != null)
+                                {
+                                    foreach (var item in node.ItemIds)
+                                    {
+                                        string itemName = ItemData.IslandItems[item];
+
+                                        if (Items.ContainsKey(itemName))
+                                        {
+                                            Items[itemName] += 1;
+                                        }
+                                        else
+                                        {
+                                            Items.Add(itemName, 1);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (ImGui.BeginTable("###Items_Gathered_Table", 2, ImGuiTableFlags.SizingFixedFit | ImGuiTableFlags.Borders))
+                        {
+                            foreach (var entry in Items)
+                            {
+                                ImGui.TableNextRow();
+
+                                ImGui.TableSetColumnIndex(0);
+
+                                ImGui.Text($"{entry.Key} ");
+
+                                ImGui.TableNextColumn();
+
+                                ImGui.Text($"{entry.Value}");
+                            }
+
+                            ImGui.EndTable();
+                        }
                     }
 
                     SplatoonManager.RenderPath(waypointList, addNumbers: true);
@@ -665,4 +750,317 @@ internal class DebugWindow : Window
         }
     }
 
+    public void DrawRouteEditorV2()
+    {
+        ImGui.Text("Route Editor");
+
+        // Input for creating a new route
+        ImGui.InputText("New Route Name", ref newRouteName, 64);
+        if (ImGui.Button("Add Route") && !string.IsNullOrWhiteSpace(newRouteName))
+        {
+            if (!G.Routes.ContainsKey(newRouteName))
+            {
+                G.Routes[newRouteName] = new List<RouteClass.WaypointGroup> { new RouteClass.WaypointGroup() };
+                G.Save();
+            }
+            newRouteName = "";
+        }
+
+        ImGui.SameLine();
+
+        ImGui.SetNextItemWidth(222);
+        if (ImGui.BeginCombo("Select Route", routeNames[selectedRouteIndex]))
+        {
+            for (int i = 0; i < routeNames.Count; i++)
+            {
+                bool isSelected = (i == selectedRouteIndex);
+                if (ImGui.Selectable(routeNames[i], isSelected))
+                {
+                    selectedRouteIndex = i;
+
+                    // These are to reset the group selection so code doesn't break
+                    currentGroup = 0;
+                    allWaypoints = true;
+                }
+
+                if (isSelected)
+                {
+                    ImGui.SetItemDefaultFocus();
+                }
+            }
+            ImGui.EndCombo();
+        }
+
+        var routeSelected = G.Routes.Where(x => x.Key == routeNames[selectedRouteIndex]).FirstOrDefault();
+        var SelectedGroup = routeSelected.Value[currentGroup];
+
+        if (G.Routes.ContainsKey(routeSelected.Key))
+        {
+            List<string> groups = new List<string>();
+            foreach (var group in routeSelected.Value)
+            {
+                groups.Add(group.Name);
+            }
+
+            float GroupWindowText = ImGui.CalcTextSize("All Waypoints").X;
+            float padding = 20.0f;
+
+            ImGui.Dummy(new(0, 5));
+
+            if (ImGui.BeginChild("Group Selection", new Vector2(GroupWindowText + padding, ImGui.GetContentRegionAvail().Y), true))
+            {
+                if (ImGui.Selectable("All Waypoints"))
+                {
+                    allWaypoints = true;
+                }
+
+                ImGui.Separator();
+
+                for (int groupIndex = 0; groupIndex < routeSelected.Value.Count; groupIndex++)
+                {
+                    if (ImGui.Selectable($"Group {groupIndex + 1}"))
+                    {
+                        allWaypoints = false;
+                        currentGroup = groupIndex;
+                    }
+                }
+
+                ImGui.EndChild();
+            }
+
+            ImGui.SameLine();
+
+            if (ImGui.BeginChild("View Group Contents", new Vector2(0, ImGui.GetContentRegionAvail().Y), true))
+            {
+                if (ImGui.Button($"Add Group##{routeSelected.Key}"))
+                {
+                    routeSelected.Value.Add(new WaypointGroup
+                    {
+                        Action = WaypointAction.None,
+                        Waypoints = new()
+                    });
+                    G.Save();
+                }
+
+                if (allWaypoints)
+                {
+                    int index = 0;
+                    ImGui.Text("All Waypoints");
+
+                    if (ImGui.Button("Test Route"))
+                    {
+                        P.navmesh.MoveTo(new List<Vector3>(waypointList), false);
+                    }
+
+                    ImGui.SameLine();
+
+                    if (ImGui.Button("Test Interact Route"))
+                    {
+                        foreach (var entry in routeSelected.Value)
+                        {
+                            ulong objectId = entry.Target;
+                            List<Vector3> wpList = new List<Vector3>();
+                            foreach (var wp in entry.Waypoints)
+                            {
+                                wpList.Add(wp.ToVector3());
+                            }
+
+                            Task_IslandInteract.Enqueue(wpList, objectId);
+                        }
+                    }
+
+                    ImGui.Checkbox("Refresh List", ref RefreshList);
+                    if (RefreshList)
+                    {
+                        if (EzThrottler.Throttle("List Refresh_Debug", 1000))
+                        {
+                            List<Vector3> tempList = new List<Vector3>();
+                            foreach (var entry in routeSelected.Value)
+                            {
+                                foreach (var wp in entry.Waypoints)
+                                {
+                                    if (!tempList.Contains(wp.ToVector3()))
+                                        tempList.Add(wp.ToVector3());
+                                }
+                            }
+
+                            if (waypointList != tempList)
+                            {
+                                waypointList = tempList;
+                            }
+                        }
+                    }
+
+                    if (ImGui.CollapsingHeader($"Waypoints###Waypoints_{routeSelected.Key}"))
+                    {
+                        foreach (var wp in waypointList)
+                        {
+                            index++;
+                            ImGui.Text($"[{index}] X: {wp.X} | Y: {wp.Y} | Z: {wp.Z}");
+                        }
+                    }
+
+                    if (ImGui.CollapsingHeader($"Items Gathered###Items_Gathered_{routeSelected.Key}"))
+                    {
+                        Dictionary<string, int> Items = new Dictionary<string, int>();
+                        foreach (var entry in routeSelected.Value)
+                        {
+                            if (entry.Target != 0)
+                            {
+                                var node = ItemData.IslandNodeInfo.Where(x => x.Nodes.Contains(entry.Target)).FirstOrDefault();
+
+                                if (node != null)
+                                {
+                                    foreach (var item in node.ItemIds)
+                                    {
+                                        string itemName = ItemData.IslandItems[item];
+
+                                        if (Items.ContainsKey(itemName))
+                                        {
+                                            Items[itemName] += 1;
+                                        }
+                                        else
+                                        {
+                                            Items.Add(itemName, 1);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (ImGui.BeginTable("###Items_Gathered_Table", 2, ImGuiTableFlags.SizingFixedFit | ImGuiTableFlags.Borders))
+                        {
+                            foreach (var entry in Items)
+                            {
+                                ImGui.TableNextRow();
+
+                                ImGui.TableSetColumnIndex(0);
+
+                                ImGui.Text($"{entry.Key} ");
+
+                                ImGui.TableNextColumn();
+
+                                ImGui.Text($"{entry.Value}");
+                            }
+
+                            ImGui.EndTable();
+                        }
+                    }
+
+                    SplatoonManager.RenderPath(waypointList, addNumbers: true);
+                }
+                else
+                {
+                    ImGui.SameLine();
+
+                    if (ImGui.Button($"Remove Group###{routeSelected.Key}"))
+                    {
+                        routeSelected.Value.Remove(SelectedGroup);
+                        currentGroup = 0;
+                        allWaypoints = true;
+                        G.Save();
+                    }
+
+                    ImGui.Text($"Group: {currentGroup + 1}");
+
+                    if (ImGui.BeginCombo("Action", SelectedGroup.Action.ToString()))
+                    {
+                        foreach (WaypointAction action in Enum.GetValues(typeof(WaypointAction)))
+                        {
+                            if (ImGui.Selectable(action.ToString(), action == SelectedGroup.Action))
+                            {
+                                SelectedGroup.Action = action;
+                                G.Save();
+                            }
+                        }
+                        ImGui.EndCombo();
+                    }
+
+                    if (SelectedGroup.Action == WaypointAction.IslandInteract)
+                    {
+                        if (SelectedGroup.Target == 0)
+                        {
+                            ImGui.AlignTextToFramePadding();
+                            ImGui.Text("No Target Selected");
+                            if (Svc.Targets?.Target != null)
+                            {
+                                ImGui.SameLine();
+                                if (ImGui.Button($"Add Target: {Svc.Targets.Target.Name.ToString()}"))
+                                {
+                                    SelectedGroup.Target = Svc.Targets.Target.GameObjectId;
+                                    G.Save();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ImGui.AlignTextToFramePadding();
+                            ImGui.Text($"TargetId: {SelectedGroup.Target}");
+                            ImGui.SameLine();
+                            if (ImGui.Button("Clear Target"))
+                            {
+                                SelectedGroup.Target = 0;
+                                G.Save();
+                            }
+                            ImGui.SameLine();
+                            if (ImGui.Button("Target Object"))
+                            {
+                                Task_Target.Enqueue(SelectedGroup.Target);
+                            }
+                            if (ImGui.Button("Interact"))
+                            {
+                                IGameObject? gameObject = null;
+                                Utils.TryGetObjectByGameObjectId(SelectedGroup.Target, out gameObject);
+                                Utils.InteractWithObject(gameObject);
+                            }
+                        }
+                    }
+
+                    Vector3 playerPos = Svc.ClientState.LocalPlayer?.Position ?? Vector3.Zero;
+                    ImGui.Text($"Player POS: {playerPos.X:F1}, {playerPos.Y:F1}, {playerPos.Z:F1}");
+
+                    if (ImGui.Button($"Add Current Pos##Add_Pos_{routeSelected.Key}"))
+                    {
+                        SelectedGroup.Waypoints.Add(WaypointUtil.FromVector3(playerPos));
+                        G.Save();
+                    }
+
+                    ImGui.Separator();
+
+                    for (int i = 0; i < SelectedGroup.Waypoints.Count; i++)
+                    {
+                        var wp = SelectedGroup.Waypoints[i];
+
+                        ImGui.Text($"#{i + 1}: X:{wp.X:F1} Y:{wp.Y:F1} Z:{wp.Z:F1}");
+                        ImGui.SameLine();
+
+                        if (i > 0 && ImGui.Button($"↑##Up_{routeSelected.Key}_{i}"))
+                        {
+                            (SelectedGroup.Waypoints[i - 1], SelectedGroup.Waypoints[i]) = (SelectedGroup.Waypoints[i], SelectedGroup.Waypoints[i - 1]);
+                            G.Save();
+                        }
+                        ImGui.SameLine();
+                        if (i < SelectedGroup.Waypoints.Count - 1 && ImGui.Button($"↓##Down_{routeSelected.Key}_{i}"))
+                        {
+                            (SelectedGroup.Waypoints[i + 1], SelectedGroup.Waypoints[i]) = (SelectedGroup.Waypoints[i], SelectedGroup.Waypoints[i + 1]);
+                            G.Save();
+                        }
+                        ImGui.SameLine();
+
+                        ImGui.PushFont(UiBuilder.IconFont);
+                        if (ImGui.Button($"{FontAwesome.Trash}##Delete_{routeSelected.Key}_{i}")) // need to change this to trash can from ecoms
+                        {
+                            SelectedGroup.Waypoints.RemoveAt(i);
+                            G.Save();
+                            ImGui.PopFont();
+                            break; // break to avoid index issues
+                        }
+                        ImGui.PopFont();
+                    }
+                }
+
+                ImGui.EndChild();
+            }
+        }
+    }
 }
