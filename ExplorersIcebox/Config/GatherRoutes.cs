@@ -6,6 +6,8 @@ namespace ExplorersIcebox.Config;
 
 public class GatherRoutes : IYamlConfig
 {
+    private int Version = 2;
+
     public static string ConfigPath => Path.Combine(Svc.PluginInterface.ConfigDirectory.FullName, "GatherRoutesConfig.yaml");
     public void Save() => YamlConfig.Save(this, ConfigPath);
 
