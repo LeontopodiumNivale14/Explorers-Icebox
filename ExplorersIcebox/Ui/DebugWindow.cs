@@ -404,7 +404,8 @@ internal class DebugWindow : Window
 
     private string newRouteName = "";
     private List<Vector3> waypointList = new();
-    private bool RefreshList = true;
+    private bool allWaypoints = false;
+    private bool showTetherToPoint = false;
 
     private Dictionary<string, bool> editingRoutes = new();
     private Dictionary<string, string> tempNames = new();
@@ -412,7 +413,6 @@ internal class DebugWindow : Window
     private int selectedRouteIndex = 0;
     private List<string> routeNames => G.Routes.Keys.ToList();
     private int currentGroup = 0;
-    private bool allWaypoints = true;
 
     private bool PopupOpen = false;
 
@@ -474,6 +474,25 @@ internal class DebugWindow : Window
 
         if (G.Routes.ContainsKey(routeSelected.Key))
         {
+            ImGui.Checkbox("Display WP's", ref allWaypoints);
+            ImGui.Checkbox("Show Tether", ref showTetherToPoint);
+
+            if (allWaypoints)
+            {
+                List<Vector3> newWPs = new List<Vector3>();
+                foreach (var wp in routeSelected.Value)
+                {
+                    newWPs.Add(new Vector3(wp.X, wp.Y, wp.Z));
+                }
+
+                if (waypointList != newWPs)
+                {
+                    waypointList = newWPs;
+                }
+
+                SplatoonManager.RenderPath(waypointList, addPlayer: showTetherToPoint, addNumbers: true);
+            }
+
             Vector3 playerPos = Svc.ClientState.LocalPlayer?.Position ?? Vector3.Zero;
             ImGui.Text($"Player POS: {playerPos.X:F1}, {playerPos.Y:F1}, {playerPos.Z:F1}");
 
