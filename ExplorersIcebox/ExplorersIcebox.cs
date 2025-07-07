@@ -6,6 +6,7 @@ using ExplorersIcebox.IPC;
 using ExplorersIcebox.Scheduler;
 using ExplorersIcebox.Ui;
 using ExplorersIcebox.Ui.MainWindow;
+using Pictomancy;
 
 namespace ExplorersIcebox;
 
@@ -56,6 +57,8 @@ public sealed class ExplorersIcebox : IDalamudPlugin
         P = this;
         ECommonsMain.Init(pi, P, ECommons.Module.DalamudReflector, ECommons.Module.ObjectFunctions, Module.SplatoonAPI);
 
+        PictoService.Initialize(pi);
+
         //IPC's that are used
         taskManager = new();
         lifestream = new();
@@ -105,6 +108,7 @@ public sealed class ExplorersIcebox : IDalamudPlugin
         Safe(() => Svc.Framework.Update -= Tick);
         Safe(() => Svc.PluginInterface.UiBuilder.Draw -= windowSystem.Draw);
         ECommonsMain.Dispose();
+        PictoService.Dispose();
     }
 
     private void OnCommand(string command, string args)

@@ -2,6 +2,7 @@ using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Objects.Types;
 using ECommons.Throttlers;
 using ExplorersIcebox.Util;
+using FFXIVClientStructs.FFXIV.Client.Game;
 using System.Collections.Generic;
 
 namespace ExplorersIcebox.Scheduler.Tasks
@@ -10,20 +11,25 @@ namespace ExplorersIcebox.Scheduler.Tasks
     {
         public static void Enqueue(List<Vector3> List, ulong gameObjectId, bool mount = false, bool fly = false)
         {
-            P.taskManager.Enqueue(() => QueueNavmesh(List, mount, fly));
-            P.taskManager.Enqueue(() => FinishRoute());
-            P.taskManager.Enqueue(() => Target(gameObjectId));
-            P.taskManager.Enqueue(() => GatherInteract(gameObjectId));
+            P.taskManager.Enqueue(() => QueueNavmesh2(List, mount, fly), "Queueing Navmesh");
+            P.taskManager.Enqueue(() => FinishRoute(), "Waiting for Navmesh to Finish");
+            if (gameObjectId != 0)
+            {
+                P.taskManager.Enqueue(() => TargetV2(gameObjectId), $"Checking for target: {gameObjectId}"); // Checking to see if the target exist
+                P.taskManager.Enqueue(() => GatherInteract(gameObjectId), $"If target exist, gathering {gameObjectId}");
+            }
         }
 
-        internal static bool? QueueNavmesh(List<Vector3> List, bool mount, bool fly)
+        internal unsafe static bool? QueueNavmesh(List<Vector3> List, bool mount, bool fly)
         {
             // Things to note:
             // List is there to queue up all the waypoints that are created
             // Mount is optional by default, as well as flying (in the Enqueue task itself, just to keep it simple)
             // Will kick to true whenever Navmesh is detected as running
 
-            if (P.navmesh.IsRunning())
+            bool PlayerDistance = PlayerHelper.GetDistanceToPlayer(List[0]) < 0.5f;
+
+            if (P.navmesh.IsRunning() || PlayerDistance)
             {
                 return true;
             }
@@ -33,7 +39,13 @@ namespace ExplorersIcebox.Scheduler.Tasks
                 {
                     if (!Svc.Condition[ConditionFlag.Mounted])
                     {
-                        // insert check here to mount
+                        if (!Svc.Condition[ConditionFlag.Casting] && !Svc.Condition[ConditionFlag.MountOrOrnamentTransition])
+                        {
+                            if (EzThrottler.Throttle("Using Mount"))
+                            {
+                                ActionManager.Instance()->UseAction(ActionType.GeneralAction, 9);
+                            }
+                        }
                     }
                     else
                     {
@@ -43,13 +55,78 @@ namespace ExplorersIcebox.Scheduler.Tasks
                 }
                 else
                 {
-                    if (EzThrottler.Throttle("MoveToQueue_Ground"))
+                    if (EzThrottler.Throttle($"MoveToQueue_Ground_{List[0]}"))
                     {
                         P.navmesh.MoveTo(new List<Vector3>(List), fly);
                         if (mount)
                         {
-                            // Insert mount logic here, just need to start the cast mid run
+                            if (!Svc.Condition[ConditionFlag.Mounted])
+                            {
+                                ActionManager.Instance()->UseAction(ActionType.GeneralAction, 9);
+                            }
                         }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        internal unsafe static bool? QueueNavmesh2(List<Vector3> List, bool mount, bool fly)
+        {
+            bool PlayerMounted = Svc.Condition[ConditionFlag.Mounted]; // Quick and easy way to just access if you are mounted quickly
+
+            if (P.navmesh.IsRunning() && ((PlayerMounted && mount) || !mount))
+            {
+                return true;
+            }
+            else if (PlayerHelper.GetDistanceToPlayer(List[0]) < 0.5) // on the off chance that you're RIGHT there... there's no need to move to it
+            {
+                return true;
+            }
+            else
+            {
+                if (EzThrottler.Throttle("Verbose Log Info"))
+                {
+                    Svc.Log.Info($"Navmesh Running: {P.navmesh.IsRunning()}\n" +
+                                 $"&& ( (Player Mounted: {PlayerMounted} && Mount: {mount}) || No Mount: {!mount} )");
+                }
+                // All conditions are failed, checking to see if you need to fly or if you just need to mount
+
+                if (fly) // Checking if you aim to fly to said point
+                {
+                    if (!PlayerMounted) // Player not mounted, need to do this before flying can be achieved
+                    {
+                        if (!Svc.Condition[ConditionFlag.Casting] && !Svc.Condition[ConditionFlag.MountOrOrnamentTransition])
+                        {
+                            if (EzThrottler.Throttle("Using Mount Action Roulette"))
+                            {
+                                ActionManager.Instance()->UseAction(ActionType.GeneralAction, 9);
+                            }
+                        }
+                    }
+                    else // Player is on a mount, initiating the flying moveto
+                    {
+                        if (EzThrottler.Throttle("MoveToQueue_FlyMode"))
+                            P.navmesh.MoveTo(new List<Vector3>(List), fly);
+                    }
+                }
+                else
+                {
+                    // Checking to see if you need to mount
+                    if (!PlayerMounted && mount)
+                    {
+                        if (!Svc.Condition[ConditionFlag.Casting] && !Svc.Condition[ConditionFlag.MountOrOrnamentTransition])
+                        {
+                            if (EzThrottler.Throttle("Using Mount", 250))
+                            {
+                                ActionManager.Instance()->UseAction(ActionType.GeneralAction, 9);
+                            }
+                        }
+                    }
+                    if (EzThrottler.Throttle($"MoveToQueue_Ground_{List[0]}"))
+                    {
+                        P.navmesh.MoveTo(new List<Vector3>(List), fly);
                     }
                 }
             }
@@ -79,7 +156,32 @@ namespace ExplorersIcebox.Scheduler.Tasks
 
             IGameObject? gameObject = null;
             Utils.TryGetObjectByGameObjectId(gameObjectId, out gameObject);
-            Utils.TargetgameObject(gameObject);
+            if (gameObject != null)
+            {
+                Utils.TargetgameObject(gameObject);
+            }
+        }
+
+        internal static bool? TargetV2(ulong gameObjectId)
+        {
+            IGameObject? gameObject = null;
+            var currentTarget = Svc.Targets.Target?.GameObjectId ?? 0;
+            Utils.TryGetObjectByGameObjectId(gameObjectId, out gameObject);
+
+
+            if (gameObject == null || gameObjectId == currentTarget || !gameObject.IsTargetable)
+            {
+                return true;
+            }
+            else if (gameObject != null)
+            {
+                if (EzThrottler.Throttle($"Targeting: {gameObjectId}"))
+                {
+                    Utils.TargetgameObject(gameObject);
+                }
+            }
+
+            return false;
         }
 
         internal static bool? GatherInteract(ulong gameObjectId)

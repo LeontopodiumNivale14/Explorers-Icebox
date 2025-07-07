@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommons", "ECommons\ECommo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplorersIcebox", "ExplorersIcebox\ExplorersIcebox.csproj", "{1E7954C5-E557-4BD9-9A8D-392AF11AE7A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pictomancy", "ffxiv_pictomancy\Pictomancy\Pictomancy.csproj", "{825F17D8-2704-24F6-DF8B-2542AC92C765}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,10 @@ Global
 		{1E7954C5-E557-4BD9-9A8D-392AF11AE7A2}.Debug|x64.Build.0 = Debug|x64
 		{1E7954C5-E557-4BD9-9A8D-392AF11AE7A2}.Release|x64.ActiveCfg = Release|x64
 		{1E7954C5-E557-4BD9-9A8D-392AF11AE7A2}.Release|x64.Build.0 = Release|x64
+		{825F17D8-2704-24F6-DF8B-2542AC92C765}.Debug|x64.ActiveCfg = Debug|x64
+		{825F17D8-2704-24F6-DF8B-2542AC92C765}.Debug|x64.Build.0 = Debug|x64
+		{825F17D8-2704-24F6-DF8B-2542AC92C765}.Release|x64.ActiveCfg = Release|x64
+		{825F17D8-2704-24F6-DF8B-2542AC92C765}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
