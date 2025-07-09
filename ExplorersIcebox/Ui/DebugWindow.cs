@@ -165,6 +165,11 @@ internal class DebugWindow : Window
 
     private void TestGuiDebug()
     {
+        if (ImGui.Button("Return to Island Base"))
+        {
+            Task_ReturnToBase.Enqueue();
+        }
+
         if (ImGui.Button("Open Player Search"))
         {
             Utils.OpenPlayerSearch(15);
@@ -183,40 +188,6 @@ internal class DebugWindow : Window
         {
             Utils.ShowText(position, popupText);
         }
-    }
-
-    private void CheckMark()
-    {
-        var buttonColor = ImGui.GetStyle().Colors[(int)ImGuiCol.Button];
-        var buttonHovered = ImGui.GetStyle().Colors[(int)ImGuiCol.ButtonHovered];
-        var buttonActive = ImGui.GetStyle().Colors[(int)ImGuiCol.ButtonActive];
-        var windowBgColor = ImGui.GetStyle().Colors[(int)ImGuiCol.WindowBg];
-
-        // Override the button colors to match the window background
-        ImGui.PushStyleColor(ImGuiCol.Button, windowBgColor);
-        ImGui.PushStyleColor(ImGuiCol.ButtonHovered, windowBgColor);
-        ImGui.PushStyleColor(ImGuiCol.ButtonActive, windowBgColor);
-
-        using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.HealerGreen))
-            ImGuiEx.IconButton(FontAwesomeIcon.Check);
-        ImGui.PopStyleColor(3);
-    }
-
-    private void DisabledMark()
-    {
-        var buttonColor = ImGui.GetStyle().Colors[(int)ImGuiCol.Button];
-        var buttonHovered = ImGui.GetStyle().Colors[(int)ImGuiCol.ButtonHovered];
-        var buttonActive = ImGui.GetStyle().Colors[(int)ImGuiCol.ButtonActive];
-        var windowBgColor = ImGui.GetStyle().Colors[(int)ImGuiCol.WindowBg];
-
-        // Override the button colors to match the window background
-        ImGui.PushStyleColor(ImGuiCol.Button, windowBgColor);
-        ImGui.PushStyleColor(ImGuiCol.ButtonHovered, windowBgColor);
-        ImGui.PushStyleColor(ImGuiCol.ButtonActive, windowBgColor);
-
-        using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.DPSRed))
-            ImGuiEx.IconButton(FontAwesomeIcon.FileCircleXmark);
-        ImGui.PopStyleColor(3);
     }
 
     private void TargetInfo()

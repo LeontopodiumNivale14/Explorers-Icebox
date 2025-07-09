@@ -168,8 +168,17 @@ namespace ExplorersIcebox.Scheduler.Tasks
             var currentTarget = Svc.Targets.Target?.GameObjectId ?? 0;
             Utils.TryGetObjectByGameObjectId(gameObjectId, out gameObject);
 
+#if DEBUG
+            Svc.Log.Debug($"GameObject == Null? [GameObject Doesn't exist]: {gameObject == null}");
+            if (gameObject != null)
+            {
+                Svc.Log.Debug($"Gameobject is current target: {gameObject.IsTarget()}");
+                Svc.Log.Debug($"GameObject is targetable: {gameObject.IsTargetable}");
 
-            if (gameObject == null || gameObjectId == currentTarget || !gameObject.IsTargetable)
+            }
+#endif
+
+            if (gameObject == null || gameObject.IsTarget() || !gameObject.IsTargetable)
             {
                 return true;
             }
@@ -177,6 +186,9 @@ namespace ExplorersIcebox.Scheduler.Tasks
             {
                 if (EzThrottler.Throttle($"Targeting: {gameObjectId}"))
                 {
+#if DEBUG
+                    Svc.Log.Debug($"Targeting: {gameObject.Name}");
+#endif
                     Utils.TargetgameObject(gameObject);
                 }
             }

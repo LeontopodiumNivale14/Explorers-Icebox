@@ -26,24 +26,21 @@ public class Utils
     public static bool HasPlugin(string name) => DalamudReflector.TryGetDalamudPlugin(name, out _, false, true);
     public static TaskManagerConfiguration TaskConfig => new(timeLimitMS: 10 * 60 * 3000, abortOnTimeout: false);
 
-    public static bool? TargetgameObject(IGameObject? gameObject)
+    public static void TargetgameObject(IGameObject? gameObject)
     {
         var x = gameObject;
-        if (Svc.Targets.Target != null && Svc.Targets.Target.DataId == x.DataId)
-            return true;
-
-        if (!GenericHelpers.IsOccupied())
+        if (x == null || x.IsTarget())
         {
-            if (x != null)
+            return;
+        }
+        else
+        {
+            if (EzThrottler.Throttle($"Throttle Targeting {x.Name}"))
             {
-                if (EzThrottler.Throttle($"Throttle Targeting {x.DataId}"))
-                {
-                    Svc.Targets.SetTarget(x);
-                    PluginLog.Information($"Setting the target to {x.DataId}");
-                }
+                Svc.Targets.SetTarget(x);
+                PluginLog.Information($"Setting the target to {x.Name}");
             }
         }
-        return false;
     }
     internal static bool TryGetObjectByDataId(ulong dataId, out IGameObject? gameObject) => (gameObject = Svc.Objects.OrderBy(PlayerHelper.GetDistanceToPlayer).FirstOrDefault(x => x.DataId == dataId)) != null;
     internal static bool TryGetObjectByGameObjectId(ulong gameObjectId, out IGameObject? gameObject) => (gameObject = Svc.Objects.OrderBy(PlayerHelper.GetDistanceToPlayer).FirstOrDefault(x => x.GameObjectId == gameObjectId)) != null;

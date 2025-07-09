@@ -1,5 +1,4 @@
 using Dalamud.Interface.Utility.Raii;
-using ExplorersIcebox.Scheduler;
 using ExplorersIcebox.Util;
 using System.Collections.Generic;
 
@@ -81,15 +80,10 @@ internal class MainWindow : Window
 
         if (G.Routes.ContainsKey(routeSelected.Key))
         {
-            if (ImGui.Button("Start Route"))
-            {
-                IslandHelper.CurrentRoute = routeSelected;
-                IslandHelper.TotalLoops = 0;
-                IslandHelper.CurrentLoopCount = 0;
-            }
+             Dictionary<string, IslandHelper.ItemGathered> routeItems = new();
+             Dictionary<string, HashSet<ItemData.GatheringNode>> itemNodeMap = new();
 
-            Dictionary<string, IslandHelper.ItemGathered> routeItems = new();
-            Dictionary<string, HashSet<ItemData.GatheringNode>> itemNodeMap = new();
+            IslandHelper.CurrentRoute = routeSelected;
 
             foreach (var wp in routeSelected.Value)
             {
@@ -142,12 +136,25 @@ internal class MainWindow : Window
                 }
             }
 
+            int MinItemKeep = C.MinimumItemKeep;
+            ImGui.SetNextItemWidth(100);
+            if (ImGui.SliderInt("Keep this many items", ref MinItemKeep, 0, 999))
+            {
+                C.MinimumItemKeep = MinItemKeep;
+                C.Save();
+            }
+
+            ImGui.Text($"Total Loops Amount: {IslandHelper.MaxTotalLoops}");
+            ImGui.Text($"Max Loops Per Trip: {IslandHelper.MinimumPossibleLoops}");
+
+            IslandHelper.UpdateCounters(routeItems);
+
             if (ImGui.BeginTable("Gathered items", 4, ImGuiTableFlags.SizingFixedFit | ImGuiTableFlags.Borders))
             {
                 ImGui.TableSetupColumn("Item");
-                ImGui.TableSetupColumn("Amount");
-                ImGui.TableSetupColumn("Node Count");
+                ImGui.TableSetupColumn("Item Per Loop");
                 ImGui.TableSetupColumn("Ignore");
+                ImGui.TableSetupColumn("Gather Amount");
 
                 ImGui.TableHeadersRow();
 
@@ -163,6 +170,16 @@ internal class MainWindow : Window
 
                     ImGui.TableNextColumn();
                     Utils.FancyCheckmark(item.Value.IgnoreNode);
+
+                    ImGui.TableNextColumn();
+                    var GatherAmount = C.ItemGatherAmount[item.Key];
+                    ImGui.SetNextItemWidth(200);
+                    if (ImGui.SliderInt($"###GatherAmount_{item.Key}", ref GatherAmount, 0, 999))
+                    {
+                        C.ItemGatherAmount[item.Key] = GatherAmount;
+                        C.Save();
+                    }
+
                 }
 
                 ImGui.EndTable();

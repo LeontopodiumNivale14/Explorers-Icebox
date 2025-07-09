@@ -1,4 +1,7 @@
+using ExplorersIcebox.Enums;
+using ExplorersIcebox.Scheduler.Tasks;
 using ExplorersIcebox.Util;
+using static ExplorersIcebox.Enums.IceBoxState;
 
 namespace ExplorersIcebox.Scheduler
 {
@@ -12,9 +15,7 @@ namespace ExplorersIcebox.Scheduler
         }
         internal static bool EnablePlugin()
         {
-            EnableTicking = true;
-            CurrentLoop = 0;
-            UpdatedShop = false;
+            State = Start;
             return true;
         }
         internal static bool DisablePlugin()
@@ -24,18 +25,24 @@ namespace ExplorersIcebox.Scheduler
             P.navmesh.Stop();
             return true;
         }
-        private static int CurrentLoop = 0;
-        internal static string CurrentProcess = "";
-        internal static bool UpdatedShop = false;
-        internal static bool WorkshopSelected = true;
+
+        internal static IceBoxState State = Idle;
 
         internal static void Tick()
         {
-            if (AreWeTicking)
+            if (Throttles.GenericThrottle && P.taskManager.Tasks.Count == 0 && State != Idle)
             {
-                if (Throttles.GenericThrottle)
+                switch (State)
                 {
+                    case var s when s.HasFlag(Start):
+                        Task_ReturnToBase.Enqueue();
+                        break;
+                    case var s when s.HasFlag(CheckSell):
 
+                        break;
+                    default:
+
+                        break;
                 }
             }
         }
