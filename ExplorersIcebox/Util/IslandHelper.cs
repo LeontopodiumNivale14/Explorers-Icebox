@@ -14,10 +14,12 @@ public static class IslandHelper
     public static int MinimumPossibleLoops = 999;
     public static int CurrentLoopCount = 0;
     public static KeyValuePair<string, List<RouteClass.WaypointUtil>> CurrentRoute;
+    public static Dictionary<int, int> SellItems = new();
 
     public class ItemGathered
     {
         public int Amount { get; set; }
+        public int ItemId { get; set; }
         public HashSet<string> GatherNodes { get; set; } = new();
         public bool IgnoreNode { get; set; }
     }
@@ -58,13 +60,32 @@ public static class IslandHelper
         return (amountWanted + loopAmountGathered - 1) / loopAmountGathered;
     }
 
-    public static int SellAmount(int loopAmount, int amountGathered)
+    public static int SellAmount(int loopAmount, int amountGathered, int itemId)
     {
-        int itemCap = 999;
+        const int itemCap = 999;
         int keepAmount = C.MinimumItemKeep;
+        int itemSell = 0;
 
-        return itemCap - keepAmount - (loopAmount * amountGathered);
+        if (PlayerHelper.GetItemCount(itemId, out int currentCount))
+        {
+            int plannedGatherAmount = loopAmount * amountGathered;
+            int totalAfterGather = currentCount + plannedGatherAmount;
+
+            if (totalAfterGather > itemCap)
+            {
+                int excess = totalAfterGather - itemCap;
+                int surplus = currentCount - keepAmount;
+
+                // Sell only the excess, but also not below keepAmount
+                itemSell = Math.Min(excess, Math.Max(0, surplus));
+            }
+        }
+
+        return itemSell;
     }
+
+
+
 
     public static void UpdateNumbers()
     {
@@ -80,12 +101,13 @@ public static class IslandHelper
                 {
                     foreach (var item in Node.ItemIds)
                     {
-                        string itemName = ItemData.IslandItems[item];
+                        string itemName = ItemData.IslandItems[item].ItemName;
                         if (!RouteItems.ContainsKey(itemName))
                         {
                             RouteItems[itemName] = new ItemGathered
                             {
                                 Amount = 1,
+                                ItemId = item,
                                 GatherNodes = { Node.GatherName },
                                 IgnoreNode = false
                             };
@@ -139,31 +161,6 @@ public static class IslandHelper
                 MinimumPossibleLoops = Math.Min(MinimumPossibleLoops, IslandLoopCalc(gathered.Amount)); // 65
             }
         }
-    }
-
-
-    public static bool NeedToSell()
-    {
-        bool sell = false;
-
-        // Checking each item to see if any items need to be sold
-        foreach (var kvp in RouteItems)
-        {
-            var itemName = kvp.Key;
-            var gathered = kvp.Value;
-
-            if (gathered.IgnoreNode)
-                continue;
-            else
-            {
-                int loopAmount = Math.Min(MaxTotalLoops, MinimumPossibleLoops);
-                sell = SellAmount(loopAmount, C.ItemGatherAmount[itemName]) != 0;
-                if (sell)
-                    break;
-            }
-        }
-
-        return sell;
     }
 
     public static void UpdateCounters(Dictionary<string, ItemGathered> routeItems)

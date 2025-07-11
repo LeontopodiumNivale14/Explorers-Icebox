@@ -24,5 +24,9 @@
         <ProjectReference Include="..\ECommons\ECommons\ECommons.csproj" />
         <ProjectReference Include="..\ffxiv_pictomancy\Pictomancy\Pictomancy.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Routes\" />
+    </ItemGroup>
     
 </Project>

@@ -20,67 +20,16 @@ namespace ExplorersIcebox.Scheduler.Tasks
             }
         }
 
-        internal unsafe static bool? QueueNavmesh(List<Vector3> List, bool mount, bool fly)
-        {
-            // Things to note:
-            // List is there to queue up all the waypoints that are created
-            // Mount is optional by default, as well as flying (in the Enqueue task itself, just to keep it simple)
-            // Will kick to true whenever Navmesh is detected as running
-
-            bool PlayerDistance = PlayerHelper.GetDistanceToPlayer(List[0]) < 0.5f;
-
-            if (P.navmesh.IsRunning() || PlayerDistance)
-            {
-                return true;
-            }
-            else
-            {
-                if (fly)
-                {
-                    if (!Svc.Condition[ConditionFlag.Mounted])
-                    {
-                        if (!Svc.Condition[ConditionFlag.Casting] && !Svc.Condition[ConditionFlag.MountOrOrnamentTransition])
-                        {
-                            if (EzThrottler.Throttle("Using Mount"))
-                            {
-                                ActionManager.Instance()->UseAction(ActionType.GeneralAction, 9);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (EzThrottler.Throttle("MoveToQueue"))
-                            P.navmesh.MoveTo(new List<Vector3>(List), fly);
-                    }
-                }
-                else
-                {
-                    if (EzThrottler.Throttle($"MoveToQueue_Ground_{List[0]}"))
-                    {
-                        P.navmesh.MoveTo(new List<Vector3>(List), fly);
-                        if (mount)
-                        {
-                            if (!Svc.Condition[ConditionFlag.Mounted])
-                            {
-                                ActionManager.Instance()->UseAction(ActionType.GeneralAction, 9);
-                            }
-                        }
-                    }
-                }
-            }
-
-            return false;
-        }
-
         internal unsafe static bool? QueueNavmesh2(List<Vector3> List, bool mount, bool fly)
         {
             bool PlayerMounted = Svc.Condition[ConditionFlag.Mounted]; // Quick and easy way to just access if you are mounted quickly
+            int count = List.Count - 1;
 
             if (P.navmesh.IsRunning() && ((PlayerMounted && mount) || !mount))
             {
                 return true;
             }
-            else if (PlayerHelper.GetDistanceToPlayer(List[0]) < 0.5) // on the off chance that you're RIGHT there... there's no need to move to it
+            else if (PlayerHelper.GetDistanceToPlayer(List[count]) < 0.5) // on the off chance that you're RIGHT there... there's no need to move to it
             {
                 return true;
             }
@@ -120,12 +69,16 @@ namespace ExplorersIcebox.Scheduler.Tasks
                         {
                             if (EzThrottler.Throttle("Using Mount", 250))
                             {
+                                Svc.Log.Debug("Using Mount Action");
                                 ActionManager.Instance()->UseAction(ActionType.GeneralAction, 9);
                             }
                         }
                     }
                     if (EzThrottler.Throttle($"MoveToQueue_Ground_{List[0]}"))
                     {
+                        Svc.Log.Debug("Telling Navmesh to move through the list");
+                        Svc.Log.Debug($"List Count: {List.Count}");
+                        Svc.Log.Debug($"Fly: {fly}");
                         P.navmesh.MoveTo(new List<Vector3>(List), fly);
                     }
                 }

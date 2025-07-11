@@ -12,6 +12,22 @@ public static class RouteClass
         Jump
     }
 
+    public class RouteUtil
+    {
+        public List<InteractionUtil> BaseToLocation { get; set; } = new();
+        public List<InteractionUtil> RouteWaypoints { get; set; } = new();
+    }
+
+    public class InteractionUtil
+    {
+        public string Name { get; set; } = string.Empty;
+        public List<Vector3> Waypoints { get; set; } = new();
+        public WaypointAction Action { get; set; } = WaypointAction.None;
+        public ulong TargetId { get; set; } = 0;
+        public bool Mount { get; set; } = false;
+        public bool Fly { get; set; } = false;
+    }
+
     public class WaypointUtil
     {
         public string Name { get; set; } = string.Empty;

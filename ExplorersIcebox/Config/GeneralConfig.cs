@@ -11,6 +11,8 @@ public class GeneralConfig : IYamlConfig
 
     // The minimum amount of items you want to keep in your inventory
     public int MinimumItemKeep { get; set; } = 500;
+    public bool SkipSell { get; set; } = false;
+    public bool DryTest { get; set; } = false;
 
     public Dictionary<string, int> ItemGatherAmount { get; set; } = new ()
     {

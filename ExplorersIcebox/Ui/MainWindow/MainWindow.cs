@@ -1,4 +1,5 @@
 using Dalamud.Interface.Utility.Raii;
+using ExplorersIcebox.Scheduler.Tasks;
 using ExplorersIcebox.Util;
 using System.Collections.Generic;
 
@@ -25,7 +26,7 @@ internal class MainWindow : Window
 
     private readonly List<string> modeSelect = ["Ground XP", "Flying XP", "Material Grind"];
     private int selectedModeIndex = C.ModeSelected;
-    private List<string> routeNames => G.Routes.Keys.ToList();
+    private List<string> routeNames => G.OldRoutes.Keys.ToList();
     private int selectedRouteIndex = 0;
 
     public override void Draw()
@@ -76,12 +77,12 @@ internal class MainWindow : Window
             }
         }
 
-        var routeSelected = G.Routes.Where(x => x.Key == routeNames[selectedRouteIndex]).FirstOrDefault();
+        var routeSelected = G.OldRoutes.Where(x => x.Key == routeNames[selectedRouteIndex]).FirstOrDefault();
 
-        if (G.Routes.ContainsKey(routeSelected.Key))
+        if (G.OldRoutes.ContainsKey(routeSelected.Key))
         {
-             Dictionary<string, IslandHelper.ItemGathered> routeItems = new();
-             Dictionary<string, HashSet<ItemData.GatheringNode>> itemNodeMap = new();
+            Dictionary<string, IslandHelper.ItemGathered> routeItems = new();
+            Dictionary<string, HashSet<ItemData.GatheringNode>> itemNodeMap = new();
 
             IslandHelper.CurrentRoute = routeSelected;
 
@@ -94,12 +95,13 @@ internal class MainWindow : Window
                     {
                         foreach (var item in Node.ItemIds)
                         {
-                            string itemName = ItemData.IslandItems[item];
+                            string itemName = ItemData.IslandItems[item].ItemName;
                             if (!routeItems.ContainsKey(itemName))
                             {
                                 routeItems[itemName] = new IslandHelper.ItemGathered()
                                 {
                                     Amount = 1,
+                                    ItemId = item,
                                     GatherNodes = { Node.GatherName },
                                     IgnoreNode = false
                                 };
@@ -147,14 +149,28 @@ internal class MainWindow : Window
             ImGui.Text($"Total Loops Amount: {IslandHelper.MaxTotalLoops}");
             ImGui.Text($"Max Loops Per Trip: {IslandHelper.MinimumPossibleLoops}");
 
-            IslandHelper.UpdateCounters(routeItems);
+            ImGui.SameLine();
 
-            if (ImGui.BeginTable("Gathered items", 4, ImGuiTableFlags.SizingFixedFit | ImGuiTableFlags.Borders))
+            IslandHelper.UpdateCounters(routeItems);
+            if (ImGui.Button("Calculate Root Sell"))
+            {
+                Task_SellCheck.Enqueue();
+                if (IslandHelper.SellItems.Count > 0)
+                {
+                    foreach (var item in IslandHelper.SellItems)
+                    {
+                        var itemEntry = ItemData.IslandItems.Where(x => x.Key == item.Key).FirstOrDefault();
+                    }
+                }
+            }
+
+            if (ImGui.BeginTable("Gathered items", 5, ImGuiTableFlags.SizingFixedFit | ImGuiTableFlags.Borders))
             {
                 ImGui.TableSetupColumn("Item");
                 ImGui.TableSetupColumn("Item Per Loop");
                 ImGui.TableSetupColumn("Ignore");
                 ImGui.TableSetupColumn("Gather Amount");
+                ImGui.TableSetupColumn("Sell Column");
 
                 ImGui.TableHeadersRow();
 
@@ -164,6 +180,12 @@ internal class MainWindow : Window
 
                     ImGui.TableSetColumnIndex(0);
                     ImGui.Text($"{item.Key}");
+                    if (ImGui.IsItemHovered())
+                    {
+                        ImGui.BeginTooltip();
+                        ImGui.Text($"{item.Value.ItemId}");
+                        ImGui.EndTooltip();
+                    }
 
                     ImGui.TableNextColumn();
                     ImGui.Text($"{item.Value.Amount}");
@@ -178,6 +200,16 @@ internal class MainWindow : Window
                     {
                         C.ItemGatherAmount[item.Key] = GatherAmount;
                         C.Save();
+                    }
+
+                    ImGui.TableNextColumn();
+                    if (IslandHelper.SellItems.TryGetValue(item.Value.ItemId, out var sellAmount))
+                    {
+                        ImGui.Text($"{sellAmount}");
+                    }
+                    else
+                    {
+                        ImGui.Text($"0");
                     }
 
                 }
