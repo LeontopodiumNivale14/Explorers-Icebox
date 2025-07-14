@@ -1,9 +1,5 @@
-using SharpDX;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ExplorersIcebox.Util;
+using static ECommons.UIHelpers.AddonMasterImplementations.AddonMaster;
 
 namespace ExplorersIcebox.Ui.DebugWindowTabs
 {
@@ -32,6 +28,88 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
             }
 
             ImGui.Text($"Current Value: {InputValue}");
+
+            if (ImGui.Button("Update NodeIds"))
+            {
+                IslandHelper.UpdateShopCallback();
+            }
+
+            if (GenericHelpers.TryGetAddonMaster<MJIHud>("MJIHud", out var hud) && hud.IsAddonReady)
+            {
+                if (ImGui.Button("Open IsleInventory"))
+                {
+                    hud.Isleventory();
+                }
+
+                ImGui.SameLine();
+                if (ImGui.Button("Open Crafting Log"))
+                {
+                    hud.SanctuaryCraftingLog();
+                }
+
+                ImGui.SameLine();
+                if (ImGui.Button("Open Gathering Log"))
+                {
+                    hud.SanctuaryGatheringLog();
+                }
+
+                ImGui.SameLine();
+                if (ImGui.Button("Manage Hideaway"))
+                {
+                    hud.ManageHideaway();
+                }
+
+                ImGui.SameLine();
+                if (ImGui.Button("Material Allocation"))
+                {
+                    hud.MaterialAllocation();
+                }
+
+                ImGui.SameLine();
+                if (ImGui.Button("Manage Minions"))
+                {
+                    hud.ManageMinions();
+                }
+
+                ImGui.SameLine();
+                if (ImGui.Button("Manage Furnishing"))
+                {
+                    hud.ManageFurnishing();
+                }
+
+                ImGui.SameLine();
+                if (ImGui.Button("Guide"))
+                {
+                    hud.Guide();
+                }
+            }
+
+            if (ImGui.BeginTable("Callback Values", 2, ImGuiTableFlags.SizingFixedFit))
+            {
+                ImGui.TableSetupColumn("Item");
+                ImGui.TableSetupColumn("Callback");
+
+                ImGui.TableHeadersRow();
+
+                foreach (var item in ItemData.IslandItems)
+                {
+                    ImGui.TableNextRow();
+
+                    ImGui.TableSetColumnIndex(0);
+                    ImGui.Text(item.Value.ItemName);
+                    if (ImGui.IsItemHovered())
+                    {
+                        ImGui.BeginTooltip();
+                        ImGui.Text($"{item.Key}");
+                        ImGui.EndTooltip();
+                    }
+
+                    ImGui.TableNextColumn();
+                    ImGui.Text($"{item.Value.SellSlot}");
+                }
+
+                ImGui.EndTable();
+            }
         }
     }
 }

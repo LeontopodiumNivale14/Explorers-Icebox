@@ -1,3 +1,4 @@
+using ECommons.Logging;
 using ExplorersIcebox.Util.PathCreation;
 using System;
 using System.Collections.Generic;
@@ -83,9 +84,6 @@ public static class IslandHelper
 
         return itemSell;
     }
-
-
-
 
     public static void UpdateNumbers()
     {
@@ -182,6 +180,26 @@ public static class IslandHelper
 
                 MaxTotalLoops = Math.Max(MaxTotalLoops, MinimumLoopCalc(AmountWanted, gathered.Amount));
                 MinimumPossibleLoops = Math.Min(MinimumPossibleLoops, IslandLoopCalc(gathered.Amount));
+            }
+        }
+    }
+
+    public static void UpdateShopCallback()
+    {
+        PluginLog.Debug("- - - Starting to update callbacks - - - ");
+        var callback = 0;
+        foreach (var item in ItemData.IslandItems)
+        {
+            if (Utils.IsNodeVisible("MJIPouch", 1, 8, item.Value.NodeId, 2))
+            {
+                item.Value.SellSlot = callback;
+                callback += 1;
+                PluginLog.Debug($"Updated {item.Key} callback to {item.Value.SellSlot}");
+            }
+            else
+            {
+                item.Value.SellSlot = 0;
+                PluginLog.Debug($"No value was found for {item.Key}, setting to 0");
             }
         }
     }
