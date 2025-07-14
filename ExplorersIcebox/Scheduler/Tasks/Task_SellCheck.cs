@@ -9,10 +9,10 @@ namespace ExplorersIcebox.Scheduler.Tasks
 
         public static void Enqueue()
         {
-            P.taskManager.Enqueue(() => SellCheck());
+            P.taskManager.Enqueue(() => SellCheck(), "Checking if need to sell to vendor");
         }
 
-        internal static void SellCheck()
+        internal static bool? SellCheck()
         {
             IslandHelper.SellItems.Clear();
             SellToShop = false;
@@ -49,7 +49,8 @@ namespace ExplorersIcebox.Scheduler.Tasks
             {
                 SchedulerMain.State = Enums.IceBoxState.NPCSell;
             }
-                
+
+            return true;
         }
     }
 }
