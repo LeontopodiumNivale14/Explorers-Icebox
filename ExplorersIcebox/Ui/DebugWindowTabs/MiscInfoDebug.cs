@@ -1,3 +1,4 @@
+using ExplorersIcebox.Scheduler.Tasks;
 using ExplorersIcebox.Util;
 using static ECommons.UIHelpers.AddonMasterImplementations.AddonMaster;
 
@@ -32,6 +33,12 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
             if (ImGui.Button("Update NodeIds"))
             {
                 IslandHelper.UpdateShopCallback();
+            }
+
+            ImGui.SameLine();
+            if (ImGui.Button("Update NodeId Task"))
+            {
+                Task_UpdateShop.Enqueue();
             }
 
             if (GenericHelpers.TryGetAddonMaster<MJIHud>("MJIHud", out var hud) && hud.IsAddonReady)
