@@ -1,0 +1,4350 @@
+routes:
+  '20: Effervescent Water':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - &o1
+        x: -268
+        y: 40.000008
+        z: 226
+      - x: -264.8905
+        y: 43.56762
+        z: 225.25069
+      - x: -199.94814
+        y: 68.93343
+        z: 185.30931
+      - x: -108.73354
+        y: 96.5031
+        z: 126.970726
+      - x: -93.951416
+        y: 99.19146
+        z: 117.2464
+      - x: 427.56927
+        y: 123.1268
+        z: -139.79857
+      - x: 447.6694
+        y: 114.0196
+        z: -181.10991
+      - x: 449.15576
+        y: 112.462776
+        z: -187.92458
+      - x: 446.8114
+        y: 109.99443
+        z: -192.10876
+      - x: 433.61963
+        y: 104.67159
+        z: -211.354
+      - x: 386.95938
+        y: 99.615364
+        z: -233.2161
+      - x: 346.9828
+        y: 95.58713
+        z: -243.22693
+      - x: 329.04056
+        y: 94.79782
+        z: -250.18831
+      - x: 317.08313
+        y: 91.65315
+        z: -256.45218
+      - x: 295.24234
+        y: 75.5
+        z: -253.1411
+      action: None
+      targetId: 0
+      mount: true
+      fly: true
+    routeWaypoints:
+    - name: Stalagmite
+      waypoints:
+      - x: 296.46103
+        y: 75.5
+        z: -249.95218
+      action: IslandInteract
+      targetId: 4304896876
+      mount: true
+      fly: false
+    - name: Stalagmite
+      waypoints:
+      - x: 314.58838
+        y: 75.5
+        z: -259.97256
+      action: IslandInteract
+      targetId: 4304896877
+      mount: true
+      fly: false
+    - name: Composite Rock
+      waypoints:
+      - x: 329.79782
+        y: 75.5
+        z: -268.5435
+      action: IslandInteract
+      targetId: 4304896879
+      mount: true
+      fly: false
+    - name: Stalagmite
+      waypoints:
+      - x: 335.75882
+        y: 75.5
+        z: -279.82547
+      action: IslandInteract
+      targetId: 4304896873
+      mount: false
+      fly: false
+    - name: Stalagmite
+      waypoints:
+      - x: 326.57947
+        y: 75.5
+        z: -283.4437
+      action: IslandInteract
+      targetId: 4304896872
+      mount: false
+      fly: false
+    - name: Stalagmite
+      waypoints:
+      - x: 314.10843
+        y: 75.5
+        z: -290.5054
+      action: IslandInteract
+      targetId: 4304896875
+      mount: true
+      fly: false
+    - name: Stalagmite
+      waypoints:
+      - x: 316.70316
+        y: 75.68794
+        z: -296.87695
+      action: IslandInteract
+      targetId: 4304896874
+      mount: false
+      fly: false
+    - name: Stalagmite
+      waypoints:
+      - x: 308.9137
+        y: 75.5
+        z: -314.15567
+      - &o0
+        x: 309.7128
+        y: 75.5
+        z: -315.89096
+      action: IslandInteract
+      targetId: 4304896868
+      mount: true
+      fly: false
+    - name: Stalagmite
+      waypoints:
+      - *o0
+      action: IslandInteract
+      targetId: 4304896870
+      mount: false
+      fly: false
+    - name: Stalagmite
+      waypoints:
+      - x: 296.38272
+        y: 75.5
+        z: -318.89697
+      action: IslandInteract
+      targetId: 4304896869
+      mount: false
+      fly: false
+    - name: Stalagmite
+      waypoints:
+      - x: 297.24597
+        y: 75.65337
+        z: -306.08105
+      - x: 295.24854
+        y: 75.65562
+        z: -295.55374
+      - x: 290.134
+        y: 75.5
+        z: -283.35037
+      action: IslandInteract
+      targetId: 4304896871
+      mount: true
+      fly: false
+  21. Crystal / Hawk Sand | Yelow Copper / Gold Ore:
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -262.48737
+        y: 47.29688
+        z: 224.77422
+      - x: -89.467224
+        y: 104.668175
+        z: 110.34117
+      - x: 251.35988
+        y: 110.28409
+        z: -56.726215
+      - x: 442.07993
+        y: 118.45749
+        z: -163.4037
+      - x: 449.05487
+        y: 111.71425
+        z: -194.34898
+      - x: 429.13208
+        y: 104.29188
+        z: -226.89616
+      - x: 401.16592
+        y: 100.701164
+        z: -234.04057
+      - x: 372.73743
+        y: 98.27837
+        z: -236.20833
+      - x: 317.7219
+        y: 92.694214
+        z: -243.7632
+      - x: 296.8149
+        y: 85.854774
+        z: -245.64093
+      - x: 284.53427
+        y: 82.62513
+        z: -246.44818
+      - x: 267.5213
+        y: 78.19943
+        z: -239.8684
+      - x: 260.60886
+        y: 76.01361
+        z: -227.60707
+      - x: 257.79553
+        y: 69.24442
+        z: -207.08466
+      - x: 261.18616
+        y: 59.434105
+        z: -174.79405
+      - x: 263.09113
+        y: 52.982826
+        z: -148.6002
+      action: IslandInteract
+      targetId: 0
+      mount: true
+      fly: true
+    routeWaypoints:
+    - name: Yellowish Rock
+      waypoints:
+      - x: 251.51845
+        y: 52.98604
+        z: -141.32767
+      action: IslandInteract
+      targetId: 4305155133
+      mount: false
+      fly: false
+    - name: Yellowish Rock
+      waypoints:
+      - x: 249.19931
+        y: 52.98172
+        z: -134.54901
+      - x: 245.58539
+        y: 52.9844
+        z: -130.2677
+      action: IslandInteract
+      targetId: 4305155135
+      mount: false
+      fly: false
+    - name: Island Crystal Cluster
+      waypoints:
+      - x: 250.03195
+        y: 52.981552
+        z: -123.45296
+      - x: 256.3314
+        y: 52.98901
+        z: -113.75447
+      action: IslandInteract
+      targetId: 4305155138
+      mount: false
+      fly: false
+    - name: Yellowish Rock
+      waypoints:
+      - x: 271.33292
+        y: 52.979866
+        z: -120.25215
+      action: IslandInteract
+      targetId: 4305155136
+      mount: false
+      fly: false
+    - name: Island Crystal Cluster
+      waypoints:
+      - x: 277.4476
+        y: 52.989304
+        z: -121.48312
+      - x: 281.07394
+        y: 52.995586
+        z: -124.97142
+      action: IslandInteract
+      targetId: 4305155139
+      mount: false
+      fly: false
+    - name: Island Crystal Cluster
+      waypoints:
+      - x: 294.49695
+        y: 53.000004
+        z: -123.97236
+      action: IslandInteract
+      targetId: 4305155141
+      mount: false
+      fly: false
+    - name: Island Crystal Cluster
+      waypoints:
+      - x: 298.65314
+        y: 53.000004
+        z: -135.47746
+      action: IslandInteract
+      targetId: 4305155140
+      mount: false
+      fly: false
+    - name: Yellowish Rock
+      waypoints:
+      - x: 284.23187
+        y: 52.99487
+        z: -138.20601
+      action: IslandInteract
+      targetId: 4305155134
+      mount: false
+      fly: false
+    - name: Glowing Fungus
+      waypoints:
+      - x: 277.7631
+        y: 52.989464
+        z: -147.13696
+      - x: 275.85855
+        y: 52.987167
+        z: -151.8218
+      - x: 258.21054
+        y: 72.19013
+        z: -225.42197
+      - x: 264.72394
+        y: 74.86688
+        z: -234.08653
+      - x: 274.5868
+        y: 75.51616
+        z: -241.9295
+      - x: 284.4957
+        y: 75.49999
+        z: -247.04332
+      - x: 291.11365
+        y: 75.5
+        z: -247.01651
+      action: IslandInteract
+      targetId: 4304896881
+      mount: true
+      fly: false
+    - name: Stalagmite
+      waypoints:
+      - x: 295.0372
+        y: 75.5
+        z: -247.90251
+      action: IslandInteract
+      targetId: 4304896876
+      mount: false
+      fly: false
+    - name: Composite Rock
+      waypoints:
+      - x: 294.7148
+        y: 75.5
+        z: -250.64684
+      - x: 304.25452
+        y: 75.5
+        z: -253.83319
+      action: IslandInteract
+      targetId: 4304896880
+      mount: false
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 278.09192
+        y: 75.5
+        z: -249.01505
+      - x: 257.28912
+        y: 72.43803
+        z: -226.43315
+      - x: 263.38855
+        y: 54.205418
+        z: -164.60371
+      - x: 251.31667
+        y: 52.98611
+        z: -141.21452
+      action: None
+      targetId: 0
+      mount: false
+      fly: false
+  '19: Coal / Shale | Glimshroom':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -264.4724
+        y: 43.972355
+        z: 225.00536
+      - x: -193.17766
+        y: 70.04459
+        z: 180.67676
+      - x: -93.510155
+        y: 104.05815
+        z: 112.03442
+      - x: 431.19376
+        y: 119.40446
+        z: -155.07014
+      - x: 441.86313
+        y: 116.588615
+        z: -168.72484
+      - x: 446.31793
+        y: 113.381836
+        z: -180.2256
+      - x: 447.37607
+        y: 109.96919
+        z: -192.81194
+      - x: 425.5789
+        y: 98.13345
+        z: -245.72144
+      action: None
+      targetId: 0
+      mount: true
+      fly: true
+    routeWaypoints:
+    - name: Glowing Fungus
+      waypoints:
+      - x: 432.69452
+        y: 99.0168
+        z: -246.71419
+      action: IslandInteract
+      targetId: 4304895773
+      mount: false
+      fly: false
+    - name: Composite Rock
+      waypoints:
+      - x: 424.29776
+        y: 98.738976
+        z: -249.85616
+      - x: 423.0227
+        y: 99.151085
+        z: -253.80283
+      action: IslandInteract
+      targetId: 4305015973
+      mount: false
+      fly: false
+    - name: Glowing Fungus
+      waypoints:
+      - x: 429.04395
+        y: 99.919495
+        z: -259.72626
+      action: IslandInteract
+      targetId: 4304895774
+      mount: false
+      fly: false
+    - name: Composite Rock
+      waypoints:
+      - x: 423.97733
+        y: 99.399025
+        z: -261.44373
+      action: IslandInteract
+      targetId: 4305015974
+      mount: false
+      fly: false
+    - name: Composite Rock
+      waypoints:
+      - x: 420.7858
+        y: 98.76032
+        z: -265.03635
+      - x: 419.23846
+        y: 98.17653
+        z: -273.21817
+      action: IslandInteract
+      targetId: 4305015976
+      mount: false
+      fly: false
+    - name: Glowing Fungus
+      waypoints:
+      - x: 420.7781
+        y: 97.46321
+        z: -281.12265
+      - x: 426.68997
+        y: 97.84675
+        z: -293.0929
+      - x: 432.4397
+        y: 98.03162
+        z: -300.2061
+      action: IslandInteract
+      targetId: 4304896853
+      mount: true
+      fly: false
+    - name: Composite Rock
+      waypoints:
+      - x: 438.22495
+        y: 97.92527
+        z: -310.13132
+      - x: 471.9853
+        y: 95.84706
+        z: -358.05295
+      action: IslandInteract
+      targetId: 4304896866
+      mount: true
+      fly: false
+    - name: Glowing Fungus
+      waypoints:
+      - x: 478.9312
+        y: 95.0548
+        z: -367.44626
+      action: IslandInteract
+      targetId: 4304896884
+      mount: false
+      fly: false
+    - name: Glowing Fungus
+      waypoints:
+      - x: 481.9628
+        y: 95.216354
+        z: -375.01813
+      action: IslandInteract
+      targetId: 4304896854
+      mount: false
+      fly: false
+    - name: Composite Rock
+      waypoints:
+      - x: 471.9568
+        y: 95.06124
+        z: -385.91946
+      action: IslandInteract
+      targetId: 4304896867
+      mount: false
+      fly: false
+    - name: Glowing Fungus
+      waypoints:
+      - x: 435.2529
+        y: 94.938545
+        z: -379.39093
+      action: IslandInteract
+      targetId: 4304870828
+      mount: true
+      fly: false
+    - name: Composite Rock
+      waypoints:
+      - x: 438.4005
+        y: 94.91616
+        z: -366.97192
+      action: IslandInteract
+      targetId: 4304896865
+      mount: false
+      fly: false
+    - name: Glowing Fungus
+      waypoints:
+      - x: 434.99097
+        y: 96.2636
+        z: -357.97748
+      action: IslandInteract
+      targetId: 4304896859
+      mount: false
+      fly: false
+    - name: Composite Rock
+      waypoints:
+      - x: 439.80582
+        y: 97.31351
+        z: -344.79752
+      - x: 436.94244
+        y: 97.60966
+        z: -327.0257
+      - x: 429.27188
+        y: 97.78063
+        z: -313.77557
+      - x: 418.081
+        y: 97.903366
+        z: -301.68408
+      - x: 405.7924
+        y: 98.42886
+        z: -298.10132
+      action: IslandInteract
+      targetId: 4304896864
+      mount: true
+      fly: false
+    - name: Glowing Fungus
+      waypoints:
+      - x: 396.5661
+        y: 97.49037
+        z: -288.06772
+      - x: 390.46072
+        y: 98.46888
+        z: -283.13333
+      action: IslandInteract
+      targetId: 4304896851
+      mount: false
+      fly: false
+    - name: Composite Rock
+      waypoints:
+      - x: 389.77756
+        y: 97.422005
+        z: -272.95535
+      action: IslandInteract
+      targetId: 4304896863
+      mount: false
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 421.34705
+        y: 97.82773
+        z: -245.70561
+      - x: 432.63394
+        y: 98.98564
+        z: -246.59401
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '18: Quartz [Mountain XP Loop]':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -260.7037
+        y: 48.036873
+        z: 224.2348
+      - x: -75.81091
+        y: 132.8263
+        z: 54.753094
+      - x: 333.82565
+        y: 400.18274
+        z: -386.0027
+      - x: 342.80298
+        y: 393.7955
+        z: -404.85873
+      action: None
+      targetId: 0
+      mount: true
+      fly: true
+    routeWaypoints:
+    - name: Quartz Formation
+      waypoints:
+      - x: 343.04684
+        y: 393.7387
+        z: -406.09598
+      action: IslandInteract
+      targetId: 4304373921
+      mount: false
+      fly: false
+    - name: Quartz Formation
+      waypoints:
+      - x: 349.93063
+        y: 394.68484
+        z: -406.1321
+      action: IslandInteract
+      targetId: 4304373925
+      mount: false
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 352.81656
+        y: 394.13263
+        z: -407.92972
+      action: IslandInteract
+      targetId: 4304373936
+      mount: false
+      fly: false
+    - name: Quartz Formation
+      waypoints:
+      - x: 356.16727
+        y: 394.25647
+        z: -407.90833
+      action: IslandInteract
+      targetId: 4304373922
+      mount: false
+      fly: false
+    - name: Quartz Formation
+      waypoints:
+      - x: 358.07422
+        y: 394.1046
+        z: -404.0667
+      action: IslandInteract
+      targetId: 4304373932
+      mount: false
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 359.8713
+        y: 394.0637
+        z: -399.90714
+      action: IslandInteract
+      targetId: 4304373938
+      mount: false
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 357.71042
+        y: 394.055
+        z: -399.0199
+      action: IslandInteract
+      targetId: 4304373935
+      mount: false
+      fly: false
+    - name: Quartz Formation
+      waypoints:
+      - &o2
+        x: 354.90436
+        y: 393.94714
+        z: -397.67587
+      action: IslandInteract
+      targetId: 4304373923
+      mount: false
+      fly: false
+    - name: Quartz Formation
+      waypoints:
+      - *o2
+      action: IslandInteract
+      targetId: 4304373924
+      mount: false
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 347.86035
+        y: 394.18915
+        z: -398.00052
+      action: IslandInteract
+      targetId: 4304373937
+      mount: false
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 345.6887
+        y: 394.15848
+        z: -399.53027
+      action: IslandInteract
+      targetId: 4304373934
+      mount: false
+      fly: false
+  '17: Leucogranite':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - x: -267.39758
+        y: 40.000008
+        z: 225.6943
+      - x: -261.69333
+        y: 40.000008
+        z: 226.21014
+      - x: -231.64
+        y: 40.21981
+        z: 203.45288
+      - x: -212.8496
+        y: 42.405437
+        z: 186.09961
+      - x: -199.3088
+        y: 44.60397
+        z: 173.808
+      - x: -124.6545
+        y: 51.634655
+        z: 160.9811
+      - x: -118.40065
+        y: 53.680714
+        z: 151.80608
+      - x: -113.084305
+        y: 56.4775
+        z: 139.03238
+      - x: -75.44137
+        y: 70.56525
+        z: 133.66022
+      - x: -21.129309
+        y: 69.4537
+        z: 102.25335
+      - x: -8.206442
+        y: 69.62444
+        z: 96.76147
+      - x: -0.6857238
+        y: 69.70841
+        z: 94.630356
+      - x: 12.515032
+        y: 70.28855
+        z: 95.27513
+      - x: 161.32753
+        y: 75.067566
+        z: -0.98340863
+      - x: 249.81982
+        y: 88.727684
+        z: -52.25653
+      - x: 341.3866
+        y: 90.50908
+        z: -81.44144
+      - x: 395.51385
+        y: 89.04363
+        z: -99.27671
+      - x: 446.50485
+        y: 92.156555
+        z: -116.97148
+      - x: 465.87698
+        y: 91.19192
+        z: -127.654884
+      - x: 523.91223
+        y: 66.29722
+        z: -149.67783
+      - x: 568.8625
+        y: 68.15705
+        z: -182.66351
+      - x: 597.21075
+        y: 68.743355
+        z: -218.29514
+      - x: 610.70544
+        y: 70.043846
+        z: -233.66718
+      - x: 633.90344
+        y: 74.155975
+        z: -260.09232
+      - x: 641.7704
+        y: 75.28341
+        z: -268.50656
+      - x: 678.7275
+        y: 70.6009
+        z: -308.97635
+      - x: 743.77094
+        y: 21.411583
+        z: -351.69724
+      - x: 729.9756
+        y: 24.104494
+        z: -392.96332
+      - x: 710.1125
+        y: 27.158503
+        z: -450.95828
+      - x: 705.8834
+        y: 23.231562
+        z: -479.2158
+      - x: 689.9362
+        y: 20.667353
+        z: -486.5238
+      - x: 682.7791
+        y: 15.5475445
+        z: -503.41306
+      - x: 682.52167
+        y: 14.951217
+        z: -533.6114
+      - x: 676.74457
+        y: 9.615603
+        z: -574.82635
+      - x: 675.8458
+        y: 5.4892836
+        z: -620.8721
+      - x: 683.454
+        y: 5.3025293
+        z: -639.7575
+      action: None
+      targetId: 0
+      mount: false
+      fly: false
+    routeWaypoints:
+    - name: Speckled Rock
+      waypoints:
+      - x: 691.9426
+        y: 4.9999924
+        z: -646.262
+      action: IslandInteract
+      targetId: 4304373973
+      mount: false
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 672.38556
+        y: 5.376588
+        z: -653.88153
+      action: IslandInteract
+      targetId: 4304373972
+      mount: false
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 654.31885
+        y: 9.063535
+        z: -616.5243
+      action: IslandInteract
+      targetId: 4304410571
+      mount: true
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 623.6009
+        y: 10.54123
+        z: -644.7469
+      action: IslandInteract
+      targetId: 4304410577
+      mount: true
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 600.44226
+        y: 9.966604
+        z: -659.3725
+      - x: 594.8963
+        y: 9.48054
+        z: -666.97833
+      action: IslandInteract
+      targetId: 4304410579
+      mount: true
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 573.2812
+        y: 6.734166
+        z: -690.2073
+      action: IslandInteract
+      targetId: 4304410581
+      mount: true
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 557.7114
+        y: 5.3494806
+        z: -730.43536
+      action: IslandInteract
+      targetId: 4304410582
+      mount: false
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 547.99866
+        y: 5.6369085
+        z: -714.0619
+      action: IslandInteract
+      targetId: 4304373965
+      mount: false
+      fly: false
+    - name: Bluish Rock
+      waypoints:
+      - x: 551.5258
+        y: 6.1636972
+        z: -705.7693
+      - x: 550.57056
+        y: 8.250434
+        z: -694.9028
+      action: IslandInteract
+      targetId: 4304326210
+      mount: false
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 562.1486
+        y: 7.441824
+        z: -687.41864
+      - x: 584.2343
+        y: 9.470723
+        z: -664.2297
+      action: IslandInteract
+      targetId: 4304373966
+      mount: false
+      fly: false
+    - name: Bluish Rock
+      waypoints:
+      - x: 613.0732
+        y: 10.697564
+        z: -643.4363
+      action: IslandInteract
+      targetId: 4304326207
+      mount: false
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 622.26825
+        y: 10.806995
+        z: -641.48175
+      - x: 649.4463
+        y: 7.9284143
+        z: -633.2766
+      - x: 691.89417
+        y: 4.9999924
+        z: -646.2983
+      action: None
+      targetId: 0
+      mount: false
+      fly: false
+  '16: Rocksalt':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -260.69153
+        y: 40.000008
+        z: 226.48677
+      - x: -201.27354
+        y: 44.387253
+        z: 174.78658
+      - x: -120.50238
+        y: 52.2374
+        z: 159.11409
+      - x: -111.247955
+        y: 56.7955
+        z: 137.94006
+      - x: -70.400604
+        y: 72.40464
+        z: 130.9204
+      - x: -69.909
+        y: 72.54009
+        z: 130.66469
+      - x: -12.90369
+        y: 69.95043
+        z: 101.01476
+      - x: -0.76732373
+        y: 69.800934
+        z: 95.6034
+      - x: 117.15531
+        y: 61.680473
+        z: 74.03023
+      - x: 171.81303
+        y: 62.006172
+        z: 61.777206
+      - x: 202.86217
+        y: 66.95695
+        z: 54.76846
+      - x: 251.9781
+        y: 62.84952
+        z: 52.953423
+      - x: 306.09586
+        y: 69.59881
+        z: 50.84491
+      - x: 345.73758
+        y: 70.49319
+        z: 49.432625
+      - x: 398.39737
+        y: 56.317272
+        z: 39.783623
+      - x: 496.03253
+        y: 16.265059
+        z: 6.8091607
+      - x: 549.57434
+        y: 7.5414495
+        z: -11.667757
+      - x: 573.4477
+        y: 4.5581245
+        z: -24.468597
+      - x: 593.14813
+        y: 2.082033
+        z: -35.03195
+      - x: 600.5554
+        y: 1.6767871
+        z: -39.00374
+      - x: 686.1116
+        y: 1.2246618
+        z: -127.619026
+      - x: 699.76245
+        y: -0.15661943
+        z: -149.44423
+      - x: 699.06683
+        y: -0.16529566
+        z: -154.95108
+      - x: 695.6483
+        y: -0.061766148
+        z: -159.48294
+      action: None
+      targetId: 0
+      mount: false
+      fly: false
+    routeWaypoints:
+    - name: Crystal-banded Rock
+      waypoints:
+      - &o3
+        x: 685.46594
+        y: 1.116451
+        z: -163.45375
+      action: IslandInteract
+      targetId: 4304326266
+      mount: false
+      fly: false
+    - name: Crystal-banded Rock
+      waypoints:
+      - *o3
+      action: IslandInteract
+      targetId: 4304326270
+      mount: false
+      fly: false
+    - name: Crystal-banded Rock
+      waypoints:
+      - x: 686.17993
+        y: 0.7172799
+        z: -160.66325
+      - x: 684.5962
+        y: 0.6848054
+        z: -159.92323
+      - x: 682.33844
+        y: 0.71762085
+        z: -159.43135
+      action: IslandInteract
+      targetId: 4304326268
+      mount: false
+      fly: false
+    - name: Crystal-banded Rock
+      waypoints:
+      - x: 679.9596
+        y: 0.61836886
+        z: -158.32408
+      action: IslandInteract
+      targetId: 4304326265
+      mount: false
+      fly: false
+    - name: Crystal-banded Rock
+      waypoints:
+      - x: 681.1336
+        y: 0.61964333
+        z: -157.73213
+      action: IslandInteract
+      targetId: 4304326267
+      mount: false
+      fly: false
+    - name: Crystal-banded Rock
+      waypoints:
+      - x: 684.2026
+        y: 0.6097777
+        z: -157.21942
+      action: IslandInteract
+      targetId: 4304326264
+      mount: false
+      fly: false
+    - name: Mound of Dirt
+      waypoints:
+      - x: 696.38904
+        y: -0.110776484
+        z: -156.53877
+      - x: 699.2853
+        y: -0.16330147
+        z: -152.2708
+      - x: 698.88275
+        y: -0.1382308
+        z: -149.38092
+      - x: 681.4409
+        y: 1.7208807
+        z: -122.39903
+      - x: 677.6689
+        y: 1.7241518
+        z: -119.622185
+      - x: 639.2727
+        y: 3.0611393
+        z: -101.01201
+      - x: 600.54156
+        y: 8.313866
+        z: -100.54273
+      action: IslandInteract
+      targetId: 4304375904
+      mount: true
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 589.3817
+        y: 8.59705
+        z: -93.834305
+      action: IslandInteract
+      targetId: 4304375910
+      mount: false
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 569.7668
+        y: 7.983387
+        z: -58.25171
+      action: IslandInteract
+      targetId: 4304375911
+      mount: true
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 564.1163
+        y: 8.027017
+        z: -52.17137
+      - x: 543.21344
+        y: 10.205712
+        z: -37.012905
+      action: IslandInteract
+      targetId: 4304375913
+      mount: true
+      fly: false
+    - name: Mound of Dirt
+      waypoints:
+      - x: 555.4579
+        y: 7.661577
+        z: -32.52697
+      - x: 566.3975
+        y: 5.621211
+        z: -24.91957
+      - x: 572.38324
+        y: 4.637006
+        z: -20.60488
+      action: IslandInteract
+      targetId: 4304375905
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 682.42505
+        y: 1.5259023
+        z: -121.69037
+      - x: 700.26965
+        y: -0.15983903
+        z: -148.14539
+      - x: 700.02313
+        y: -0.1792072
+        z: -152.32518
+      - x: 696.9148
+        y: -0.12283528
+        z: -157.20087
+      - x: 685.4586
+        y: 1.1193709
+        z: -163.46909
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '13: Multicolored Isleblooms | Quartz':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -259.7861
+        y: 48.49807
+        z: 223.26262
+      - x: -106.36408
+        y: 143.38475
+        z: 23.137022
+      - x: 184.49341
+        y: 195.0026
+        z: -347.8292
+      - x: 195.75833
+        y: 190.42664
+        z: -363.42767
+      action: None
+      targetId: 0
+      mount: true
+      fly: true
+    routeWaypoints:
+    - name: Multicolored Isleblooms
+      waypoints:
+      - x: 199.15459
+        y: 191.00117
+        z: -365.13333
+      action: IslandInteract
+      targetId: 4304649070
+      mount: false
+      fly: false
+    - name: Multicolored Isleblooms
+      waypoints:
+      - x: 194.26195
+        y: 191.27266
+        z: -375.06638
+      action: IslandInteract
+      targetId: 4304649069
+      mount: false
+      fly: false
+    - name: Multicolored Isleblooms
+      waypoints:
+      - x: 198.95255
+        y: 191.00352
+        z: -420.00098
+      action: IslandInteract
+      targetId: 4304649072
+      mount: true
+      fly: false
+    - name: Multicolored Isleblooms
+      waypoints:
+      - x: 200.16545
+        y: 191.58696
+        z: -411.88882
+      action: IslandInteract
+      targetId: 4304649068
+      mount: false
+      fly: false
+    - name: Quartz Formation
+      waypoints:
+      - x: 212.30089
+        y: 190.5
+        z: -392.5506
+      action: IslandInteract
+      targetId: 4304373928
+      mount: true
+      fly: false
+    - name: Quartz Formation
+      waypoints:
+      - x: 214.29184
+        y: 190.5
+        z: -391.50836
+      action: IslandInteract
+      targetId: 4304373929
+      mount: false
+      fly: false
+    - name: Quartz Formation
+      waypoints:
+      - x: 215.31816
+        y: 190.5
+        z: -387.7892
+      action: IslandInteract
+      targetId: 4304373930
+      mount: false
+      fly: false
+    - name: Quartz Formation
+      waypoints:
+      - x: 213.9706
+        y: 190.5
+        z: -386.92303
+      action: IslandInteract
+      targetId: 4304373927
+      mount: false
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 214.32864
+        y: 223.91364
+        z: -385.1085
+      - x: 257.18857
+        y: 318.96973
+        z: -392.0454
+      - x: 339.59183
+        y: 396.27606
+        z: -401.69904
+      - x: 346.3045
+        y: 394.1109
+        z: -397.65973
+      action: IslandInteract
+      targetId: 4304373937
+      mount: true
+      fly: true
+    - name: Speckled Rock
+      waypoints:
+      - x: 348.15164
+        y: 394.2566
+        z: -400.14938
+      action: IslandInteract
+      targetId: 4304373934
+      mount: false
+      fly: false
+    - name: Quartz Formation
+      waypoints:
+      - x: 349.24887
+        y: 394.24237
+        z: -403.9559
+      action: IslandInteract
+      targetId: 4304373925
+      mount: false
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 339.29105
+        y: 396.8157
+        z: -402.0565
+      - x: 254.32607
+        y: 314.42123
+        z: -394.70215
+      - x: 199.3091
+        y: 191.03992
+        z: -365.2987
+      action: None
+      targetId: 0
+      mount: true
+      fly: true
+  '14: Iron Ore':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -263.06885
+        y: 40.000008
+        z: 226.9086
+      - x: -220.23695
+        y: 40.81923
+        z: 194.41153
+      - x: -200.502
+        y: 44.46171
+        z: 175.02211
+      - x: -123.71261
+        y: 51.889507
+        z: 159.83916
+      - x: -121.36141
+        y: 52.979347
+        z: 156.42516
+      - x: -112.00996
+        y: 56.60484
+        z: 138.74815
+      - x: -74.02874
+        y: 71.15721
+        z: 133.67728
+      - x: -70.31845
+        y: 72.375435
+        z: 132.71637
+      - x: -61.08547
+        y: 72.96661
+        z: 127.69982
+      - x: -52.191322
+        y: 71.338264
+        z: 121.82576
+      - x: -42.27905
+        y: 70.68267
+        z: 116.78081
+      - x: -37.78979
+        y: 70.10342
+        z: 112.72742
+      - x: -32.225994
+        y: 70.74775
+        z: 112.93408
+      - x: -11.556341
+        y: 72.70071
+        z: 114.75375
+      - x: 18.600628
+        y: 72.67342
+        z: 108.67316
+      - x: 73.702034
+        y: 70.08317
+        z: 97.563065
+      - x: 101.7663
+        y: 65.056595
+        z: 82.43949
+      - x: 138.03406
+        y: 60.211555
+        z: 63.56564
+      - x: 157.09435
+        y: 66.85522
+        z: 45.416553
+      - x: 176.60764
+        y: 71.45125
+        z: 22.02927
+      - x: 193.15457
+        y: 79.5606
+        z: -9.390676
+      - x: 226.88147
+        y: 89.80978
+        z: -54.448517
+      - x: 262.07846
+        y: 94.36401
+        z: -91.08052
+      - x: 294.45224
+        y: 102.84324
+        z: -124.14139
+      - x: 279.65155
+        y: 112.101265
+        z: -147.20581
+      - x: 262.59988
+        y: 115.45813
+        z: -162.9518
+      - x: 254.73521
+        y: 118.7932
+        z: -173.0228
+      - x: 260.6509
+        y: 123.4884
+        z: -183.36896
+      - x: 272.7938
+        y: 136.52156
+        z: -204.60608
+      - x: 293.39175
+        y: 148.38669
+        z: -217.78111
+      - x: 313.88995
+        y: 156.46909
+        z: -223.45619
+      - x: 335.28497
+        y: 161.85065
+        z: -229.57478
+      - x: 349.567
+        y: 165.55408
+        z: -230.02359
+      - x: 362.7832
+        y: 163.77348
+        z: -225.8818
+      - x: 375.23563
+        y: 162.82504
+        z: -225.30598
+      - x: 390.4232
+        y: 164.26079
+        z: -226.63945
+      - &o4
+        x: 400.08075
+        y: 164.49251
+        z: -227.52667
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+    routeWaypoints:
+    - name: Rough Black Rock
+      waypoints:
+      - *o4
+      action: IslandInteract
+      targetId: 4304410589
+      mount: false
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - *o4
+      action: IslandInteract
+      targetId: 4304410588
+      mount: false
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - *o4
+      action: IslandInteract
+      targetId: 4304410587
+      mount: false
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 390.65158
+        y: 164.45024
+        z: -227.4477
+      - x: 375.96234
+        y: 162.92197
+        z: -225.88806
+      - x: 367.10062
+        y: 165.0464
+        z: -230.61754
+      - x: 421.9371
+        y: 180.62852
+        z: -246.06201
+      action: IslandInteract
+      targetId: 4304373957
+      mount: true
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 430.1641
+        y: 180.554
+        z: -248.04619
+      - x: 451.6983
+        y: 181.16025
+        z: -257.4041
+      action: IslandInteract
+      targetId: 4304373958
+      mount: true
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 458.78513
+        y: 181.15846
+        z: -246.14046
+      action: IslandInteract
+      targetId: 4304373959
+      mount: false
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 485.69574
+        y: 145.10658
+        z: -224.87004
+      - x: 494.33142
+        y: 143.71432
+        z: -225.39522
+      - x: 517.3835
+        y: 138.75821
+        z: -227.7175
+      - x: 541.7823
+        y: 123.957535
+        z: -228.1885
+      - x: 545.03864
+        y: 124.21112
+        z: -230.94458
+      action: IslandInteract
+      targetId: 4304373964
+      mount: true
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 571.5695
+        y: 128.20396
+        z: -270.45514
+      action: IslandInteract
+      targetId: 4304373960
+      mount: true
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 558.14453
+        y: 127.91811
+        z: -274.96988
+      action: IslandInteract
+      targetId: 4304373956
+      mount: false
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 527.2436
+        y: 135.2356
+        z: -241.37706
+      - x: 510.31177
+        y: 140.14485
+        z: -235.25877
+      - x: 471.69568
+        y: 145.55408
+        z: -226.97821
+      action: IslandInteract
+      targetId: 4304373961
+      mount: true
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 464.20865
+        y: 145.5541
+        z: -220.02342
+      - x: 445.59665
+        y: 145.5541
+        z: -208.15758
+      - x: 433.68625
+        y: 145.42172
+        z: -209.2432
+      action: IslandInteract
+      targetId: 4304373962
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 374.58783
+        y: 160.34563
+        z: -220.78358
+      - x: 375.5304
+        y: 162.80965
+        z: -225.14867
+      - x: 400.07147
+        y: 164.49388
+        z: -227.5237
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '15: Laver / Squid | Jellyfish / Coral':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -235.03914
+        y: 82.6
+        z: 212.7255
+      - x: -117.37959
+        y: 116.679955
+        z: 150.70952
+      - x: 299.51898
+        y: 85.86356
+        z: 86.09175
+      - x: 584.2795
+        y: 31.266901
+        z: 34.32598
+      - x: 691.3287
+        y: 4.4146175
+        z: -12.974613
+      - x: 706.7759
+        y: -45.138607
+        z: -27.559853
+      action: None
+      targetId: 0
+      mount: true
+      fly: true
+    routeWaypoints:
+    - name: Seaweed Tangle
+      waypoints:
+      - x: 707.9378
+        y: -47.118454
+        z: -27.257967
+      action: IslandInteract
+      targetId: 4304373902
+      mount: false
+      fly: false
+    - name: Coral Formation
+      waypoints:
+      - x: 723.8358
+        y: -45.76084
+        z: -24.893587
+      action: IslandInteract
+      targetId: 4304373953
+      mount: false
+      fly: false
+    - name: Seaweed Tangle
+      waypoints:
+      - x: 711.78613
+        y: -46.48702
+        z: -3.549048
+      action: IslandInteract
+      targetId: 4304373899
+      mount: false
+      fly: false
+    - name: Coral Formation
+      waypoints:
+      - x: 744.86
+        y: -50.471928
+        z: 13.31359
+      action: IslandInteract
+      targetId: 4304373952
+      mount: true
+      fly: false
+    - name: Coral Formation
+      waypoints:
+      - x: 738.0252
+        y: -48.908394
+        z: 27.625473
+      - x: 727.5656
+        y: -47.67299
+        z: 38.4908
+      action: IslandInteract
+      targetId: 4304373951
+      mount: true
+      fly: false
+    - name: Seaweed Tangle
+      waypoints:
+      - x: 730.8508
+        y: -48.81288
+        z: 48.544315
+      - x: 732.3749
+        y: -50.04227
+        z: 59.194584
+      action: IslandInteract
+      targetId: 4304373900
+      mount: true
+      fly: false
+    - name: Coral Formation
+      waypoints:
+      - x: 700.8477
+        y: -42.626793
+        z: 83.71841
+      action: IslandInteract
+      targetId: 4304373955
+      mount: true
+      fly: false
+    - name: Coral Formation
+      waypoints:
+      - x: 714.42004
+        y: -44.564964
+        z: 104.65924
+      action: IslandInteract
+      targetId: 4304373948
+      mount: true
+      fly: false
+    - name: Coral Formation
+      waypoints:
+      - x: 716.016
+        y: -44.297817
+        z: 109.54311
+      - x: 726.3066
+        y: -44.00608
+        z: 113.16785
+      action: IslandInteract
+      targetId: 4304373954
+      mount: false
+      fly: false
+    - name: Seaweed Tangle
+      waypoints:
+      - x: 718.5894
+        y: -41.402954
+        z: 133.66473
+      action: IslandInteract
+      targetId: 4304373896
+      mount: true
+      fly: false
+    - name: Seaweed Tangle
+      waypoints:
+      - x: 732.178
+        y: -41.262703
+        z: 124.749146
+      - x: 740.77704
+        y: -43.276173
+        z: 123.77022
+      action: IslandInteract
+      targetId: 4304373895
+      mount: true
+      fly: false
+    - name: Seaweed Tangle
+      waypoints:
+      - x: 732.9378
+        y: -49.37606
+        z: 76.5865
+      action: IslandInteract
+      targetId: 4304373897
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 727.9342
+        y: -45.912827
+        z: 37.843414
+      - x: 707.79694
+        y: -46.889355
+        z: -27.357763
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '12: Hemp':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -259.59286
+        y: 40.000008
+        z: 225.65543
+      - x: -234.00627
+        y: 40.000008
+        z: 203.82925
+      - x: -200.51845
+        y: 44.480595
+        z: 174.5595
+      - x: -148.16068
+        y: 48.250412
+        z: 162.09163
+      - x: -124.8155
+        y: 51.63233
+        z: 160.43204
+      - x: -120.783615
+        y: 52.87504
+        z: 156.69327
+      - x: -111.49469
+        y: 57.008545
+        z: 136.16214
+      - x: -64.98533
+        y: 73.27809
+        z: 131.18375
+      - x: -24.185514
+        y: 69.29307
+        z: 103.61233
+      - x: -1.3853087
+        y: 70.93085
+        z: 102.74819
+      - x: 21.89343
+        y: 70.827286
+        z: 96.77717
+      - x: 114.71358
+        y: 61.629265
+        z: 72.945274
+      - x: 147.91434
+        y: 60.257755
+        z: 64.420906
+      - x: 197.79675
+        y: 63.7486
+        z: 62.017597
+      - x: 237.13213
+        y: 60.212593
+        z: 59.29092
+      - x: 244.02484
+        y: 60.155315
+        z: 61.09799
+      - x: 247.18848
+        y: 59.555172
+        z: 64.22216
+      - x: 260.71237
+        y: 60.664833
+        z: 64.13718
+      - x: 299.9982
+        y: 66.02162
+        z: 68.66436
+      - x: 343.16605
+        y: 65.9548
+        z: 79.13426
+      - x: 362.3144
+        y: 62.51335
+        z: 81.21183
+      - x: 386.3266
+        y: 52.107674
+        z: 83.63401
+      - x: 399.43225
+        y: 50.009937
+        z: 85.6546
+      - x: 421.7871
+        y: 46.39251
+        z: 89.09942
+      - x: 439.7108
+        y: 43.135014
+        z: 93.062164
+      - x: 472.4164
+        y: 37.06639
+        z: 98.10189
+      - x: 497.56064
+        y: 31.393824
+        z: 96.39266
+      - x: 510.07135
+        y: 28.94733
+        z: 98.32048
+      - x: 542.18146
+        y: 18.361568
+        z: 107.22938
+      - x: 579.6188
+        y: 14.540476
+        z: 110.18992
+      - x: 592.3862
+        y: 13.334902
+        z: 110.029495
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+    routeWaypoints:
+    - name: Agave Plant
+      waypoints:
+      - x: 592.48584
+        y: 13.137169
+        z: 112.13758
+      action: IslandInteract
+      targetId: 4304375915
+      mount: false
+      fly: false
+    - name: Palm Tree
+      waypoints:
+      - x: 579.72595
+        y: 14.544598
+        z: 108.38298
+      - x: 555.36334
+        y: 16.965996
+        z: 106.02819
+      action: IslandInteract
+      targetId: 4304258605
+      mount: true
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 539.3287
+        y: 18.512205
+        z: 108.97119
+      action: IslandInteract
+      targetId: 4304375912
+      mount: false
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 546.1003
+        y: 17.827604
+        z: 96.20432
+      - x: 544.1895
+        y: 16.01737
+        z: 86.76471
+      - x: 542.20044
+        y: 10.533769
+        z: 72.999016
+      - x: 533.17224
+        y: 10.173268
+        z: 60.38342
+      action: IslandInteract
+      targetId: 4304375909
+      mount: true
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 523.1746
+        y: 9.705074
+        z: 38.425022
+      - x: 519.53046
+        y: 10.196657
+        z: 26.853958
+      action: IslandInteract
+      targetId: 4304375908
+      mount: true
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 520.8865
+        y: 11.055576
+        z: -0.66710186
+      action: IslandInteract
+      targetId: 4304375914
+      mount: true
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 533.79236
+        y: 9.232941
+        z: 1.3930509
+      action: IslandInteract
+      targetId: 4304375907
+      mount: false
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 542.99146
+        y: 10.09552
+        z: -35.456856
+      action: IslandInteract
+      targetId: 4304375913
+      mount: true
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 571.17694
+        y: 7.608199
+        z: -57.125458
+      action: IslandInteract
+      targetId: 4304375911
+      mount: true
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 578.9801
+        y: 7.5552635
+        z: -64.904495
+      - x: 589.4129
+        y: 8.590289
+        z: -93.833275
+      action: IslandInteract
+      targetId: 4304375910
+      mount: true
+      fly: false
+    - name: Palm Tree
+      waypoints:
+      - x: 565.85394
+        y: 4.91875
+        z: 33.41125
+      - x: 541.6801
+        y: 8.245708
+        z: 60.314934
+      action: IslandInteract
+      targetId: 4304258606
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 548.93744
+        y: 15.674025
+        z: 86.49114
+      - x: 591.06354
+        y: 13.3875065
+        z: 110.700905
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '11: Opal | Sap | (Log)':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -262.27423
+        y: 40.000008
+        z: 226.00679
+      - x: -258.29752
+        y: 40.000004
+        z: 223.2056
+      - x: -208.98613
+        y: 43.017498
+        z: 183.41496
+      - x: -202.98083
+        y: 44.27414
+        z: 176.59657
+      - x: -150.86186
+        y: 48.020023
+        z: 164.91116
+      - x: -127.48661
+        y: 51.243538
+        z: 160.25735
+      - x: -121.70228
+        y: 52.61973
+        z: 157.73778
+      - x: -113.50503
+        y: 56.34137
+        z: 139.77649
+      - x: -111.2698
+        y: 56.715595
+        z: 138.63594
+      - x: -85.69702
+        y: 65.74928
+        z: 136.62993
+      - x: -65.74574
+        y: 73.24991
+        z: 129.5099
+      - x: 7.812935
+        y: 71.55816
+        z: 103.99912
+      - x: 20.0913
+        y: 71.76982
+        z: 103.101326
+      - x: 104.7647
+        y: 61.54242
+        z: 66.06376
+      - x: 123.92927
+        y: 61.293865
+        z: 57.675087
+      - x: 150.80544
+        y: 66.398254
+        z: 45.910896
+      - x: 175.13129
+        y: 67.92325
+        z: 43.765583
+      - x: 219.29167
+        y: 71.16033
+        z: 41.275856
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+    routeWaypoints:
+    - name: Mahogany Tree
+      waypoints:
+      - x: 221.67653
+        y: 71.38654
+        z: 41.128735
+      action: IslandInteract
+      targetId: 4304258782
+      mount: true
+      fly: false
+    - name: Mahogany Tree
+      waypoints:
+      - x: 200.52386
+        y: 76.41297
+        z: 6.712907
+      action: IslandInteract
+      targetId: 4304258784
+      mount: true
+      fly: false
+    - name: Mahogany Tree
+      waypoints:
+      - x: 161.45842
+        y: 69.69324
+        z: 27.750546
+      action: IslandInteract
+      targetId: 4304258780
+      mount: true
+      fly: false
+    - name: Mahogany Tree
+      waypoints:
+      - x: 127.778244
+        y: 69.98397
+        z: 15.01313
+      action: IslandInteract
+      targetId: 4304258783
+      mount: true
+      fly: false
+    - name: Mahogany Tree
+      waypoints:
+      - x: 112.372925
+        y: 71.75175
+        z: -3.1567986
+      - x: 75.319664
+        y: 72.97976
+        z: -35.521698
+      action: IslandInteract
+      targetId: 4304258785
+      mount: true
+      fly: false
+    - name: Mahogany Tree
+      waypoints:
+      - x: 70.6919
+        y: 74.00448
+        z: -61.63568
+      - x: 56.530247
+        y: 75.746124
+        z: -100.946205
+      action: IslandInteract
+      targetId: 4304267400
+      mount: true
+      fly: false
+    - name: Mahogany Tree
+      waypoints:
+      - x: 60.120712
+        y: 77.350815
+        z: -118.9621
+      - x: 58.229214
+        y: 76.48582
+        z: -148.19826
+      action: IslandInteract
+      targetId: 4304267403
+      mount: true
+      fly: false
+    - name: Mahogany Tree
+      waypoints:
+      - x: 54.158546
+        y: 75.436104
+        z: -201.19218
+      action: IslandInteract
+      targetId: 4304267409
+      mount: true
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 118.344604
+        y: 85.80252
+        z: -128.7201
+      action: IslandInteract
+      targetId: 4304375918
+      mount: true
+      fly: false
+    - name: Wild Parsnip
+      waypoints:
+      - x: 186.20686
+        y: 85.96669
+        z: -41.55629
+      action: IslandInteract
+      targetId: 4304411406
+      mount: true
+      fly: false
+    - name: Wild Parsnip
+      waypoints:
+      - x: 238.10855
+        y: 83.94607
+        z: -31.81817
+      - x: 246.84724
+        y: 83.50178
+        z: -30.828653
+      action: IslandInteract
+      targetId: 4304326315
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 238.43506
+        y: 82.32319
+        z: -25.185345
+      - x: 227.45287
+        y: 76.7194
+        z: 15.91236
+      - x: 220.79779
+        y: 71.73456
+        z: 39.383102
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '9: Branch | Log | Resin':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -262.82162
+        y: 40.000008
+        z: 225.97832
+      - x: -258.51666
+        y: 40.000008
+        z: 223.72774
+      - x: -240.05272
+        y: 40.000008
+        z: 210.34062
+      - x: -203.50291
+        y: 44.2435
+        z: 177.23712
+      - x: -153.2219
+        y: 47.832375
+        z: 164.99855
+      - x: -128.33008
+        y: 51.090565
+        z: 161.52129
+      - x: -120.31128
+        y: 52.70362
+        z: 157.10968
+      - x: -112.31322
+        y: 56.572186
+        z: 138.83768
+      - x: -97.75961
+        y: 61.85527
+        z: 136.75087
+      - x: -62.05977
+        y: 73.41982
+        z: 131.48224
+      - x: -31.514894
+        y: 69.7798
+        z: 108.744225
+      - x: -10.406239
+        y: 71.52401
+        z: 109.392845
+      - x: 142.12439
+        y: 69.49914
+        z: 111.507545
+      - x: 197.83571
+        y: 66.55504
+        z: 114.97233
+      action: None
+      targetId: 0
+      mount: false
+      fly: false
+    routeWaypoints:
+    - name: Tualong Tree
+      waypoints:
+      - x: 197.7223
+        y: 66.569214
+        z: 115.00231
+      action: IslandInteract
+      targetId: 4304258689
+      mount: false
+      fly: false
+    - name: Tualong Tree
+      waypoints:
+      - x: 170.69946
+        y: 71.406944
+        z: 133.22662
+      action: IslandInteract
+      targetId: 4304258692
+      mount: true
+      fly: false
+    - name: Tualong Tree
+      waypoints:
+      - x: 130.29323
+        y: 63.95184
+        z: 85.62099
+      action: IslandInteract
+      targetId: 4304258695
+      mount: true
+      fly: false
+    - name: Tualong Tree
+      waypoints:
+      - x: 119.84994
+        y: 62.10485
+        z: 76.58897
+      - x: 90.90292
+        y: 64.94693
+        z: 74.90337
+      action: IslandInteract
+      targetId: 4304258702
+      mount: true
+      fly: false
+    - name: Tualong Tree
+      waypoints:
+      - x: 122.64772
+        y: 61.15819
+        z: 58.267204
+      - x: 139.62708
+        y: 63.780216
+        z: 51.6585
+      - x: 165.84033
+        y: 66.31651
+        z: 48.88682
+      action: IslandInteract
+      targetId: 4304258690
+      mount: true
+      fly: false
+    - name: Tualong Tree
+      waypoints:
+      - x: 196.62814
+        y: 64.738525
+        z: 59.76789
+      action: IslandInteract
+      targetId: 4304258703
+      mount: true
+      fly: false
+    - name: Mahogany Tree
+      waypoints:
+      - x: 222.99338
+        y: 71.632484
+        z: 40.54102
+      action: IslandInteract
+      targetId: 4304258782
+      mount: true
+      fly: false
+    - name: Tualong Tree
+      waypoints:
+      - x: 238.72583
+        y: 61.694054
+        z: 53.07177
+      - x: 241.0071
+        y: 61.378323
+        z: 55.36261
+      - x: 243.94144
+        y: 61.340622
+        z: 56.3331
+      action: IslandInteract
+      targetId: 4304258699
+      mount: true
+      fly: false
+    - name: Mound of Dirt
+      waypoints:
+      - x: 242.10365
+        y: 58.014446
+        z: 91.875786
+      action: IslandInteract
+      targetId: 4304375894
+      mount: true
+      fly: false
+    - name: Mound of Dirt
+      waypoints:
+      - x: 243.00325
+        y: 58.223904
+        z: 93.303825
+      action: IslandInteract
+      targetId: 4304411870
+      mount: false
+      fly: false
+    - name: Tualong Tree
+      waypoints:
+      - x: 254.13518
+        y: 62.57851
+        z: 112.96911
+      action: IslandInteract
+      targetId: 4304258691
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 228.53346
+        y: 64.40372
+        z: 112.90371
+      - x: 197.65266
+        y: 66.575615
+        z: 115.01106
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '10: Copper | Mythril':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -264.1049
+        y: 40.000008
+        z: 226.04912
+      - x: -258.3179
+        y: 40.000004
+        z: 224.03299
+      - x: -202.6479
+        y: 44.40021
+        z: 177.21072
+      - x: -153.64198
+        y: 47.773376
+        z: 163.31822
+      - x: -128.13257
+        y: 51.12712
+        z: 161.12596
+      - x: -120.838844
+        y: 52.781647
+        z: 157.0963
+      - x: -113.159706
+        y: 56.29749
+        z: 140.41603
+      - x: -111.26054
+        y: 56.69863
+        z: 138.79312
+      - x: -67.0727
+        y: 73.36033
+        z: 134.78564
+      - x: -28.04759
+        y: 71.68388
+        z: 115.64625
+      - x: 14.204248
+        y: 75.86216
+        z: 125.03016
+      - x: 95.921196
+        y: 73.32415
+        z: 115.81685
+      - x: 228.93202
+        y: 67.95795
+        z: 128.38994
+      - x: 299.26245
+        y: 68.80243
+        z: 137.87396
+      - x: 322.60812
+        y: 68.5725
+        z: 144.97548
+      - x: 392.61502
+        y: 55.003128
+        z: 165.36377
+      - x: 457.0181
+        y: 53.949883
+        z: 202.21107
+      - x: 495.05234
+        y: 56.605507
+        z: 232.2183
+      - x: 508.31192
+        y: 56.432148
+        z: 236.52657
+      - x: 525.646
+        y: 56.241924
+        z: 239.85701
+      - x: 541.51587
+        y: 51.889328
+        z: 238.22266
+      - x: 587.2255
+        y: 37.515533
+        z: 231.67455
+      - x: 597.76385
+        y: 37.681652
+        z: 230.11641
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+    routeWaypoints:
+    - name: Bluish Rock
+      waypoints:
+      - x: 601.7342
+        y: 37.34404
+        z: 223.74275
+      action: IslandInteract
+      targetId: 4304326189
+      mount: false
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 591.0113
+        y: 37.30724
+        z: 237.55292
+      - x: 578.1654
+        y: 30.517302
+        z: 251.23225
+      - x: 562.99036
+        y: 26.014603
+        z: 275.2156
+      action: IslandInteract
+      targetId: 4304375917
+      mount: true
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 578.3688
+        y: 10.234215
+        z: 292.39075
+      - x: 580.6487
+        y: 10.183861
+        z: 294.29272
+      action: IslandInteract
+      targetId: 4304411395
+      mount: true
+      fly: false
+    - name: Bluish Rock
+      waypoints:
+      - x: 625.4108
+        y: 11.052515
+        z: 260.35184
+      action: IslandInteract
+      targetId: 4304326173
+      mount: true
+      fly: false
+    - name: Bluish Rock
+      waypoints:
+      - x: 663.524
+        y: 9.95664
+        z: 253.39943
+      action: IslandInteract
+      targetId: 4304326175
+      mount: true
+      fly: false
+    - name: Bluish Rock
+      waypoints:
+      - x: 688.7532
+        y: 10.01611
+        z: 222.86212
+      - x: 690.3239
+        y: 10.263818
+        z: 216.09741
+      - x: 690.10144
+        y: 10.2779
+        z: 209.95367
+      action: IslandInteract
+      targetId: 4304326179
+      mount: true
+      fly: false
+    - name: Bluish Rock
+      waypoints:
+      - x: 695.1746
+        y: 9.974532
+        z: 205.95744
+      - x: 691.13086
+        y: 10.1316595
+        z: 203.16095
+      - x: 672.7146
+        y: 10.48125
+        z: 202.35037
+      action: IslandInteract
+      targetId: 4304326185
+      mount: true
+      fly: false
+    - name: Bluish Rock
+      waypoints:
+      - x: 679.17084
+        y: 9.914305
+        z: 182.32092
+      action: IslandInteract
+      targetId: 4304326180
+      mount: true
+      fly: false
+    - name: Palm Tree
+      waypoints:
+      - x: 674.469
+        y: 9.992612
+        z: 186.52818
+      - x: 596.0532
+        y: 11.892864
+        z: 171.17552
+      action: IslandInteract
+      targetId: 4304411427
+      mount: true
+      fly: false
+    - name: Bluish Rock
+      waypoints:
+      - x: 582.5989
+        y: 16.521286
+        z: 173.18582
+      - x: 565.1313
+        y: 21.261774
+        z: 176.7354
+      - x: 560.527
+        y: 21.057816
+        z: 174.07571
+      action: IslandInteract
+      targetId: 4304326193
+      mount: true
+      fly: false
+    - name: Bluish Rock
+      waypoints:
+      - x: 565.4689
+        y: 21.693897
+        z: 177.71083
+      - x: 611.4778
+        y: 17.462301
+        z: 190.0494
+      - x: 638.43915
+        y: 20.867033
+        z: 203.29025
+      - x: 648.2092
+        y: 21.578693
+        z: 210.74883
+      - x: 650.1645
+        y: 21.844677
+        z: 215.22498
+      - x: 647.98755
+        y: 22.608625
+        z: 219.55347
+      - x: 641.8675
+        y: 24.05896
+        z: 221.70523
+      action: IslandInteract
+      targetId: 4304326182
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 634.4773
+        y: 26.366522
+        z: 230.96902
+      - x: 627.23627
+        y: 30.731411
+        z: 228.92137
+      - x: 608.177
+        y: 36.595802
+        z: 226.43738
+      - x: 601.57886
+        y: 37.36019
+        z: 223.51624
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '8: Marble/Limestone':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -258.04468
+        y: 40.000008
+        z: 225.8173
+      - x: -200.99785
+        y: 44.406494
+        z: 175.28514
+      - x: -121.82112
+        y: 52.304962
+        z: 158.93404
+      - x: -112.999565
+        y: 56.54943
+        z: 138.54854
+      - x: -80.18465
+        y: 68.095726
+        z: 135.75516
+      - x: -71.46605
+        y: 72.06034
+        z: 132.1345
+      - x: -4.6035953
+        y: 69.54574
+        z: 94.57643
+      - x: 27.521626
+        y: 70.54381
+        z: 93.70136
+      - x: 89.20796
+        y: 64.60293
+        z: 71.657646
+      - x: 122.652306
+        y: 61.201286
+        z: 58.08905
+      - x: 241.05537
+        y: 79.69105
+        z: -6.9635696
+      - x: 257.92752
+        y: 80.641045
+        z: -14.322815
+      - x: 446.3174
+        y: 91.63063
+        z: -114.76534
+      - x: 520.8497
+        y: 69.89032
+        z: -158.41318
+      - x: 546.5684
+        y: 71.3332
+        z: -179.74686
+      - x: 582.5457
+        y: 68.12453
+        z: -199.1542
+      - x: 613.47876
+        y: 70.2495
+        z: -236.30331
+      - x: 679.12714
+        y: 70.263504
+        z: -296.61435
+      - x: 734.6235
+        y: 26.434763
+        z: -350.4841
+      - x: 738.39105
+        y: 21.38617
+        z: -393.94916
+      - x: 711.94037
+        y: 27.42867
+        z: -447.67313
+      - x: 684.5875
+        y: 15.925638
+        z: -501.60355
+      - x: 684.1137
+        y: 15.023876
+        z: -509.97162
+      - x: 686.89215
+        y: 14.383759
+        z: -537.21454
+      - x: 676.9876
+        y: 5.489562
+        z: -615.5805
+      - x: 681.95294
+        y: 5.1008253
+        z: -635.5096
+      - x: 692.502
+        y: 4.9999924
+        z: -645.9204
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+    routeWaypoints:
+    - name: Speckled Rock
+      waypoints:
+      - x: 692.5401
+        y: 4.9999924
+        z: -646.03326
+      action: IslandInteract
+      targetId: 4304373973
+      mount: false
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 671.4141
+        y: 5.218733
+        z: -653.60864
+      action: IslandInteract
+      targetId: 4304373972
+      mount: true
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 654.63965
+        y: 8.941835
+        z: -616.95874
+      action: IslandInteract
+      targetId: 4304410571
+      mount: true
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 624.90015
+        y: 10.315589
+        z: -647.6978
+      action: IslandInteract
+      targetId: 4304410577
+      mount: true
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 606.9403
+        y: 10.184678
+        z: -654.4627
+      - x: 595.29065
+        y: 9.391143
+        z: -666.4295
+      action: IslandInteract
+      targetId: 4304410579
+      mount: true
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 573.26666
+        y: 6.7778444
+        z: -690.4444
+      action: IslandInteract
+      targetId: 4304410581
+      mount: true
+      fly: false
+    - name: Speckled Rock
+      waypoints:
+      - x: 557.8973
+        y: 5.3623104
+        z: -730.0685
+      action: IslandInteract
+      targetId: 4304410582
+      mount: true
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 548.02747
+        y: 5.7533655
+        z: -712.87836
+      action: IslandInteract
+      targetId: 4304373965
+      mount: true
+      fly: false
+    - name: Bluish Rock
+      waypoints:
+      - x: 551.799
+        y: 6.3128214
+        z: -704.2179
+      - x: 550.4459
+        y: 8.203276
+        z: -695.2698
+      action: IslandInteract
+      targetId: 4304326210
+      mount: true
+      fly: false
+    - name: Rough Black Rock
+      waypoints:
+      - x: 558.5124
+        y: 7.280184
+        z: -690.44867
+      - x: 584.64716
+        y: 9.460815
+        z: -664.37274
+      action: IslandInteract
+      targetId: 4304373966
+      mount: true
+      fly: false
+    - name: Bluish Rock
+      waypoints:
+      - x: 612.3414
+        y: 10.68785
+        z: -643.94165
+      action: IslandInteract
+      targetId: 4304326207
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 624.98944
+        y: 11.3305435
+        z: -641.37024
+      - x: 651.4843
+        y: 7.5404387
+        z: -631.02765
+      - x: 692.744
+        y: 4.9999914
+        z: -645.9796
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '7: Clay/Sand [Ground XP Route]':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -258.5168
+        y: 40.000008
+        z: 225.92056
+      - x: -202.48611
+        y: 44.410934
+        z: 176.99632
+      - x: -139.40147
+        y: 49.64316
+        z: 160.4919
+      - x: -126.85232
+        y: 51.28261
+        z: 161.93416
+      - x: -119.91525
+        y: 52.81704
+        z: 156.43481
+      - x: -112.99008
+        y: 56.456284
+        z: 139.27673
+      - x: -68.118996
+        y: 72.86629
+        z: 132.26685
+      - x: -33.5146
+        y: 71.97394
+        z: 118.79626
+      - x: -0.03181164
+        y: 70.95324
+        z: 102.50567
+      - x: 14.419069
+        y: 70.88958
+        z: 98.660706
+      - x: 34.037136
+        y: 71.15257
+        z: 96.7887
+      - x: 143.1095
+        y: 65.55875
+        z: 96.99832
+      - x: 192.00777
+        y: 60.72706
+        z: 93.69588
+      - x: 221.1849
+        y: 57.909595
+        z: 85.6069
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+    routeWaypoints:
+    - name: Smooth White Rock
+      waypoints:
+      - x: 221.06567
+        y: 58.006256
+        z: 85.75795
+      action: IslandInteract
+      targetId: 4304410552
+      mount: false
+      fly: false
+    - name: Mound of Dirt
+      waypoints:
+      - x: 222.91582
+        y: 57.880665
+        z: 85.448746
+      action: IslandInteract
+      targetId: 4304375892
+      mount: false
+      fly: false
+    - name: Mound of Dirt
+      waypoints:
+      - x: 226.66211
+        y: 57.379807
+        z: 85.1101
+      - x: 228.45276
+        y: 57.39136
+        z: 85.65549
+      - x: 232.61862
+        y: 57.718494
+        z: 87.49079
+      action: IslandInteract
+      targetId: 4304375891
+      mount: false
+      fly: false
+    - name: Mound of Dirt
+      waypoints:
+      - x: 236.46657
+        y: 57.611187
+        z: 88.05194
+      action: IslandInteract
+      targetId: 4304411871
+      mount: false
+      fly: false
+    - name: Mound of Dirt
+      waypoints:
+      - x: 239.1902
+        y: 57.57445
+        z: 88.33218
+      action: IslandInteract
+      targetId: 4304375893
+      mount: false
+      fly: false
+    - name: Mound of Dirt
+      waypoints:
+      - x: 241.0948
+        y: 57.850502
+        z: 90.59617
+      action: IslandInteract
+      targetId: 4304375894
+      mount: false
+      fly: false
+    - name: Mound of Dirt
+      waypoints:
+      - x: 244.17543
+        y: 57.298866
+        z: 90.40206
+      action: IslandInteract
+      targetId: 4304411870
+      mount: false
+      fly: false
+    - name: Mound of Dirt
+      waypoints:
+      - x: 246.16405
+        y: 56.79661
+        z: 89.58543
+      action: IslandInteract
+      targetId: 4304375890
+      mount: false
+      fly: false
+    - name: Submerged Sand
+      waypoints:
+      - x: 262.23843
+        y: 54.735374
+        z: 85.29186
+      action: IslandInteract
+      targetId: 4304372625
+      mount: false
+      fly: false
+    - name: Sugarcane
+      waypoints:
+      - x: 261.0009
+        y: 56.208168
+        z: 80.47375
+      - x: 261.24823
+        y: 58.787388
+        z: 72.16415
+      action: IslandInteract
+      targetId: 4304373893
+      mount: false
+      fly: false
+    - name: Tualong Tree
+      waypoints:
+      - x: 249.40663
+        y: 60.091694
+        z: 62.70173
+      - x: 243.08249
+        y: 61.42231
+        z: 55.77562
+      action: IslandInteract
+      targetId: 4304258699
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 237.08147
+        y: 57.662663
+        z: 69.2404
+      - x: 221.469
+        y: 57.696304
+        z: 85.26458
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '6: Cotton':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -259.9578
+        y: 40.000008
+        z: 226.36003
+      - x: -204.19994
+        y: 44.14201
+        z: 177.48837
+      - x: -199.6839
+        y: 44.6932
+        z: 175.7331
+      - x: -159.5416
+        y: 47.545788
+        z: 165.51584
+      - x: -129.14238
+        y: 50.92244
+        z: 161.54257
+      - x: -121.616936
+        y: 52.356743
+        z: 158.72594
+      - x: -120.31662
+        y: 52.85052
+        z: 156.5277
+      - x: -113.022514
+        y: 56.42651
+        z: 139.4894
+      - x: -111.830925
+        y: 56.618935
+        z: 138.82455
+      - x: -74.34008
+        y: 71.316765
+        z: 131.5237
+      - x: -49.083015
+        y: 70.98603
+        z: 120.89979
+      - x: -26.06325
+        y: 69.53846
+        z: 105.78051
+      - x: -14.454878
+        y: 70.69989
+        z: 106.73917
+      - x: 45.473927
+        y: 73.29189
+        z: 111.03226
+      - x: 118.12182
+        y: 72.761024
+        z: 117.169556
+      - x: 186.69057
+        y: 69.642715
+        z: 126.506165
+      - x: 242.67123
+        y: 68.5026
+        z: 131.83998
+      - x: 321.0655
+        y: 68.914
+        z: 147.52922
+      - x: 349.21716
+        y: 61.45356
+        z: 153.63626
+      - x: 378.42987
+        y: 55.562016
+        z: 159.97375
+      - x: 387.7826
+        y: 56.387905
+        z: 166.32986
+      - x: 409.412
+        y: 57.236324
+        z: 184.41165
+      - x: 463.63336
+        y: 59.284878
+        z: 240.47247
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+    routeWaypoints:
+    - name: Cotton Plant
+      waypoints:
+      - x: 464.36926
+        y: 59.3843
+        z: 241.58585
+      action: IslandInteract
+      targetId: 4304372524
+      mount: false
+      fly: false
+    - name: Cotton Plant
+      waypoints:
+      - x: 470.489
+        y: 59.59826
+        z: 246.84929
+      action: IslandInteract
+      targetId: 4304372506
+      mount: false
+      fly: false
+    - name: Cotton Plant
+      waypoints:
+      - x: 471.56985
+        y: 59.196663
+        z: 244.10533
+      action: IslandInteract
+      targetId: 4304372517
+      mount: false
+      fly: false
+    - name: Cotton Plant
+      waypoints:
+      - x: 476.49774
+        y: 58.91245
+        z: 246.84242
+      action: IslandInteract
+      targetId: 4304372501
+      mount: false
+      fly: false
+    - name: Cotton Plant
+      waypoints:
+      - x: 480.2298
+        y: 58.67659
+        z: 249.58904
+      action: IslandInteract
+      targetId: 4304372504
+      mount: false
+      fly: false
+    - name: Cotton Plant
+      waypoints:
+      - x: 484.4895
+        y: 57.605034
+        z: 246.97878
+      action: IslandInteract
+      targetId: 4304372518
+      mount: false
+      fly: false
+    - name: Cotton Plant
+      waypoints:
+      - x: 488.1385
+        y: 56.960976
+        z: 251.50415
+      action: IslandInteract
+      targetId: 4304372526
+      mount: false
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 495.9566
+        y: 51.137226
+        z: 272.21365
+      - x: 482.8314
+        y: 48.857765
+        z: 288.576
+      action: IslandInteract
+      targetId: 4304411397
+      mount: true
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 497.9704
+        y: 19.961067
+        z: 299.66837
+      - x: 510.47025
+        y: 17.416084
+        z: 294.1686
+      action: IslandInteract
+      targetId: 4304411396
+      mount: true
+      fly: false
+    - name: Palm Tree
+      waypoints:
+      - x: 480.85452
+        y: 22.702595
+        z: 314.23657
+      action: IslandInteract
+      targetId: 4304411428
+      mount: true
+      fly: false
+    - name: Agave Plant
+      waypoints:
+      - x: 407.2887
+        y: 49.28983
+        z: 277.8876
+      - x: 368.45877
+        y: 56.6415
+        z: 257.68948
+      action: IslandInteract
+      targetId: 4304375916
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 377.5716
+        y: 55.779713
+        z: 259.3136
+      - x: 396.48633
+        y: 53.98925
+        z: 261.4425
+      - x: 444.64578
+        y: 59.407745
+        z: 244.53949
+      - x: 463.0853
+        y: 59.487225
+        z: 241.84195
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '5: Coconut/Palm Log/Leaf | Marble/Limestone':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -256.93753
+        y: 40.000004
+        z: 225.5528
+      - x: -203.93803
+        y: 44.26266
+        z: 178.0444
+      - x: -158.92123
+        y: 47.62332
+        z: 165.81047
+      - x: -129.77269
+        y: 50.76991
+        z: 162.0661
+      - x: -121.10099
+        y: 52.565186
+        z: 157.91873
+      - x: -114.9287
+        y: 56.253628
+        z: 140.04886
+      - x: -73.27761
+        y: 71.737305
+        z: 131.10397
+      - x: -54.87129
+        y: 71.24089
+        z: 119.42296
+      - x: -2.2381666
+        y: 69.630035
+        z: 94.37222
+      - x: 10.741047
+        y: 69.2062
+        z: 87.75458
+      - x: 24.738201
+        y: 69.64458
+        z: 87.91744
+      - x: 59.34417
+        y: 65.68093
+        z: 53.034153
+      - x: 71.03308
+        y: 64.47801
+        z: 40.097576
+      - x: 75.1305
+        y: 68.1101
+        z: 20.717924
+      - x: 54.169014
+        y: 68.5552
+        z: -22.434864
+      - x: 42.327435
+        y: 66.32198
+        z: -43.849907
+      - x: 20.208788
+        y: 63.30383
+        z: -94.714806
+      - x: 11.816215
+        y: 62.652676
+        z: -104.81932
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+    routeWaypoints:
+    - name: Smooth White Rock
+      waypoints:
+      - x: 11.229178
+        y: 62.847523
+        z: -104.68292
+      action: IslandInteract
+      targetId: 4304326247
+      mount: true
+      fly: false
+    - name: Smooth White Rock
+      waypoints:
+      - x: 18.25349
+        y: 64.52795
+        z: -90.12977
+      action: IslandInteract
+      targetId: 4304326259
+      mount: false
+      fly: false
+    - name: Smooth White Rock
+      waypoints:
+      - x: 19.0615
+        y: 64.90078
+        z: -84.403915
+      action: IslandInteract
+      targetId: 4304410547
+      mount: false
+      fly: false
+    - name: Smooth White Rock
+      waypoints:
+      - x: 16.862623
+        y: 66.30129
+        z: -76.73613
+      action: IslandInteract
+      targetId: 4304326250
+      mount: false
+      fly: false
+    - name: Smooth White Rock
+      waypoints:
+      - x: 21.614368
+        y: 65.053665
+        z: -74.606964
+      action: IslandInteract
+      targetId: 4304410546
+      mount: false
+      fly: false
+    - name: Smooth White Rock
+      waypoints:
+      - x: 26.09689
+        y: 63.779972
+        z: -75.537636
+      action: IslandInteract
+      targetId: 4304410548
+      mount: false
+      fly: false
+    - name: Smooth White Rock
+      waypoints:
+      - x: 24.07464
+        y: 64.8858
+        z: -65.2623
+      action: IslandInteract
+      targetId: 4304326256
+      mount: false
+      fly: false
+    - name: Palm Tree
+      waypoints:
+      - x: 35.94583
+        y: 64.0765
+        z: -48.652534
+      - x: 42.226776
+        y: 65.98436
+        z: -47.93825
+      - x: 45.351444
+        y: 68.221436
+        z: -55.143856
+      - x: 48.463757
+        y: 71.156746
+        z: -71.649254
+      action: IslandInteract
+      targetId: 4304257897
+      mount: true
+      fly: false
+    - name: Palm Tree
+      waypoints:
+      - x: 53.9439
+        y: 68.91717
+        z: -37.208027
+      action: IslandInteract
+      targetId: 4304257927
+      mount: true
+      fly: false
+    - name: Palm Tree
+      waypoints:
+      - x: 19.247063
+        y: 67.67769
+        z: -36.849113
+      - x: -13.812158
+        y: 72.20921
+        z: -30.92571
+      - x: -23.567019
+        y: 73.442566
+        z: -28.422197
+      - x: -27.006659
+        y: 74.360954
+        z: -29.827349
+      action: IslandInteract
+      targetId: 4304257882
+      mount: true
+      fly: false
+    - name: Palm Tree
+      waypoints:
+      - x: -19.656572
+        y: 75.07178
+        z: -64.682205
+      action: IslandInteract
+      targetId: 4304257924
+      mount: true
+      fly: false
+    - name: Palm Tree
+      waypoints:
+      - x: -5.274167
+        y: 72.02492
+        z: -70.757545
+      - x: 5.667983
+        y: 69.36417
+        z: -70.26458
+      action: IslandInteract
+      targetId: 4304257887
+      mount: true
+      fly: false
+    - name: Palm Tree
+      waypoints:
+      - x: -11.522677
+        y: 71.38825
+        z: -100.27968
+      action: IslandInteract
+      targetId: 4304257900
+      mount: true
+      fly: false
+    - name: Palm Tree
+      waypoints:
+      - x: -0.5393636
+        y: 66.31331
+        z: -106.54947
+      action: IslandInteract
+      targetId: 4304257926
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 11.001495
+        y: 62.513687
+        z: -106.23361
+      - x: 11.307884
+        y: 62.868202
+        z: -104.50876
+      action: None
+      targetId: 0
+      mount: false
+      fly: false
+  '4: Apple | Beehive':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -260.10532
+        y: 40.000008
+        z: 226.43033
+      - x: -202.77295
+        y: 44.387253
+        z: 177.32475
+      - x: -152.50772
+        y: 47.85149
+        z: 164.89911
+      - x: -126.05726
+        y: 51.525177
+        z: 160.35258
+      - x: -121.75594
+        y: 52.51986
+        z: 158.11551
+      - x: -110.7029
+        y: 57.210663
+        z: 136.64816
+      - x: -77.05158
+        y: 69.77916
+        z: 134.03952
+      - x: -68.50024
+        y: 72.845055
+        z: 130.89871
+      - x: -3.8138382
+        y: 69.6431
+        z: 95.30157
+      - x: 64.02564
+        y: 70.80523
+        z: 99.252495
+      - x: 129.10603
+        y: 66.45196
+        z: 96.898895
+      - x: 192.00769
+        y: 60.449993
+        z: 92.63701
+      - x: 224.32652
+        y: 56.44371
+        z: 80.439064
+      - x: 286.97357
+        y: 65.2154
+        z: 60.033436
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+    routeWaypoints:
+    - name: Island Apple Tree
+      waypoints:
+      - x: 287.11365
+        y: 65.189224
+        z: 60.56836
+      action: IslandInteract
+      targetId: 4304258754
+      mount: false
+      fly: false
+    - name: Mound of Dirt
+      waypoints:
+      - x: 271.01346
+        y: 61.733295
+        z: 67.45676
+      - x: 239.70595
+        y: 56.534134
+        z: 85.4091
+      action: IslandInteract
+      targetId: 4304375893
+      mount: true
+      fly: false
+    - name: Island Apple Tree
+      waypoints:
+      - x: 183.95906
+        y: 57.65093
+        z: 70.25352
+      - x: 174.18227
+        y: 63.636448
+        z: 58.41167
+      action: IslandInteract
+      targetId: 4304258752
+      mount: true
+      fly: false
+    - name: Island Apple Tree
+      waypoints:
+      - x: 140.04395
+        y: 63.39414
+        z: 53.091217
+      action: IslandInteract
+      targetId: 4304258749
+      mount: true
+      fly: false
+    - name: Island Apple Tree
+      waypoints:
+      - x: 115.36031
+        y: 66.01857
+        z: 36.637707
+      action: IslandInteract
+      targetId: 4304258755
+      mount: true
+      fly: false
+    - name: Island Apple Tree
+      waypoints:
+      - x: 82.81641
+        y: 68.873474
+        z: 17.234217
+      action: IslandInteract
+      targetId: 4304258720
+      mount: true
+      fly: false
+    - name: Mahogany Tree
+      waypoints:
+      - x: 161.69267
+        y: 69.29309
+        z: 30.366346
+      action: IslandInteract
+      targetId: 4304258780
+      mount: true
+      fly: false
+    - name: Tualong Tree
+      waypoints:
+      - x: 165.66606
+        y: 66.98341
+        z: 46.74827
+      action: IslandInteract
+      targetId: 4304258690
+      mount: false
+      fly: false
+    - name: Mahogany Tree
+      waypoints:
+      - x: 201.02667
+        y: 76.14652
+        z: 8.118977
+      action: IslandInteract
+      targetId: 4304258784
+      mount: true
+      fly: false
+    - name: Mahogany Tree
+      waypoints:
+      - x: 223.13167
+        y: 72.392815
+        z: 37.44197
+      action: IslandInteract
+      targetId: 4304258782
+      mount: true
+      fly: false
+    - name: Island Apple Tree
+      waypoints:
+      - x: 261.87875
+        y: 77.037
+        z: 16.32956
+      - x: 273.9467
+        y: 76.896576
+        z: 18.018745
+      action: IslandInteract
+      targetId: 4304258747
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 284.18286
+        y: 65.570694
+        z: 51.588215
+      - x: 287.06976
+        y: 65.20021
+        z: 60.368645
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '3: Tinsand/Sand | Marble/Limestone':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -258.69843
+        y: 40.000008
+        z: 225.73697
+      - x: -202.42499
+        y: 44.37729
+        z: 176.62343
+      - x: -127.10952
+        y: 51.295307
+        z: 160.58858
+      - x: -121.123825
+        y: 52.65978
+        z: 157.57658
+      - x: -112.43167
+        y: 56.568825
+        z: 138.63818
+      - x: -77.556595
+        y: 70.31196
+        z: 131.26706
+      - x: -61.25559
+        y: 72.08343
+        z: 120.05644
+      - x: -8.41079
+        y: 71.64251
+        z: 109.15459
+      - x: 36.8566
+        y: 68.48607
+        z: 75.264
+      - x: 83.00092
+        y: 65.07214
+        z: 37.43535
+      - x: 69.58138
+        y: 71.123
+        z: -20.547085
+      - x: 46.711163
+        y: 68.84635
+        z: -57.411316
+      - x: 30.80208
+        y: 63.14742
+        z: -82.2288
+      - x: 30.642355
+        y: 63.178204
+        z: -90.186935
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+    routeWaypoints:
+    - name: Submerged Sand
+      waypoints:
+      - x: 30.59716
+        y: 63.178272
+        z: -90.32247
+      action: IslandInteract
+      targetId: 4304372623
+      mount: false
+      fly: false
+    - name: Submerged Sand
+      waypoints:
+      - x: 10.054877
+        y: 61.27059
+        z: -115.33289
+      action: IslandInteract
+      targetId: 4304372613
+      mount: true
+      fly: false
+    - name: Submerged Sand
+      waypoints:
+      - x: 6.4155664
+        y: 60.29745
+        z: -125.624084
+      action: IslandInteract
+      targetId: 4304372620
+      mount: false
+      fly: false
+    - name: Submerged Sand
+      waypoints:
+      - x: 6.7987533
+        y: 59.99999
+        z: -152.57811
+      action: IslandInteract
+      targetId: 4304372615
+      mount: true
+      fly: false
+    - name: Submerged Sand
+      waypoints:
+      - x: 0.048478004
+        y: 59.999996
+        z: -166.30756
+      action: IslandInteract
+      targetId: 4304372621
+      mount: false
+      fly: false
+    - name: Submerged Sand
+      waypoints:
+      - x: 5.18509
+        y: 59.999996
+        z: -189.74675
+      action: IslandInteract
+      targetId: 4304372617
+      mount: true
+      fly: false
+    - name: Submerged Sand
+      waypoints:
+      - x: 2.8647213
+        y: 59.999992
+        z: -192.62608
+      - x: 2.3312387
+        y: 59.999992
+        z: -199.09482
+      action: IslandInteract
+      targetId: 4304372618
+      mount: false
+      fly: false
+    - name: Smooth White Rock
+      waypoints:
+      - x: -0.4032686
+        y: 59.999996
+        z: -192.42934
+      - x: 6.067376
+        y: 62.89562
+        z: -110.43283
+      - x: 8.883504
+        y: 63.60129
+        z: -104.12389
+      action: IslandInteract
+      targetId: 4304326247
+      mount: true
+      fly: false
+    - name: Smooth White Rock
+      waypoints:
+      - x: 18.34742
+        y: 64.4827
+        z: -90.25272
+      action: IslandInteract
+      targetId: 4304326259
+      mount: true
+      fly: false
+    - name: Smooth White Rock
+      waypoints:
+      - x: 21.456985
+        y: 64.2618
+        z: -85.555016
+      action: IslandInteract
+      targetId: 4304410547
+      mount: false
+      fly: false
+    - name: Smooth White Rock
+      waypoints:
+      - x: 25.760056
+        y: 63.48653
+        z: -81.2839
+      - x: 26.72785
+        y: 63.478695
+        z: -77.38266
+      action: IslandInteract
+      targetId: 4304410548
+      mount: false
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 30.645973
+        y: 63.1788
+        z: -90.36234
+      action: None
+      targetId: 0
+      mount: false
+      fly: false
+  '2: Sugarcane | Vine':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -258.82907
+        y: 40.000008
+        z: 225.86926
+      - x: -203.71568
+        y: 44.32726
+        z: 178.06824
+      - x: -152.03882
+        y: 47.881935
+        z: 164.47188
+      - x: -125.073105
+        y: 51.670715
+        z: 160.16483
+      - x: -121.693756
+        y: 52.64141
+        z: 157.65898
+      - x: -113.37158
+        y: 56.377674
+        z: 139.58186
+      - x: -78.07488
+        y: 69.82586
+        z: 132.10512
+      - x: -7.6615925
+        y: 69.35796
+        z: 93.93717
+      - x: 11.153577
+        y: 70.082504
+        z: 94.05542
+      - x: 21.806047
+        y: 69.63729
+        z: 88.637054
+      - x: 70.716545
+        y: 63.78062
+        z: 42.69139
+      - x: 75.60169
+        y: 68.34529
+        z: 18.91388
+      - x: 43.321754
+        y: 71.58647
+        z: -84.68574
+      - x: 25.763157
+        y: 71.16602
+        z: -212.394
+      - x: 18.955427
+        y: 71.547424
+        z: -260.54175
+      - x: 14.473043
+        y: 61.47179
+        z: -342.69708
+      - x: 23.653948
+        y: 59.758064
+        z: -364.63687
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+    routeWaypoints:
+    - name: Sugarcane
+      waypoints:
+      - x: 23.705936
+        y: 59.70543
+        z: -364.8975
+      action: IslandInteract
+      targetId: 4304373881
+      mount: false
+      fly: false
+    - name: Sugarcane
+      waypoints:
+      - x: 25.005817
+        y: 61.149773
+        z: -359.72034
+      action: IslandInteract
+      targetId: 4304373880
+      mount: false
+      fly: false
+    - name: Sugarcane
+      waypoints:
+      - x: 7.330594
+        y: 60.22864
+        z: -344.41727
+      action: IslandInteract
+      targetId: 4304373879
+      mount: true
+      fly: false
+    - name: Sugarcane
+      waypoints:
+      - x: 13.686748
+        y: 61.79911
+        z: -338.75232
+      action: IslandInteract
+      targetId: 4304373878
+      mount: false
+      fly: false
+    - name: Sugarcane
+      waypoints:
+      - x: 3.2126648
+        y: 61.10597
+        z: -330.7211
+      action: IslandInteract
+      targetId: 4304373877
+      mount: false
+      fly: false
+    - name: Sugarcane
+      waypoints:
+      - x: 7.2757072
+        y: 63.196453
+        z: -318.02808
+      action: IslandInteract
+      targetId: 4304373876
+      mount: false
+      fly: false
+    - name: Sugarcane
+      waypoints:
+      - x: 4.177884
+        y: 63.01964
+        z: -314.86646
+      action: IslandInteract
+      targetId: 4304373874
+      mount: false
+      fly: false
+    - name: Sugarcane
+      waypoints:
+      - x: -14.312116
+        y: 54.188187
+        z: -304.52997
+      - x: -23.431171
+        y: 56.104816
+        z: -303.09308
+      - x: -34.92139
+        y: 64.35352
+        z: -317.21237
+      action: IslandInteract
+      targetId: 4304373887
+      mount: true
+      fly: false
+    - name: Sugarcane
+      waypoints:
+      - x: -30.090593
+        y: 63.112583
+        z: -321.52844
+      action: IslandInteract
+      targetId: 4304373884
+      mount: false
+      fly: false
+    - name: Sugarcane
+      waypoints:
+      - x: -35.304977
+        y: 63.399242
+        z: -332.379
+      action: IslandInteract
+      targetId: 4304373885
+      mount: false
+      fly: false
+    - name: Sugarcane
+      waypoints:
+      - x: -30.049421
+        y: 61.100716
+        z: -338.28467
+      action: IslandInteract
+      targetId: 4304373886
+      mount: false
+      fly: false
+    - name: ''
+      waypoints:
+      - x: -6.494183
+        y: 53.771996
+        z: -332.4553
+      - x: 2.7524304
+        y: 59.37762
+        z: -339.3383
+      - x: 23.50498
+        y: 59.53497
+        z: -365.4183
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '1: Islewort | (Popoto/Parsnip Seeds)':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -258.87698
+        y: 40.000008
+        z: 225.78278
+      - x: -201.7734
+        y: 44.468887
+        z: 176.49124
+      - x: -126.36138
+        y: 51.399826
+        z: 160.87784
+      - x: -120.37216
+        y: 52.60175
+        z: 157.54967
+      - x: -112.8614
+        y: 56.500347
+        z: 139.08347
+      - x: -70.05168
+        y: 72.519806
+        z: 130.53172
+      - x: -5.0496974
+        y: 69.62001
+        z: 95.648506
+      - x: 19.597279
+        y: 70.12743
+        z: 92.63971
+      - x: 71.03726
+        y: 64.517746
+        z: 39.94326
+      - x: 75.459625
+        y: 68.062195
+        z: 21.237825
+      - x: 54.828186
+        y: 69.82492
+        z: -48.09562
+      - x: 11.2651205
+        y: 67.406624
+        z: -78.43919
+      - x: -7.777909
+        y: 69.28943
+        z: -106.20174
+      - x: -40.640488
+        y: 75.14386
+        z: -200.98907
+      - x: -37.77751
+        y: 73.15761
+        z: -238.51387
+      - x: -40.8743
+        y: 73.325485
+        z: -259.89584
+      - x: -101.75838
+        y: 73.80012
+        z: -359.56528
+      - x: -193.94733
+        y: 53.547657
+        z: -441.57736
+      action: None
+      targetId: 0
+      mount: false
+      fly: false
+    routeWaypoints:
+    - name: Wild Parsnip
+      waypoints:
+      - x: -194.0038
+        y: 53.544792
+        z: -441.58743
+      action: IslandInteract
+      targetId: 4304326304
+      mount: false
+      fly: false
+    - name: Wild Parsnip
+      waypoints:
+      - x: -225.13284
+        y: 50.495922
+        z: -439.91788
+      - x: -229.10434
+        y: 49.929295
+        z: -435.7649
+      action: IslandInteract
+      targetId: 4304326305
+      mount: true
+      fly: false
+    - name: Wild Parsnip
+      waypoints:
+      - x: -253.46722
+        y: 44.076168
+        z: -427.37646
+      action: IslandInteract
+      targetId: 4304326303
+      mount: true
+      fly: false
+    - name: Wild Parsnip
+      waypoints:
+      - x: -255.34702
+        y: 48.12621
+        z: -460.6855
+      action: IslandInteract
+      targetId: 4304326296
+      mount: true
+      fly: false
+    - name: Wild Parsnip
+      waypoints:
+      - x: -246.49916
+        y: 49.225723
+        z: -471.1331
+      action: IslandInteract
+      targetId: 4304326298
+      mount: true
+      fly: false
+    - name: Wild Parsnip
+      waypoints:
+      - x: -238.2361
+        y: 38.23951
+        z: -505.60974
+      - x: -238.20937
+        y: 37.344585
+        z: -515.62256
+      action: IslandInteract
+      targetId: 4304326301
+      mount: true
+      fly: false
+    - name: Wild Popoto
+      waypoints:
+      - x: -251.44753
+        y: 34.640102
+        z: -558.00134
+      action: IslandInteract
+      targetId: 4304326275
+      mount: true
+      fly: false
+    - name: Wild Popoto
+      waypoints:
+      - x: -263.64725
+        y: 31.586515
+        z: -593.06525
+      action: IslandInteract
+      targetId: 4304326274
+      mount: true
+      fly: false
+    - name: Wild Popoto
+      waypoints:
+      - x: -253.95206
+        y: 30.079351
+        z: -617.8554
+      action: IslandInteract
+      targetId: 4304326278
+      mount: true
+      fly: false
+    - name: Wild Popoto
+      waypoints:
+      - x: -237.7199
+        y: 28.683393
+        z: -636.55554
+      action: IslandInteract
+      targetId: 4304326273
+      mount: true
+      fly: false
+    - name: Wild Popoto
+      waypoints:
+      - x: -236.65942
+        y: 32.976166
+        z: -603.4332
+      action: IslandInteract
+      targetId: 4304326277
+      mount: true
+      fly: false
+    - name: Wild Popoto
+      waypoints:
+      - x: -240.17627
+        y: 33.816128
+        z: -581.3662
+      action: IslandInteract
+      targetId: 4304326276
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: -221.14215
+        y: 36.640305
+        z: -520.03845
+      - x: -212.39299
+        y: 36.04625
+        z: -506.6577
+      - x: -178.56473
+        y: 36.28115
+        z: -476.06784
+      - x: -116.4369
+        y: 47.294384
+        z: -442.19562
+      - x: -120.03051
+        y: 49.345802
+        z: -437.21222
+      - x: -169.47794
+        y: 52.74708
+        z: -437.8742
+      - x: -194.09636
+        y: 53.544254
+        z: -441.57318
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  '0: IsleFish/Clam Shell | Larve/Squid':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -263.30368
+        y: 44.60065
+        z: 227.22331
+      - x: -100.54467
+        y: 105.69244
+        z: 104.56983
+      - x: -53.375317
+        y: 115.64665
+        z: 48.265972
+      - x: -33.789856
+        y: 97.45683
+        z: -127.35906
+      - x: -2.8765693
+        y: 43.52062
+        z: -428.87744
+      - x: 4.911528
+        y: 2.8319845
+        z: -656.63586
+      - x: 47.441326
+        y: -42.309093
+        z: -701.5683
+      action: None
+      targetId: 0
+      mount: true
+      fly: true
+    routeWaypoints:
+    - name: Seaweed Tangle
+      waypoints:
+      - x: 52.75771
+        y: -44.36354
+        z: -709.10754
+      action: IslandInteract
+      targetId: 4304373908
+      mount: false
+      fly: false
+    - name: Large Shell
+      waypoints:
+      - x: 40.96103
+        y: -44.234367
+        z: -705.45795
+      action: IslandInteract
+      targetId: 4304373945
+      mount: false
+      fly: false
+    - name: Large Shell
+      waypoints:
+      - x: 46.457478
+        y: -41.635067
+        z: -685.87305
+      action: IslandInteract
+      targetId: 4304373940
+      mount: true
+      fly: false
+    - name: Seaweed Tangle
+      waypoints:
+      - x: 45.82549
+        y: -41.028843
+        z: -678.0993
+      action: IslandInteract
+      targetId: 4304373909
+      mount: false
+      fly: false
+    - name: Large Shell
+      waypoints:
+      - x: 20.557037
+        y: -42.841995
+        z: -664.52423
+      action: IslandInteract
+      targetId: 4304373912
+      mount: true
+      fly: false
+    - name: Large Shell
+      waypoints:
+      - x: -12.099593
+        y: -42.75056
+        z: -693.1819
+      action: IslandInteract
+      targetId: 4304373941
+      mount: true
+      fly: false
+    - name: Seaweed Tangle
+      waypoints:
+      - x: -24.645317
+        y: -41.727585
+        z: -699.0786
+      action: IslandInteract
+      targetId: 4304373910
+      mount: false
+      fly: false
+    - name: Large Shell
+      waypoints:
+      - x: -48.47315
+        y: -27.7118
+        z: -706.296
+      - x: -70.69555
+        y: -24.8595
+        z: -709.36334
+      - x: -103.70731
+        y: -29.3025
+        z: -711.0102
+      - x: -127.674416
+        y: -45.792
+        z: -724.9262
+      action: IslandInteract
+      targetId: 4304373913
+      mount: true
+      fly: false
+    - name: Seaweed Tangle
+      waypoints:
+      - x: -131.3712
+        y: -46.14623
+        z: -720.76996
+      action: IslandInteract
+      targetId: 4304373906
+      mount: false
+      fly: false
+    - name: Large Shell
+      waypoints:
+      - x: -124.58124
+        y: -43.439137
+        z: -713.25726
+      - x: -136.16396
+        y: -46.382267
+        z: -708.50037
+      action: IslandInteract
+      targetId: 4304373944
+      mount: true
+      fly: false
+    - name: Large Shell
+      waypoints:
+      - x: -81.01994
+        y: -26.771942
+        z: -701.1425
+      - x: -67.53554
+        y: -24.343842
+        z: -697.25775
+      - x: -37.435238
+        y: -28.180668
+        z: -692.8166
+      - x: -10.012161
+        y: -39.76174
+        z: -687.58997
+      - x: -1.8319833
+        y: -43.720028
+        z: -681.5212
+      action: IslandInteract
+      targetId: 4304373946
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 51.804882
+        y: -43.83104
+        z: -709.4462
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+baseRoutes:
+  Base -> Shopkeep:
+    name: Base Start
+    waypoints:
+    - *o1
+    - x: -267.729
+      y: 40.000008
+      z: 223.35608
+    - x: -267.67017
+      y: 41
+      z: 220.24205
+    - x: -267.57275
+      y: 41
+      z: 219.37453
+    - x: -266.5052
+      y: 41.499996
+      z: 217.80667
+    - x: -266.4256
+      y: 41
+      z: 209.15497
+    action: None
+    targetId: 1043464
+    mount: false
+    fly: false
+  do not move here:
+    name: Base Start
+    waypoints:
+    - x: -269.82086
+      y: 41
+      z: 217.42917
+    - x: -267.51196
+      y: 41
+      z: 217.44138
+    - x: -267.4143
+      y: 41
+      z: 212.14262
+    action: None
+    targetId: 0
+    mount: false
+    fly: false

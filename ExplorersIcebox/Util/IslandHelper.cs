@@ -14,8 +14,10 @@ public static class IslandHelper
     public static int MaxTotalLoops = 0;
     public static int MinimumPossibleLoops = 999;
     public static int CurrentLoopCount = 0;
-    public static KeyValuePair<string, List<RouteClass.WaypointUtil>> CurrentRoute;
+    public static KeyValuePair<string, RouteClass.RouteUtil> CurrentRoute;
     public static Dictionary<int, int> SellItems = new();
+
+    public static Vector3 BaseStart = new Vector3(-268, 40, 226);
 
     public class ItemGathered
     {
@@ -90,11 +92,11 @@ public static class IslandHelper
         RouteItems.Clear();
         ItemNodeMap.Clear();
 
-        foreach (var wp in CurrentRoute.Value)
+        foreach (var wp in CurrentRoute.Value.RouteWaypoints)
         {
-            if (wp.Target != 0)
+            if (wp.TargetId != 0)
             {
-                var Node = ItemData.IslandNodeInfo.Where(x => x.Nodes.Contains(wp.Target)).FirstOrDefault();
+                var Node = ItemData.IslandNodeInfo.Where(x => x.Nodes.Contains(wp.TargetId)).FirstOrDefault();
                 if (Node != null)
                 {
                     foreach (var item in Node.ItemIds)
@@ -194,7 +196,7 @@ public static class IslandHelper
             {
                 item.Value.SellSlot = callback;
                 callback += 1;
-                PluginLog.Debug($"Updated {item.Key} callback to {item.Value.SellSlot}");
+                PluginLog.Debug($"Updated {item.Key} | {ItemData.IslandItems[item.Key].ItemName} callback to {item.Value.SellSlot}");
             }
             else
             {

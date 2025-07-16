@@ -15,6 +15,7 @@ namespace ExplorersIcebox.Scheduler.Tasks
         {
             if (Player.DistanceTo(new Vector3(-268, 40, 226)) < 5)
             {
+                Svc.Log.Debug("Teleport has completed, moving onto check sell");
                 SchedulerMain.State = Enums.IceBoxState.CheckSell;
                 return true;
             }
@@ -24,6 +25,7 @@ namespace ExplorersIcebox.Scheduler.Tasks
                 {
                     if (EzThrottler.Throttle("Returning to base"))
                     {
+                        Svc.Log.Information("Launching action to return to base");
                         ActionManager.Instance()->UseAction(ActionType.GeneralAction, 27);
                     }
                 }

@@ -12,7 +12,6 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
     internal class RouteEditorV4Debug
     {
         private static string NewRouteName = "";
-        private static List<Vector3> WaypointList = new();
         private static bool RouteWP = false;
         private static bool PathWP = false;
         private static bool ShowTargets = false;
@@ -177,6 +176,27 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
                     }
                 }
 
+                ImGui.SameLine();
+                if (ImGui.Button("Base -> Gather"))
+                {
+                    Task_GatherMode.Enqueue();
+
+                    foreach (var entry in routeSelected.Value.BaseToLocation)
+                    {
+                        Task_BaseToGather.Enqueue(entry.Waypoints, entry.Mount, entry.Fly);
+                    }
+
+                    foreach (var entry in routeSelected.Value.RouteWaypoints)
+                    {
+                        List<Vector3> chainWPs = entry.Waypoints;
+                        ulong targetId = entry.TargetId;
+                        bool mount = entry.Mount;
+                        bool fly = entry.Fly;
+
+                        Task_IslandInteract.Enqueue(chainWPs, targetId, mount, fly);
+                    }
+                }
+
                 if (ImGui.Button("Stop"))
                 {
                     P.taskManager.Abort();
@@ -257,19 +277,19 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
                                     Vector3 WpText = new Vector3(wp.X, wp.Y + C.TextFloatPlus, wp.Z);
                                     wpNumber++;
                                     drawList.AddText(WpText, C.PictoTextCol, $"{wpNumber}", 0);
+                                }
 
-                                    if (ShowTargets && wpList.TargetId != 0)
+                                if (ShowTargets && wpList.TargetId != 0)
+                                {
+                                    IGameObject? target = Svc.Objects.Where(x => x.GameObjectId == wpList.TargetId).FirstOrDefault();
+
+                                    if (target != null)
                                     {
-                                        IGameObject? target = Svc.Objects.Where(x => x.GameObjectId == wpList.TargetId).FirstOrDefault();
-
-                                        if (target != null)
+                                        drawList.AddFanFilled(target.Position, C.DonutRadius.X, C.DonutRadius.Y, C.FanPosition.X, C.FanPosition.Y, C.PictoCircleColor);
+                                        if (ShowTargetsName)
                                         {
-                                            drawList.AddFanFilled(target.Position, C.DonutRadius.X, C.DonutRadius.Y, C.FanPosition.X, C.FanPosition.Y, C.PictoCircleColor);
-                                            if (ShowTargetsName)
-                                            {
-                                                Vector3 TextPos = new Vector3(target.Position.X, target.Position.Y + C.TextFloatPlus, target.Position.Z);
-                                                drawList.AddText(TextPos, C.PictoTextCol, $"{wpList.Name}", 10.0f);
-                                            }
+                                            Vector3 TextPos = new Vector3(target.Position.X, target.Position.Y + C.TextFloatPlus, target.Position.Z);
+                                            drawList.AddText(TextPos, C.PictoTextCol, $"{wpList.Name}", 10.0f);
                                         }
                                     }
                                 }

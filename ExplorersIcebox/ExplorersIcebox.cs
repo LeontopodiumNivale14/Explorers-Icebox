@@ -4,6 +4,7 @@ using ECommons.Logging;
 using ExplorersIcebox.Config;
 using ExplorersIcebox.IPC;
 using ExplorersIcebox.Scheduler;
+using ExplorersIcebox.Scheduler.Handers;
 using ExplorersIcebox.Ui;
 using ExplorersIcebox.Ui.MainWindow;
 using Pictomancy;
@@ -21,6 +22,9 @@ public sealed class ExplorersIcebox : IDalamudPlugin
     public static GeneralConfig C => Config ??= LoadConfig<GeneralConfig>();
     public static GatherRoutes G => GatherRoutesConfig ??= LoadConfig<GatherRoutes>();
 
+    public static GatherRoutes EmbedRoutes => embeddedRoutes ??= LoadEmbeddedConfig<GatherRoutes>("ExplorersIcebox.Routes.CustomRoutes.yaml");
+    private static GatherRoutes? embeddedRoutes;
+
     private static T LoadConfig<T>() where T : IYamlConfig, new()
     {
         var path = typeof(T).GetProperty("ConfigPath")!.GetValue(null)!.ToString()!;
@@ -36,6 +40,21 @@ public sealed class ExplorersIcebox : IDalamudPlugin
         PluginLog.Information($"[{typeof(T).Name}] Loaded from {path}");
         return config;
     }
+
+    private static T LoadEmbeddedConfig<T>(string resourceName) where T : IYamlConfig, new()
+    {
+        var config = YamlConfig.LoadFromResource<T>(resourceName);
+
+        if (config == null)
+        {
+            PluginLog.Warning($"[{typeof(T).Name}] Embedded config was null. Returning new default.");
+            config = new T();
+        }
+
+        PluginLog.Information($"[{typeof(T).Name}] Loaded from embedded resource: {resourceName}");
+        return config;
+    }
+
 
 
     internal static ExplorersIcebox P = null!;
@@ -88,6 +107,7 @@ public sealed class ExplorersIcebox : IDalamudPlugin
         taskManager = new(new(abortOnTimeout: true, timeLimitMS: 20000, showDebug: true));
 
         Init();
+        Svc.Framework.Update += Tick;
     }
 
     public void Init()
@@ -97,9 +117,13 @@ public sealed class ExplorersIcebox : IDalamudPlugin
 
     private void Tick(object _)
     {
-        if (SchedulerMain.AreWeTicking && Svc.ClientState.LocalPlayer != null)
+        if (Svc.ClientState.LocalPlayer != null)
         {
             SchedulerMain.Tick();
+        }
+        else
+        {
+            SchedulerMain.DisablePlugin();
         }
     }
 

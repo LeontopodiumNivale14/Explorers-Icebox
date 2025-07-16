@@ -12,7 +12,7 @@ namespace ExplorersIcebox.Scheduler.Tasks
         public static void Enqueue(List<Vector3> List, ulong gameObjectId, bool mount = false, bool fly = false)
         {
             P.taskManager.Enqueue(() => QueueNavmesh2(List, mount, fly), "Queueing Navmesh");
-            P.taskManager.Enqueue(() => FinishRoute(), "Waiting for Navmesh to Finish");
+            P.taskManager.Enqueue(() => FinishRoute(), "Waiting for Navmesh to Finish", Utils.TaskConfig);
             if (gameObjectId != 0)
             {
                 P.taskManager.Enqueue(() => TargetV2(gameObjectId), $"Checking for target: {gameObjectId}"); // Checking to see if the target exist
@@ -99,20 +99,6 @@ namespace ExplorersIcebox.Scheduler.Tasks
             }
             
             return false;
-        }
-
-        internal static void Target(ulong gameObjectId)
-        {
-            // set as a void instead of a bool to make sure that if it fails to target, it just continues on
-            // moreso set for users sake so they don't go "wait how am I interacting w/o targeting!!!"
-            // because I know this will be something some peeps will freak out about
-
-            IGameObject? gameObject = null;
-            Utils.TryGetObjectByGameObjectId(gameObjectId, out gameObject);
-            if (gameObject != null)
-            {
-                Utils.TargetgameObject(gameObject);
-            }
         }
 
         internal static bool? TargetV2(ulong gameObjectId)

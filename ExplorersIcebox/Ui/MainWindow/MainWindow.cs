@@ -1,4 +1,5 @@
 using Dalamud.Interface.Utility.Raii;
+using ExplorersIcebox.Scheduler;
 using ExplorersIcebox.Scheduler.Tasks;
 using ExplorersIcebox.Util;
 using System.Collections.Generic;
@@ -22,11 +23,18 @@ internal class MainWindow : Window
 
     public void Dispose() { }
 
+    private static int ExtractNumber(string input)
+    {
+        // Use regex to find digits in the string
+        var match = System.Text.RegularExpressions.Regex.Match(input, @"\d+");
+        return match.Success ? int.Parse(match.Value) : int.MinValue; // or 0 if you prefer
+    }
+
     public int selectedRoute = C.routeSelected;
 
     private readonly List<string> modeSelect = ["Ground XP", "Flying XP", "Material Grind"];
     private int selectedModeIndex = C.ModeSelected;
-    private List<string> routeNames => G.OldRoutes.Keys.ToList();
+    private List<string> routeNames => EmbedRoutes.Routes.Keys.OrderBy(name => ExtractNumber(name)).ToList();
     private int selectedRouteIndex = 0;
 
     public override void Draw()
@@ -77,20 +85,20 @@ internal class MainWindow : Window
             }
         }
 
-        var routeSelected = G.OldRoutes.Where(x => x.Key == routeNames[selectedRouteIndex]).FirstOrDefault();
+        var routeSelected = G.Routes.Where(x => x.Key == routeNames[selectedRouteIndex]).FirstOrDefault();
 
-        if (G.OldRoutes.ContainsKey(routeSelected.Key))
+        if (G.Routes.ContainsKey(routeSelected.Key))
         {
             Dictionary<string, IslandHelper.ItemGathered> routeItems = new();
             Dictionary<string, HashSet<ItemData.GatheringNode>> itemNodeMap = new();
 
             IslandHelper.CurrentRoute = routeSelected;
 
-            foreach (var wp in routeSelected.Value)
+            foreach (var wp in routeSelected.Value.RouteWaypoints)
             {
-                if (wp.Target != 0) // General check to make sure we're not looking for a null item
+                if (wp.TargetId != 0) // General check to make sure we're not looking for a null item
                 {
-                    var Node = ItemData.IslandNodeInfo.Where(x => x.Nodes.Contains(wp.Target)).FirstOrDefault();
+                    var Node = ItemData.IslandNodeInfo.Where(x => x.Nodes.Contains(wp.TargetId)).FirstOrDefault();
                     if (Node != null)
                     {
                         foreach (var item in Node.ItemIds)
@@ -138,16 +146,44 @@ internal class MainWindow : Window
                 }
             }
 
-            int MinItemKeep = C.MinimumItemKeep;
-            ImGui.SetNextItemWidth(100);
-            if (ImGui.SliderInt("Keep this many items", ref MinItemKeep, 0, 999))
+            bool SkipSell = C.SkipSell;
+            if (ImGui.Checkbox("Skip Selling Items", ref SkipSell))
             {
-                C.MinimumItemKeep = MinItemKeep;
+                C.SkipSell = SkipSell;
                 C.Save();
             }
 
+            int MinItemKeep = C.MinimumItemKeep;
+
+            using (ImRaii.Disabled(SkipSell))
+            {
+                ImGui.SetNextItemWidth(100);
+                if (ImGui.SliderInt("Keep this many items", ref MinItemKeep, 0, 999))
+                {
+                    C.MinimumItemKeep = MinItemKeep;
+                    C.Save();
+                }
+            }
+
+            if (ImGui.Button("Start"))
+            {
+                SchedulerMain.EnablePlugin();
+            }
+
+            ImGui.SameLine();
+            if (ImGui.Button("Stop"))
+            {
+                SchedulerMain.DisablePlugin();
+            }
+
+            ImGui.Separator();
+            // Route Information
+
             ImGui.Text($"Total Loops Amount: {IslandHelper.MaxTotalLoops}");
+
+#if DEBUG
             ImGui.Text($"Max Loops Per Trip: {IslandHelper.MinimumPossibleLoops}");
+#endif
 
             ImGui.SameLine();
 
@@ -216,6 +252,11 @@ internal class MainWindow : Window
 
                 ImGui.EndTable();
             }
+        }
+
+        foreach (var item in IslandHelper.SellItems)
+        {
+            ImGui.Text($"{ItemData.IslandItems[item.Key].ItemName} | {item.Value}");
         }
     }
 }

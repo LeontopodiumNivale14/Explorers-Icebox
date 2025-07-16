@@ -1,3 +1,4 @@
+using ECommons.Throttlers;
 using ExplorersIcebox.Enums;
 using ExplorersIcebox.Scheduler.Tasks;
 using ExplorersIcebox.Util;
@@ -7,12 +8,6 @@ namespace ExplorersIcebox.Scheduler
 {
     internal static unsafe class SchedulerMain
     {
-        internal static bool AreWeTicking;
-        internal static bool EnableTicking
-        {
-            get => AreWeTicking;
-            private set => AreWeTicking = value;
-        }
         internal static bool EnablePlugin()
         {
             State = Start;
@@ -20,9 +15,9 @@ namespace ExplorersIcebox.Scheduler
         }
         internal static bool DisablePlugin()
         {
-            EnableTicking = false;
             P.taskManager.Abort();
             P.navmesh.Stop();
+            State = Idle;
             return true;
         }
 
@@ -30,18 +25,26 @@ namespace ExplorersIcebox.Scheduler
 
         internal static void Tick()
         {
-            if (Throttles.GenericThrottle && P.taskManager.Tasks.Count == 0 && State != Idle)
+            if (Throttles.GenericThrottle && P.taskManager.NumQueuedTasks == 0 && State != Idle)
             {
                 switch (State)
                 {
-                    case var s when s.HasFlag(Start):
+                    case IceBoxState.Start:
                         Task_ReturnToBase.Enqueue();
                         break;
-                    case var s when s.HasFlag(CheckSell):
-
+                    case IceBoxState.CheckSell:
+                        Task_SellCheck.Enqueue();
+                        Task_UpdateShop.Enqueue();
+                        break;
+                    case IceBoxState.SellToNpc:
+                        Svc.Log.Information($"NPC Sell State Active");
+                        Task_SellItems.Enqueue();
+                        break;
+                    case IceBoxState.RunRoute:
+                        Svc.Log.Information("Run Route State");
                         break;
                     default:
-
+                            Svc.Log.Information("State is in default, it shouldn't be here");
                         break;
                 }
             }

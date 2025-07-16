@@ -39,6 +39,7 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
             ImGui.Text($"Navmesh BuildProgress :" + P.navmesh.BuildProgress());//working ipc
             ImGui.Text($"Current task time remaining is: {P.taskManager.RemainingTimeMS}");
             ImGui.Text($"Current task is: {P.taskManager.CurrentTask}");
+            ImGui.Text($"Current task count: {P.taskManager.NumQueuedTasks}");
             if (ImGui.Button("Swap to island mode"))
             {
                 Task_GatherMode.Enqueue();

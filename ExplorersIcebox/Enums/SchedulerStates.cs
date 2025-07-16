@@ -6,7 +6,7 @@ namespace ExplorersIcebox.Enums
         Idle = 0,
         Start = 1,
         CheckSell = 2,
-        NPCSell = 3,
+        SellToNpc = 3,
         RunRoute = 4,
     }
 }
