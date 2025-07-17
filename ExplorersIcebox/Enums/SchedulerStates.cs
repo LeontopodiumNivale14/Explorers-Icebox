@@ -8,5 +8,6 @@ namespace ExplorersIcebox.Enums
         CheckSell = 2,
         SellToNpc = 3,
         RunRoute = 4,
+        EndProcess = 5,
     }
 }

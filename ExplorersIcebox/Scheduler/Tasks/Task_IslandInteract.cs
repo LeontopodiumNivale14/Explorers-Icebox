@@ -77,8 +77,6 @@ namespace ExplorersIcebox.Scheduler.Tasks
                     if (EzThrottler.Throttle($"MoveToQueue_Ground_{List[0]}"))
                     {
                         Svc.Log.Debug("Telling Navmesh to move through the list");
-                        Svc.Log.Debug($"List Count: {List.Count}");
-                        Svc.Log.Debug($"Fly: {fly}");
                         P.navmesh.MoveTo(new List<Vector3>(List), fly);
                     }
                 }

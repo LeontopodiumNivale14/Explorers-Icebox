@@ -167,7 +167,6 @@ public static class IslandHelper
     {
         MaxTotalLoops = 0;
         MinimumPossibleLoops = 999;
-        CurrentLoopCount = 0;
 
         foreach (var kvp in routeItems)
         {

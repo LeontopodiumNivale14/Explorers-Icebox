@@ -1,6 +1,7 @@
 using ECommons.Throttlers;
 using ExplorersIcebox.Enums;
 using ExplorersIcebox.Scheduler.Tasks;
+using ExplorersIcebox.Ui.DebugWindowTabs;
 using ExplorersIcebox.Util;
 using static ExplorersIcebox.Enums.IceBoxState;
 
@@ -10,11 +11,13 @@ namespace ExplorersIcebox.Scheduler
     {
         internal static bool EnablePlugin()
         {
+            IslandHelper.CurrentLoopCount = 0;
             State = Start;
             return true;
         }
         internal static bool DisablePlugin()
         {
+            IslandHelper.CurrentLoopCount = 0;
             P.taskManager.Abort();
             P.navmesh.Stop();
             State = Idle;
@@ -42,9 +45,11 @@ namespace ExplorersIcebox.Scheduler
                         break;
                     case IceBoxState.RunRoute:
                         Svc.Log.Information("Run Route State");
+                        TaskGatherLoop.Enqueue();
                         break;
                     default:
-                            Svc.Log.Information("State is in default, it shouldn't be here");
+                        Svc.Log.Information("Route has been completed, stopping");
+                        DisablePlugin();
                         break;
                 }
             }

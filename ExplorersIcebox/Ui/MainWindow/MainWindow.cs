@@ -164,25 +164,52 @@ internal class MainWindow : Window
                     C.Save();
                 }
             }
+            bool DisableButtons = IslandHelper.MaxTotalLoops > IslandHelper.MinimumPossibleLoops;
 
-            if (ImGui.Button("Start"))
+            using (ImRaii.Disabled(DisableButtons))
             {
-                SchedulerMain.EnablePlugin();
+                if (ImGui.Button("Start"))
+                {
+                    SchedulerMain.EnablePlugin();
+                }
+
+                ImGui.SameLine();
+                if (ImGui.Button("Stop"))
+                {
+                    SchedulerMain.DisablePlugin();
+                }
             }
 
-            ImGui.SameLine();
-            if (ImGui.Button("Stop"))
+            if (DisableButtons)
             {
-                SchedulerMain.DisablePlugin();
+                ImGui.SameLine();
+                ImGui.AlignTextToFramePadding();
+                ImGuiEx.IconWithTooltip(FontAwesomeIcon.ExclamationTriangle, "The current setup is not possible without causing issues. \n" +
+                    "Please adjust either how many items to keep, or how many you want to gather. ");
+                ImGui.Spacing();
             }
 
             ImGui.Separator();
             // Route Information
 
-            ImGui.Text($"Total Loops Amount: {IslandHelper.MaxTotalLoops}");
+            ImGui.Text($"Current Loop Total: {IslandHelper.MaxTotalLoops}");
+            if (ImGui.IsItemHovered())
+            {
+                ImGui.BeginTooltip();
+                ImGui.Text("The total amount of loops you're going to need to do to get the item goal");
+                ImGui.EndTooltip();
+            }
 
 #if DEBUG
             ImGui.Text($"Max Loops Per Trip: {IslandHelper.MinimumPossibleLoops}");
+            if (ImGui.IsItemHovered())
+            {
+                ImGui.BeginTooltip();
+                ImGui.Text("Max amount of loops due to item keep amount");
+                ImGui.EndTooltip();
+            }
+            ImGui.Text($"Current loop count: {IslandHelper.CurrentLoopCount}");
+            ImGui.Text($"Current State: {SchedulerMain.State}");
 #endif
 
             ImGui.SameLine();
@@ -206,7 +233,7 @@ internal class MainWindow : Window
                 ImGui.TableSetupColumn("Item Per Loop");
                 ImGui.TableSetupColumn("Ignore");
                 ImGui.TableSetupColumn("Gather Amount");
-                ImGui.TableSetupColumn("Sell Column");
+                ImGui.TableSetupColumn("Current Amount");
 
                 ImGui.TableHeadersRow();
 
@@ -239,14 +266,8 @@ internal class MainWindow : Window
                     }
 
                     ImGui.TableNextColumn();
-                    if (IslandHelper.SellItems.TryGetValue(item.Value.ItemId, out var sellAmount))
-                    {
-                        ImGui.Text($"{sellAmount}");
-                    }
-                    else
-                    {
-                        ImGui.Text($"0");
-                    }
+                    if (PlayerHelper.GetItemCount(item.Value.ItemId, out var count))
+                        ImGui.Text($"{count}");
 
                 }
 

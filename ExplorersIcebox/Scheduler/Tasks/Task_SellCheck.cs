@@ -18,7 +18,8 @@ namespace ExplorersIcebox.Scheduler.Tasks
             IslandHelper.SellItems.Clear();
             SellToShop = false;
             int LoopCount = Math.Min(IslandHelper.MaxTotalLoops, IslandHelper.MinimumPossibleLoops);
-            LoopCount = LoopCount - IslandHelper.CurrentLoopCount;
+            LoopCount = Math.Max(0, LoopCount - IslandHelper.CurrentLoopCount);
+
 
             IslandHelper.UpdateNumbers();
             foreach (var item in IslandHelper.RouteItems)
