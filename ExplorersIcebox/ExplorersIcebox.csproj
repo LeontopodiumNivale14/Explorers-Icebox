@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Dalamud.NET.Sdk/12.0.2">
-  <Import Project="Dalamud.Plugin.Bootstrap.targets" />
 
   <PropertyGroup>
-    <Version>1.0.3.5</Version>
+    <Version>1.0.4.0</Version>
     <Description>Pop open a cold one while the tedious parts of exploration is handled by your good friend cousin robby.</Description>
     <PackageProjectUrl>https://github.com/goatcorp/ExplorersIcebox</PackageProjectUrl>
     <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
     <IsPackable>true</IsPackable>
     <RootNamespace>ExplorersIcebox</RootNamespace>
     <TargetFramework>net9.0-windows7.0</TargetFramework>
+    <NoWarn>CS8618; CS8625; CS8629; </NoWarn>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Include="..\Data\icon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Visible>false</Visible>
-    </Content>
-  </ItemGroup>
+    <ItemGroup>
+        <Content Include="ExplorersIcebox.json" />
+    </ItemGroup>
 
-  <ItemGroup>
-      <ProjectReference Include="..\ECommons\ECommons\ECommons.csproj" />
-      <ProjectReference Include="InteropGenerator.Runtime">
-          <HintPath>$(DalamudLibPath)InteropGenerator.Runtime.dll</HintPath>
-          <Private>False</Private>
-      </ProjectReference>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="YamlDotNet" Version="16.3.0" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Update="DalamudPackager" Version="12.0.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\ECommons\ECommons\ECommons.csproj" />
+        <ProjectReference Include="..\ffxiv_pictomancy\Pictomancy\Pictomancy.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Routes\CustomRoutes.yaml" />
+    </ItemGroup>
+    
 </Project>

@@ -1,9 +1,5 @@
 using ECommons.EzIpcManager;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ExplorersIcebox.Util;
 
 namespace ExplorersIcebox.IPC;
 
@@ -12,7 +8,7 @@ public class VislandIPC
 {
     public const string Name = "visland";
     public VislandIPC() => EzIPC.Init(this, Name, SafeWrapper.AnyException);
-    public static bool Installed => HasPlugin(Name);
+    public static bool Installed => Utils.HasPlugin(Name);
 
     [EzIPC] public Func<bool> IsRouteRunning; // Checks to see if visland is running
     [EzIPC] public Func<bool> IsRoutePaused; // Checks to see if route is paused
