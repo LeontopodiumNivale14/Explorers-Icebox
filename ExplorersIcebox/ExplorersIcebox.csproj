@@ -2,7 +2,7 @@
 <Project Sdk="Dalamud.NET.Sdk/12.0.2">
 
   <PropertyGroup>
-    <Version>1.0.4.0</Version>
+    <Version>1.0.4.1</Version>
     <Description>Pop open a cold one while the tedious parts of exploration is handled by your good friend cousin robby.</Description>
     <PackageProjectUrl>https://github.com/goatcorp/ExplorersIcebox</PackageProjectUrl>
     <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
