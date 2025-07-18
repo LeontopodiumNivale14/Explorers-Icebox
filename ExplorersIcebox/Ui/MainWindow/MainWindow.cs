@@ -96,9 +96,9 @@ internal class MainWindow : Window
         else if (selectedRouteIndex == 1)
             selectedRouteIndex = 18;
 
-        var routeSelected = G.Routes.Where(x => x.Key == routeNames[selectedRouteIndex]).FirstOrDefault();
+        var routeSelected = EmbedRoutes.Routes.Where(x => x.Key == routeNames[selectedRouteIndex]).FirstOrDefault();
 
-        if (G.Routes.ContainsKey(routeSelected.Key))
+        if (EmbedRoutes.Routes.ContainsKey(routeSelected.Key))
         {
             Dictionary<string, IslandHelper.ItemGathered> routeItems = new();
             Dictionary<string, HashSet<ItemData.GatheringNode>> itemNodeMap = new();
