@@ -364,7 +364,7 @@ routes:
         z: -141.21452
       action: None
       targetId: 0
-      mount: false
+      mount: true
       fly: false
   '19: Coal / Shale | Glimshroom':
     baseToLocation:

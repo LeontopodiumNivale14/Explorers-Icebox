@@ -11,9 +11,9 @@ namespace ExplorersIcebox.Util;
 
 public static class IslandHelper
 {
-    public static int MaxTotalLoops = 0;
-    public static int MinimumPossibleLoops = 999;
-    public static int CurrentLoopCount = 0;
+    public static int GoalLoopAmount = 0;
+    public static int MaxRouteLoops = 999;
+    public static int LoopCounter = 0;
     public static KeyValuePair<string, RouteClass.RouteUtil> CurrentRoute;
     public static Dictionary<int, int> SellItems = new();
 
@@ -157,16 +157,16 @@ public static class IslandHelper
             {
                 var AmountWanted = C.ItemGatherAmount[itemName];
 
-                MaxTotalLoops = Math.Max(MaxTotalLoops, MinimumLoopCalc(AmountWanted, gathered.Amount)); // 200 Loops
-                MinimumPossibleLoops = Math.Min(MinimumPossibleLoops, IslandLoopCalc(gathered.Amount)); // 65
+                GoalLoopAmount = Math.Max(GoalLoopAmount, MinimumLoopCalc(AmountWanted, gathered.Amount)); // 200 Loops
+                MaxRouteLoops = Math.Min(MaxRouteLoops, IslandLoopCalc(gathered.Amount)); // 65
             }
         }
     }
 
     public static void UpdateCounters(Dictionary<string, ItemGathered> routeItems)
     {
-        MaxTotalLoops = 0;
-        MinimumPossibleLoops = 999;
+        GoalLoopAmount = 0;
+        MaxRouteLoops = 999;
 
         foreach (var kvp in routeItems)
         {
@@ -179,8 +179,8 @@ public static class IslandHelper
             {
                 var AmountWanted = C.ItemGatherAmount[itemName];
 
-                MaxTotalLoops = Math.Max(MaxTotalLoops, MinimumLoopCalc(AmountWanted, gathered.Amount));
-                MinimumPossibleLoops = Math.Min(MinimumPossibleLoops, IslandLoopCalc(gathered.Amount));
+                GoalLoopAmount = Math.Max(GoalLoopAmount, MinimumLoopCalc(AmountWanted, gathered.Amount));
+                MaxRouteLoops = Math.Min(MaxRouteLoops, IslandLoopCalc(gathered.Amount));
             }
         }
     }

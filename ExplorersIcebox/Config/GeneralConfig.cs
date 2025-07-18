@@ -7,12 +7,18 @@ public class GeneralConfig : IYamlConfig
 {
     public const int CurrentConfigVersion = 2;
     public int ModeSelected { get; set; } = 0;
-    public int routeSelected { get; set; } = 1;
+    public int routeSelected { get; set; } = 0;
 
     // The minimum amount of items you want to keep in your inventory
     public int MinimumItemKeep { get; set; } = 500;
     public bool SkipSell { get; set; } = false;
     public bool DryTest { get; set; } = false;
+    public bool RunMaxLoops { get; set; } = false;
+    public bool RunMultiple { get; set; } = false;
+    /// <summary>
+    /// Amount of times you want to run this route
+    /// </summary>
+    public int RunAmount { get; set; } = 0;
 
     public Dictionary<string, int> ItemGatherAmount { get; set; } = new ()
     {

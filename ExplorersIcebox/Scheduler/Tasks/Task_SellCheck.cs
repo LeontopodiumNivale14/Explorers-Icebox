@@ -17,8 +17,9 @@ namespace ExplorersIcebox.Scheduler.Tasks
             Svc.Log.Information("Starting Sell Check");
             IslandHelper.SellItems.Clear();
             SellToShop = false;
-            int LoopCount = Math.Min(IslandHelper.MaxTotalLoops, IslandHelper.MinimumPossibleLoops);
-            LoopCount = Math.Max(0, LoopCount - IslandHelper.CurrentLoopCount);
+            int LoopCount = Math.Min(IslandHelper.GoalLoopAmount, IslandHelper.MaxRouteLoops);
+            if (C.RunMaxLoops)
+                LoopCount = IslandHelper.MaxRouteLoops;
 
 
             IslandHelper.UpdateNumbers();

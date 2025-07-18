@@ -35,7 +35,6 @@ internal class MainWindow : Window
     private readonly List<string> modeSelect = ["Ground XP", "Flying XP", "Material Grind"];
     private int selectedModeIndex = C.ModeSelected;
     private List<string> routeNames => EmbedRoutes.Routes.Keys.OrderBy(name => ExtractNumber(name)).ToList();
-    private int selectedRouteIndex = 0;
 
     public override void Draw()
     {
@@ -63,27 +62,39 @@ internal class MainWindow : Window
 
         bool DisableSelection = selectedModeIndex < modeSelect.Count - 1;
 
-        using (ImRaii.Disabled(DisableSelection))
-        {
-            ImGui.SetNextItemWidth(200);
-            if (ImGui.BeginCombo("Select Route", routeNames[selectedRouteIndex]))
-            {
-                for (int i = 0; i < routeNames.Count; i++)
-                {
-                    bool isSelected = (i == selectedRouteIndex);
-                    if (ImGui.Selectable(routeNames[i], isSelected))
-                    {
-                        selectedRouteIndex = i;
-                    }
+        int selectedRouteIndex = C.routeSelected;
 
-                    if (isSelected)
+        if (selectedModeIndex == 2)
+        {
+            using (ImRaii.Disabled(DisableSelection))
+            {
+                ImGui.SetNextItemWidth(200);
+                if (ImGui.BeginCombo("Select Route", routeNames[selectedRouteIndex]))
+                {
+                    for (int i = 0; i < routeNames.Count; i++)
                     {
-                        ImGui.SetItemDefaultFocus();
+                        bool isSelected = (i == selectedRouteIndex);
+                        if (ImGui.Selectable(routeNames[i], isSelected))
+                        {
+                            selectedRouteIndex = i;
+                            C.routeSelected = i;
+                            C.Save();
+                        }
+
+                        if (isSelected)
+                        {
+                            ImGui.SetItemDefaultFocus();
+                        }
                     }
+                    ImGui.EndCombo();
                 }
-                ImGui.EndCombo();
             }
         }
+
+        if (selectedModeIndex == 0)
+            selectedRouteIndex = 7;
+        else if (selectedRouteIndex == 1)
+            selectedRouteIndex = 18;
 
         var routeSelected = G.Routes.Where(x => x.Key == routeNames[selectedRouteIndex]).FirstOrDefault();
 
@@ -153,6 +164,33 @@ internal class MainWindow : Window
                 C.Save();
             }
 
+            bool RunMaxLoops = C.RunMaxLoops;
+            if (ImGui.Checkbox("Run Maximum Loops", ref RunMaxLoops))
+            {
+                C.RunMaxLoops = RunMaxLoops;
+                C.Save();
+            }
+            if (RunMaxLoops)
+                IslandHelper.GoalLoopAmount = IslandHelper.MaxRouteLoops;
+
+            bool runMultiple = C.RunMultiple;
+            if (ImGui.Checkbox("Run multiple loops", ref runMultiple))
+            {
+                C.RunMultiple = runMultiple;
+                C.Save();
+            }
+            if (runMultiple)
+            {
+                ImGui.SameLine();
+                int RunAmount = C.RunAmount;
+                ImGui.SetNextItemWidth(100);
+                if (ImGui.InputInt("###RunMultipleAmount", ref RunAmount))
+                {
+                    C.RunAmount = RunAmount;
+                    C.Save();
+                }
+            }
+
             int MinItemKeep = C.MinimumItemKeep;
 
             using (ImRaii.Disabled(SkipSell))
@@ -164,7 +202,7 @@ internal class MainWindow : Window
                     C.Save();
                 }
             }
-            bool DisableButtons = IslandHelper.MaxTotalLoops > IslandHelper.MinimumPossibleLoops;
+            bool DisableButtons = IslandHelper.GoalLoopAmount > IslandHelper.MaxRouteLoops || IslandHelper.MaxRouteLoops == 0;
 
             using (ImRaii.Disabled(DisableButtons))
             {
@@ -189,43 +227,28 @@ internal class MainWindow : Window
                 ImGui.Spacing();
             }
 
+            if (ImGui.BeginTable("Loop Info", 2, ImGuiTableFlags.SizingFixedFit))
+            {
+                ImGui.TableSetupColumn("Loop Amount");
+                ImGui.TableSetupColumn("Maximum Possible Loops");
+
+                ImGui.TableHeadersRow();
+
+                // Table Body
+                ImGui.TableNextRow();
+                ImGui.TableSetColumnIndex(0);
+                ImGui.Text($"{IslandHelper.GoalLoopAmount}");
+
+                ImGui.TableNextColumn();
+                ImGui.Text($"{IslandHelper.MaxRouteLoops}");
+
+                ImGui.EndTable();
+            }
+
             ImGui.Separator();
             // Route Information
 
-            ImGui.Text($"Current Loop Total: {IslandHelper.MaxTotalLoops}");
-            if (ImGui.IsItemHovered())
-            {
-                ImGui.BeginTooltip();
-                ImGui.Text("The total amount of loops you're going to need to do to get the item goal");
-                ImGui.EndTooltip();
-            }
-
-#if DEBUG
-            ImGui.Text($"Max Loops Per Trip: {IslandHelper.MinimumPossibleLoops}");
-            if (ImGui.IsItemHovered())
-            {
-                ImGui.BeginTooltip();
-                ImGui.Text("Max amount of loops due to item keep amount");
-                ImGui.EndTooltip();
-            }
-            ImGui.Text($"Current loop count: {IslandHelper.CurrentLoopCount}");
-            ImGui.Text($"Current State: {SchedulerMain.State}");
-#endif
-
-            ImGui.SameLine();
-
             IslandHelper.UpdateCounters(routeItems);
-            if (ImGui.Button("Calculate Root Sell"))
-            {
-                Task_SellCheck.Enqueue();
-                if (IslandHelper.SellItems.Count > 0)
-                {
-                    foreach (var item in IslandHelper.SellItems)
-                    {
-                        var itemEntry = ItemData.IslandItems.Where(x => x.Key == item.Key).FirstOrDefault();
-                    }
-                }
-            }
 
             if (ImGui.BeginTable("Gathered items", 5, ImGuiTableFlags.SizingFixedFit | ImGuiTableFlags.Borders))
             {
@@ -259,10 +282,13 @@ internal class MainWindow : Window
                     ImGui.TableNextColumn();
                     var GatherAmount = C.ItemGatherAmount[item.Key];
                     ImGui.SetNextItemWidth(200);
-                    if (ImGui.SliderInt($"###GatherAmount_{item.Key}", ref GatherAmount, 0, 999))
+                    using (ImRaii.Disabled(RunMaxLoops))
                     {
-                        C.ItemGatherAmount[item.Key] = GatherAmount;
-                        C.Save();
+                        if (ImGui.SliderInt($"###GatherAmount_{item.Key}", ref GatherAmount, 0, 999))
+                        {
+                            C.ItemGatherAmount[item.Key] = GatherAmount;
+                            C.Save();
+                        }
                     }
 
                     ImGui.TableNextColumn();
@@ -275,9 +301,11 @@ internal class MainWindow : Window
             }
         }
 
+#if DEBUG
         foreach (var item in IslandHelper.SellItems)
         {
             ImGui.Text($"{ItemData.IslandItems[item.Key].ItemName} | {item.Value}");
         }
+#endif
     }
 }

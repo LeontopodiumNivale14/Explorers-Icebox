@@ -177,7 +177,7 @@ public static class ItemData
             {
                 GatherName = "Large Shell", 
                 Nodes = [4304373944, 4304373946, 4304373912, 4304373941, 4304373913, 4304373940, 4304373911, 4304373945],
-                ItemIds = { Sand_ID, Clam_ID, Islefish_ID}
+                ItemIds = { Clam_ID, Islefish_ID}
             },
             new GatheringNode
             {

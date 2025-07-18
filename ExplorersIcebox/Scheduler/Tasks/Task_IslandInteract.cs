@@ -1,5 +1,6 @@
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.Objects.Types;
+using ECommons.GameHelpers;
 using ECommons.Throttlers;
 using ExplorersIcebox.Util;
 using FFXIVClientStructs.FFXIV.Client.Game;
@@ -12,7 +13,7 @@ namespace ExplorersIcebox.Scheduler.Tasks
         public static void Enqueue(List<Vector3> List, ulong gameObjectId, bool mount = false, bool fly = false)
         {
             P.taskManager.Enqueue(() => QueueNavmesh2(List, mount, fly), "Queueing Navmesh");
-            P.taskManager.Enqueue(() => FinishRoute(), "Waiting for Navmesh to Finish", Utils.TaskConfig);
+            P.taskManager.Enqueue(() => FinishRoute(mount), "Waiting for Navmesh to Finish", Utils.TaskConfig);
             if (gameObjectId != 0)
             {
                 P.taskManager.Enqueue(() => TargetV2(gameObjectId), $"Checking for target: {gameObjectId}"); // Checking to see if the target exist
@@ -74,6 +75,11 @@ namespace ExplorersIcebox.Scheduler.Tasks
                             }
                         }
                     }
+                    if (!mount)
+                    {
+                        if (EzThrottler.Throttle("Using sprint"))
+                            ActionManager.Instance()->UseAction(ActionType.GeneralAction, 26);
+                    }
                     if (EzThrottler.Throttle($"MoveToQueue_Ground_{List[0]}"))
                     {
                         Svc.Log.Debug("Telling Navmesh to move through the list");
@@ -85,7 +91,7 @@ namespace ExplorersIcebox.Scheduler.Tasks
             return false;
         }
 
-        internal static bool? FinishRoute()
+        internal static bool? FinishRoute(bool mount)
         {
             // pretty much a failsafe to make sure that navmesh isn't running. 
             // could clump with other code but, could also use this as a series of wp's for specific things
