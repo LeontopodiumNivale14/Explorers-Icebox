@@ -93,7 +93,7 @@ internal class MainWindow : Window
 
         if (selectedModeIndex == 0)
             selectedRouteIndex = 7;
-        else if (selectedRouteIndex == 1)
+        else if (selectedModeIndex == 1)
             selectedRouteIndex = 18;
 
         var routeSelected = EmbedRoutes.Routes.Where(x => x.Key == routeNames[selectedRouteIndex]).FirstOrDefault();
