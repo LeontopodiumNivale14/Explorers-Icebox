@@ -170,11 +170,13 @@ internal class MainWindow : Window
                 C.RunMaxLoops = RunMaxLoops;
                 C.Save();
             }
+            ImGuiEx.HelpMarker("Run the max amount of loops that you can with the current amount to keep.\n" +
+                               "Good if you want to just get as many as you can w/o setting a specific item amount");
             if (RunMaxLoops)
                 IslandHelper.GoalLoopAmount = IslandHelper.MaxRouteLoops;
 
             bool runMultiple = C.RunMultiple;
-            if (ImGui.Checkbox("Run multiple loops", ref runMultiple))
+            if (ImGui.Checkbox("Repeat Loop", ref runMultiple))
             {
                 C.RunMultiple = runMultiple;
                 C.Save();
@@ -189,6 +191,8 @@ internal class MainWindow : Window
                     C.RunAmount = RunAmount;
                     C.Save();
                 }
+                ImGui.SameLine();
+                ImGui.Text("Amount of times");
             }
 
             int MinItemKeep = C.MinimumItemKeep;
@@ -202,7 +206,7 @@ internal class MainWindow : Window
                     C.Save();
                 }
             }
-            bool DisableButtons = IslandHelper.GoalLoopAmount > IslandHelper.MaxRouteLoops || IslandHelper.MaxRouteLoops == 0;
+            bool DisableButtons = IslandHelper.GoalLoopAmount > IslandHelper.MaxRouteLoops || IslandHelper.MaxRouteLoops == 0 || IslandHelper.GoalLoopAmount == 0;
 
             using (ImRaii.Disabled(DisableButtons))
             {

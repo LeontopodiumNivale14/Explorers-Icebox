@@ -53,6 +53,12 @@ public static class ItemData
     public const int HawksEyeSand_ID = 41633;
     public const int CrystalFormation_ID = 41634;
 
+    // Items that can be gathered, but can't be sold to the vendor
+    public const int PumpkinSeed_Id = 37586;
+    public const int CabbageSeed_Id = 37584;
+    public const int ParsnipSeed_Id = 37591;
+    public const int PopotoSeed_Id = 37583;
+
     public class IslandItemInfo
     {
         public string ItemName { get; set; } = "";
@@ -61,52 +67,59 @@ public static class ItemData
     }
 
     public static Dictionary<int, IslandItemInfo> IslandItems = new()
-{
-    { PalmLeaf_ID, new IslandItemInfo { ItemName = "Palm Leaf", SellSlot = 0, NodeId = 10 } },
-    { Branch_ID, new IslandItemInfo { ItemName = "Branch", SellSlot = 0, NodeId = 100001 } },
-    { Stone_ID, new IslandItemInfo { ItemName = "Stone", SellSlot = 0, NodeId = 100002 } },
-    { Clam_ID, new IslandItemInfo { ItemName = "Clam", SellSlot = 0, NodeId = 100003 } },
-    { Laver_ID, new IslandItemInfo { ItemName = "Laver", SellSlot = 0, NodeId = 100004 } },
-    { Coral_ID, new IslandItemInfo { ItemName = "Coral", SellSlot = 0, NodeId = 100005 } },
-    { Islewort_ID, new IslandItemInfo { ItemName = "Islewort", SellSlot = 0, NodeId = 100006 } },
-    { Sand_ID, new IslandItemInfo { ItemName = "Sand", SellSlot = 0, NodeId = 100007 } },
-    { Vine_ID, new IslandItemInfo { ItemName = "Vine", SellSlot = 0, NodeId = 100008 } },
-    { Sap_ID, new IslandItemInfo { ItemName = "Sap", SellSlot = 0, NodeId = 100009 } },
-    { Apple_ID, new IslandItemInfo { ItemName = "Apple", SellSlot = 0, NodeId = 100010 } },
-    { Log_ID, new IslandItemInfo { ItemName = "Log", SellSlot = 0, NodeId = 100011 } },
-    { PalmLog_ID, new IslandItemInfo { ItemName = "Palm Log", SellSlot = 0, NodeId = 100012 } },
-    { CopperOre_ID, new IslandItemInfo { ItemName = "Copper", SellSlot = 0, NodeId = 100013 } },
-    { Limestone_ID, new IslandItemInfo { ItemName = "Limestone", SellSlot = 0, NodeId = 100014 } },
-    { RockSalt_ID, new IslandItemInfo { ItemName = "Rock Salt", SellSlot = 0, NodeId = 100015 } },
-    { Clay_ID, new IslandItemInfo { ItemName = "Clay", SellSlot = 0, NodeId = 100016 } },
-    { Tinsand_ID, new IslandItemInfo { ItemName = "Tinsand", SellSlot = 0, NodeId = 100017 } },
-    { Sugarcane_ID, new IslandItemInfo { ItemName = "Sugarcane", SellSlot = 0, NodeId = 100018 } },
-    { Cotton_ID, new IslandItemInfo { ItemName = "Cotton", SellSlot = 0, NodeId = 100019 } },
-    { Hemp_ID, new IslandItemInfo { ItemName = "Hemp", SellSlot = 0, NodeId = 100020 } },
-    { Islefish_ID, new IslandItemInfo { ItemName = "Islefish", SellSlot = 0, NodeId = 100021 } },
-    { Squid_ID, new IslandItemInfo { ItemName = "Squid", SellSlot = 0, NodeId = 100022 } },
-    { Jellyfish_ID, new IslandItemInfo { ItemName = "Jellyfish", SellSlot = 0, NodeId = 100023 } },
-    { IronOre_ID, new IslandItemInfo { ItemName = "Iron Ore", SellSlot = 0, NodeId = 100024 } },
-    { Quartz_ID, new IslandItemInfo { ItemName = "Quartz", SellSlot = 0, NodeId = 100025 } },
-    { Leucogranite_ID, new IslandItemInfo { ItemName = "Leucogranite", SellSlot = 0, NodeId = 100026 } },
-    { MulticoloredIsleblooms_ID, new IslandItemInfo { ItemName = "Multicolored Isleblooms", SellSlot = 0, NodeId = 100027 } },
-    { Resin_ID, new IslandItemInfo { ItemName = "Resin", SellSlot = 0, NodeId = 100028 } },
-    { Coconut_ID, new IslandItemInfo { ItemName = "Coconut", SellSlot = 0, NodeId = 100029 } },
-    { Beehive_ID, new IslandItemInfo { ItemName = "Beehive", SellSlot = 0, NodeId = 100030 } },
-    { WoodOpal_ID, new IslandItemInfo { ItemName = "Wood Opal", SellSlot = 0, NodeId = 100031 } },
-    { Coal_ID, new IslandItemInfo { ItemName = "Coal", SellSlot = 0, NodeId = 100032 } },
-    { Glimshroom_ID, new IslandItemInfo { ItemName = "Glimshroom", SellSlot = 0, NodeId = 100033 } },
-    { EffervescentWater_ID, new IslandItemInfo { ItemName = "Effervescent Water", SellSlot = 0, NodeId = 100034 } },
-    { Shale_ID, new IslandItemInfo { ItemName = "Shale", SellSlot = 0, NodeId = 100035 } },
-    { Marble_ID, new IslandItemInfo { ItemName = "Marble", SellSlot = 0, NodeId = 100036 } },
-    { MythrilOre_ID, new IslandItemInfo { ItemName = "Mythril Ore", SellSlot = 0, NodeId = 100037 } },
-    { Spectrine_ID, new IslandItemInfo { ItemName = "Spectrine", SellSlot = 0, NodeId = 100038 } },
-    { DuriumSand_ID, new IslandItemInfo { ItemName = "Durium Sand", SellSlot = 0, NodeId = 100039 } },
-    { YellowCopperOre_ID, new IslandItemInfo { ItemName = "Yellow Copper Ore", SellSlot = 0, NodeId = 100040 } },
-    { GoldOre_ID, new IslandItemInfo { ItemName = "Gold Ore", SellSlot = 0, NodeId = 100041 } },
-    { HawksEyeSand_ID, new IslandItemInfo { ItemName = "Hawk's Eye Sand", SellSlot = 0, NodeId = 100042 } },
-    { CrystalFormation_ID, new IslandItemInfo { ItemName = "Crystal Formation", SellSlot = 0, NodeId = 100043 } },
-};
+    {
+        { PalmLeaf_ID, new IslandItemInfo { ItemName = "Palm Leaf", SellSlot = 0, NodeId = 10 } },
+        { Branch_ID, new IslandItemInfo { ItemName = "Branch", SellSlot = 0, NodeId = 100001 } },
+        { Stone_ID, new IslandItemInfo { ItemName = "Stone", SellSlot = 0, NodeId = 100002 } },
+        { Clam_ID, new IslandItemInfo { ItemName = "Clam", SellSlot = 0, NodeId = 100003 } },
+        { Laver_ID, new IslandItemInfo { ItemName = "Laver", SellSlot = 0, NodeId = 100004 } },
+        { Coral_ID, new IslandItemInfo { ItemName = "Coral", SellSlot = 0, NodeId = 100005 } },
+        { Islewort_ID, new IslandItemInfo { ItemName = "Islewort", SellSlot = 0, NodeId = 100006 } },
+        { Sand_ID, new IslandItemInfo { ItemName = "Sand", SellSlot = 0, NodeId = 100007 } },
+        { Vine_ID, new IslandItemInfo { ItemName = "Vine", SellSlot = 0, NodeId = 100008 } },
+        { Sap_ID, new IslandItemInfo { ItemName = "Sap", SellSlot = 0, NodeId = 100009 } },
+        { Apple_ID, new IslandItemInfo { ItemName = "Apple", SellSlot = 0, NodeId = 100010 } },
+        { Log_ID, new IslandItemInfo { ItemName = "Log", SellSlot = 0, NodeId = 100011 } },
+        { PalmLog_ID, new IslandItemInfo { ItemName = "Palm Log", SellSlot = 0, NodeId = 100012 } },
+        { CopperOre_ID, new IslandItemInfo { ItemName = "Copper", SellSlot = 0, NodeId = 100013 } },
+        { Limestone_ID, new IslandItemInfo { ItemName = "Limestone", SellSlot = 0, NodeId = 100014 } },
+        { RockSalt_ID, new IslandItemInfo { ItemName = "Rock Salt", SellSlot = 0, NodeId = 100015 } },
+        { Clay_ID, new IslandItemInfo { ItemName = "Clay", SellSlot = 0, NodeId = 100016 } },
+        { Tinsand_ID, new IslandItemInfo { ItemName = "Tinsand", SellSlot = 0, NodeId = 100017 } },
+        { Sugarcane_ID, new IslandItemInfo { ItemName = "Sugarcane", SellSlot = 0, NodeId = 100018 } },
+        { Cotton_ID, new IslandItemInfo { ItemName = "Cotton", SellSlot = 0, NodeId = 100019 } },
+        { Hemp_ID, new IslandItemInfo { ItemName = "Hemp", SellSlot = 0, NodeId = 100020 } },
+        { Islefish_ID, new IslandItemInfo { ItemName = "Islefish", SellSlot = 0, NodeId = 100021 } },
+        { Squid_ID, new IslandItemInfo { ItemName = "Squid", SellSlot = 0, NodeId = 100022 } },
+        { Jellyfish_ID, new IslandItemInfo { ItemName = "Jellyfish", SellSlot = 0, NodeId = 100023 } },
+        { IronOre_ID, new IslandItemInfo { ItemName = "Iron Ore", SellSlot = 0, NodeId = 100024 } },
+        { Quartz_ID, new IslandItemInfo { ItemName = "Quartz", SellSlot = 0, NodeId = 100025 } },
+        { Leucogranite_ID, new IslandItemInfo { ItemName = "Leucogranite", SellSlot = 0, NodeId = 100026 } },
+        { MulticoloredIsleblooms_ID, new IslandItemInfo { ItemName = "Multicolored Isleblooms", SellSlot = 0, NodeId = 100027 } },
+        { Resin_ID, new IslandItemInfo { ItemName = "Resin", SellSlot = 0, NodeId = 100028 } },
+        { Coconut_ID, new IslandItemInfo { ItemName = "Coconut", SellSlot = 0, NodeId = 100029 } },
+        { Beehive_ID, new IslandItemInfo { ItemName = "Beehive", SellSlot = 0, NodeId = 100030 } },
+        { WoodOpal_ID, new IslandItemInfo { ItemName = "Wood Opal", SellSlot = 0, NodeId = 100031 } },
+        { Coal_ID, new IslandItemInfo { ItemName = "Coal", SellSlot = 0, NodeId = 100032 } },
+        { Glimshroom_ID, new IslandItemInfo { ItemName = "Glimshroom", SellSlot = 0, NodeId = 100033 } },
+        { EffervescentWater_ID, new IslandItemInfo { ItemName = "Effervescent Water", SellSlot = 0, NodeId = 100034 } },
+        { Shale_ID, new IslandItemInfo { ItemName = "Shale", SellSlot = 0, NodeId = 100035 } },
+        { Marble_ID, new IslandItemInfo { ItemName = "Marble", SellSlot = 0, NodeId = 100036 } },
+        { MythrilOre_ID, new IslandItemInfo { ItemName = "Mythril Ore", SellSlot = 0, NodeId = 100037 } },
+        { Spectrine_ID, new IslandItemInfo { ItemName = "Spectrine", SellSlot = 0, NodeId = 100038 } },
+        { DuriumSand_ID, new IslandItemInfo { ItemName = "Durium Sand", SellSlot = 0, NodeId = 100039 } },
+        { YellowCopperOre_ID, new IslandItemInfo { ItemName = "Yellow Copper Ore", SellSlot = 0, NodeId = 100040 } },
+        { GoldOre_ID, new IslandItemInfo { ItemName = "Gold Ore", SellSlot = 0, NodeId = 100041 } },
+        { HawksEyeSand_ID, new IslandItemInfo { ItemName = "Hawk's Eye Sand", SellSlot = 0, NodeId = 100042 } },
+        { CrystalFormation_ID, new IslandItemInfo { ItemName = "Crystal Formation", SellSlot = 0, NodeId = 100043 } },
+            // Need to put these here for dictionary sake
+        { CabbageSeed_Id, new IslandItemInfo { ItemName = "Cabbage Seed", SellSlot = 0, NodeId = 0} },
+        { PumpkinSeed_Id, new IslandItemInfo { ItemName = "Pumpkin Seed", SellSlot = 0, NodeId = 0} },
+        { ParsnipSeed_Id, new IslandItemInfo { ItemName = "Parsnip Seed", SellSlot = 0, NodeId = 0} },
+        { PopotoSeed_Id, new IslandItemInfo { ItemName = "Popoto Seed", SellSlot = 0, NodeId = 0} },
+    };
+
+    public static HashSet<int> AlwaysIgnoreSell = [CabbageSeed_Id, PumpkinSeed_Id, ParsnipSeed_Id, PopotoSeed_Id];
 
 
     public class GatheringNode
@@ -183,7 +196,7 @@ public static class ItemData
             {
                 GatherName = "Lightly Gnawed Pumpkin", 
                 Nodes = [4304298101, 4304298100, 4304298099, 4304298098, 4304298102, 4304298105, 4304298107, 4304298106, 4304298103, 4304298104],
-                ItemIds = { /* PumpkinSeeds */}
+                ItemIds = { PumpkinSeed_Id }
             },
             new GatheringNode
             {
@@ -213,7 +226,7 @@ public static class ItemData
             {
                 GatherName = "Partially Consumed Cabbage", 
                 Nodes = [4304386365, 4304390290, 4304390287, 4304390289, 4304390288, 4304390291],
-                ItemIds = { Islewort_ID /* Cabbage Seeds */}
+                ItemIds = { CabbageSeed_Id }
             },
             new GatheringNode
             {
@@ -273,13 +286,13 @@ public static class ItemData
             {
                 GatherName = "Wild Parsnip", 
                 Nodes = [4304326318, 4304411405, 4304326319, 4304326303, 4304326305, 4304326304, 4304326320, 4304326300, 4304326296, 4304326298, 4304326301, 4304326310, 4304326313, 4304326307, 4304326311, 4304326308, 4304326314, 4304411409, 4304326312, 4304411408, 4304411407, 4304326317, 4304326315, 4304411406, 4304326316],
-                ItemIds = { Islewort_ID /* Parsnip Seeds */ }
+                ItemIds = { Islewort_ID, ParsnipSeed_Id }
             },
             new GatheringNode
             {
                 GatherName = "Wild Popoto", 
                 Nodes = [4304326291, 4304326292, 4304326293, 4304326275, 4304326276, 4304326272, 4304326277, 4304326274, 4304326278, 4304326273, 4304326288, 4304326289, 4304326287, 4304326283, 4304326280, 4304326290, 4304326282, 4304326281, 4304326294, 4304326295],
-                ItemIds = { Islewort_ID /* Popoto Seeds */}
+                ItemIds = { Islewort_ID, PopotoSeed_Id}
             },
             new GatheringNode
             {

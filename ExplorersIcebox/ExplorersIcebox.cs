@@ -1,10 +1,8 @@
 using ECommons.Automation.NeoTaskManager;
-using ECommons.Configuration;
 using ECommons.Logging;
 using ExplorersIcebox.Config;
 using ExplorersIcebox.IPC;
 using ExplorersIcebox.Scheduler;
-using ExplorersIcebox.Scheduler.Handers;
 using ExplorersIcebox.Ui;
 using ExplorersIcebox.Ui.MainWindow;
 using Pictomancy;
@@ -75,6 +73,7 @@ public sealed class ExplorersIcebox : IDalamudPlugin
     {
         P = this;
         ECommonsMain.Init(pi, P, ECommons.Module.DalamudReflector, ECommons.Module.ObjectFunctions, Module.SplatoonAPI);
+        Util.File_Migration.UpdateItemConfig();
 
         PictoService.Initialize(pi);
 

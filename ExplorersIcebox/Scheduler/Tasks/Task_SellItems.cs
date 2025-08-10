@@ -28,6 +28,8 @@ namespace ExplorersIcebox.Scheduler.Tasks
             {
                 var itemId = item.Key;
                 var sellAmount = item.Value;
+                if (ItemData.AlwaysIgnoreSell.Contains(itemId))
+                    { continue; }
 
                 P.taskManager.Enqueue(() => SellToNpc(itemId, sellAmount), $"Selling {itemId}");
                 P.taskManager.EnqueueDelay(700);

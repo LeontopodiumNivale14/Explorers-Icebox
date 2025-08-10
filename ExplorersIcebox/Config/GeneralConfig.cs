@@ -5,7 +5,7 @@ namespace ExplorersIcebox.Config;
 
 public class GeneralConfig : IYamlConfig
 {
-    public const int CurrentConfigVersion = 2;
+    public int CurrentConfigVersion { get; set; } = 0;
     public int ModeSelected { get; set; } = 0;
     public int routeSelected { get; set; } = 0;
 
@@ -66,6 +66,10 @@ public class GeneralConfig : IYamlConfig
         { "Gold Ore", 0 },
         { "Hawk's Eye Sand", 0 },
         { "Crystal Formation", 0 },
+        { "Cabbage Seed", 0},
+        { "Pumpkin Seed", 0},
+        { "Parsnip Seed", 0},
+        { "Popoto Seed", 0}
     };
 
     // Debug Stuff

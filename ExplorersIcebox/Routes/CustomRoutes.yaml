@@ -2624,193 +2624,154 @@ routes:
       - x: -4.6035953
         y: 69.54574
         z: 94.57643
-      - x: 27.521626
-        y: 70.54381
-        z: 93.70136
-      - x: 89.20796
-        y: 64.60293
-        z: 71.657646
-      - x: 122.652306
-        y: 61.201286
-        z: 58.08905
-      - x: 241.05537
-        y: 79.69105
-        z: -6.9635696
-      - x: 257.92752
-        y: 80.641045
-        z: -14.322815
-      - x: 446.3174
-        y: 91.63063
-        z: -114.76534
-      - x: 520.8497
-        y: 69.89032
-        z: -158.41318
-      - x: 546.5684
-        y: 71.3332
-        z: -179.74686
-      - x: 582.5457
-        y: 68.12453
-        z: -199.1542
-      - x: 613.47876
-        y: 70.2495
-        z: -236.30331
-      - x: 679.12714
-        y: 70.263504
-        z: -296.61435
-      - x: 734.6235
-        y: 26.434763
-        z: -350.4841
-      - x: 738.39105
-        y: 21.38617
-        z: -393.94916
-      - x: 711.94037
-        y: 27.42867
-        z: -447.67313
-      - x: 684.5875
-        y: 15.925638
-        z: -501.60355
-      - x: 684.1137
-        y: 15.023876
-        z: -509.97162
-      - x: 686.89215
-        y: 14.383759
-        z: -537.21454
-      - x: 676.9876
-        y: 5.489562
-        z: -615.5805
-      - x: 681.95294
-        y: 5.1008253
-        z: -635.5096
-      - x: 692.502
-        y: 4.9999924
-        z: -645.9204
+      - x: 3.1905646
+        y: 69.80257
+        z: 94.089096
+      - x: 11.480158
+        y: 70.39268
+        z: 96.280975
+      - x: 27.75313
+        y: 69.223465
+        z: 83.27037
+      - x: 49.174213
+        y: 66.961334
+        z: 60.929646
+      - x: 70.54048
+        y: 63.77389
+        z: 43.199562
+      - x: 71.1057
+        y: 65.01825
+        z: 37.4895
+      - x: 77.77781
+        y: 67.64709
+        z: 23.962193
+      - x: 77.64177
+        y: 68.32659
+        z: 19.818146
+      - x: 65.04063
+        y: 69.356224
+        z: 2.6682684
+      - x: 45.632843
+        y: 67.285645
+        z: -40.046658
+      - x: 36.827347
+        y: 64.00007
+        z: -50.70566
+      - x: 27.33792
+        y: 64.03842
+        z: -61.530403
       action: None
       targetId: 0
       mount: true
       fly: false
     routeWaypoints:
-    - name: Speckled Rock
+    - name: Smooth White Rock
       waypoints:
-      - x: 692.5401
-        y: 4.9999924
-        z: -646.03326
+      - x: 24.789068
+        y: 64.70329
+        z: -64.52844
       action: IslandInteract
-      targetId: 4304373973
+      targetId: 4304326256
       mount: false
       fly: false
-    - name: Speckled Rock
+    - name: Smooth White Rock
       waypoints:
-      - x: 671.4141
-        y: 5.218733
-        z: -653.60864
+      - x: 25.364481
+        y: 64.04567
+        z: -75.811165
       action: IslandInteract
-      targetId: 4304373972
-      mount: true
+      targetId: 4304410548
+      mount: false
       fly: false
-    - name: Speckled Rock
+    - name: Smooth White Rock
       waypoints:
-      - x: 654.63965
-        y: 8.941835
-        z: -616.95874
+      - x: 20.270363
+        y: 65.429276
+        z: -74.94736
       action: IslandInteract
-      targetId: 4304410571
-      mount: true
+      targetId: 4304410546
+      mount: false
       fly: false
-    - name: Speckled Rock
+    - name: Smooth White Rock
       waypoints:
-      - x: 624.90015
-        y: 10.315589
-        z: -647.6978
+      - x: 16.516243
+        y: 66.314896
+        z: -78.11242
       action: IslandInteract
-      targetId: 4304410577
-      mount: true
+      targetId: 4304326250
+      mount: false
       fly: false
-    - name: Speckled Rock
+    - name: Smooth White Rock
       waypoints:
-      - x: 606.9403
-        y: 10.184678
-        z: -654.4627
-      - x: 595.29065
-        y: 9.391143
-        z: -666.4295
+      - x: 19.374989
+        y: 64.7981
+        z: -85.17711
       action: IslandInteract
-      targetId: 4304410579
-      mount: true
+      targetId: 4304410547
+      mount: false
       fly: false
-    - name: Speckled Rock
+    - name: Smooth White Rock
       waypoints:
-      - x: 573.26666
-        y: 6.7778444
-        z: -690.4444
+      - x: 18.681906
+        y: 64.34683
+        z: -90.50934
       action: IslandInteract
-      targetId: 4304410581
-      mount: true
+      targetId: 4304326259
+      mount: false
       fly: false
-    - name: Speckled Rock
+    - name: Smooth White Rock
       waypoints:
-      - x: 557.8973
-        y: 5.3623104
-        z: -730.0685
+      - x: 9.212558
+        y: 63.62508
+        z: -103.797134
       action: IslandInteract
-      targetId: 4304410582
-      mount: true
+      targetId: 4304326247
+      mount: false
       fly: false
-    - name: Rough Black Rock
+    - name: Palm Tree
       waypoints:
-      - x: 548.02747
-        y: 5.7533655
-        z: -712.87836
+      - x: -1.4314303
+        y: 66.77713
+        z: -106.17994
       action: IslandInteract
-      targetId: 4304373965
-      mount: true
+      targetId: 4304257926
+      mount: false
       fly: false
-    - name: Bluish Rock
+    - name: Palm Tree
       waypoints:
-      - x: 551.799
-        y: 6.3128214
-        z: -704.2179
-      - x: 550.4459
-        y: 8.203276
-        z: -695.2698
+      - x: -11.657007
+        y: 71.365456
+        z: -99.10889
       action: IslandInteract
-      targetId: 4304326210
-      mount: true
+      targetId: 4304257900
+      mount: false
       fly: false
-    - name: Rough Black Rock
+    - name: Agave Plant
       waypoints:
-      - x: 558.5124
-        y: 7.280184
-        z: -690.44867
-      - x: 584.64716
-        y: 9.460815
-        z: -664.37274
+      - x: -2.1810873
+        y: 70.376366
+        z: -79.367935
       action: IslandInteract
-      targetId: 4304373966
-      mount: true
+      targetId: 4304375927
+      mount: false
       fly: false
-    - name: Bluish Rock
+    - name: Palm Tree
       waypoints:
-      - x: 612.3414
-        y: 10.68785
-        z: -643.94165
+      - x: 7.131301
+        y: 69.0361
+        z: -70.13162
       action: IslandInteract
-      targetId: 4304326207
-      mount: true
+      targetId: 4304257887
+      mount: false
       fly: false
     - name: ''
       waypoints:
-      - x: 624.98944
-        y: 11.3305435
-        z: -641.37024
-      - x: 651.4843
-        y: 7.5404387
-        z: -631.02765
-      - x: 692.744
-        y: 4.9999914
-        z: -645.9796
+      - x: 24.115175
+        y: 64.90202
+        z: -64.81585
       action: None
       targetId: 0
-      mount: true
+      mount: false
       fly: false
   '7: Clay/Sand [Ground XP Route]':
     baseToLocation:
@@ -4308,6 +4269,389 @@ routes:
       targetId: 0
       mount: true
       fly: false
+  '22: Cabbage Seeds':
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -264.30133
+        y: 40.000008
+        z: 226.28719
+      - x: -257.68793
+        y: 40.000008
+        z: 224.7665
+      - x: -218.02956
+        y: 41.20666
+        z: 191.93486
+      - x: -204.47446
+        y: 44.07366
+        z: 177.19014
+      - x: -198.70728
+        y: 44.697712
+        z: 174.94699
+      - x: -148.85135
+        y: 48.18932
+        z: 164.61832
+      - x: -125.02942
+        y: 51.4694
+        z: 162.10635
+      - x: -120.05133
+        y: 52.358013
+        z: 158.54161
+      - x: -113.09335
+        y: 56.52649
+        z: 138.6951
+      - x: -74.1141
+        y: 71.136696
+        z: 133.35565
+      - x: -63.853134
+        y: 73.16123
+        z: 127.51715
+      - x: -3.4815986
+        y: 69.48734
+        z: 93.35188
+      - x: 9.135127
+        y: 70.21489
+        z: 95.70393
+      - x: 12.646272
+        y: 70.13968
+        z: 94.06061
+      - x: 30.219242
+        y: 69.19608
+        z: 82.70966
+      - x: 70.47762
+        y: 64.00384
+        z: 41.849297
+      - x: 71.25203
+        y: 65.00155
+        z: 37.591564
+      - x: 76.07378
+        y: 68.20684
+        z: 20.24463
+      - x: 49.37741
+        y: 68.00681
+        z: -24.257772
+      - x: 22.068377
+        y: 65.414116
+        z: -67.69124
+      - x: 18.561052
+        y: 66.36198
+        z: -68.60354
+      - x: 5.7500005
+        y: 67.35232
+        z: -88.978775
+      - x: -5.340416
+        y: 68.40822
+        z: -105.75474
+      - x: -16.77886
+        y: 70.52514
+        z: -131.78146
+      - x: -18.440338
+        y: 70.885056
+        z: -140.62746
+      - x: -22.827908
+        y: 71.06865
+        z: -187.63956
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+    routeWaypoints:
+    - name: Partially Consumed Cabbage
+      waypoints:
+      - x: -21.939953
+        y: 71.01931
+        z: -187.81517
+      action: IslandInteract
+      targetId: 4304390291
+      mount: false
+      fly: false
+    - name: Partially Consumed Cabbage
+      waypoints:
+      - x: -25.508614
+        y: 70.51232
+        z: -194.77377
+      action: IslandInteract
+      targetId: 4304390289
+      mount: false
+      fly: false
+    - name: Partially Consumed Cabbage
+      waypoints:
+      - x: -25.225151
+        y: 70.739174
+        z: -200.03098
+      action: IslandInteract
+      targetId: 4304390288
+      mount: false
+      fly: false
+    - name: Partially Consumed Cabbage
+      waypoints:
+      - x: -26.802341
+        y: 71.17866
+        z: -203.05823
+      action: IslandInteract
+      targetId: 4304390287
+      mount: false
+      fly: false
+    - name: Partially Consumed Cabbage
+      waypoints:
+      - x: -24.747135
+        y: 71.64684
+        z: -208.34425
+      action: IslandInteract
+      targetId: 4304390290
+      mount: false
+      fly: false
+    - name: Submerged Sand
+      waypoints:
+      - x: -9.122359
+        y: 66.54998
+        z: -211.28671
+      - x: 2.1231902
+        y: 59.999996
+        z: -200.91682
+      action: IslandInteract
+      targetId: 4304372618
+      mount: true
+      fly: false
+    - name: Submerged Sand
+      waypoints:
+      - x: 2.5421972
+        y: 59.999996
+        z: -194.62556
+      - x: 4.3739853
+        y: 59.999996
+        z: -190.04074
+      - x: 4.768655
+        y: 59.999992
+        z: -189.95201
+      action: IslandInteract
+      targetId: 4304372617
+      mount: false
+      fly: false
+    - name: Submerged Sand
+      waypoints:
+      - x: -0.28887457
+        y: 59.999996
+        z: -166.02238
+      action: IslandInteract
+      targetId: 4304372621
+      mount: true
+      fly: false
+    - name: Submerged Sand
+      waypoints:
+      - x: 6.526051
+        y: 59.999996
+        z: -152.89122
+      action: IslandInteract
+      targetId: 4304372615
+      mount: true
+      fly: false
+    - name: Submerged Sand
+      waypoints:
+      - x: 6.4194727
+        y: 60.322346
+        z: -125.42492
+      action: IslandInteract
+      targetId: 4304372620
+      mount: true
+      fly: false
+    - name: Submerged Sand
+      waypoints:
+      - x: 9.8599205
+        y: 61.280327
+        z: -115.068924
+      action: IslandInteract
+      targetId: 4304372613
+      mount: false
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 0.727111
+        y: 65.026825
+        z: -109.69419
+      - x: -4.5667076
+        y: 67.3667
+        z: -109.9898
+      - x: -6.444394
+        y: 68.184006
+        z: -119.76952
+      - x: -22.311325
+        y: 70.9758
+        z: -187.1588
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+  23. Pumpkin Seeds:
+    baseToLocation:
+    - name: Base Start
+      waypoints:
+      - *o1
+      - x: -263.6186
+        y: 40.000008
+        z: 226.39566
+      - x: -257.714
+        y: 40.000004
+        z: 223.8241
+      - x: -203.81757
+        y: 44.20831
+        z: 177.49547
+      - x: -202.62354
+        y: 44.312187
+        z: 176.45602
+      - x: -148.52794
+        y: 48.216564
+        z: 163.87256
+      - x: -126.97121
+        y: 51.30811
+        z: 161.05394
+      - x: -121.746
+        y: 52.567535
+        z: 157.93417
+      - x: -119.942764
+        y: 52.981747
+        z: 155.79442
+      - x: -113.05114
+        y: 56.28883
+        z: 140.65805
+      - x: -111.71891
+        y: 56.637283
+        z: 138.63457
+      - x: -71.54865
+        y: 72.080795
+        z: 132.95132
+      - x: -18.186497
+        y: 69.50012
+        z: 100.24017
+      - x: 6.7438464
+        y: 71.902176
+        z: 106.25175
+      - x: 26.53386
+        y: 72.54992
+        z: 107.02398
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
+    routeWaypoints:
+    - name: Lightly Gnawed Pumpkin
+      waypoints:
+      - x: 26.777924
+        y: 72.49005
+        z: 106.6345
+      action: IslandInteract
+      targetId: 4304298101
+      mount: false
+      fly: false
+    - name: Lightly Gnawed Pumpkin
+      waypoints:
+      - x: 31.488243
+        y: 72.664
+        z: 107.036766
+      action: IslandInteract
+      targetId: 4304298100
+      mount: false
+      fly: false
+    - name: Lightly Gnawed Pumpkin
+      waypoints:
+      - x: 36.152397
+        y: 72.76737
+        z: 107.41859
+      action: IslandInteract
+      targetId: 4304298099
+      mount: false
+      fly: false
+    - name: Lightly Gnawed Pumpkin
+      waypoints:
+      - x: 37.80675
+        y: 72.81292
+        z: 107.55402
+      action: IslandInteract
+      targetId: 4304298098
+      mount: false
+      fly: false
+    - name: Lightly Gnawed Pumpkin
+      waypoints:
+      - x: 40.44726
+        y: 72.7064
+        z: 106.64084
+      action: IslandInteract
+      targetId: 4304298102
+      mount: false
+      fly: false
+    - name: Lightly Gnawed Pumpkin
+      waypoints:
+      - x: 73.205376
+        y: 71.00978
+        z: 102.21862
+      action: IslandInteract
+      targetId: 4304298105
+      mount: true
+      fly: false
+    - name: Lightly Gnawed Pumpkin
+      waypoints:
+      - x: 76.202415
+        y: 70.70434
+        z: 100.93655
+      action: IslandInteract
+      targetId: 4304298107
+      mount: false
+      fly: false
+    - name: Lightly Gnawed Pumpkin
+      waypoints:
+      - x: 85.26
+        y: 69.15955
+        z: 94.72674
+      action: IslandInteract
+      targetId: 4304298106
+      mount: false
+      fly: false
+    - name: Lightly Gnawed Pumpkin
+      waypoints:
+      - x: 91.18917
+        y: 69.32281
+        z: 97.90601
+      action: IslandInteract
+      targetId: 4304298103
+      mount: false
+      fly: false
+    - name: Lightly Gnawed Pumpkin
+      waypoints:
+      - x: 103.10987
+        y: 67.68588
+        z: 95.18903
+      action: IslandInteract
+      targetId: 4304298104
+      mount: false
+      fly: false
+    - name: Tualong Tree
+      waypoints:
+      - x: 90.562035
+        y: 65.19448
+        z: 76.13481
+      action: IslandInteract
+      targetId: 4304258702
+      mount: true
+      fly: false
+    - name: ''
+      waypoints:
+      - x: 48.123043
+        y: 71.03623
+        z: 94.78803
+      - x: 37.523262
+        y: 71.25724
+        z: 97.010574
+      - x: 35.285538
+        y: 71.281075
+        z: 97.49656
+      - x: 26.703787
+        y: 72.509895
+        z: 106.76386
+      action: None
+      targetId: 0
+      mount: true
+      fly: false
 baseRoutes:
   Base -> Shopkeep:
     name: Base Start
@@ -4335,15 +4679,9 @@ baseRoutes:
   do not move here:
     name: Base Start
     waypoints:
-    - x: -269.82086
-      y: 41
-      z: 217.42917
-    - x: -267.51196
-      y: 41
-      z: 217.44138
-    - x: -267.4143
-      y: 41
-      z: 212.14262
+    - x: -79.61492
+      y: -3.33786E-06
+      z: -36.2644
     action: None
     targetId: 0
     mount: false

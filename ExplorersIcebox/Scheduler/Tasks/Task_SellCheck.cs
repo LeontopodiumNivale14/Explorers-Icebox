@@ -27,6 +27,8 @@ namespace ExplorersIcebox.Scheduler.Tasks
             {
                 if (item.Value.IgnoreNode == true)
                     continue;
+                if (ItemData.AlwaysIgnoreSell.Contains(item.Value.ItemId))
+                    continue;
 
                 string itemName = item.Key;
                 int gatherAmount = IslandHelper.RouteItems[itemName].Amount;
