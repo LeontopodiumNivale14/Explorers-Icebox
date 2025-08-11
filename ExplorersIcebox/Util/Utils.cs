@@ -103,7 +103,7 @@ public class Utils
         if (ptr == nint.Zero)
             return false;
 
-        var addon = (AtkUnitBase*)ptr;
+        var addon = (AtkUnitBase*)ptr.Address;
         var node = GetNodeByIDChain(addon->GetRootNode(), ids);
         return node != null && node->IsVisible();
     }
@@ -113,7 +113,7 @@ public class Utils
 
         var ptr = Svc.GameGui.GetAddonByName(addonName, 1);
 
-        var addon = (AtkUnitBase*)ptr;
+        var addon = (AtkUnitBase*)ptr.Address;
         var uld = addon->UldManager;
 
         AtkResNode* node = null;

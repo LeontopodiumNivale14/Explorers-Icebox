@@ -2,14 +2,9 @@ using Dalamud.Game.ClientState.Objects.Types;
 using ECommons.Automation;
 using ECommons.Throttlers;
 using ExplorersIcebox.Util;
-using FFXIVClientStructs.FFXIV.Client.Game.Object;
 using FFXIVClientStructs.FFXIV.Component.GUI;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using YamlDotNet.Serialization;
+using Callback = ECommons.Automation.Callback;
 
 namespace ExplorersIcebox.Scheduler.Tasks
 {

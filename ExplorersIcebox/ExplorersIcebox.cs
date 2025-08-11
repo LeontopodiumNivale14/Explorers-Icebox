@@ -92,10 +92,12 @@ public sealed class ExplorersIcebox : IDalamudPlugin
         {
             mainWindow.IsOpen = true;
         };
+        /* 
         Svc.PluginInterface.UiBuilder.OpenConfigUi += () =>
         {
             
-        };
+        }; 
+        */
         EzCmd.Add("/explorersicebox", OnCommand, """
             Open plugin interface
             /icebox - alias for /explorersicebox

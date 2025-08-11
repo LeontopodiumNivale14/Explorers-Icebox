@@ -1,6 +1,6 @@
-using ECommons.Automation;
 using ECommons.Throttlers;
 using FFXIVClientStructs.FFXIV.Component.GUI;
+using Callback = ECommons.Automation.Callback;
 
 namespace ExplorersIcebox.Scheduler.Handers
 {

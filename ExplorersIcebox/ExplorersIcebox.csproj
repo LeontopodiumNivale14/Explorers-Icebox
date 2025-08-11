@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Dalamud.NET.Sdk/12.0.2">
+<Project Sdk="Dalamud.NET.Sdk/13.0.0">
 
   <PropertyGroup>
-    <Version>1.0.4.4</Version>
+    <Version>1.0.4.5</Version>
     <Description>Pop open a cold one while the tedious parts of exploration is handled by your good friend cousin robby.</Description>
     <PackageProjectUrl>https://github.com/goatcorp/ExplorersIcebox</PackageProjectUrl>
     <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
