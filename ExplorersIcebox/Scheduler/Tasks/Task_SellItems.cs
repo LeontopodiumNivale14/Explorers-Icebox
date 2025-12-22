@@ -5,6 +5,7 @@ using ECommons.UIHelpers.AddonMasterImplementations;
 using ExplorersIcebox.Util;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 using System.Collections.Generic;
+using static ECommons.UIHelpers.AddonMasterImplementations.AddonMaster;
 using Callback = ECommons.Automation.Callback;
 
 namespace ExplorersIcebox.Scheduler.Tasks
@@ -159,7 +160,7 @@ namespace ExplorersIcebox.Scheduler.Tasks
             else if (GenericHelpers.TryGetAddonMaster<MJIDisposeShop>("MJIDisposeShop", out var mjiShop) && mjiShop.IsAddonReady)
             {
                 var itemName = OnPluginLoad.IslandItemInfo[itemId];
-                var entry = mjiShop.ExportItems.Where(x => x.Name == itemName).FirstOrDefault();
+                var entry = mjiShop.ExportItems.Where(x => x.ItemName == itemName).FirstOrDefault();
                 if (EzThrottler.Throttle("Selecting the item to ship", 1500))
                 {
                     if (entry != null)

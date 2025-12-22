@@ -1,6 +1,7 @@
 using ECommons.UIHelpers.AddonMasterImplementations;
 using ExplorersIcebox.Util;
 using Lumina.Excel.Sheets;
+using static ECommons.UIHelpers.AddonMasterImplementations.AddonMaster;
 
 namespace ExplorersIcebox.Ui.DebugWindowTabs
 {
@@ -24,10 +25,10 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
                     for (int i = 0; i < mjishop.NumEntries; i++)
                     {
                         var entry = mjishop.ExportItems[i];
-                        var itemName = entry.Name;
-                        var Value = entry.SellValue;
-                        var InventoryAmount = entry.InventoryAmount;
-                        var allocatedAmount = entry.AllocatedAmount;
+                        var itemName = entry.ItemName;
+                        var Value = entry.Value;
+                        var InventoryAmount = entry.Inventory;
+                        var allocatedAmount = entry.Allocated;
                         var itemId = OnPluginLoad.IslandItemInfo.Where(x => x.Value == itemName).FirstOrDefault().Key;
 
                         ImGui.TableNextRow();
