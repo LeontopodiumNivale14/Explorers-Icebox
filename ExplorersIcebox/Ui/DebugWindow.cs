@@ -29,7 +29,10 @@ internal class DebugWindow : Window
     private string inputValue = "0"; // The uint value to be edited
     private static ulong Result;
 
-    private string[] debugTypes = ["Player Info", "Navmesh Debug", "Misc Info", "Route Sell", "Target Info", "Imgui Testing", "Island Node Finder", "Island Item Info", "Route Editor V4", "Simple Route Creator", "Picto Testing"];
+    private string[] debugTypes = ["Player Info", "Navmesh Debug", "Misc Info", 
+                                   "Route Sell", "Target Info", "Imgui Testing", 
+                                   "Island Node Finder", "Island Item Info", "Route Editor V4", 
+                                   "Simple Route Creator", "Picto Testing", "Shop Export"];
     int selectedDebugIndex = 0; // This should be stored somewhere persistent
 
     public override void Draw()
@@ -71,6 +74,7 @@ internal class DebugWindow : Window
                 case 8: RouteEditorV4Debug.Draw(); break;
                 case 9: BaseRouteEditor.Draw(); break;
                 case 10: PictoTestDebug.Draw(); break;
+                case 11: MJIShopUi.Draw(); break;
                 default: ImGui.Text("Unknown Debug View"); break;
             }
 

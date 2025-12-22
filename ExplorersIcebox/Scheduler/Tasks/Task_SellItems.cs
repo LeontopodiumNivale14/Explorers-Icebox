@@ -1,6 +1,7 @@
 using Dalamud.Game.ClientState.Objects.Types;
 using ECommons.Automation;
 using ECommons.Throttlers;
+using ECommons.UIHelpers.AddonMasterImplementations;
 using ExplorersIcebox.Util;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 using System.Collections.Generic;
@@ -19,17 +20,8 @@ namespace ExplorersIcebox.Scheduler.Tasks
             P.taskManager.Enqueue(() => MoveToNpc(waypoints), "Moving to NPC");
             P.taskManager.Enqueue(() => TargetV2(dataId), $"Target task: {dataId}");
             P.taskManager.Enqueue(() => InteractShopKeep(dataId), "Interacting w/ the material seller vendor");
-            foreach (var item in IslandHelper.SellItems)
-            {
-                var itemId = item.Key;
-                var sellAmount = item.Value;
-                if (ItemData.AlwaysIgnoreSell.Contains(itemId))
-                    { continue; }
-
-                P.taskManager.Enqueue(() => SellToNpc(itemId, sellAmount), $"Selling {itemId}");
-                P.taskManager.EnqueueDelay(700);
-            }
-
+            P.taskManager.Enqueue(() => SellToNpcV2(), "Selling all the items to the npc");
+            P.taskManager.EnqueueDelay(16, true);
             P.taskManager.Enqueue(() => LeaveNPC(waypoints), "Leaving the NPC");
         }
 
@@ -130,6 +122,50 @@ namespace ExplorersIcebox.Scheduler.Tasks
             {
                 if (EzThrottler.Throttle($"Interacting with {itemId} shop sell"))
                     Callback.Fire(mjiShop, true, 12, callback);
+            }
+
+            return false;
+        }
+
+        internal static bool? SellToNpcV2()
+        {
+            foreach (var item in IslandHelper.SellItems)
+            {
+                var itemId = item.Key;
+                var sellAmount = item.Value;
+                if (ItemData.AlwaysIgnoreSell.Contains(itemId))
+                { continue; }
+                if (sellAmount == 0)
+                    continue;
+
+                if (TryToSellItem(itemId, sellAmount))
+                    return false;
+            }
+
+            return true;
+        }
+
+        private static unsafe bool TryToSellItem(int itemId, int amount)
+        {
+            if (GenericHelpers.TryGetAddonByName<AtkUnitBase>("MJIDisposeShopShipping", out var mjiShip) && GenericHelpers.IsAddonReady(mjiShip))
+            {
+                if (EzThrottler.Throttle($"Selling {itemId}"))
+                {
+                    Callback.Fire(mjiShip, true, 11, amount);
+                    IslandHelper.SellItems[itemId] = 0;
+                }
+                return true;
+            }
+            else if (GenericHelpers.TryGetAddonMaster<MJIDisposeShop>("MJIDisposeShop", out var mjiShop) && mjiShop.IsAddonReady)
+            {
+                var itemName = OnPluginLoad.IslandItemInfo[itemId];
+                var entry = mjiShop.ExportItems.Where(x => x.Name == itemName).FirstOrDefault();
+                if (EzThrottler.Throttle("Selecting the item to ship", 1500))
+                {
+                    if (entry != null)
+                        entry.Select();
+                }
+                return true;
             }
 
             return false;

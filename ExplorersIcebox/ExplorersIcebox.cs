@@ -5,6 +5,7 @@ using ExplorersIcebox.IPC;
 using ExplorersIcebox.Scheduler;
 using ExplorersIcebox.Ui;
 using ExplorersIcebox.Ui.MainWindow;
+using ExplorersIcebox.Util;
 using Pictomancy;
 
 namespace ExplorersIcebox;
@@ -109,6 +110,7 @@ public sealed class ExplorersIcebox : IDalamudPlugin
 
         Init();
         Svc.Framework.Update += Tick;
+        OnPluginLoad.UpdateItemNames();
     }
 
     public void Init()
