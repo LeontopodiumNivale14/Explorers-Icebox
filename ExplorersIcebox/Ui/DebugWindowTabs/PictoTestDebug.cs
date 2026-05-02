@@ -72,11 +72,11 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
             }
 
             IGameObject? target = Svc.Targets.Target;
-            var PlayerPos = Svc.ClientState.LocalPlayer?.Position ?? new Vector3(0);
+            var PlayerPos = Svc.Objects.LocalPlayer?.Position ?? new Vector3(0);
 
             if (target != null)
             {
-                using (var drawList = PictoService.Draw())
+                using (var drawList = PctService.Draw())
                 {
                     if (drawList == null)
                         return;
@@ -141,7 +141,7 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
                     if (ShowDonut)
                         drawList.AddFanFilled(worldPosition, DonutRadius.X, DonutRadius.Y, FanPosition.X, FanPosition.Y, C.PictoCircleColor);
                     if (ShowVFX)
-                        PictoService.VfxRenderer.AddFan("TestId", worldPosition, DonutRadius.X, DonutRadius.Y, FanPosition.X, FanPosition.Y, ImGuiCircleCol);
+                        PctService.VfxRenderer.AddFan("TestId", worldPosition, DonutRadius.X, DonutRadius.Y, FanPosition.X, FanPosition.Y, ImGuiCircleCol);
                     if (ShowName)
                     {
                         Vector3 textWorldPosition = new Vector3(worldPosition.X, worldPosition.Y + FloatDistance, worldPosition.Z);

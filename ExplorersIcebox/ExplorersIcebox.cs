@@ -76,7 +76,7 @@ public sealed class ExplorersIcebox : IDalamudPlugin
         ECommonsMain.Init(pi, P, ECommons.Module.DalamudReflector, ECommons.Module.ObjectFunctions, Module.SplatoonAPI);
         Util.File_Migration.UpdateItemConfig();
 
-        PictoService.Initialize(pi);
+        PctService.Initialize(pi);
 
         //IPC's that are used
         taskManager = new();
@@ -120,7 +120,7 @@ public sealed class ExplorersIcebox : IDalamudPlugin
 
     private void Tick(object _)
     {
-        if (Svc.ClientState.LocalPlayer != null)
+        if (Svc.Objects.LocalPlayer != null)
         {
             SchedulerMain.Tick();
         }
@@ -135,7 +135,7 @@ public sealed class ExplorersIcebox : IDalamudPlugin
         Safe(() => Svc.Framework.Update -= Tick);
         Safe(() => Svc.PluginInterface.UiBuilder.Draw -= windowSystem.Draw);
         ECommonsMain.Dispose();
-        PictoService.Dispose();
+        PctService.Dispose();
     }
 
     private void OnCommand(string command, string args)

@@ -31,7 +31,7 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
                 FontAwesome.Print(ImGuiColors.DalamudRed, FontAwesome.Cross);
             }
             ImGui.Text($"Navmesh information");
-            var player = Svc.ClientState.LocalPlayer;
+            var player = Svc.Objects.LocalPlayer;
             if (player != null)
             {
                 ImGui.Text($"PlayerPos: " + player.Position);
