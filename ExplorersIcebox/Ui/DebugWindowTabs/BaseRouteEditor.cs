@@ -132,7 +132,7 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
                     {
                         int wpNumber = 0;
 
-                        using (var drawList = PictoService.Draw())
+                        using (var drawList = PctService.Draw())
                         {
                             if (drawList == null)
                                 return;
@@ -175,8 +175,8 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
                     Vector3 playerPos = new Vector3(0, 0, 0);
                     ulong targetId = 0;
 
-                    if (Svc.ClientState.LocalPlayer != null)
-                        playerPos = Svc.ClientState.LocalPlayer.Position;
+                    if (Svc.Objects.LocalPlayer != null)
+                        playerPos = Svc.Objects.LocalPlayer.Position;
                     if (Svc.Targets.Target != null)
                         targetId = Svc.Targets.Target.DataId;
 

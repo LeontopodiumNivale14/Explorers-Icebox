@@ -251,7 +251,7 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
                 {
                     int wpNumber = 0;
 
-                    using (var drawList = PictoService.Draw())
+                    using (var drawList = PctService.Draw())
                     {
                         if (PathWP)
                         {
@@ -358,7 +358,7 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
 
                 if (ImGui.Button($"Add Route###{routeNames[SelectedRouteIndex]}"))
                 {
-                    var newTarget = Svc.ClientState.LocalPlayer;
+                    var newTarget = Svc.Objects.LocalPlayer;
                     ulong targetId = 0;
                     string targetName = string.Empty;
                     List<Vector3> currentPlayerPos = new List<Vector3>();
@@ -388,7 +388,7 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
                     G.Save();
                 }
 
-                Vector3 playerPos = Svc.ClientState.LocalPlayer?.Position ?? new Vector3(0, 0, 0);
+                Vector3 playerPos = Svc.Objects.LocalPlayer?.Position ?? new Vector3(0, 0, 0);
                 ImGui.Text($"Player POS: {playerPos.X:F1}, {playerPos.Y:F1}, {playerPos.Z:F1}");
 
                 if (ImGui.CollapsingHeader("Item Count"))
@@ -547,7 +547,7 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
                             ImGui.SameLine();
                             if (ImGui.Button("Adjust Target"))
                             {
-                                var newTarget = Svc.ClientState.LocalPlayer;
+                                var newTarget = Svc.Objects.LocalPlayer;
                                 if (newTarget != null && newTarget.TargetObjectId != 0)
                                 {
                                     BaseList.TargetId = newTarget.TargetObjectId;
@@ -695,7 +695,7 @@ namespace ExplorersIcebox.Ui.DebugWindowTabs
                             ImGui.SameLine();
                             if (ImGui.Button("Adjust Target"))
                             {
-                                var newTarget = Svc.ClientState.LocalPlayer;
+                                var newTarget = Svc.Objects.LocalPlayer;
                                 if (newTarget != null && newTarget.TargetObjectId != 0)
                                 {
                                     RouteWpList.TargetId = newTarget.TargetObjectId;
